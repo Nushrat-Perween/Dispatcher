@@ -61,8 +61,8 @@ $route ['api/auth/sign_out.(:any)'] = 'api/auth/Api/markAttendanceAsSignout/$1';
 $route ['api/job/listAssignedJob.(:any)'] = 'api/job/Api/getAssignJobDetailByFieldworker/$1';
 $route ['api/job/getJobDetail.(:any)'] = 'api/job/Api/getJobDetailById/$1';
 $route ['api/job/updateStatusOfJob.(:any)'] = 'api/job/Api/updateJobAction/$1';
+$route ['api/job/updateJobAction.(:any)'] = 'api/job/Api/updateJobAction/$1';
 
-$route['job/test/([0-9]+)'] = 'backend/Job/test/$1';
 /* *********** Frontend Routes ********** */ 
 $route['login'] = 'backend/Login';
 $route['authlogin'] = 'frontend/Login/loginuser';
@@ -156,6 +156,7 @@ $route['admin/mark_attendance_as_signin'] = 'backend/Attendance/mark_attendance_
 $route['admin/mark_attendance_as_signout'] = 'backend/Attendance/mark_attendance_as_signout';
 $route['admin/get_latest_attendance'] = 'backend/Attendance/get_latest_attendance';
 $route['admin/fieldworker_attendance'] = 'backend/Attendance/fieldworker_attendance';
+$route['admin/filter_fieldworker_attendance'] = 'backend/Attendance/filter_fieldworker_attendance';
 
 // Job 
 $route['admin/job_list'] = 'backend/Job/job_list';
@@ -169,8 +170,6 @@ $route['admin/job/update_job_action'] = 'backend/Job/update_job_action';
 $route['admin/job/assignment/([0-9]+)'] = 'backend/Job/job_assignment/$1';
 $route['admin/job/update_job_assignment'] = 'backend/Job/update_job_assignment';
 
-
-$route['admin/job_details/([0-9]+)'] = 'backend/Job/job_details/$1';
 // Backend Notification
 $route['admin/getAllNotification'] = 'backend/Notification/getAllNotification';
 
@@ -222,3 +221,4 @@ $route['admin/save_hospital'] = 'backend/UserNew/saveHospital';
 $route['admin/hospital_list'] = 'backend/UserNew/hospitalList';
 $route['admin/edit_hospital/([0-9]+)'] = 'backend/UserNew/editHospital/$1';
 $route['admin/update_hospital'] = 'backend/UserNew/updateHospital';
+

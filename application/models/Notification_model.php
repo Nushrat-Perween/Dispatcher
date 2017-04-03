@@ -53,11 +53,11 @@ class Notification_model extends CI_Model {
 			$this->db->select ( '*' );
 			$this->db->from ( TABLES::$NOTIFICATION);
 			$this->db->where ( 'is_deleted', 0 );
-			if(isset($param['company_id'])) {
-				$this->db->where ( 'company_id', $param['company_id'] );
+			if(isset($param['client_id'])) {
+				$this->db->where ( 'client_id', $param['client_id'] );
 			}
-			if(isset($param['branch_id'])) {
-				$this->db->where ( 'branch_id', $param['branch_id'] );
+			if(isset($param['hospital_id'])) {
+				$this->db->where ( 'hospital_id', $param['hospital_id'] );
 			}
 			//$this->db->where ( 'DATE(created_date)', date('Y-m-d') );
 			$this->db->order_by ( 'created_date', 'DESC' );
@@ -77,11 +77,11 @@ class Notification_model extends CI_Model {
 			$this->db->select ( '*' );
 			$this->db->from ( TABLES::$ADMIN_NOTIFICATION);
 			$this->db->where ( 'is_deleted', 0 );
-			if(isset($param['company_id'])) {
-				$this->db->where ( 'company_id', $param['company_id'] );
+			if(isset($param['client_id'])) {
+				$this->db->where ( 'client_id', $param['client_id'] );
 			}
-			if(isset($param['branch_id'])) {
-				$this->db->where ( 'branch_id', $param['branch_id'] );
+			if(isset($param['hospital_id'])) {
+				$this->db->where ( 'hospital_id', $param['hospital_id'] );
 			}
 			//$this->db->where ( 'DATE(created_date)', date('Y-m-d') );
 			$this->db->order_by ( 'created_date', 'DESC' );

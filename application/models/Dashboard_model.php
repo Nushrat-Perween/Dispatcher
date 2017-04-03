@@ -29,6 +29,7 @@ class Dashboard_model extends CI_Model {
 		$this->db->where ( 'ja.company_id', $company_id );
 		$this->db->where ( 'ja.is_deleted', 0 );
 		$query = $this->db->get ();
+	//	echo $this->db->last_query ();
 		$result = $query->result_array ();
 		return $result;
 	}
@@ -82,92 +83,9 @@ class Dashboard_model extends CI_Model {
 		
 	}
 
-   public function getAllJobByClientId($data)
-   {
-   	    //echo $hospital_id;
-   		$this->db->select ( 'count(id) as total_job' )->from ( TABLES::$JOB);
-   		$this->db->where('hospital_id',$data['hospital_id']);
-   		$query = $this->db->get ();
-   		$result = $query->result_array ();
-   		return $result;
-   }
 
-   public function getNewJobByHospitalId($data)
-   {
-   	//echo $hospital_id;
-   	$this->db->select ( 'count(id) as new_job' )->from ( TABLES::$JOB);
-   	$this->db->where('hospital_id',$data['hospital_id']);
-   	$this->db->where('date(created_date)',$data['current_date']);
-   	$query = $this->db->get ();
-   	$result = $query->result_array ();
-   	return $result;
-   }
-   public function getPendingJobByHospitalId($data)
-   {
-   	//echo $hospital_id;
-   	$this->db->select ( 'count(id) as pending_job' )->from ( TABLES::$JOB);
-   	$this->db->where('hospital_id',$data['hospital_id']);
-   	$this->db->where('status',0);
-   	$query = $this->db->get ();
-   	$result = $query->result_array ();
-   	return $result;
-   }
-   
-   
-   public function getCompletedJobByHospitalId($data)
-   {
-   	//echo $hospital_id;
-   	$this->db->select ( 'count(id) as completed_job' )->from ( TABLES::$JOB);
-   	$this->db->where('hospital_id',$data['hospital_id']);
-   	$this->db->where('status',1);
-   	$query = $this->db->get ();
-   	$result = $query->result_array ();
-   	return $result;
-   }
-   
-   public function getCancelJobByHospitalId($data)
-   {
-   	//echo $hospital_id;
-   	$this->db->select ( 'count(id) as cancel_job' )->from ( TABLES::$JOB);
-   	$this->db->where('hospital_id',$data['hospital_id']);
-   	$this->db->where('status',2);
-   	$query = $this->db->get ();
-   	$result = $query->result_array ();
-   	return $result;
-   }
-   public function getAllJobDetailByClientId($data)
-   {
-   	//print_r($data['client_id']);
-   	$this->db->select('sum(if(status=1,1,0)) as completed_job,count(id) as total_job, sum(if(status=2,1,0)) as cancel_job, sum(if(status =0,1,0)) as pendin_job,sum(if(action_id=1,1,0)) as not_started_job,sum(if(action_id=2,1,0)) as accepted_job,sum(if(action_id=3,1,0)) as in_route_job,sum(if(action_id=4,1,0)) as arrived_job,sum(if(action_id=5,1,0)) as departed_job,sum(if(action_id=6,1,0)) as droppedof_job,sum(if(action_id=7,1,0)) as submitted_job,',false);
-   	$this->db->from(TABLES :: $JOB);
-   	$this->db->where('client_id',$data['client_id']);
-   	$this->db->group_by('client_id');
-   	$query = $this->db->get ();
-   	$result = $query->result_array ();
-   	return $result;
-   }
-    
-   public function getTotalClientByClientId($data)
-   {
-   	//echo $hospital_id;
-   	$this->db->select ( 'count(client_id) as total_client' )->from ( TABLES::$ADMIN);
-   	$this->db->where('client_id',$data['client_id']);
-   	$this->db->where('user_role',6);
-   	$query = $this->db->get ();
-   	$result = $query->result_array ();
-   	return $result;
-   }
-    
-   public function getNewClientByClientId($data)
-   {
-   	//echo $hospital_id;
-   	$data['current_date'];
-   	$this->db->select ( 'count(client_id) as new_client' )->from ( TABLES::$ADMIN);
-   	$this->db->where('client_id',$data['client_id']);
-   	$this->db->where('user_role',6);
-   	$this->db->where('date(created_date)',$data['current_date']);
-   	$query = $this->db->get ();
-   	$result = $query->result_array ();
-   	return $result;
-   }
+
+
+
 }
+

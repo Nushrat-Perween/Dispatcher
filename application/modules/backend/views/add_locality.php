@@ -225,7 +225,7 @@ $("#locality_form").submit(function(e) {
 		function initGoogleAutoSuggest() {
 			var options = {
 					  		types: ['(cities)'],
-					  		componentRestrictions: {country: "USA"}
+					  		componentRestrictions: {country: "in"}
 					 	};
 			$( ".goolge_city" ).each(function( index, element ) {
 				var autocomplete = new google.maps.places.Autocomplete(element, options);

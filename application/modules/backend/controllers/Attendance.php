@@ -77,11 +77,19 @@ public function mark_attendance_as_signout () {
 }
 	
 public function fieldworker_attendance () {
+	$data = array();
+	$data['user_role'] = 7;
+	$data['client_id'] = $this->session->userdata('admin')['client_id'];
+	$this->load->library('dispatcher/AdminLib');
+	$field_worker = $this->adminlib->getAllAdmin ($data);
+	$this->template->set ( 'field_worker', $field_worker );
 	$param = array();
 	$param['client_id'] = $this->session->userdata('admin')['client_id'];
-	$param['date'] = date('Y-m-d');
+	$param['start_date'] = date('Y-m-01');
+	$param['end_date'] = date('Y-m-t');
 	$this->load->library('dispatcher/AttendanceLib');
-	$attendance_list = $this->attendancelib->getFieldworkerAttendance ($param);
+	$attendance_list = $this->attendancelib->getMonthlyFieldworkerAttendance ($param);
+	//$attendance_list = $this->attendancelib->getFieldworkerAttendance ($param);
 	$this->template->set ( 'attendance_list', $attendance_list );
 	$this->template->set ( 'page', 'Attendance' );
 	$this->template->set_theme('default_theme');
@@ -92,6 +100,60 @@ public function fieldworker_attendance () {
 	->set_partial ( 'chat_model', 'partials/chat_model' )
 	->set_partial ( 'footer', 'partials/footer' );
 	$this->template->build ('fieldworker_attendance');
+}
+
+public function filter_fieldworker_attendance () {
+	$params = array();
+	$params = $this->input->post();
+	if($params['admin_id'] == "") {
+		unset($params['admin_id']);
+	}
+	if($params['month'] != "") {
+		$params['start_date'] = date('Y-'.$params['month'].'-01');
+		$params['end_date'] = date('Y-'.$params['month'].'-t');
+	} else {
+		$param['start_date'] = date('Y-m-01');
+		$param['end_date'] = date('Y-m-t');
+	}
+	unset($params['month']);
+	$params['client_id'] = $this->session->userdata('admin')['client_id'];
+	$this->load->library('dispatcher/AttendanceLib');
+	$result = $this->attendancelib->getMonthlyFieldworkerAttendance ($params);
+	
+	$i=0;
+	$sr=1;
+	$data = array();
+	foreach($result as $row) {
+		
+		if($row['action_time'] == NULL)
+			$data[$i]['date'] = 'NA';
+		else
+			$data[$i]['date']=date('d-m-Y',strtotime($row['action_time']));
+	
+		if($row['action_time'] == NULL)
+			$data[$i]['time'] = 'NA';
+		else
+			$data[$i]['time']=date(' g:i A',strtotime($row['action_time']));
+
+		
+
+			$data[$i]['action']=$row['attendance'];
+			if($row['location'] == "" OR $row['location'] == NULL) {
+				$data[$i]['location'] = "NA";
+			} else {
+				$data[$i]['location'] = $row['location'];
+			}
+			if($row['fieldworker_name'] == "" OR $row['fieldworker_name'] == NULL) {
+				$data[$i]['fieldworker_name'] = "NA";
+			} else {
+				$data[$i]['fieldworker_name'] = $row['fieldworker_name'];
+			}
+			
+
+			$i++;
+			$sr++;
+	}
+	echo json_encode($data);
 }
 	
 

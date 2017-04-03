@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?php echo asset_url();?>vendor/c3/c3.min.css">	
+	 <link rel="stylesheet" href="<?php echo asset_url();?>vendor/c3/c3.min.css">	
 		 <div class="content-view">
             <div class="row">
                
@@ -10,7 +10,7 @@
                       group
                     </i></span>
                     </span>
-                    <span><?php echo $totaljob[0]['total_job'];?></span>
+                    <span> 100</span>
                   </h5>
                   <div class="small text-overflow text-muted">
                     &nbsp
@@ -28,7 +28,7 @@
                       group
                     </i></span>
                     </span>
-                    <span> <?php echo $newjob[0]['new_job'];?></span>
+                    <span> 100</span>
                   </h5>
                   <div class="small text-overflow text-muted">
                     &nbsp
@@ -46,13 +46,13 @@
                       group
                     </i></span>
                     </span>
-                    <span> <?php echo $pendingjob[0]['pending_job'];?></span>
+                    <span> 100</span>
                   </h5>
                   <div class="small text-overflow text-muted">
                     &nbsp
                   </div>
                   <div class="small text-overflow">
-                 Pending Job
+                 Pending Client
                   </div>
                 </div>
               </div>
@@ -64,13 +64,13 @@
                       group
                     </i></span>
                     </span>
-                    <span><?php echo $completedjob[0]['completed_job'];?></span>
+                    <span> 100</span>
                   </h5>
                   <div class="small text-overflow text-muted">
                     &nbsp
                   </div>
                   <div class="small text-overflow">
-                Completed Job
+                Complited Job
                   </div>
                 </div>
               </div>
@@ -82,13 +82,13 @@
                       group
                     </i></span>
                     </span>
-                    <span> <?php echo $cancejob[0]['cancel_job'];?></span>
+                    <span> 100</span>
                   </h5>
                   <div class="small text-overflow text-muted">
                     &nbsp
                   </div>
                   <div class="small text-overflow">
-                Cancel Job
+                Cancell Job
                   </div>
                 </div>
               </div>

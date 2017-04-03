@@ -30,15 +30,36 @@ class Api extends REST_Controller {
 	{
 		$data = array();
 		$data['action_id'] = $this->post('action_id');
-		$data['job_id'] = $this->post('action_id');
-		$data['id'] = $this->post('id');
-		$data['latitude'] = $this->post('latitute');
-		$data['longitude'] = $this->post('longitude');
-		$data['locality'] = $this->post('locality');
+		$data['id'] = $this->post('job_id');
+		$data['updated_by'] = $this->post('user_id');
+		$data['updated_date'] = date('Y-m-d H:i:s');
+		$history_data['job_id'] = $this->post('job_id');
+		$history_data['last_known_location'] = $this->post('last_known_location');
+		$history_data['latitude'] = $this->post('latitute');
+		$history_data['longitude'] = $this->post('longitude');
+		$history_data['last_location_date'] = date('Y-m-d',strtotime($this->post('last_location_date')));
+		$history_data['last_location_time'] = date('H:i:s',strtotime($this->post('last_location_time')));
+		$history_data['comment'] = $this->post('comment');
+		$history_data['action_id'] = $this->post('action_id');
+		$history_data['is_mobile'] = 1;
+		$history_data['created_by'] = $this->post('user_id');
+		$history_data['created_date'] = date('Y-m-d H:i:s');
 		$this->load->library('dispatcher/JobLib');
-		$this->joblib->getJobDetailById($data);
-		$res['status'] = 1;
-		$res['msg'] = "Updated successfully";
+		$resp = $this->joblib->updateJobAction($data);
+		$job_history_resp = $this->joblib->saveJobHistory($history_data);
+		if($resp) {
+			if($job_history_resp) {
+				$res['status'] = 1;
+				$res['msg'] = "Updated successfully";
+			} else {
+				$res['status'] = 0;
+				$res['msg'] = "Please check your data Job History is not saved.";
+			}
+		} else {
+			$res['status'] = 0;
+			$res['msg'] = "Please check your data Job is not updated.";
+		}
+		
 		echo json_encode($res);
 	}
 

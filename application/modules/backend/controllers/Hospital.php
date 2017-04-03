@@ -229,30 +229,4 @@ class Hospital extends MX_Controller {
 		echo json_encode($joblist);
 	}
 	
-	public function getCustomerListBydate()
-	{
-		$data['mobile']=$this->input->post('mobile_number');
-		$data['from_date']= date('Y-m-d',strtotime($this->input->post('from_date')));
-		$data['to_date']= date('Y-m-d',strtotime($this->input->post('to_date')));
-		$data['client_id'] = $_SESSION['admin']['client_id'];
-		$data['hospital_id'] = $_SESSION['admin']['hospital_id'];
-		$this->load->library('dispatcher/HospitalLib');
-		$customerlist = $this->hospitallib->getCustomerListBydate ($data);
-		//print_r($joblist);
-		echo json_encode($customerlist);
-	}
-	
-	public function getPatientListBydate()
-	{
-		$data['mobile']=$this->input->post('mobile_number');
-		$data['from_date']= date('Y-m-d',strtotime($this->input->post('from_date')));
-		$data['to_date']= date('Y-m-d',strtotime($this->input->post('to_date')));
-		$data['client_id'] = $_SESSION['admin']['client_id'];
-		$data['hospital_id'] = $_SESSION['admin']['hospital_id'];
-		$this->load->library('dispatcher/HospitalLib');
-		$customerlist = $this->hospitallib->getPatientListBydate ($data);
-		//print_r($joblist);
-		echo json_encode($customerlist);
-	}
-	
 }

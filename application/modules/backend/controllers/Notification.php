@@ -19,7 +19,14 @@ class Notification extends MX_Controller {
 	public function getAllNotification () {
 		
 		$notification_param = array();
-	
+		$role = $this->session->userdata('admin')['user_role'];
+		if($role == 3 || $role == 4 || $role == 5 || $role == 6) {
+			$notification_param['client_id'] = $this->session->userdata('admin')['client_id'];
+			if($role == 6) {
+				$notification_param['hospital_id'] = $this->session->userdata('admin')['hospital_id'];
+			}
+		} 
+		
 		$this->load->library('dispatcher/NotificationLib');
 		$notification = $this->notificationlib->getAllAdminNotification($notification_param);
 		

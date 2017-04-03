@@ -54,7 +54,7 @@
 	                      <td> <?php echo (isset($row['created_date']) && !empty($row['created_date']))?date("d-m-Y", strtotime($row['created_date'])):'';?></td>
 	                      <td> <?php echo (isset($row['delivery_date']) && !empty($row['delivery_date']))?date("d-m-Y", strtotime($row['delivery_date'])):'';?></td>
 	                      <td> <?php echo (isset($row['delivery_time']) && !empty($row['delivery_time']))?date("H:i:s", strtotime($row['delivery_time'])):'';?></td>
-	                      <td><?php if($row['status']==0) { echo "Pendind";} else if($row['status']==1) { echo "Success";} else { echo "Cancel" ; }?></td>
+	                      <td><?php if($row['status']==0) { echo "Pending";} else if($row['status']==1) { echo "Success";} else { echo "Cancel" ; }?></td>
 	                    </tr>
 	                 <?php }?>   
 				  </tbody>

@@ -95,7 +95,6 @@ class Auth {
 	
 	public function adminlogin($udata) {
 		$map = array();
-	
 			$this->CI->load->model ( 'users/AdminUser_model', 'admin' );
 			$userdetail = $this->CI->admin->getAdminByUserName ( $udata['username'] );
 			if(count($userdetail) > 0) {
@@ -144,8 +143,9 @@ class Auth {
 						$userinfo['id'] = $userdetail[0]['id'];
 						$userinfo['first_name'] = $userdetail[0]['first_name'];
 						$userinfo['hospital_id'] = $userdetail[0]['hospital_id'];
+						$userinfo['hospital_name'] = $userdetail[0]['hospital_name'];
 						$userinfo['client_id'] = $userdetail[0]['client_id'];
-						$userinfo['last_name'] = $userdetail[0]['last_name'];
+						$userinfo['last_name'] = $userdetail[0]['last_name']; 
 						$userinfo['email'] = $userdetail[0]['email'];
 						$userinfo['mobile'] = $userdetail[0]['mobile'];
 						$userinfo['user_role'] = $userdetail[0]['user_role'];

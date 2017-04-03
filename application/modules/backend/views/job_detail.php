@@ -12,6 +12,7 @@
 }
 .timeline-body{text-align:center;color:#000}
 	</style>
+
 <div class="content-view">
 <div class="row">
 <div class="col-lg-6">
@@ -19,77 +20,171 @@
 <div class="col-lg-12">
 <div class="card no-border">
 <div class="card-header no-border">
-Delivery Address
+Job Summary
 </div>
 <div class="card-block">
 <p class="card-text ">
-<span class="col-md-6"> <b>Contact Name </b></span>
-<span class="col-md-6 border"> <?php echo $job_details[0]['del_name'];?></span>
+<span class="col-md-6"> <b>Name </b></span>
+<span class="col-md-6 border"> 12034 Abcwf</span>
 </p>
 <p class="card-text">
-<span class="col-md-6"><b>Contact Number </b> </span>
-<span class="col-md-6 border"> <?php echo $job_details[0]['del_mobile'];?> </span>
+<span class="col-md-6"><b>Job Id </b> </span>
+<span class="col-md-6 border"> 12034 </span>
 </p>
 <p class="card-text">
-<span class="col-md-6"><b>Delivery Date </b> </span>
-<span class="col-md-6 border"> <?php echo $job_details[0]['delivery_date'];?> </span>
+<span class="col-md-6 "> <b> Type</b>  </span>
+<span class="col-md-6 border" style=""> 12034 Abcwf</span>
 </p>
 <p class="card-text">
-<span class="col-md-6"><b>Delivery Time </b> </span>
-<span class="col-md-6 border"> <?php echo $job_details[0]['delivery_time'];?> </span>
+<span class="col-md-6"> <b> Pattern </b> </span>
+<span class="col-md-6 border">: 12034 Abcwf</span>
 </p>
 <p class="card-text">
 <span class="col-md-6"><b> Priority</b>  </span>
-<span class="col-md-6 border"><?php if($job_details[0]['priority'] ==0) echo "Low"; else if($job_details[0]['priority'] == 1) echo "Medium"; else if($job_details[0]['priority'] == 2) echo "Heigh"; else echo "Not Define";?></span>
+<span class="col-md-6 border">: 12034 Abcwf</span>
 </p>
 <p class="card-text">
 <span class="col-md-6"> <b> Created On </b> </span>
-<span class="col-md-6 border"> <?php echo (isset($job_details[0]['created_date']) && !empty($job_details[0]['created_date']))?date("d-m-Y", strtotime($job_details[0]['created_date'])):'';?></span>
+<span class="col-md-6 border">: 12034 Abcwf</span>
 </p>
 <p class="card-text">
 <span class="col-md-6"><b> Status</b>  </span>
-<span class="col-md-6 border"> <?php if($job_details[0]['status'] == 0) { echo "Pending" ; } else if ($job_details[0]['status'] == 2) { echo "Cancel" ;} else if ($job_details[0]['status'] == 1) { echo "Success"; } else { echo "Not Define"; }  ?></span>
+<span class="col-md-6 border">: 12034 Abcwf</span>
 </p>
+</div>
+
+</div>
+</div>
+<div class="col-lg-12">
+<div class="card no-border">
+<div class="card-header no-border">
+Job Location
+</div>
+<div class="card-block">
+<p class="card-text ">
+<span class="col-md-6"> <b>  Name </b></span>
+<span class="col-md-6 border"> 12034 Abcwf</span>
+</p>
+<p class="card-text">
+<span class="col-md-6"><b> Phone </b> </span>
+<span class="col-md-6 border"> 12034 </span>
+</p>
+<p class="card-text">
+<span class="col-md-6 "> <b>Email Addres</b>  </span>
+<span class="col-md-6 border" style=""> 12034 Abcwf</span>
+</p>
+<p class="card-text">
+<span class="col-md-6"> <b> Address </b> </span>
+<span class="col-md-6 border">: 12034 Abcwf</span>
+</p>
+	
+</div>
+</div>
+</div>
+<div class="col-lg-12">
+<div class="card no-border">
+<div class="card-header no-border">
+Patient Information
+</div>
+<div class="card-block">
+<p class="card-text ">
+<span class="col-md-6"> <b>  Name </b></span>
+<span class="col-md-6 border"> 12034 Abcwf</span>
+</p>
+<p class="card-text">
+<span class="col-md-6"><b> Room No </b> </span>
+<span class="col-md-6 border"> 12034 </span>
+</p>
+<p class="card-text">
+<span class="col-md-6 "> <b>Tests</b>  </span>
+<span class="col-md-6 border" style=""> 12034 Abcwf</span>
+</p>
+<p class="card-text">
+<span class="col-md-6"> <b> Caller </b> </span>
+<span class="col-md-6 border">: 12034 Abcwf</span>
+</p>
+<p class="card-text">
+<span class="col-md-6"> <b> Special Instruction </b> </span>
+<span class="col-md-6 border">: 12034 Abcwf</span>
+</p>
+	
 </div>
 </div>
 </div>
 </div>
 <div class="col-lg-6 " >
+ 
 <div class="col-lg-12">
 <div class="card">
 <div class="card-header">
-Pickup Address
+Worker Detail
 </div>
 <div class="card-block">
 <p class="card-text ">
-<span class="col-md-6"> <b>Contact Name </b></span>
-<span class="col-md-6 border"> <?php echo $job_details[0]['contact_name'];?></span>
+<span class="col-md-6"> <b>Worker </b></span>
+<span class="col-md-6 border"> 12034 Abcwf</span>
 </p>
 <p class="card-text">
-<span class="col-md-6"><b>Contact Number </b> </span>
-<span class="col-md-6 border"> <?php echo $job_details[0]['mobile'];?> </span>
+<span class="col-md-6"><b>Group </b> </span>
+<span class="col-md-6 border"> 12034 </span>
+</p>
+</div>
+</div>
+</div>
+<div class="col-lg-12">
+<div class="card">
+<div class="card-header">
+Schedule Time
+</div>
+<div class="card-block">
+<p class="card-text ">
+<span class="col-md-6"> <b> Schedule Start </b></span>
+<span class="col-md-6 border"> 12/12/2016 09:45 PM CST </span>
 </p>
 <p class="card-text">
-<span class="col-md-6 "> <b>Pickup Street</b>  </span>
-<span class="col-md-6 border" style=""><?php echo $job_details[0]['pickup_street'];?></span>
+<span class="col-md-6"><b> Schedule End </b> </span>
+<span class="col-md-6 border">12/12/2016 09:45 PM CST </span>
 </p>
 <p class="card-text">
-<span class="col-md-6 "> <b>Lookup Name</b>  </span>
-<span class="col-md-6 border" style=""> <?php echo $job_details[0]['pickup_lookup_name'];?></span>
+<span class="col-md-6"> <b>Duration </b> </span>
+<span class="col-md-6 border">2h :0m</span>
+</p>
+	
+</div>
+</div>
+</div>
+<div class="col-lg-12">
+<div class="card">
+<div class="card-header">
+Actual Time
+</div>
+<div class="card-block">
+<p class="card-text ">
+<span class="col-md-6"> <b>  Start </b></span>
+<span class="col-md-6 border"> 12/12/2016 09:45 PM CST </span>
 </p>
 <p class="card-text">
-<span class="col-md-6 "> <b> Type</b>  </span>
-<span class="col-md-6 border" style=""><?php echo $job_details[0]['pickup_lookup_name'];?></span>
+<span class="col-md-6"><b> End </b> </span>
+<span class="col-md-6 border">12/12/2016 09:45 PM CST </span>
 </p>
+<p class="card-text">
+<span class="col-md-6"> <b>Time on job </b> </span>
+<span class="col-md-6 border">2h :0m</span>
+</p>
+<p class="card-text">
+<span class="col-md-6"> <b>Suspended Time </b> </span>
+<span class="col-md-6 border">2h :0m</span>
+</p>
+<p class="card-text">
+<span class="col-md-6"> <b>Total Time  </b> </span>
+<span class="col-md-6 border">2h :0m</span>
+</p>
+	
 </div>
 </div>
 </div>
 </div>
 </div>
-<?php if(isset($delivery_status1) && !empty($delivery_status1)) { 
-	foreach($delivery_status1 as $delivery_status)
-	{
- 		if($delivery_status['action_id'] == 2) { ?>
 <div class="text-xs-center m-b-2">
 <div class="btn-group btn-group-sm timeline-toggle" data-toggle="buttons">
 <label class="btn btn-default active">
@@ -102,34 +197,30 @@ Pickup Address
 </div>
 <div class="timeline">
 <!-- timeline item-->
-
 <div class="timeline-card">
 <div class="timeline-icon bg-danger text-white">
 <i class="fa fa-map">
  
 </i>
 </div>
-
 <section class="timeline-content">
 <div class="timeline-body">
 <div class="timeline-heading bg-default text-success">
 Accepted
 </div>
 <p>
-<?php if($delivery_status['last_location_date'] == NULL) echo 'NA';else echo date("d-m-Y",strtotime($delivery_status['last_location_date']));?>  <?php if($delivery_status['last_location_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($delivery_status['last_location_time']));?> 
+12/12/2016 09:45 pm CST
 </p>
 <p>
-<?php echo $delivery_status['last_known_location']; ?>
+Pimple saudagar ,jagtab dairy pune maharastra 234
 </p>
 </div>
 <div class="timeline-date">
-<?php if($delivery_status['last_location_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($delivery_status['last_location_time']));?>
+13:12 am
 </div>
 </section>
 </div>
-<?php } ?>
 <!-- timeline item-->
-<?php if($delivery_status['action_id'] == 3) { ?>
 <div class="timeline-card">
 <div class="timeline-icon bg-info text-white">
 <i class="material-icons">
@@ -142,20 +233,18 @@ person
 In route
 </div>
 <p>
-<?php if($delivery_status['last_location_date'] == NULL) echo 'NA';else echo date("d-m-Y",strtotime($delivery_status['last_location_date']));?>  <?php if($delivery_status['last_location_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($delivery_status['last_location_time']));?>
+12/12/2016 09:45 pm CST
 </p>
 <p>
-<?php echo $delivery_status['last_known_location']; ?>
+Pimple saudagar ,jagtab dairy pune maharastra 234
 </p>
 </div>
 <div class="timeline-date">
-<?php if($delivery_status['last_location_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($delivery_status['last_location_time']));?>
+13:12 am
 </div>
 </section>
 </div>
-<?php } ?>
 <!-- timeline item-->
-<?php if($delivery_status['action_id'] == 4) { ?>
 <div class="timeline-card">
 <div class="timeline-icon bg-primary text-white">
 <i class="material-icons">
@@ -168,20 +257,18 @@ explore
 Arrived
 </div>
 <p>
-<?php if($delivery_status['last_location_date'] == NULL) echo 'NA';else echo date("d-m-Y",strtotime($delivery_status['last_location_date']));?>  <?php if($delivery_status['last_location_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($delivery_status['last_location_time']));?>
+12/12/2016 09:45 pm CST
 </p>
 <p>
-<?php echo $delivery_status['last_known_location']; ?>
+Pimple saudagar ,jagtab dairy pune maharastra 234
 </p>
 </div>
 <div class="timeline-date">
-<?php if($delivery_status['last_location_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($delivery_status['last_location_time']));?>
+13:12 am
 </div>
 </section>
 </div>
-<?php } ?>
 <!-- timeline item-->
-<?php if($delivery_status['action_id'] == 5) { ?>
 <div class="timeline-card">
 <div class="timeline-icon bg-warning text-white">
 <i class="material-icons">
@@ -194,20 +281,18 @@ games
 Departed
 </div>
 <p>
-<?php if($delivery_status['last_location_date'] == NULL) echo 'NA';else echo date("d-m-Y",strtotime($delivery_status['last_location_date']));?>  <?php if($delivery_status['last_location_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($delivery_status['last_location_time']));?>
+12/12/2016 09:45 pm CST
 </p>
 <p>
-<?php echo $delivery_status['last_known_location']; ?>
+Pimple saudagar ,jagtab dairy pune maharastra 234
 </p>
 </div>
 <div class="timeline-date">
-<?php if($delivery_status['last_location_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($delivery_status['last_location_time']));?>
+13:12 am
 </div>
 </section>
 </div>
-<?php } ?>
 <!-- timeline item-->
-<?php if($delivery_status['action_id'] == 6) { ?>
 <div class="timeline-card">
 <div class="timeline-icon bg-success text-white">
 <i class="material-icons">
@@ -220,19 +305,17 @@ navigation
 Diparted Off
 </div>
 <p>
-<?php if($delivery_status['last_location_date'] == NULL) echo 'NA';else echo date("d-m-Y",strtotime($delivery_status['last_location_date']));?>  <?php if($delivery_status['last_location_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($delivery_status['last_location_time']));?>
+12/12/2016 09:45 pm CST
 </p>
 <p>
-<?php echo $delivery_status['last_known_location']; ?>
+Pimple saudagar ,jagtab dairy pune maharastra 234
 </p>
 </div>
 <div class="timeline-date">
-<?php if($delivery_status['last_location_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($delivery_status['last_location_time']));?>
+13:12 am
 </div>
 </section>
 </div>
-<?php } ?>
-<?php if($delivery_status['action_id'] == 7) { ?>
 <div class="timeline-card">
 <div class="timeline-icon bg-success text-white">
 <i class="material-icons">
@@ -245,14 +328,14 @@ navigation
 Diparted Off Submitted
 </div>
 <p>
-<?php if($delivery_status['last_location_date'] == NULL) echo 'NA';else echo date("d-m-Y",strtotime($delivery_status['last_location_date']));?>  <?php if($delivery_status['last_location_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($delivery_status['last_location_time']));?>
+12/12/2016 09:45 pm CST
 </p>
 <p>
-<?php echo $delivery_status['last_known_location']; ?>
+Pimple saudagar ,jagtab dairy pune maharastra 234
 </p>
 </div>
 <div class="timeline-date">
-<?php if($delivery_status['last_location_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($delivery_status['last_location_time']));?>
+13:12 am
 </div>
 </section>
 </div>
@@ -265,7 +348,6 @@ local_library
 </div>
 </div>
 </div>
-<?php } } } ?>
 
 </div>
 <!-- 	<script src="script/jquery.js"></script> -->

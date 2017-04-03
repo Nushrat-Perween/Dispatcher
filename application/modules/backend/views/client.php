@@ -38,17 +38,25 @@
 						</div>
 						</div>
 						<div class="form-group col-md-4">
-						
-						<div class="row"> 
-						Password
-							<div class="col-md-12 input-group"> 
-								<input type="text"  class="form-control" name="data[password]" value ="<?php echo $password['text_password'] ?>" placeholder="Pincode" required/>
+							<div class="row"> 
+							Package
+								<div class="col-md-12"> 
+									<select class="form-control" name="data[package_id]"  id="verified" required>
+										<option value="">Select</option>
+										<?php foreach($package as $item) {  ?>
+										<option value="<?php echo $item['id']; ?>"><?php echo $item['name']; ?></option>
+										<?php } ?>
+									</select>
+								</div>
+								<div class="messageContainer"></div>
 							</div>
-							<div class="messageContainer"></div>
-						</div>
-						</div>
+							</div>
+						
+						
 						</div>
 						<div class="row">
+						
+						
 						<div class="form-group col-md-4">
 						<div class="row"> 
 						Email
@@ -66,6 +74,7 @@
 								<input type="text" class="form-control" name="data[mobile]" placeholder="Number" required/>
 							</div>
 							<div class="messageContainer"></div>
+							
 						</div>
 						</div>
 						<div class="form-group col-md-4">
@@ -102,40 +111,8 @@
 						</div>
 						</div>
 						
-						<div class="form-group col-md-4">
-							<div class="row"> 
-							Package
-								<div class="col-md-12"> 
-									<select class="form-control" name="data[package_id]"  id="verified" required>
-										<option value="">Select</option>
-										<?php foreach($package as $item) {  ?>
-										<option value="<?php echo $item['id']; ?>"><?php echo $item['name']; ?></option>
-										<?php } ?>
-									</select>
-								</div>
-								<div class="messageContainer"></div>
-							</div>
-							</div>
-						</div>
 						
-						<div class="row">
-							<div class="form-group col-md-4">
-						
-						<div class="row"> 
-						Is Verified
-							<div class="col-md-12 input-group"> 
-								<select class="form-control" name="data[verified]"  id="verified" required>
-									<option value="">Select</option>
-									<option value="1">Yes</option>
-									<option value="0">No</option>
-									
-								</select>
-							</div>
-							<div class="messageContainer"></div>
 						</div>
-						</div>
-						
-						</div>	
 													
 						<div class="form-group pull-right">
 							<button type="submit" class="btn btn-primary m-r">
@@ -255,8 +232,8 @@
     $.getScript("https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCH-u-UD2bz6cfPEAe8mCVyrnnI7ONx9ro&callback=initMap");
     function initMap() {
         var options = {
-            types: ['(cities)'],
-            componentRestrictions: {country: 'USA'}
+            types: ["geocode"],
+            componentRestrictions: {country: 'in'}
         };
         var i=0;
         var input = document.getElementById('locality');
@@ -272,6 +249,8 @@
             $('#longitude').val(place.geometry.location.lng());
           i=1;
         });
+        
+    
          input = document.getElementById('locality1');
        var  autocomplete1 = new google.maps.places.Autocomplete(input, options);
         autocomplete1.addListener('place_changed', function () {

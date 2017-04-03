@@ -71,9 +71,10 @@
 						<div class="form-group col-md-4">
 						
 						<div class="row"> 
-						Password
+						Pincode
 							<div class="col-md-12 input-group"> 
-								<input type="text"  class="form-control" name="data[password]" value ="<?php echo $password['text_password'] ?>" placeholder="Password" required/>
+								<input type="text"  class="form-control" name="data[pincode]" placeholder="Pincode" required/>
+								<input type="hidden"  class="form-control" name="password" value ="<?php echo $password['text_password'] ?>" placeholder="Pincode" required/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
@@ -100,36 +101,6 @@
 							<div class="messageContainer"></div>
 						</div>
 						</div>
-						
-						<div class="form-group col-md-4">
-						
-						<div class="row"> 
-						Pincode
-							<div class="col-md-12 input-group"> 
-								<input type="text"  class="form-control" name="data[pincode]" placeholder="Pincode" required/>
-								<input type="hidden"  class="form-control" name="password" value ="<?php echo $password['text_password'] ?>" placeholder="Pincode" required/>
-							</div>
-							<div class="messageContainer"></div>
-						</div>
-						</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-md-4">
-						
-						<div class="row"> 
-						Is Verified
-							<div class="col-md-12 input-group"> 
-								<select class="form-control" name="data[verified]"  id="verified" required>
-									<option value="">Select</option>
-									<option value="1">Yes</option>
-									<option value="0">No</option>
-									
-								</select>
-							</div>
-							<div class="messageContainer"></div>
-						</div>
-						</div>
-						
 						</div>						
 						<div class="form-group pull-right">
 							<button type="submit" class="btn btn-primary m-r">
@@ -250,7 +221,7 @@
     function initMap() {
         var options = {
             types: ["geocode"],
-            componentRestrictions: {country: 'USA'}
+            componentRestrictions: {country: 'in'}
         };
         var i=0;
         var input = document.getElementById('locality');

@@ -69,7 +69,6 @@ class UserLibNew {
 		$user['first_name'] = $data['first_name'];
 		$user['last_name'] = $data['last_name'];
 		$user['mobile'] = $data['mobile'];
-		$user['verified'] = $data['verified'];
 		$user['client_id'] = $data['client_id'];
 	
 		$hospital['name'] = $data['name'];
@@ -111,7 +110,6 @@ class UserLibNew {
 		$user['first_name'] = $data['first_name'];
 		$user['last_name'] = $data['last_name'];
 		$user['mobile'] = $data['mobile'];
-		$user['verified'] = $data['verified'];
 		$user['hospital_id'] = $data['hospital_id'];
 	
 		$hospital['name'] = $data['name'];

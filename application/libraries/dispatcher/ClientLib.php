@@ -18,7 +18,6 @@ class ClientLib {
 		$user['first_name'] = $data['first_name'];
 		$user['last_name'] = $data['last_name'];
 		$user['mobile'] = $data['mobile'];
-		$user['verified'] = $data['verified'];
 		//print_r($user);
 		unset($data['password']);
 		unset($data['text_password']);
@@ -27,7 +26,6 @@ class ClientLib {
 		unset($data['first_name']);
 		unset($data['last_name']);
 		unset($data['mobile']);
-		unset($data['verified']);
 		$this->CI->load->model ( 'client/client_model', 'client' );
 		$client = $this->CI->client->save_client ( $data );
 		$user['client_id']=$client;
@@ -56,13 +54,11 @@ class ClientLib {
 		$client['first_name'] = $data['first_name'];
 		$client['last_name'] = $data['last_name'];
 		$client['mobile'] = $data['mobile'];
-		$client['verified'] = $data['verified'];
 		$client['id'] = $data['id'];
 		unset($data['first_name']);
 		unset($data['last_name']);
 		unset($data['mobile']);
 		unset($data['hospital_id']);
-		unset($data['verified']);
 		//print_r($client);
 		$this->CI->load->model ( 'client/client_model', 'client' );
 		$client_data = $this->CI->client->updateClientById ($data );

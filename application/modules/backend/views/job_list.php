@@ -10,6 +10,10 @@ hr{margin-bottom:0rem}
 .icon-arrow-left {
 color:black;
 }
+.thead-inverse th {
+color: #fff;
+    background-color: #0275d8;
+}
 .modal-body {
 position: relative;
     padding-left: 20%;
@@ -149,8 +153,9 @@ channel.bind('my_event', function(data) {
 <br>	<br>	<br>	<br>	<br><br><br>
 <div class="dataTables_wrapper">
 <table class="table table-bordered datatable" id="table_id1">
-<thead>
+<thead class="thead-inverse">
 <tr>
+
 <th> Job Name </th>
 <th > Delivery Date </th>
 <th > Delivery Time </th>
@@ -172,10 +177,12 @@ channel.bind('my_event', function(data) {
     $sr=0;
     foreach($job as $row) {
         $sr++;
+        
+        
     ?>
 <tr>
-<td> <a href="job_details/<?php echo $row['id']?>"><?php echo $row['job_name'];?></a></td>
-<td> <?php if($row['delivery_date'] == NULL) echo 'NA';else echo date("d-m-Y",strtotime($row['delivery_date']));?> </td>
+<td> <?php echo $row['job_name'];?>   </a></td>
+<td> <?php if($row['delivery_date'] == NULL) echo 'NA';else echo date("d-m-Y",strtotime($row['delivery_date']));?>   </td>
 <td> <?php if($row['delivery_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($row['delivery_time']));?>   </td>
 <td> <?php if($row['start_date'] == NULL) echo 'NA';else echo date("d-m-Y",strtotime($row['start_date']));?>   </td>
 <td> <?php if($row['start_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($row['start_time']));?>   </td>
@@ -203,7 +210,7 @@ channel.bind('my_event', function(data) {
 <h3 id="modal-login-label" class="web_dialog_title">
 <button type="button" data-dismiss="modal" aria-hidden="true"
 class="close">&times;</button>
-<label id="pop_up_title">Assign Field Worker </label>
+<center><label id="pop_up_title">Assign Field Worker </label></center>
 
 </h3>
 </div>
@@ -321,7 +328,6 @@ function update_dataTable(data,tableid) {
     oTable.fnClearTable();
     
     $(data).each(function(index) {
-                 var order_details = '<a href="job_details/'+data[index].id+'">'+data[index].job_name+'</a>';
                  var map ='<a><i class="fa fa-map text-warning" aria-hidden="true"> </i></a>';
                  var edit = '<a href="<?php echo base_url();?>edit_job/'+data[index].id+'"><i class="fa fa-external-link-square text-red" aria-hidden="true"></i></a>';
                  var job_id = '<a href="<?php echo base_url();?>admin/job_detail/'+data[index].id+'"><span class="tag bg-red"> '+data[index].job_id+'  </span> </a>';
@@ -330,7 +336,7 @@ function update_dataTable(data,tableid) {
                  var assign = '<a href="<?php echo base_url();?>admin/job/assignment/'+data[index].id+'" class="bg-green" style="margin:2px">&nbsp;&nbsp;<i class="fa fa-pencil text-white"></i>&nbsp;Assign&nbsp;&nbsp;</a>'
                  var row = [];
                  
-                 row.push(order_details);
+                 row.push(data[index].job_name);
                  row.push(data[index].delivery_date);
                  row.push(data[index].delivery_time);
                  row.push(data[index].start_date);

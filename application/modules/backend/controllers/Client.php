@@ -54,8 +54,8 @@ class Client extends MX_Controller {
 		$data['created_date'] = date('Y-m-d H:i:s');
 		$data['created_by'] = $_SESSION['admin']['id'];
 		$data['user_role'] = 3;
-		$data['text_password'] = $data['password'];
-		$data['password'] = md5($data['password']);
+		$data['text_password'] = $this->input->post('password');
+		$data['password'] = md5($this->input->post('password'));
 		$data['latitude'] = $this->input->post('latitude');
 		$data['longitude'] = $this->input->post('longitude');
 		$this->load->library('dispatcher/ClientLib');

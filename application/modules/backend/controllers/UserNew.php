@@ -156,7 +156,7 @@ class UserNew extends MX_Controller {
 		$created_date = date('Y-m-d H:i:s');
 		$data['created_date'] = date('Y-m-d H:i:s');
 		$data['created_by'] = $_SESSION['admin']['id'];
-		$data['client_id'] = $_SESSION['admin']['client_id'];
+		$data['client_id'] = $_SESSION['admin']['id'];
 		$this->load->library('dispatcher/UserLibNew');
 		//print_r($data);
 		$id = $this->userlibnew->saveClientUser ($data);
@@ -229,10 +229,10 @@ class UserNew extends MX_Controller {
 		$data = $this->input->post('data');
 		$data['created_date'] = date('Y-m-d H:i:s');
 		$data['created_by'] = $_SESSION['admin']['id'];
-		$data['client_id'] = $_SESSION['admin']['client_id'];
+		$data['client_id'] = $_SESSION['admin']['id'];
 		$data['user_role'] = 6;
-		$data['text_password'] = $data['password'];
-		$data['password'] = md5($data['password']);
+		$data['text_password'] = $this->input->post('password');
+		$data['password'] = md5($this->input->post('password'));
 		$data['latitude'] = $this->input->post('latitude');
 		$data['longitude'] = $this->input->post('longitude');
 		$this->load->library('dispatcher/UserLibNew');
@@ -288,7 +288,7 @@ class UserNew extends MX_Controller {
 	{
 		$data = array();
 		$data = $this->input->post('data');
-		$data['client_id'] = $_SESSION['admin']['client_id'];
+		$data['client_id'] = $_SESSION['admin']['id'];
 		$data['latitude'] = $this->input->post('latitude');
 		$data['longitude'] = $this->input->post('longitude');
 		$data['id'] = $this->input->post('id');

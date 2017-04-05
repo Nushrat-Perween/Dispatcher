@@ -116,7 +116,24 @@
 							<div class="messageContainer"></div>
 						</div>
 						</div>
+						
+						<div class="form-group col-md-4">
+						
+						<div class="row"> 
+						Is Verified
+							<div class="col-md-12 input-group"> 
+								<select class="form-control" name="data[verified]"  id="verified" required>
+									<option value="">Select</option>
+									<option value="1" <?php if($client['verified']==1) echo "selected";?>>Yes</option>
+									<option value="0" <?php if($client['verified']==0) echo "selected";?>>No</option>
+									
+								</select> 
+							</div>
+							<div class="messageContainer"></div>
 						</div>
+						</div>
+						</div>
+						
 						
 								
 						<div class="form-group pull-right">
@@ -222,8 +239,8 @@
     $.getScript("https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCH-u-UD2bz6cfPEAe8mCVyrnnI7ONx9ro&callback=initMap");
     function initMap() {
         var options = {
-            types: ["geocode"],
-            componentRestrictions: {country: 'in'}
+        		types: ['(cities)'],
+                componentRestrictions: {country: 'USA'}
         };
         var i=0;
         var input = document.getElementById('locality');

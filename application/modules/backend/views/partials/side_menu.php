@@ -74,19 +74,17 @@
 				Patient List</a>
 			
               </li>
-              
-              <li class="nav-item active">
+            <li class="nav-item active">
 			  <a class="nav-link" href="<?php echo base_url();?>client/client_report">
                  <i class="material-icons " aria-hidden="true">
                      description
                     </i>
 				Report</a>
-			
               </li>
             </ul>
           </div>
         </nav>
-     <?php } else if($_SESSION['admin']['user_role']==3){?>
+     <?php } else if($_SESSION['admin']['user_role']==3 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==5){?>
         <!-- menu header -->
         <nav class="header-secondary navbar  bg-faded shadow">
           <div class="navbar-collapse">

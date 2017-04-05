@@ -435,8 +435,8 @@
     $.getScript("https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCH-u-UD2bz6cfPEAe8mCVyrnnI7ONx9ro&callback=initMap");
     function initMap() {
         var options = {
-            types: ["geocode"],
-            componentRestrictions: {country: 'in'}
+        		types: ["geocode"],
+                componentRestrictions: {country: 'USA'}
         };
         var i=0;
         var input = document.getElementById('locality');

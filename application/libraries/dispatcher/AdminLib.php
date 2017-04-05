@@ -1,7 +1,7 @@
 <?php
 class AdminLib {
 
-	public function __construct() { 
+	public function __construct() {
 		$this->CI = & get_instance ();
 	}
 

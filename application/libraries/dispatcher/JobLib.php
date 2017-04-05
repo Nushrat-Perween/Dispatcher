@@ -266,4 +266,12 @@
         	$res = $this->CI->job->saveJobHistory ($data);
         	return $res;
         }
+        
+        public function getAdvisorInsight($data)
+        {
+        	$this->CI->load->model ( 'Job_model', 'job' );
+        	$res = $this->CI->job->getAdvisorInsight ($data);
+        	return $res;
+        }
+        
     }

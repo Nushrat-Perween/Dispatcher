@@ -337,6 +337,35 @@
 		  	return $job_history_id = $this->db->insert_id();
 		  	
 		  }
+		  
+		  public function getAdvisorInsight ($param)
+		  {
+		  	$this->db->select ( "a.*,(concat(a.first_name,' ',a.last_name)) as fieldworker_name,group_concat(aa.action) as action,
+		  			(CASE WHEN aa.action = 1 THEN 'Present' ELSE 'Absent' END) AS attendance,
+		  			(CASE WHEN j.status_id = 1 THEN count(j.id) END) AS completed_job,
+		  			(CASE WHEN j.status_id = 0 THEN count(j.id) END) AS pending_job" );
+		  	$this->db->from ( TABLES::$ADMIN.' AS a' );
+		  	$this->db->join ( TABLES::$ADMIN_USER_ROLE.' AS ar',"ar.id=a.user_role","left" );
+		  	$this->db->join ( TABLES::$ADMIN_ATTENDANCE . ' AS aa', 'a.id=aa.admin_id', 'left' );
+		  	$this->db->join ( TABLES::$JOB . ' AS J', 'J.assign_to=a.id', 'left' );
+		  	$this->db->join ( TABLES::$JOB_STATUS.' AS js',"js.id=j.status_id","left" );
+		  	$this->db->where ( 'a.is_deleted', 0 );
+		  	if(isset($param['user_role'])) {
+		  		$this->db->where ( 'a.user_role', $param['user_role'] );
+		  	}
+		  	if(isset($param['client_id'])) {
+		  		$this->db->where ( 'a.client_id', $param['client_id'] );
+		  	}
+		  	$this->db->group_by ('aa.admin_id,j.assign_to');
+		  	$query_last = $this->db->get_compiled_select ();
+		  	$final_query = 'select *, (CASE WHEN FIND_IN_SET( "1", CAST( m1.action AS CHAR ) ) > 0 THEN "Present" ELSE "absent" END) AS attendance1 from ( '.$query_last.') as m1  ';
+		  	$query = $this->db->query($final_query);
+		  	//echo $query_last11 = $this->db->last_query();
+		  	$result = $query->result_array ();
+		  	return $result;
+
+		  	
+		  }
                                                                   
   }
     

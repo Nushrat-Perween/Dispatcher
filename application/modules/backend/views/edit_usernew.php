@@ -1,5 +1,3 @@
-<!-- build:css({.tmp,app}) styles/app.min.css -->
-
 <link rel="stylesheet" href="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.css"/>
 
 <style>
@@ -9,61 +7,72 @@
 }
 </style>
 <!-- endbuild -->
-<div class="content-view" style="margin-left:30%">
+<div class="content-view" >
 	<div class="row"> 
-		<div class="col-md-offset-3 col-md-6"> 
-				<div class="card card-block" style="padding:20px">
-				<h2>Add User</h2>
+		<div class=" col-md-12" > 
+				<div class="card card-block" >
+				<h2>Edit User</h2>
 				<div class="form-control" id="response" style="display: none"> </div>
 				<form class="form-validation form-horizontal" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
-						<div class="form-group m-b">
-						<label>
-						First Name
-						</label>
-						<div class="row"> 
+						<div class="row">
+						<div class="form-group col-md-4">
 						
-							<div class="col-md-10 input-group"> 
-								<input type="text" class="form-control" name="data[first_name]" placeholder="First Name" value="<?php if(isset($user['first_name'])) echo $user['first_name'];?>" required/>
+						<div class="row"> 
+								First Name
+							<div class="col-md-12 input-group"> 
+								<input type="text" class="form-control" name="data[first_name]" placeholder="First Name" value ="<?php echo $user['first_name']; ?>"/>
 							</div>
 							<div class="messageContainer"></div>
 							
 						</div>
 						</div>
-						<div class="form-group m-b">
-						<label>
-						Last Name
-						</label>
-						<div class="row"> 
-							<div class="col-md-10 input-group"> 
-								<input type="text"  class="form-control" name="data[last_name]" placeholder="Last Name"  value="<?php if(isset($user['last_name'])) echo $user['last_name'];?>" required/>
+						<div class="form-group col-md-4">
+						
+						<div class="row">
+								Last Name						
+							<div class="col-md-12 input-group"> 
+								<input type="text"  class="form-control" name="data[last_name]" placeholder="Last Name" value ="<?php echo $user['last_name']; ?>"/>
+								<input type="hidden" class="form-control" name="id" placeholder="City"  value ="<?php echo $user['id']; ?>"/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
 						</div>
-						<div class="form-group m-b">
-						<label>
+						<div class="form-group col-md-4">
+						
+						<div class="row"> 
 						Email
-						</label>
-						<div class="row"> 
-						
-							<div class="col-md-10 input-group"> 
-								<input type="email" class="form-control" name="data[email]" placeholder="email"  value="<?php if(isset($user['email'])) echo $user['email'];?>" required/>
+							<div class="col-md-12 input-group"> 
+								<input type="email" class="form-control" name="data[email]" placeholder="email" value ="<?php echo $user['email']; ?>"/>
 							</div>
 							<div class="messageContainer"></div>
 							
 						</div>
 						</div>
-						
-						<div class="form-group m-b">
-						<label>
-						Mobile No.
-						</label>
+						</div>
+						<div class="row">
+						<div class="form-group col-md-4">
 						<div class="row"> 
-							<div class="col-md-10 input-group"> 
-								<input type="text"  class="form-control" name="data[mobile]" placeholder="Mobile"  value="<?php if(isset($user['mobile'])) echo $user['mobile'];?>" required/>
-								<input type="hidden"  class="form-control" name="data[id]" placeholder="Mobile"  value="<?php if(isset($user['id'])) echo $user['id'];?>" required/>
+						Mobile No.
+							<div class="col-md-12 input-group"> 
+								<input type="text"  class="form-control" name="data[mobile]" placeholder="Mobile" value ="<?php echo $user['mobile']; ?>"/>
 							</div>
 							<div class="messageContainer"></div>
+						</div>
+						</div>
+								<div class="form-group col-md-4">
+						
+						<div class="row"> 
+						Is Verified
+							<div class="col-md-12 input-group"> 
+								<select class="form-control" name="data[verified]"  id="verified" required>
+									<option value="">Select</option>
+									<option value="1" <?php if($user['verified']==1) echo "selected";?>>Yes</option>
+									<option value="0" <?php if($user['verified']==0) echo "selected";?>>No</option>
+									
+								</select> 
+							</div>
+							<div class="messageContainer"></div>
+						</div>
 						</div>
 						</div>
 						<div class="form-group pull-right">
@@ -145,33 +154,33 @@
       	}); 
 
       function save_user () {
-			dataString = $("#user_form").serialize();
-			$(".text-danger").hide();
-			$.ajax({
-				type: "POST",
-				url: "<?php echo base_url(); ?>admin/update_user",
-				data: dataString,
-				dataType: 'json',
-				success: function(resp){
-					if(resp.status == '0') {
-						$("#response").addClass('alert-danger');
-						$("#response").html(resp.msg);
-						$("#response").show();
-							
+  		dataString = $("#user_form").serialize();
+  	    $(".text-danger").hide();
+  	   	$.ajax({
+  	    	type: "POST",
+  	        url: "<?php echo base_url(); ?>admin/update_user",
+  	        data: dataString,
+  	        dataType: 'json',
+  	        success: function(resp){
+  	        	if(resp.status == '0') {
+  	           		$("#response").addClass('alert-danger');
+  					$("#response").html(resp.msg);
+  					$("#response").show();
+  					
+  						
+  	           	} else {
+  	           // 	$("#user_form").reset();
+  	            	$('#reset').click();
+  	            	$("#response").show();
+  	            	$("#response").addClass('alert-success');
+  	            	$("#response").html(resp.msg);
+  	            alert("User updated successfully.");
+  	            	window.location.href = "<?php echo base_url(); ?>admin/user_list";
+  	          	}
+  	    	}
+  	 
+  		});
+  	   	return false;  //stop the actual form post !important!
+  	}
 
-					} else {
-						// 	$("#user_form").reset();
-						$('#reset').click();
-						$("#response").show();
-						$("#response").addClass('alert-success');
-						$("#response").html(resp.msg);
-						alert("User updated successfully.");
-						window.location.href = "<?php echo base_url(); ?>admin/user_list";
-					}
-				}
-
-			});
-				return false;  //stop the actual form post !important!
-		}
-
-    </script>	
+    </script>

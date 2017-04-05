@@ -23,10 +23,9 @@ class Api extends REST_Controller {
 	  
 		$this->load->library('dispatcher/auth');
 		$userdata = $this->auth->adminlogin($data);
+		$map = $userdata['result'];
 		$map ['status'] = $userdata['status'];
-		$map ['msg'] = $userdata['msg'];
 		if($userdata['status'] == 1) {
-			$map = $userdata['result'];
 			$this->session->set_userdata('admin',$userdata['result']);
 		}
 		echo json_encode($map);
@@ -38,9 +37,6 @@ class Api extends REST_Controller {
 		$res = array();
 		$param['admin_id'] = $this->post('user_id');
 		$param['gcm_id'] = $this->post('gcm_id');
-		$param['location'] = $this->post('location');
-		$param['latitude'] = $this->post('latitude');
-		$param['longitude'] = $this->post('longitude');
 		$param['action'] = 1;
 		$param['action_time'] = date('Y-m-d H:i:s');
 		$this->load->library('dispatcher/AttendanceLib');
@@ -60,9 +56,6 @@ class Api extends REST_Controller {
 		$res = array();
 		$param['admin_id'] = $this->post('user_id');
 		$param['gcm_id'] = $this->post('gcm_id');
-		$param['location'] = $this->post('location');
-		$param['latitude'] = $this->post('latitude');
-		$param['longitude'] = $this->post('longitude');
 		$param['action'] = 0;
 		$param['action_time'] = date('Y-m-d H:i:s');
 		$this->load->library('dispatcher/AttendanceLib');

@@ -60,8 +60,7 @@
 	             $result = $query->result_array ();
 	             return $result;
        		}
-                              
-                              
+                                            
 		public function getFilterJob ($param)
 			{
 				if(isset($param['startdate'])) {
@@ -178,7 +177,6 @@
 				return $result;
 			}
 		                                                                  
-		                                                                  
 		public function getJobNotStarted ()
 			{
 				$this->db->select ( 'j.*,ja.action,b.branch_name,concat(a.first_name," ",a.last_name) as assign_to,aj.assign_to as field_worker_id,j.created_date,js.status,COALESCE(aj.start_date ,"NA") as start_date,aj.end_date' );
@@ -241,6 +239,8 @@
 				$result = $query->result_array ();
 				return $result;
 			}
+      
+      
 		                                                                  
 		public function getAllJobAction ()
 			{
@@ -275,7 +275,8 @@
 				$result = $query->result_array ();
 				return $result;
 			}
-		                                                                  
+		   
+      
 		public function getAssignedJobByAdminID ($data)
 			{
 				$this->db->select ( 'j.*,ja.action,b.branch_name,concat(a.first_name," ",a.last_name) as assign_to,aj.assign_to as field_worker_id,j.created_date,j.priority,js.status,aj.start_date,aj.end_date' );
@@ -296,7 +297,8 @@
 				$result = $query->result_array ();
 				return $result;
 			}
-		                                                                  
+		  
+
 		                                                                  
 		  public function getAssignJobDetailByFieldworker($id)
 		  {
@@ -310,6 +312,8 @@
 		  	$result = $query->result_array ();
 		  	return $result;
 		  }
+      
+
 		  public function getJobDetailById($id)
 		  {
 		  	$this->db->select ( 'j.id as job_id,j.job_name,j.description,jc.mobile,concat(jc.first_name," ",jc.last_name) as contact_name,jc.latitude as pickup_latitide,jc.longitude as pickup_logitude,jc.street as pickup_street,jc.lookup_name as pickup_lookup_name,h.locality as del_street,h.latitude as del_latitude,h.longitude as del_longitude,h.address as del_address,(concat(a.first_name," ",a.last_name)) as del_name,a.mobile as del_mobile,j.delivery_date,j.delivery_time,j.status_id,j.action_id' );
@@ -323,6 +327,7 @@
 		  	return $result;
 		  	
 		  }
+
 		  
 		  public function updateJobAction($data)
 		  {
@@ -337,6 +342,16 @@
 		  	return $job_history_id = $this->db->insert_id();
 		  	
 		  }
+      
+       public function getDeliveryStatusByJobId($job_id)
+          {
+            $this->db->select ( '*' );
+            $this->db->from ( TABLES::$JOB_HISTORY);
+            $this->db->where('job_id',$job_id);
+            $query = $this->db->get ();
+            $result = $query->result_array ();
+            return $result;
+          }
 		  
 		  public function getAdvisorInsight ($param)
 		  {
@@ -369,3 +384,5 @@
                                                                   
   }
     
+
+

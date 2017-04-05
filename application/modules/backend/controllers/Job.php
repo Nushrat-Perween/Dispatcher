@@ -40,7 +40,7 @@
         }
         
         
-        public function job_assignment ($id){
+        public function job_assignment ($id) {
             $param = array();
             $data = array();
             $param['user_role'] = 7;
@@ -510,6 +510,32 @@
             return array('distance' => $dist, 'time' => $time);
         }
         
+        public function job_details($job_id)
+        {
+        	$this->load->library('dispatcher/JobLib');
+        	$job_details = $this->joblib->getJobDetailById($job_id);
+        	$delivery = $this->joblib->getDeliveryStatusByJobId($job_id);
+        	$this->template->set ( 'delivery_status1', $delivery);
+        	$this->template->set ( 'job_details', $job_details);
+        	$this->template->set ( 'page', 'Job List' );
+        	$this->template->set_theme('default_theme');
+        	$this->template->set_layout ('backend')
+        	->title ( 'Dispatcher | Job List' )
+        	->set_partial ( 'header', 'partials/header' )
+        	->set_partial ( 'side_menu', 'partials/side_menu' )
+        	->set_partial ( 'chat_model', 'partials/chat_model' )
+        	->set_partial ( 'footer', 'partials/footer' );
+        	$this->template->build ('job_detail');
+        }
+		
+		 function test($id)
+        {
+        	$this->load->library('dispatcher/JobLib');
+        	$userdata = $this->joblib->getAssignJobDetailByFieldworker($id);
+        	$userdata ['status'] = 1;
+        	$userdata ['msg'] = "Updated successfully";
+        	echo json_encode($userdata);
+        }
     }
     
     ?>

@@ -121,23 +121,23 @@
 //           }
 //       });
       
-//       function set_chat_msg()
-//       { 	
-//       	 var txtmsg = document.getElementById('message').value;
-//       	 var tripid = document.getElementById('tid').value;
+      function set_chat_msg()
+      { 	
+      	 var txtmsg = document.getElementById('message').value;
+      	 var tripid = document.getElementById('tid').value;
       	
- //     	 $.post("<?php echo base_url();?>trip/savechat",{txtmsg:txtmsg,tripid:tripid},function(data){
-//       		// document.getElementById('message_box1').innerHTML = data;
-//       		 document.getElementById('message').value="";
-//       	 });
-//       }
+      	 $.post("<?php echo base_url();?>trip/savechat",{txtmsg:txtmsg,tripid:tripid},function(data){
+      		// document.getElementById('message_box1').innerHTML = data;
+      		 document.getElementById('message').value="";
+      	 });
+      }
       
-//     //automatically refresh after every 1000 milliseconds.
-//       chat_data = {'fetch':1};
-//       window.setInterval(function(){
-//      	 $.post("<?php echo base_url();?>admin/get_chat_people",{},function(data){
-//       			 	$('#chat_sidebar').html(data);
+    //automatically refresh after every 1000 milliseconds.
+      chat_data = {'fetch':1};
+      window.setInterval(function(){
+      	 $.post("<?php echo base_url();?>admin/get_chat_people",{},function(data){
+      			 	$('#chat_sidebar').html(data);
       		    
-//       		 });
-//       }, 6000);
+      		 });
+      }, 6000);
       </script>

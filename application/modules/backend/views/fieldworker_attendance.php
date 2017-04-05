@@ -82,8 +82,42 @@ color: #fff;
 </div></div>
 
 <script>
-$(document).ready(function(){
-                  display_c();
-                  });
+
+$('.datatable').DataTable();
+
+function update_dataTable(data,tableid) {
+    
+    var oTable = $("#"+tableid).dataTable();
+    oTable.fnClearTable();
+    
+    $(data).each(function(index) {
+    	  			var row = [];
+                 row.push(data[index].date);
+                 row.push(data[index].action);
+                 row.push(data[index].time);
+                 row.push(data[index].location);
+                 row.push(data[index].fieldworker_name);
+                 oTable.fnAddData(row);
+                 });
+}
+
+function fieldworker_filter () {
+    $.post("<?php echo base_url();?>admin/filter_fieldworker_attendance",{"admin_id": $('#fieldworker').val(),"month": $('#month').val()},function(data){
+           tableid="table_id1";
+           update_dataTable(data,tableid);
+    							
+           },'json');
+    
+}
+
+function monthly_filter () {
+    $.post("<?php echo base_url();?>admin/filter_fieldworker_attendance",{"month": $('#month').val(),"admin_id": $('#fieldworker').val()},function(data){
+           tableid="table_id1";
+           update_dataTable(data,tableid);
+    							
+           },'json');
+    
+}
+  
 
 </script>

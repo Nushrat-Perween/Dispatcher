@@ -46,19 +46,23 @@
             $param['user_role'] = 7;
             $this->load->library('dispatcher/JobLib');
             $this->load->library('dispatcher/AdminLib');
+            
+            $param['client_id'] = $this->session->userdata('admin')['client_id'];
             $field_worker = $this->adminlib->getAllAdmin ($param);
-            $data['hospital_id'] = $this->session->userdata('admin')['client_id'];
+            $param['id'] = $id;
             $data['id'] = $id;
+            $data['client_id'] = $this->session->userdata('admin')['client_id'];
+            $data['hospital_id'] = $this->session->userdata('admin')['hospital_id'];
+            $advisor = $this->joblib->getAdvisorInsight ($param);
             $job = $this->joblib->getJobByID ($data);
-           // print_r($job);
-            if(count($job))
-            {
+            if(count($job)) {
                 $this->template->set ( 'job', $job[0] );
             }
             $this->template->set ( 'field_worker', $field_worker );
             $field_worker_id = $this->input->post("field_worker_id");
             $this->template->set ( 'field_worker_id', $field_worker_id );
             $this->template->set ( 'job_id', $id );
+            $this->template->set ( 'advisor', $advisor );
             $this->template->set ( 'page', 'Job Detail' );
             
             if(count($job)) {

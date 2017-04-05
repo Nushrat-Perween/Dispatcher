@@ -227,4 +227,12 @@
         	$delivery = $this->CI->job->getDeliveryStatusByJobId ($job_id);
         	return $delivery;
         }
+        
+        public function getAdvisorInsight($data)
+        {
+        	$this->CI->load->model ( 'Job_model', 'job' );
+        	$res = $this->CI->job->getAdvisorInsight ($data);
+        	return $res;
+        }
+        
     }

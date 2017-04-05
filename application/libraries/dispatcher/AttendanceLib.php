@@ -23,12 +23,6 @@ class AttendanceLib {
 		return $res;
 	}
 	
-	public function getMonthlyFieldworkerAttendance ($param) {
-		$this->CI->load->model ( 'Attendance_model', 'Attendance_model' );
-		$res = $this->CI->Attendance_model->getMonthlyFieldworkerAttendance ( $param );
-		return $res;
-	}
-	
 
 
 }

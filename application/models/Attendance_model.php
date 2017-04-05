@@ -36,38 +36,6 @@ class Attendance_model extends CI_Model {
 		return $result;
 	}
 	
-	public function getMonthlyFieldworkerAttendance ($param) {
-		$this->db->select ( "aa.*,(CASE WHEN action = 1 THEN 'Sign In' ELSE 'Sign Out' END) AS attendance,concat(a.first_name,' ',a.last_name) as fieldworker_name" );
-		$this->db->from ( TABLES::$ADMIN.' AS a' );
-		$this->db->join ( TABLES::$ADMIN_ATTENDANCE . ' AS aa', 'a.id=aa.admin_id', 'left' );
-		if(isset($param['admin_id'])) {
-			$this->db->where ( 'admin_id', $param['admin_id'] );
-		}
-		if(isset($param['client_id'])) {
-			$this->db->where ( 'a.client_id', $param['client_id'] );
-		}
-		if(isset($param['hospital_id'])) {
-			$this->db->where ( 'a.hospital_id', $param['hospital_id'] );
-		}
-		if(isset($param['start_date']) || isset($param['end_date'])) {
-			if($param['start_date']!="" and $param['end_date']=="") {
-				$this->db->where("DATE(aa.action_time) >='".$param['start_date']."'",'',FALSE);
-			} else if($param['start_date']=="" and $param['end_date']!="") {
-				$this->db->where("DATE(aa.action_time) <='".$param['end_date']."'",'',FALSE);
-			} else {
-				$this->db->where(" (DATE(aa.action_time) BETWEEN '".$param['start_date']."' AND '".$param['end_date']."')",'',FALSE);
-			}
-			
-		}
-		
-		
-		$this->db->order_by ('action_time','DESC');
-		$query = $this->db->get ();
-		//echo $this->db->last_query();
-		$result = $query->result_array ();
-		return $result;
-	}
-	
 
 	public function addAttendanceAction ($data)
 	{

@@ -17,9 +17,7 @@ color:black;
 <div class="dropdown pull-left " style="padding:3px 5px 4px 5px">
 <H2>List Of Field Workers</H2>
 </div>
-<a href="<?php echo base_url();?>admin/add_fieldworker"><button class="btn bg-primary btn-sm pull-right no-radius">
-<i class="fa fa-plus" aria-hidden="true"> </i> Fieldworker
-</button></a>
+
 <br>
 <br>
 <div class="card-block">

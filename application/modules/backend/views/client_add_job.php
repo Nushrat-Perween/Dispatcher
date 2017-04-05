@@ -434,7 +434,7 @@
     function initMap() {
         var options = {
             types: ["geocode"],
-            componentRestrictions: {country: 'in'}
+            componentRestrictions: {country: 'USA'}
         };
         var i=0;
         var input = document.getElementById('locality');

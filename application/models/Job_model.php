@@ -355,15 +355,11 @@
 		  
 		  public function getAdvisorInsight ($param)
 		  {
-		  	$this->db->select ( "a.*,(concat(a.first_name,' ',a.last_name)) as fieldworker_name,group_concat(aa.action) as action,
-		  			(CASE WHEN aa.action = 1 THEN 'Present' ELSE 'Absent' END) AS attendance,
-		  			(CASE WHEN j.status_id = 1 THEN count(j.id) END) AS completed_job,
-		  			(CASE WHEN j.status_id = 0 THEN count(j.id) END) AS pending_job" );
+		  	
+		  	$this->db->select ( "group_concat(aa.action) as action,
+		  			a.id,(concat(a.first_name, ' ', a.last_name)) as fieldworker_name,a.current_location,a.current_latitude,a.current_longitude" );
 		  	$this->db->from ( TABLES::$ADMIN.' AS a' );
-		  	$this->db->join ( TABLES::$ADMIN_USER_ROLE.' AS ar',"ar.id=a.user_role","left" );
 		  	$this->db->join ( TABLES::$ADMIN_ATTENDANCE . ' AS aa', 'a.id=aa.admin_id', 'left' );
-		  	$this->db->join ( TABLES::$JOB . ' AS J', 'J.assign_to=a.id', 'left' );
-		  	$this->db->join ( TABLES::$JOB_STATUS.' AS js',"js.id=j.status_id","left" );
 		  	$this->db->where ( 'a.is_deleted', 0 );
 		  	if(isset($param['user_role'])) {
 		  		$this->db->where ( 'a.user_role', $param['user_role'] );
@@ -371,11 +367,27 @@
 		  	if(isset($param['client_id'])) {
 		  		$this->db->where ( 'a.client_id', $param['client_id'] );
 		  	}
-		  	$this->db->group_by ('aa.admin_id,j.assign_to');
+		  	$this->db->group_by ('aa.admin_id');
 		  	$query_last = $this->db->get_compiled_select ();
-		  	$final_query = 'select *, (CASE WHEN FIND_IN_SET( "1", CAST( m1.action AS CHAR ) ) > 0 THEN "Present" ELSE "absent" END) AS attendance1 from ( '.$query_last.') as m1  ';
+		  	$query1 = 'select *, (CASE WHEN FIND_IN_SET( "1", CAST( m1.action AS CHAR ) ) > 0 THEN "Present" ELSE "absent" END) AS attendance from ( '.$query_last.') as m1  ';
+		  	
+		  	$this->db->select ( "COUNT(CASE WHEN j.status_id = 1 THEN 1 END) as completed_job,
+		  									COUNT(CASE WHEN j.status_id =0 THEN 1 END) AS pending_job,group_concat(j.status_id)
+		  									as status_id,j.assign_to" );
+		  	$this->db->from ( TABLES::$ADMIN.' AS a' );
+		  	$this->db->join ( TABLES::$JOB . ' AS j', 'a.id=j.assign_to', 'left' );
+		  	$this->db->where ( 'a.is_deleted', 0 );
+		  	if(isset($param['user_role'])) {
+		  		$this->db->where ( 'a.user_role', $param['user_role'] );
+		  	}
+		  	if(isset($param['client_id'])) {
+		  		$this->db->where ( 'a.client_id', $param['client_id'] );
+		  	}
+		  	$this->db->group_by ('j.assign_to');
+		  	$query2 = $this->db->get_compiled_select ();
+		  	$final_query = 'select * from ('.$query1.') as t1 join ('.$query2.') as t2 on t1.id = t2.assign_to';
 		  	$query = $this->db->query($final_query);
-		  	//echo $query_last11 = $this->db->last_query();
+		  	$query_last11 = $this->db->last_query();
 		  	$result = $query->result_array ();
 		  	return $result;
 

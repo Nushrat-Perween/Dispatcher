@@ -59,6 +59,7 @@ color: #fff;
                           <?php echo $row['attendance'];?>
                           </td>
                           <td>
+                          NA
                           </td>
                           <td>
                            <?php echo $row['completed_job'];?>
@@ -69,7 +70,7 @@ color: #fff;
                           </td>
                           
                           <td>
-                           
+                           <?php if($row['current_location'] != "") echo $row['current_location']; else echo "NA";?>
                           </td>
                         </tr>
                         <?php }?>

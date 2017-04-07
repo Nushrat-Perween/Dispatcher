@@ -62,7 +62,13 @@ class Api extends REST_Controller {
 		
 		echo json_encode($res);
 	}
-
+	public function getJobCount_get()
+	{
+		$id = $this->get('id');
+		$this->load->library('dispatcher/JobLib');
+		$jobcount = $this->orderlib->getJobCount($id);
+		$this->response($jobcount);
+	}
 
 
 

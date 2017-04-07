@@ -337,6 +337,14 @@
 		  	return $job_history_id = $this->db->insert_id();
 		  	
 		  }
+		  public function getJobCount($id)
+		  {
+		  	$this->db->select('sum(if(status_id=0,1,0)) as pending_job,sum(if(status_id=1,1,0)) as success_job,sum(if(status_id=2,1,0)) as cancel_job')->from(TABLES::$JOB);
+		  	$this->db->where('assign_to=',$id);
+		  	$query=$this->db->get();
+		  	$result=$query->result_array();
+		  	return $result;
+		  }
                                                                   
   }
     

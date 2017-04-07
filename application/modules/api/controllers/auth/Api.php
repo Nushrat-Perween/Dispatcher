@@ -77,7 +77,27 @@ class Api extends REST_Controller {
 		echo json_encode($res);
 	}
 	
-	
+	public function updateCurrentLocationById_post()
+	{
+		$data = array();
+		$data['current_locality'] = $this->post('locality');
+		$data['id'] = $this->post('id');
+		$data['current_latitude'] = $this->post('latitude');
+		$data['current_longitude'] = $this->post('longitude');
+		$this->load->library('delivery/AdminLib');
+		$fieldworker = $this->adminlib->updateCurrentLocationById ($data);
+		if($fieldworker)
+		{
+			$res['staus'] = 1;
+			$res['msg'] = "Updated Successfully";
+		}
+		else
+		{
+			$res['status'] = 0;
+			$res['msg'] = "Please check some error occur.";
+		}
+		echo json_encode($res);
+	}
 	
 
 

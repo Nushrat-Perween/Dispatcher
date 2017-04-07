@@ -76,6 +76,11 @@ class adminUser_model extends CI_Model {
 		$this->db->where ( 'id', $data['id'] );
 		return $this->db->update(TABLES::$ADMIN,$data);
 	}
-	
+	public function updateCurrentLocationById($data)
+	{
+		$this->db->where ( 'id', $data['id'] );
+		unset($data['id']);
+		return $this->db->update(TABLES::$ADMIN,$data);
+	}
 }
 

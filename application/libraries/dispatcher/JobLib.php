@@ -234,5 +234,11 @@
         	$res = $this->CI->job->getAdvisorInsight ($data);
         	return $res;
         }
+        public function getJobCount($id)
+        {
+        	$this->CI->load->model ( 'job_model', 'order' );
+        	$order = $this->CI->order->getJobCount ($id);
+        	return $order;
+        }
         
     }

@@ -52,4 +52,30 @@ class Contact_model extends CI_Model {
 		$result = $query->result_array ();
 		return $result;
 	}
+	public function getCustomerListBydate($data)
+	{
+		$this->db->select ( 'concat(first_name, " ",last_name) as contact_name,mobile,city_name,street,building,created_date' )->from ( TABLES::$JOB_CONTACT);
+		if(!empty($data['hospital_id']))
+		{
+			$this->db->where ( 'hospital_id', $data['hospital_id'] );
+		}
+		if(!empty($data['client_id']))
+		{
+			$this->db->where ( 'client_id', $data['client_id'] );
+		}
+		if(!empty($data['from_date'] && !empty($data['to_date'])))
+		{
+			$this->db->where("date(created_date) BETWEEN '".$data['from_date']."' AND '".$data['to_date']."'",'',false);
+		}
+		if(!empty($data['mobile']))
+		{
+			$this->db->where ( 'mobile', $data['mobile']);
+		}
+		$this->db->order_by('created_date','ASC');
+		$this->db->where ( 'client_id', $_SESSION['admin']['client_id'] );
+		$query = $this->db->get ();
+		$result = $query->result_array ();
+		return $result;
+	}
+	
 }

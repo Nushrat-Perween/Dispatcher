@@ -40,15 +40,20 @@
         }
         
         
-        public function job_assignment ($id){
+        public function job_assignment ($id) {
             $param = array();
             $data = array();
             $param['user_role'] = 7;
             $this->load->library('dispatcher/JobLib');
             $this->load->library('dispatcher/AdminLib');
+            
+            $param['client_id'] = $this->session->userdata('admin')['client_id'];
             $field_worker = $this->adminlib->getAllAdmin ($param);
-            $data['hospital_id'] = $this->session->userdata('admin')['hospital_id'];
+            $param['id'] = $id;
             $data['id'] = $id;
+            $data['client_id'] = $this->session->userdata('admin')['client_id'];
+            $data['hospital_id'] = $this->session->userdata('admin')['hospital_id'];
+            $advisor = $this->joblib->getAdvisorInsight ($param);
             $job = $this->joblib->getJobByID ($data);
             if(count($job)) {
                 $this->template->set ( 'job', $job[0] );
@@ -57,6 +62,7 @@
             $field_worker_id = $this->input->post("field_worker_id");
             $this->template->set ( 'field_worker_id', $field_worker_id );
             $this->template->set ( 'job_id', $id );
+            $this->template->set ( 'advisor', $advisor );
             $this->template->set ( 'page', 'Job Detail' );
             
             if(count($job)) {
@@ -504,6 +510,32 @@
             return array('distance' => $dist, 'time' => $time);
         }
         
+        public function job_details($job_id)
+        {
+        	$this->load->library('dispatcher/JobLib');
+        	$job_details = $this->joblib->getJobDetailById($job_id);
+        	$delivery = $this->joblib->getDeliveryStatusByJobId($job_id);
+        	$this->template->set ( 'delivery_status1', $delivery);
+        	$this->template->set ( 'job_details', $job_details);
+        	$this->template->set ( 'page', 'Job List' );
+        	$this->template->set_theme('default_theme');
+        	$this->template->set_layout ('backend')
+        	->title ( 'Dispatcher | Job List' )
+        	->set_partial ( 'header', 'partials/header' )
+        	->set_partial ( 'side_menu', 'partials/side_menu' )
+        	->set_partial ( 'chat_model', 'partials/chat_model' )
+        	->set_partial ( 'footer', 'partials/footer' );
+        	$this->template->build ('job_detail');
+        }
+		
+		 function test($id)
+        {
+        	$this->load->library('dispatcher/JobLib');
+        	$userdata = $this->joblib->getAssignJobDetailByFieldworker($id);
+        	$userdata ['status'] = 1;
+        	$userdata ['msg'] = "Updated successfully";
+        	echo json_encode($userdata);
+        }
     }
     
     ?>

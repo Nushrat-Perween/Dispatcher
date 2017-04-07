@@ -28,7 +28,7 @@ class Client_model extends CI_Model {
 	
 	public function getAllClient()
 	{
-		$this->db->select ('c.*,CONCAT(a.first_name," ",a.last_name) AS client_name, a.email,a.mobile,a.user_role,a.client_id' );
+		$this->db->select ('c.*,CONCAT(a.first_name," ",a.last_name) AS client_name, a.email,a.mobile,a.user_role,a.client_id,a.verified' );
 		$this->db->from ( TABLES::$CLIENT.' AS c' );
 		$this->db->join ( TABLES::$ADMIN.' AS a',"c.id=a.client_id","left" );
 		$this->db->where ( 'a.is_deleted', 0 );
@@ -40,7 +40,7 @@ class Client_model extends CI_Model {
 	
 	public function getClientById($id)
 	{
-		$this->db->select ('c.*,a.first_name,a.last_name, a.email,a.mobile,a.user_role,a.client_id' );
+		$this->db->select ('c.*,a.first_name,a.last_name, a.email,a.mobile,a.user_role,a.client_id,a.verified' );
 		$this->db->from ( TABLES::$CLIENT.' AS c' );
 		$this->db->join ( TABLES::$ADMIN.' AS a',"c.id=a.client_id","left" );
 		$this->db->where('c.id',$id);
@@ -54,6 +54,7 @@ class Client_model extends CI_Model {
 	
 	public function updateClientById($data)
 	{
+		//echo $data['id'];
 		$this->db->where ('id', $data['id'] );
 		unset($data['id']);
 		return $this->db->update(TABLES::$CLIENT,$data);
@@ -61,9 +62,8 @@ class Client_model extends CI_Model {
 	
 	public function updateClientByClientId($client)
 	{
-		$this->db->where ('id', $client['id'] );
+		$this->db->where ('client_id', $client['id'] );
 		unset($client['id']);
 		return $this->db->update(TABLES::$ADMIN,$client);
 	}
 }
-

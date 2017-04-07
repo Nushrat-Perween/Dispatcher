@@ -81,7 +81,10 @@ class Hospital_model extends CI_Model {
 		{
 			$this->db->where ( 'j.client_id', $data['client_id'] );
 		}
-		$this->db->where("date(p.created_date) BETWEEN '".$data['from_date']."' AND '".$data['to_date']."'",'',false);
+		if(!empty($data['from_date'] && !empty($data['to_date'])))
+		{
+			$this->db->where("date(p.created_date) BETWEEN '".$data['from_date']."' AND '".$data['to_date']."'",'',false);
+		}
 		if(!empty($data['mobile']))
 		{
 			$this->db->where ( 'jc.mobile', $data['mobile']);

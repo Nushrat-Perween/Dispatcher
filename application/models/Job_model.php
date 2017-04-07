@@ -60,8 +60,7 @@
 	             $result = $query->result_array ();
 	             return $result;
        		}
-                              
-                              
+                                            
 		public function getFilterJob ($param)
 			{
 				if(isset($param['startdate'])) {
@@ -178,7 +177,6 @@
 				return $result;
 			}
 		                                                                  
-		                                                                  
 		public function getJobNotStarted ()
 			{
 				$this->db->select ( 'j.*,ja.action,b.branch_name,concat(a.first_name," ",a.last_name) as assign_to,aj.assign_to as field_worker_id,j.created_date,js.status,COALESCE(aj.start_date ,"NA") as start_date,aj.end_date' );
@@ -241,6 +239,8 @@
 				$result = $query->result_array ();
 				return $result;
 			}
+      
+      
 		                                                                  
 		public function getAllJobAction ()
 			{
@@ -275,7 +275,8 @@
 				$result = $query->result_array ();
 				return $result;
 			}
-		                                                                  
+		   
+      
 		public function getAssignedJobByAdminID ($data)
 			{
 				$this->db->select ( 'j.*,ja.action,b.branch_name,concat(a.first_name," ",a.last_name) as assign_to,aj.assign_to as field_worker_id,j.created_date,j.priority,js.status,aj.start_date,aj.end_date' );
@@ -296,7 +297,8 @@
 				$result = $query->result_array ();
 				return $result;
 			}
-		                                                                  
+		  
+
 		                                                                  
 		  public function getAssignJobDetailByFieldworker($id)
 		  {
@@ -310,6 +312,8 @@
 		  	$result = $query->result_array ();
 		  	return $result;
 		  }
+      
+
 		  public function getJobDetailById($id)
 		  {
 		  	$this->db->select ( 'j.id as job_id,j.job_name,j.description,jc.mobile,concat(jc.first_name," ",jc.last_name) as contact_name,jc.latitude as pickup_latitide,jc.longitude as pickup_logitude,jc.street as pickup_street,jc.lookup_name as pickup_lookup_name,h.locality as del_street,h.latitude as del_latitude,h.longitude as del_longitude,h.address as del_address,(concat(a.first_name," ",a.last_name)) as del_name,a.mobile as del_mobile,j.delivery_date,j.delivery_time,j.status_id,j.action_id' );
@@ -323,6 +327,7 @@
 		  	return $result;
 		  	
 		  }
+
 		  
 		  public function updateJobAction($data)
 		  {
@@ -337,14 +342,68 @@
 		  	return $job_history_id = $this->db->insert_id();
 		  	
 		  }
-		  public function getJobCount($id)
+
+      public function getJobCount($id)
 		  {
 		  	$this->db->select('sum(if(status_id=0,1,0)) as pending_job,sum(if(status_id=1,1,0)) as success_job,sum(if(status_id=2,1,0)) as cancel_job')->from(TABLES::$JOB);
 		  	$this->db->where('assign_to=',$id);
 		  	$query=$this->db->get();
 		  	$result=$query->result_array();
 		  	return $result;
+      }
+      
+       public function getDeliveryStatusByJobId($job_id)
+          {
+            $this->db->select ( '*' );
+            $this->db->from ( TABLES::$JOB_HISTORY);
+            $this->db->where('job_id',$job_id);
+            $query = $this->db->get ();
+            $result = $query->result_array ();
+            return $result;
+          }
+		  
+		  public function getAdvisorInsight ($param)
+		  {
+		  	
+		  	$this->db->select ( "group_concat(aa.action) as action,
+		  			a.id,(concat(a.first_name, ' ', a.last_name)) as fieldworker_name,a.current_location,a.current_latitude,a.current_longitude" );
+		  	$this->db->from ( TABLES::$ADMIN.' AS a' );
+		  	$this->db->join ( TABLES::$ADMIN_ATTENDANCE . ' AS aa', 'a.id=aa.admin_id', 'left' );
+		  	$this->db->where ( 'a.is_deleted', 0 );
+		  	if(isset($param['user_role'])) {
+		  		$this->db->where ( 'a.user_role', $param['user_role'] );
+		  	}
+		  	if(isset($param['client_id'])) {
+		  		$this->db->where ( 'a.client_id', $param['client_id'] );
+		  	}
+		  	$this->db->group_by ('aa.admin_id');
+		  	$query_last = $this->db->get_compiled_select ();
+		  	$query1 = 'select *, (CASE WHEN FIND_IN_SET( "1", CAST( m1.action AS CHAR ) ) > 0 THEN "Present" ELSE "absent" END) AS attendance from ( '.$query_last.') as m1  ';
+		  	
+		  	$this->db->select ( "COUNT(CASE WHEN j.status_id = 1 THEN 1 END) as completed_job,
+		  									COUNT(CASE WHEN j.status_id =0 THEN 1 END) AS pending_job,group_concat(j.status_id)
+		  									as status_id,j.assign_to" );
+		  	$this->db->from ( TABLES::$ADMIN.' AS a' );
+		  	$this->db->join ( TABLES::$JOB . ' AS j', 'a.id=j.assign_to', 'left' );
+		  	$this->db->where ( 'a.is_deleted', 0 );
+		  	if(isset($param['user_role'])) {
+		  		$this->db->where ( 'a.user_role', $param['user_role'] );
+		  	}
+		  	if(isset($param['client_id'])) {
+		  		$this->db->where ( 'a.client_id', $param['client_id'] );
+		  	}
+		  	$this->db->group_by ('j.assign_to');
+		  	$query2 = $this->db->get_compiled_select ();
+		  	$final_query = 'select * from ('.$query1.') as t1 join ('.$query2.') as t2 on t1.id = t2.assign_to';
+		  	$query = $this->db->query($final_query);
+		  	$query_last11 = $this->db->last_query();
+		  	$result = $query->result_array ();
+		  	return $result;
+
+		  	
 		  }
                                                                   
   }
     
+
+

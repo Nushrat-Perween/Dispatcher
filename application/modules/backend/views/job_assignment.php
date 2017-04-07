@@ -4,24 +4,87 @@
 <link type="text/css" rel="stylesheet" href="<?php echo asset_url();?>css/bootstrap-timepicker.min.css">
 
 <style>
+.thead-inverse th {
+color: #fff;
+    background-color: #0275d8;
+}
 .messageContainer {
 	color:red;
 	margin-left:3%;
 }
 </style>
 <!-- endbuild -->
-<div class="content-view" style="margin-left:30%">
+<div class="content-view" style="margin-left:10%">
 <div class="row">
-<div class="col-md-offset-3 col-md-6">
+<div class="col-md-10">
 <div class="card card-block">
-<h2>Assign Job To Fieldworker </h2><br>
+
+
+<div class="dataTables_wrapper">
+                    <table class="table table-bordered datatable" id="table_id1">
+                      <thead class="thead-inverse">
+                       <tr >
+                          <th colspan="6" style="background-color: grey;">
+                          <center><i class="fa fa-eye"></i> Advisor Insight</center>
+                          </th>
+                         </tr>
+                        <tr>
+                          <th>
+                            Fieldworker Name
+                          </th>
+                           <th>
+                            Attendance
+                          </th>
+                          <th>
+                            Distance
+                          </th>
+                          <th>
+                            Completed Job
+                          </th>
+                          <th>
+                            Pending Job
+                          </th>
+                          <th>
+                            Current Location
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <?php foreach ($advisor as $row) {?>
+                        <tr>
+                          <td >
+                          <?php echo $row['fieldworker_name'];?>
+                          </td>
+                          <td>
+                          <?php echo $row['attendance'];?>
+                          </td>
+                          <td>
+                          NA
+                          </td>
+                          <td>
+                           <?php echo $row['completed_job'];?>
+                          </td>
+                          
+                          <td>
+                            <?php echo $row['pending_job'];?>
+                          </td>
+                          
+                          <td>
+                           <?php if($row['current_location'] != "") echo $row['current_location']; else echo "NA";?>
+                          </td>
+                        </tr>
+                        <?php }?>
+                      </tbody>
+                    </table>
+                  </div>
+                  <h2>Assign Job To Fieldworker </h2><br>
 <div class="form-control" id="response" style="display: none"> </div>
 <form class="form-validation form-horizontal" method="POST" action="" name="assign_form" id="assign_form" enctype="multipart/form-data">
 
 <input type="hidden"  value="<?php echo $job_id;?>" name="data[id]" id="id">
 
-
-<div class="form-group m-b">
+<div class="row">
+<div class="form-group m-b col-md-6">
 <label>
 Start Date
 </label>
@@ -35,7 +98,7 @@ Start Date
 </div>
 </div>
 
-<div class="form-group m-b">
+<div class="form-group m-b col-md-6">
 <label>
 Start Time
 </label>
@@ -48,8 +111,10 @@ Start Time
 	
 </div>
 </div>
+</div>
 
-<div class="form-group m-b">
+<div class="row">
+<div class="form-group m-b col-md-6">
 <label>
 Estimated Duration
 </label>
@@ -63,7 +128,7 @@ Estimated Duration
 </div>
 </div>
 
-<div class="form-group m-b">
+<div class="form-group m-b col-md-6">
 <label>
 Fieldworker
 </label>
@@ -79,8 +144,9 @@ Fieldworker
 <div class="messageContainer"></div>
 </div>
 </div>
-
-<div class="form-group m-b">
+</div>
+<div class="row">
+<div class="form-group m-b col-md-6">
 <label>
 Job Priority
 </label>
@@ -98,7 +164,7 @@ Job Priority
 </div>
 </div>
 
-<div class="form-group m-b">
+<div class="form-group m-b col-md-6">
 <label>
  Job Type
 </label>
@@ -113,8 +179,10 @@ Job Priority
 	<div class="messageContainer"></div>
 </div>
 </div>
+</div>
 
-<div class="form-group m-b">
+<div class="row">
+<div class="form-group m-b col-md-6">
 <label>
 Time Of Job Notification To Send On Mobile Device
 </label>
@@ -132,7 +200,11 @@ Time Of Job Notification To Send On Mobile Device
 </div>
 </div>
 
-<div class="form-group">
+<div class="form-group col-md-6">
+<label>
+&nbsp;
+</label>
+<div class="row">
 <?php if(isset($locality)) {?>
 <button type="submit" class="btn btn-primary m-r">
 Update
@@ -149,6 +221,8 @@ Submit
 Reset
 </button>
 <?php }?>
+</div>
+</div>
 </div>
 </form>
 </div>

@@ -28,7 +28,5 @@ class AttendanceLib {
 		$res = $this->CI->Attendance_model->getMonthlyFieldworkerAttendance ( $param );
 		return $res;
 	}
-	
-
 
 }

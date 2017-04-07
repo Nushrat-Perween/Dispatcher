@@ -57,10 +57,10 @@ class Attendance_model extends CI_Model {
 			} else {
 				$this->db->where(" (DATE(aa.action_time) BETWEEN '".$param['start_date']."' AND '".$param['end_date']."')",'',FALSE);
 			}
-			
+				
 		}
-		
-		
+	
+	
 		$this->db->order_by ('action_time','DESC');
 		$query = $this->db->get ();
 		//echo $this->db->last_query();
@@ -68,7 +68,6 @@ class Attendance_model extends CI_Model {
 		return $result;
 	}
 	
-
 	public function addAttendanceAction ($data)
 	{
 		$this->db->insert(TABLES::$ADMIN_ATTENDANCE,$data);
@@ -94,6 +93,8 @@ class Attendance_model extends CI_Model {
 		return $query->result_array();
 		
 	}
+	
+	
 
 }
 

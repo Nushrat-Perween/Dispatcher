@@ -21,16 +21,14 @@ class adminUser_model extends CI_Model {
 
 	
 	public function getAdminByUserName($username) {
-		$this->db->select ( 'a.*,ar.name as role_name,h.name as hospital_name,c.locality as locality' );
+		$this->db->select ( 'a.*,ar.name as role_name' );
 		$this->db->from ( TABLES::$ADMIN.' AS a' );
 		$this->db->join ( TABLES::$ADMIN_USER_ROLE.' AS ar',"ar.id=a.user_role","left" );
-		$this->db->join ( TABLES::$CLIENT.' AS c',"c.id=a.client_id","left" );
-		$this->db->join ( TABLES::$HOSPITAL.' AS h',"h.id=a.hospital_id","left" );
 		$this->db->where ( 'a.is_deleted', 0 ); 
 		$this->db->where ( 'a.verified', 1 );
 		$this->db->where ( "(a.email='".$username."' OR a.mobile='".$username."')",'',FALSE );
 		$query = $this->db->get ();
-	  	//echo $this->db->last_query();
+	//  echo $this->db->last_query();
 		$result = $query->result_array ();
 		return $result;
 	}
@@ -42,12 +40,6 @@ class adminUser_model extends CI_Model {
 		$this->db->where ( 'a.is_deleted', 0 );
 		if(isset($param['user_role'])) {
 			$this->db->where ( 'a.user_role', $param['user_role'] );
-		}
-		if(isset($param['client_id'])) {
-			$this->db->where ( 'a.client_id', $param['client_id'] );
-		}
-		if(isset($param['hospital_id'])) {
-			$this->db->where ( 'a.hospital_id', $param['hospital_id'] );
 		}
 		$query = $this->db->get ();
 		//echo $this->db->last_query();

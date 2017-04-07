@@ -173,9 +173,7 @@ color: #fff;
 <script src="<?php echo asset_url();?>vendor/datatables/media/js/dataTables.bootstrap4.js"></script>
 <script src="<?php echo asset_url();?>vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js"></script>
 <script>
-$(document).ready(function(){
-                  display_c();
-                  });
+
 $('.datatable').DataTable();
 
 function update_dataTable(data,tableid) {

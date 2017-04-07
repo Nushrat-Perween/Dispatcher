@@ -118,6 +118,12 @@ class AreaLib {
 		$res = $this->CI->area->updateZone ( $data );
 		return $res;
 	}
+	public function getZoneByCityid($city_id)
+	{
+		$this->CI->load->model ( 'Area_model', 'area' );
+		$res = $this->CI->area->getZoneByCityid ( $city_id );
+		return $res;
+	}
 
 
 

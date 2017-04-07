@@ -119,42 +119,42 @@ public function filter_fieldworker_attendance () {
 	$params['client_id'] = $this->session->userdata('admin')['client_id'];
 	$this->load->library('dispatcher/AttendanceLib');
 	$result = $this->attendancelib->getMonthlyFieldworkerAttendance ($params);
-	
+
 	$i=0;
 	$sr=1;
 	$data = array();
 	foreach($result as $row) {
-		
+
 		if($row['action_time'] == NULL)
 			$data[$i]['date'] = 'NA';
-		else
-			$data[$i]['date']=date('d-m-Y',strtotime($row['action_time']));
-	
-		if($row['action_time'] == NULL)
-			$data[$i]['time'] = 'NA';
-		else
-			$data[$i]['time']=date(' g:i A',strtotime($row['action_time']));
+			else
+				$data[$i]['date']=date('d-m-Y',strtotime($row['action_time']));
 
-		
+				if($row['action_time'] == NULL)
+					$data[$i]['time'] = 'NA';
+					else
+						$data[$i]['time']=date(' g:i A',strtotime($row['action_time']));
 
-			$data[$i]['action']=$row['attendance'];
-			if($row['location'] == "" OR $row['location'] == NULL) {
-				$data[$i]['location'] = "NA";
-			} else {
-				$data[$i]['location'] = $row['location'];
-			}
-			if($row['fieldworker_name'] == "" OR $row['fieldworker_name'] == NULL) {
-				$data[$i]['fieldworker_name'] = "NA";
-			} else {
-				$data[$i]['fieldworker_name'] = $row['fieldworker_name'];
-			}
-			
 
-			$i++;
-			$sr++;
+
+						$data[$i]['action']=$row['attendance'];
+						if($row['location'] == "" OR $row['location'] == NULL) {
+							$data[$i]['location'] = "NA";
+						} else {
+							$data[$i]['location'] = $row['location'];
+						}
+						if($row['fieldworker_name'] == "" OR $row['fieldworker_name'] == NULL) {
+							$data[$i]['fieldworker_name'] = "NA";
+						} else {
+							$data[$i]['fieldworker_name'] = $row['fieldworker_name'];
+						}
+							
+
+						$i++;
+						$sr++;
 	}
 	echo json_encode($data);
 }
-	
+
 
 }

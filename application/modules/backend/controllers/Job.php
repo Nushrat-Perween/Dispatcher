@@ -185,6 +185,7 @@
             $params['is_deleted'] = 0;
             $params['client_id'] = $this->session->userdata('admin')['client_id'];
             $this->load->library('dispatcher/JobLib');
+            //print_r($params);
             $result = $this->joblib->getFilterJob ($params);
             
             $i=0;

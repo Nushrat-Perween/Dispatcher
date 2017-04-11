@@ -28,7 +28,7 @@ class TABLES {
 	public static $ADMIN_ATTENDANCE = 'tbl_admin_attendance';
 	public static $HOSPITAL = 'tbl_hospital';
 	public static $PACKAGING = 'tbl_package'; 
-
+	public static $JOB_HISTORY = 'tbl_job_history';
 	public static $CLIENT = 'tbl_client';
 
 }

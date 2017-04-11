@@ -144,7 +144,7 @@ playlist_add_check
 <i class="fa fa-bicycle " style="margin-right:7px" aria-hidden="true">
 </i><span> Trip</span>
 </a>
-<a class="dropdown-item" href="<?php echo base_url();?>admin/error_screen">
+<a class="dropdown-item" href="<?php echo base_url();?>admin/schedule">
 <i class="material-icons text-red" aria-hidden="true">
 Schedular
 </i><span> Schedular</span>

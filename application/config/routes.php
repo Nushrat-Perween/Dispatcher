@@ -60,8 +60,14 @@ $route ['api/auth/sign_in.(:any)'] = 'api/auth/Api/markAttendanceAsSignin/$1';
 $route ['api/auth/sign_out.(:any)'] = 'api/auth/Api/markAttendanceAsSignout/$1';
 $route ['api/job/listAssignedJob.(:any)'] = 'api/job/Api/getAssignJobDetailByFieldworker/$1';
 $route ['api/job/getJobDetail.(:any)'] = 'api/job/Api/getJobDetailById/$1';
-$route ['api/job/updateStatusOfJob.(:any)'] = 'api/job/Api/updateJobAction/$1';
+//$route ['api/job/updateStatusOfJob.(:any)'] = 'api/job/Api/updateJobAction/$1';
 $route ['api/job/updateJobAction.(:any)'] = 'api/job/Api/updateJobAction/$1';
+
+$route ['api/auth/updateCurrentLocationById.(:any)'] = 'api/auth/Api/updateCurrentLocationById/$1';
+$route ['api/job/getjobcount.(:any)'] = 'api/job/Api/getJobCount/$1';
+$route ['api/job/gettripdetails.(:any)'] = 'api/job/Api/getTripDetails/$1';
+
+//$route ['api/job/gettripdetails.(:any)'] = 'api/job/Api/getTripDetails/$1';
 
 /* *********** Frontend Routes ********** */ 
 $route['login'] = 'backend/Login';
@@ -144,6 +150,8 @@ $route['admin/edit_locality/([0-9]+)'] = 'backend/Area/edit_locality/$1';
 $route['admin/update_locality'] = 'backend/Area/update_locality';
 $route['admin/edit_zone/([0-9]+)'] = 'backend/Area/edit_zone/$1';
 $route['admin/update_zone'] = 'backend/Area/update_zone';
+$route['admin/schedule'] = 'backend/Schedule';
+$route['admin/getfieldworkerschedule/([0-9]+)'] = 'backend/Schedule/getSchedule/$1';
 
 // Error Pages
 
@@ -192,8 +200,8 @@ $route['admin/update_client'] = 'backend/Client/update_client';
 $route['admin/add_package'] = 'backend/Package/add_package';
 $route['admin/package_list'] = 'backend/Package';
 $route['admin/save_package'] = 'backend/Package/save_package';
-$route['admin/edit_package/([0-9]+)'] = 'backend/Client/edit_package/$1';
-
+$route['admin/edit_package/([0-9]+)'] = 'backend/Package/edit_package/$1';
+$route['admin/update_package'] = 'backend/Package/update_package';
 
 /**********Client Route ************************/
 

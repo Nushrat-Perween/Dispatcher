@@ -93,7 +93,7 @@ channel.bind('my_event', function(data) {
 
 <br>
 <div id="filter_div" style="display:block;margin-top:35px">
-<div class="col-md-6">
+<div class="col-md-8">
 <div class="row">
 <div class="col-md-12">
 <label class="col-md-12 control-label">Custom Date Range (dd-mm-yy) :</label>
@@ -354,6 +354,7 @@ function resetdate()
     
     document.getElementById('startdate').value="";
     document.getElementById('enddate').value="";
+    document.getElementById('time_period').value="";
 }
 
 function update_dataTable(data,tableid) {

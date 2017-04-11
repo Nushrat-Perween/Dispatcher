@@ -14,16 +14,17 @@ class Api extends REST_Controller {
 		$id = $this->get('user_id');
 		$this->load->library('dispatcher/JobLib');
 		$userdata = $this->joblib->getAssignJobDetailByFieldworker($id);
-		$userdata ['status'] = 1;
-		$userdata ['msg'] = "Updated successfully";
-		echo json_encode($userdata);
+		//$userdata ['status'] = 1;
+		//$userdata ['msg'] = "Updated successfully";
+		$this->response($userdata);
 	}
 	public function getJobDetailById_get ()
 	{
-		$id = $this->get('id');
+		$id = $this->get('job_id');
 		$this->load->library('dispatcher/JobLib');
 		$userdata = $this->joblib->getJobDetailById($id);
-		echo json_encode($userdata);
+		$this->response($userdata);
+		//echo json_encode($id);
 			
 	}
 	public function updateJobAction_post ()
@@ -60,18 +61,25 @@ class Api extends REST_Controller {
 			$res['msg'] = "Please check your data Job is not updated.";
 		}
 		
-		echo json_encode($res);
+		//echo json_encode($res);
+		$this->response($res);
 	}
 	public function getJobCount_get()
 	{
 		$id = $this->get('id');
 		$this->load->library('dispatcher/JobLib');
-		$jobcount = $this->orderlib->getJobCount($id);
+		$jobcount = $this->joblib->getJobCount($id);
 		$this->response($jobcount);
 	}
 
 
-
+	public function getTripDetails_get()
+	{
+		$id = $this->get('id');
+		$this->load->library('dispatcher/JobLib');
+		$trip = $this->joblib->getTripDetails($id);
+		$this->response($trip);
+	}
 
 }
 

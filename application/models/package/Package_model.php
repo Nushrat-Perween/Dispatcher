@@ -32,5 +32,21 @@ class Package_model extends CI_Model {
 		$result = $query->result_array ();
 		return $result;
 	}
+	
+	public function getPackageById($id)
+	{
+		$this->db->select ( '*' )->from ( TABLES::$PACKAGING);
+		$this->db->where('id',$id);
+		$query = $this->db->get ();
+		$result = $query->result_array ();
+		return $result;
+	}
+	
+	public function update_package($data)
+	{
+		$this->db->where ( 'id', $data['id'] );
+		unset($data['id']);
+		return $this->db->update(TABLES::$PACKAGING,$data);
+	}
+	
 }
-

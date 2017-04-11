@@ -65,9 +65,10 @@ class Package extends MX_Controller {
 		
 		$this->load->library('dispatcher/PackageLib');
 		$package = $this->packagelib->getPackageById ($id);
+		//print_r($package).'mukesh';
 		if($package)
 		{
-			$this->template->set ( 'user', $package[0] );
+			$this->template->set ( 'package', $package[0] );
 		}
 		$this->template->set ( 'page', 'User' );
 		$this->template->set_theme('default_theme');
@@ -78,6 +79,23 @@ class Package extends MX_Controller {
 		->set_partial ( 'chat_model', 'partials/chat_model' )
 		->set_partial ( 'footer', 'partials/footer' );
 		$this->template->build ('edit_package');
+	}
+	
+	public function update_package()
+	{
+		$this->load->library('dispatcher/PackageLib');
+		$data = array();
+		$data = $this->input->post('data');
+		$package = $this->packagelib->update_package ($data);
+		$userdata = array();
+		if($package) {
+			$userdata['status'] = 1;
+			$userdata['msg'] = "Package updated successfully.";
+		} else {
+			$userdata['status'] = 0;
+			$userdata['msg'] = "Error! Please check your data.";
+		}
+		echo json_encode($userdata);
 	}
 	
 }

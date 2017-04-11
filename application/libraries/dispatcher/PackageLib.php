@@ -19,9 +19,18 @@ class PackageLib {
 		return $package;
 	}
 	
-	public function getPackageById()
+	public function getPackageById($id)
 	{
-		
+		$this->CI->load->model ( 'package/package_model', 'package' );
+		$package = $this->CI->package->getPackageById ($id);
+		return $package;
+	}
+	
+	public function update_package($data)
+	{
+		$this->CI->load->model ( 'package/package_model', 'package' );
+		$package = $this->CI->package->update_package ($data);
+		return $package;
 	}
 	
 }

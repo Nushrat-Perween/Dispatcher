@@ -41,6 +41,9 @@ class adminUser_model extends CI_Model {
 		if(isset($param['user_role'])) {
 			$this->db->where ( 'a.user_role', $param['user_role'] );
 		}
+		if(isset($param['client_id'])) {
+			$this->db->where ( 'a.client_id', $param['client_id'] );
+		}
 		$query = $this->db->get ();
 		//echo $this->db->last_query();
 		$result = $query->result_array ();

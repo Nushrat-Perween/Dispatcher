@@ -1,6 +1,5 @@
 <!-- page stylesheets -->
 <link rel="stylesheet" href="<?php echo asset_url();?>vendor/datatables/media/css/dataTables.bootstrap4.css">
-<link rel="stylesheet" href="<?php echo asset_url();?>vendor/bootstrap/dist/css/bootstrap.css"/>
 
 <!-- page stylesheets -->
 <style>
@@ -28,10 +27,11 @@ hr{margin-bottom:0rem}
 <tr>
 
 <th> ID </th>
-<th> Name </th>
-<th> Time Duration</th>
-<th> Price</th>
-<th>  Action </th>
+<th>Name </th>
+<th>Year</th>
+<th>month</th>
+<th>Price</th>
+<th> Action </th>
 </tr>
 </thead>
 <tbody >
@@ -46,10 +46,11 @@ foreach($package_list as $row) {
 <tr>
 <td> <?php echo $row['id'];?> </td>
 <td><?php echo $row['name']; ?> </td>
-<td><?php echo $row['timeduration']; ?> </td>
+<td><?php echo (isset($row['year']) && !empty($row['year']))?$row['year']:'0';?> </td>
+<td><?php echo (isset($row['month']) && !empty($row['month']))?$row['month']:'0';?> </td>
 <td><?php echo $row['price']; ?> </td>
 <td style="padding-left:5px !important">
-<a href="<?php echo base_url();?>admin/edit_city/<?php echo $row['id'];?>" class="bg-green" style="margin:2px">&nbsp;&nbsp;<i class="fa fa-pencil text-white"></i>&nbsp;Edit&nbsp;&nbsp;</a>
+<a href="<?php echo base_url();?>admin/edit_package/<?php echo $row['id'];?>" class="bg-green" style="margin:2px">&nbsp;&nbsp;<i class="fa fa-pencil text-white"></i>&nbsp;Edit&nbsp;&nbsp;</a>
 </td>
 
 <?php }?>

@@ -53,7 +53,8 @@ class Admin extends MX_Controller {
 	
 	public function fieldworker_list (){
 		$param = array();
-		$param['user_role'] = 3;
+		$param['user_role'] = 7;
+		$param['client_id'] = $_SESSION['admin']['client_id'];
 		$this->load->library('dispatcher/AdminLib');
 		$fieldworker_list = $this->adminlib->getAllAdmin ($param);
 		$this->template->set ( 'fieldworker_list', $fieldworker_list );
@@ -140,7 +141,7 @@ class Admin extends MX_Controller {
 		$this->template->build ('user_list');
 	}
 	
-
+	
 
 }
 

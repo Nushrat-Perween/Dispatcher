@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.css"/>
 
 <style>
@@ -30,11 +29,23 @@
 						</div>
 						<div class="form-group m-b">
 						<label>
-						Time Duration
+						Year
 						</label>
 						<div class="row"> 
 							<div class="col-md-10 input-group"> 
-								<input type="text"  class="form-control" name="data[timeduration]" placeholder="time duration" required/>
+								<input type="text"  class="form-control" name="data[year]" placeholder="year"/>
+							</div>
+							<div class="messageContainer"></div>
+						</div>
+						</div>
+						
+						<div class="form-group m-b">
+						<label>
+						Month
+						</label>
+						<div class="row"> 
+							<div class="col-md-10 input-group"> 
+								<input type="text"  class="form-control" name="data[month]" placeholder="month"/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
@@ -145,4 +156,4 @@
   	   	return false;  //stop the actual form post !important!
   	}
 
-    </script>	
+    </script>

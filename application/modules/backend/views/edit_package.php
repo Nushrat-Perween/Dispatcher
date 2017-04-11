@@ -1,5 +1,3 @@
-<!-- build:css({.tmp,app}) styles/app.min.css -->
-
 <link rel="stylesheet" href="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.css"/>
 
 <style>
@@ -12,8 +10,8 @@
 <div class="content-view" style="margin-left:30%">
 	<div class="row"> 
 		<div class="col-md-offset-3 col-md-6"> 
-				<div class="card card-block" style="padding:20px">
-				<h2>Add Package</h2>
+				<div class="card card-block">
+				<h2>Edit Package</h2>
 				<div class="form-control" id="response" style="display: none"> </div>
 				<form class="form-validation form-horizontal" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
 						<div class="form-group m-b">
@@ -23,7 +21,7 @@
 						<div class="row"> 
 						
 							<div class="col-md-10 input-group"> 
-								<input type="text" class="form-control" name="data[name]" placeholder=" Name" required/>
+								<input type="text" class="form-control" name="data[name]" placeholder=" Name" value = "<?php echo $package['name'] ?>" />
 							</div>
 							<div class="messageContainer"></div>
 							
@@ -31,11 +29,24 @@
 						</div>
 						<div class="form-group m-b">
 						<label>
-						Time Duration
+						Year
 						</label>
 						<div class="row"> 
 							<div class="col-md-10 input-group"> 
-								<input type="text"  class="form-control" name="data[timeduration]" placeholder="time duration" required/>
+								<input type="text"  class="form-control" name="data[year]" placeholder="year" value = "<?php echo $package['year'] ?>"/>
+							</div>
+							<div class="messageContainer"></div>
+						</div>
+						</div>
+						
+						<div class="form-group m-b">
+						<label>
+						Month
+						</label>
+						<div class="row"> 
+							<div class="col-md-10 input-group"> 
+								<input type="text"  class="form-control" name="data[month]" placeholder="month" value = "<?php echo $package['month'] ?>"/>
+								
 							</div>
 							<div class="messageContainer"></div>
 						</div>
@@ -47,7 +58,8 @@
 						</label>
 						<div class="row"> 
 							<div class="col-md-10 input-group"> 
-								<input type="text"  class="form-control" name="data[price]" placeholder="price" required/>
+								<input type="text"  class="form-control" name="data[price]" placeholder="price" value = "<?php echo $package['price'] ?>"/>
+								<input type="hidden"  class="form-control" name="data[id]" placeholder="" value = "<?php echo $package['id'] ?>"/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
@@ -55,10 +67,7 @@
 						
 						<div class="form-group pull-right">
 							<button type="submit" class="btn btn-primary m-r">
-							Submit
-							</button>
-							<button type="reset" id="reset" class="btn btn-default" >
-							Reset
+							Update
 							</button>
 						</div>
 						</form>
@@ -69,7 +78,7 @@
   
 
     <script src="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.js"></script>
-<script src="<?php echo asset_url();?>vendor/bootstrap/jquery.form.js"></script>
+	<script src="<?php echo asset_url();?>vendor/bootstrap/jquery.form.js"></script>
     <!-- end page scripts -->
 
     <!-- initialize page scripts -->
@@ -121,7 +130,7 @@
   	    $(".text-danger").hide();
   	   	$.ajax({
   	    	type: "POST",
-  	        url: "<?php echo base_url(); ?>admin/save_package",
+  	        url: "<?php echo base_url(); ?>admin/update_package",
   	        data: dataString,
   	        dataType: 'json',
   	        success: function(resp){
@@ -137,7 +146,7 @@
   	            	$("#response").show();
   	            	$("#response").addClass('alert-success');
   	            	$("#response").html(resp.msg);
-  	            alert("Package added successfully.");
+  	            alert("Package updated successfully.");
   	            	window.location.href = "<?php echo base_url(); ?>admin/package_list";
   	          	}
   	    	}
@@ -146,4 +155,4 @@
   	   	return false;  //stop the actual form post !important!
   	}
 
-    </script>	
+    </script>

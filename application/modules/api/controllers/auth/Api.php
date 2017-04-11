@@ -77,7 +77,7 @@ class Api extends REST_Controller {
 		$data['id'] = $this->post('id');
 		$data['current_latitude'] = $this->post('latitude');
 		$data['current_longitude'] = $this->post('longitude');
-		$this->load->library('delivery/AdminLib');
+		$this->load->library('dispatcher/AdminLib');
 		$fieldworker = $this->adminlib->updateCurrentLocationById ($data);
 		if($fieldworker)
 		{
@@ -92,7 +92,5 @@ class Api extends REST_Controller {
 		echo json_encode($res);
 	}
 	
-
-
 }
 

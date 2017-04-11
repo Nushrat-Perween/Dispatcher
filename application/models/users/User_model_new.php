@@ -62,6 +62,7 @@ class User_model_new extends CI_Model {
 		$this->db->or_where('user_role',4);
 		$this->db->or_where('user_role',5);
 		$this->db->or_where('user_role',7);
+		$this->db->where('client_id',$_SESSION['admin']['client_id']);
 		$this->db->order_by('created_date','ASC');
 		$query = $this->db->get ();
 		$result = $query->result_array ();

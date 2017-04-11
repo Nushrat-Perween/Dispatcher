@@ -236,9 +236,57 @@
         }
         public function getJobCount($id)
         {
-        	$this->CI->load->model ( 'job_model', 'order' );
-        	$order = $this->CI->order->getJobCount ($id);
+        	$this->CI->load->model ( 'job_model', 'job' );
+        	$order = $this->CI->job->getJobCount ($id);
         	return $order;
+        }
+        public function getJobScheduleByFieldworkerId($id)
+		{
+			$this->CI->load->model ( 'job_model', 'job' );
+			$order = $this->CI->job->getJobScheduleByFieldworkerId ($id);
+			return $order;
+        }
+        
+        public function getTripDetails($id)
+        {
+        	$result = array();
+        	$details = "";
+        	$this->CI->load->model ( 'job_model', 'job' );
+        	$job = $this->CI->job->getTripDetails ($id);
+        	$i=1;
+        	$j=0;
+        	//print_r($job);
+        	foreach($job as $row)
+        	{
+        			
+        		if($i%2 != 0)
+        		{
+        			$platitude = $row['latitude'];
+        			$plongitude = $row['longitude'];
+        			$pickupaddress = $row['last_known_location'];
+        		}
+        		if($i%2 == 0)
+        		{
+        			$dlatitude = $row['latitude'];
+        			$dlongitude = $row['longitude'];
+        			$deliveryaddress = $row['last_known_location'];
+        			$request_url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=".$platitude."+".$plongitude."&destinations=".$dlatitude."+".$dlongitude."&sensor=false&key=AIzaSyABBiAxhJDZNZXJ-cwb1pWrPxWBe3hfyQY";
+        			$json = file_get_contents($request_url);
+        			$details = json_decode($json, TRUE);
+        			if (false !== $details)
+        			{
+        				$details=$details['rows'][0]['elements'][0]['distance']['text'];
+        				$list = explode(' ',$details);
+        			}
+        			$result[$j]['job_id'] = $row['job_id'];
+        			$result[$j]['details'] = $details;
+        			$result[$j]['pickup_address'] = $pickupaddress;
+        			$result[$j]['delivery_address'] = $deliveryaddress;
+        			$j++;
+        		}
+        		$i++;
+        	}
+        	return $result;
         }
         
     }

@@ -18,6 +18,11 @@ position: relative;
 .dataTables_wrapper {
     overflow-x: scroll;
 }
+
+.thead-inverse th {
+color: #fff;
+    background-color: #0275d8;
+}
 </style>
 <script>
 Pusher.log = function(message) {
@@ -98,7 +103,7 @@ channel.bind('my_event', function(data) {
 <?php
     
     $startdate = date('Y-m-d');
-    $startdate = date('d-m-Y',strtotime('-7 days',strtotime($startdate)));
+    $startdate = date('d-m-Y');
     
     ?>
 <div class="row">
@@ -122,10 +127,32 @@ channel.bind('my_event', function(data) {
 </div>
 
 </div>
+<!-- <div class="col-md-4"> -->
+<!-- <div class="row"> -->
+<!-- <div class="col-md-12"> -->
+<!-- <label class="col-md-12 control-label">Search by Job ID:</label> -->
+<!-- </div> -->
+<!-- </div> -->
+
+<!-- <div class="row"> -->
+<!-- <div class="col-md-12 form-group"> -->
+<!-- <div class="row"> -->
+<!-- <div class="form-group"> 
+<div class="col-md-11 input-group" style="margin-left:10px;">
+<input placeholder="ID" type="text" value="" style="height:40px" name="job_id" id="job_id" class="form-control ">
+<span class="input-group-addon bg-success"><button id="jobid_button" style="background-color:transparent;color:white;border:0" >Go</button></span>
+<span class="input-group-addon bg-primary"><button onclick="resetjobid();" style="background-color:transparent;color:white;border:0">Reset</button></span>
+<!-- </div> -->
+<!-- </div> -->
+<!-- </div> -->
+<!-- </div> -->
+<!-- </div> -->
+<!-- </div> -->
+
 <div class="col-md-4">
 <div class="row">
 <div class="col-md-12">
-<label class="col-md-12 control-label">Search by Job ID:</label>
+<label class="col-md-12 control-label">Search by Job Name:</label>
 </div>
 </div>
 
@@ -134,9 +161,9 @@ channel.bind('my_event', function(data) {
 <div class="row">
 <div class="form-group">
 <div class="col-md-11 input-group" style="margin-left:10px;">
-<input placeholder="ID" type="text" value="" style="height:40px" name="job_id" id="job_id" class="form-control ">
-<span class="input-group-addon bg-success"><button id="jobid_button" style="background-color:transparent;color:white;border:0" >Go</button></span>
-<span class="input-group-addon bg-primary"><button onclick="resetjobid();" style="background-color:transparent;color:white;border:0">Reset</button></span>
+<input placeholder="Job Name" type="text" value="" style="height:40px" name="job_name" id="job_name" class="form-control ">
+<span class="input-group-addon bg-success"><button id="jobname_button" style="background-color:transparent;color:white;border:0" >Go</button></span>
+<span class="input-group-addon bg-primary"><button onclick="resetjobname();" style="background-color:transparent;color:white;border:0">Reset</button></span>
 </div>
 </div>
 </div>
@@ -149,7 +176,7 @@ channel.bind('my_event', function(data) {
 <br>	<br>	<br>	<br>	<br><br><br>
 <div class="dataTables_wrapper">
 <table class="table table-bordered datatable" id="table_id1">
-<thead>
+<thead class="thead-inverse">
 <tr>
 <th> Job Name </th>
 <th > Delivery Date </th>
@@ -308,6 +335,13 @@ function resetjobid()
     document.getElementById('job_id').value="";
     
 }
+
+function resetjobname()
+{
+    document.getElementById('job_name').value="";
+    
+}
+
 function resetdate()
 {
     
@@ -355,6 +389,15 @@ $("#range_button").click(function() {
 
 $("#jobid_button").click(function() {
                          $.post("<?php echo base_url();?>admin/filter_job",{"job_id": $('#job_id').val()},function(data){
+                                tableid="table_id1";
+                                update_dataTable(data,tableid);
+                                
+                                },'json');
+                         
+                         });
+                         
+$("#jobname_button").click(function() {
+                         $.post("<?php echo base_url();?>admin/filter_job",{"job_name": $('#job_name').val()},function(data){
                                 tableid="table_id1";
                                 update_dataTable(data,tableid);
                                 

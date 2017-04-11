@@ -108,6 +108,17 @@
 						$this->db->where("DATE(j.created_date) <='".$enddate."'",'',FALSE);
 					}
 				}
+				
+				if(isset($param['time_period'])) {
+					                                
+					if($param['time_period'] == 'AM') {
+						$this->db->where("j.delivery_time BETWEEN '00:00:00' AND '11:59:59' ",'',FALSE);
+					}
+					if($param['time_period'] == 'PM') {
+						$this->db->where("j.delivery_time BETWEEN '12:00:00' AND '24:59:59' ",'',FALSE);
+					}
+		                                                
+				}
 				if(isset($param['period'])) {
 					$cdate = date('Y-m-d');
 					if ($param['period'] == 1) {

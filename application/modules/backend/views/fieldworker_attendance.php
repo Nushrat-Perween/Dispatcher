@@ -28,7 +28,7 @@ color: #fff;
 <div class="card">
 <div class="card-header no-bg b-a-0">
 <div class="dropdown pull-left " style="padding:3px 5px 4px 5px">
-<H2>Attendance Tracker Of Fieldworker</H2>
+<H2>Attendance </H2>
 </div><br><br><br>
 <div class="dropdown pull-left bg-primary" style="padding:7px 5px 4px 5px">
 <select class="bg-primary" style="border:0" id="fieldworker" onchange="fieldworker_filter ();">

@@ -154,11 +154,7 @@ Schedular
 perm_contact_calendar
 </i> <span>Attandance</span>
 </a>
-<a class="dropdown-item" href="<?php echo base_url();?>admin/error_screen">
-<i class="material-icons text-warning" aria-hidden="true">
-notifications_none
-</i> <span> Notification</span>
-</a>
+
 </div>
 </div>
 <!-- 			<div class="nav-item nav-link ">
@@ -238,35 +234,7 @@ playlist_add_check
 <!--                   </a> -->
 </div>
 </div>
-<div class="nav-item nav-link dropdown">
-<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-<i class="material-icons " aria-hidden="true">
-settings
-</i>
-Tools</a>
-<div class="dropdown-menu dropdown-menu-right">
-<a class="dropdown-item" href="<?php echo base_url();?>admin/error_screen">
-<i class="material-icons text-info" aria-hidden="true">
-format_color_text
-</i><span> Editor</span>
-</a>
-<a class="dropdown-item" href="<?php echo base_url();?>admin/error_screen">
-<i class="material-icons text-danger" aria-hidden="true">
-format_color_fill
-</i> <span>Theme Color</span>
-</a>
-<a class="dropdown-item" href="<?php echo base_url();?>admin/error_screen">
-<i class="material-icons text-primary" aria-hidden="true">
-format_shapes
-</i><span> Map Calculator</span>
-</a>
-<a class="dropdown-item" href="<?php echo base_url();?>admin/error_screen">
-<i class="material-icons text-red" aria-hidden="true">
-edit_location
-</i> <span>Distance calculator</span>
-</a>
-</div>
-</div>
+
 
 <div class="nav-item nav-link dropdown">
 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">

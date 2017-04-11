@@ -116,6 +116,13 @@ channel.bind('my_event', function(data) {
 <input placeholder="From" type="text" style="height:40px" name="startdate" id="startdate" value="<?php echo $startdate;?>" class="form-control ">
 <span class="input-group-addon btn-success" style="border:0">-</span>
 <input placeholder="To" type="text" value="" style="height:40px" name="enddate" id="enddate" class="form-control datepicker">
+<span class="input-group-addon btn-success" style="border:0">-</span>
+<select class="form-control" id="time_period" onchange="time_period_filter ();">
+<option value="">Time Period</option>
+<option value="AM">AM</option>
+<option value="PM">PM</option>
+
+</select>
 </div>
 <span class="input-group-addon bg-success"><button id="range_button" style="background-color:transparent;color:white;border:0" onclick="filter();">Go</button></span>
 <span class="input-group-addon bg-primary"><button onclick="resetdate();" style="background-color:transparent;color:white;border:0">Reset</button></span>
@@ -380,7 +387,7 @@ function update_dataTable(data,tableid) {
                  });
 }
 $("#range_button").click(function() {
-                         $.post("<?php echo base_url();?>admin/filter_job",{"startdate": $('#startdate').val(),"enddate": $('#enddate').val()},function(data){
+                         $.post("<?php echo base_url();?>admin/filter_job",{"time_period": $('#time_period').val(),"startdate": $('#startdate').val(),"enddate": $('#enddate').val()},function(data){
                                 tableid="table_id1";
                                 update_dataTable(data,tableid);
                                 
@@ -441,6 +448,12 @@ function priority_filter () {
     
 }
 
-
+function time_period_filter () {
+    $.post("<?php echo base_url();?>admin/filter_job",{"time_period": $('#time_period').val(),"startdate": $('#startdate').val(),"enddate": $('#enddate').val()},function(data){
+        tableid="table_id1";
+        update_dataTable(data,tableid);
+ 							
+        },'json');
+}
 
 </script>

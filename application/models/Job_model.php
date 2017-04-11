@@ -53,7 +53,7 @@
 	            			$this->db->where ( 'j.client_id', $data['client_id'] );
 	            		}
 	                              
-	             //$this->db->where ( 'date(j.created_date) ','date(now())');
+	             $this->db->where ( 'date(j.created_date) ','date(now())');
 	             $this->db->order_by('j.id','DESC');
 	             //echo $this->db->last_query();
 	             $query = $this->db->get ();
@@ -86,13 +86,13 @@
 				$this->db->join ( TABLES::$ADMIN . ' AS a', 'a.id=j.assign_to', 'left' );
 				$this->db->join ( TABLES::$JOB_STATUS.' AS js',"js.id=j.status_id","left" );
 				$this->db->join ( TABLES::$JOB_ACTION.' AS ja',"ja.id=j.action_id","left" );
-				if(isset($data['hospital_id']))
+				if(isset($param['hospital_id']))
 					{
-						$this->db->where ( 'j.hospital_id', $data['hospital_id'] );
+						$this->db->where ( 'j.hospital_id', $param['hospital_id'] );
 					}
-				if(isset($data['client_id']))
+				if(isset($param['client_id']))
 					{
-						$this->db->where ( 'j.client_id', $data['client_id'] );
+						$this->db->where ( 'j.client_id', $param['client_id'] );
 					}
 		
 				if(isset($param['enddate']) or isset($param['startdate'])) {
@@ -124,6 +124,11 @@
 				if(isset($param['job_id']) and $param['job_id'] != "") {
 		                                                
 					$this->db->where('j.id',$param['job_id']);
+				}
+		                                                
+				if(isset($param['job_name']) and $param['job_name'] != "") {
+		                                                
+					$this->db->where('j.job_name',$param['job_name']);
 				}
 		                                                
 				if(isset($param['status']) and $param['status'] != "") {
@@ -356,11 +361,12 @@
 		  public function getAdvisorInsight ($param)
 		  {
 		  	
-		  	$this->db->select ( "group_concat(aa.action) as action,
+		  	$this->db->select ( "group_concat(aa.action) as action,aa.action_time,
 		  			a.id,(concat(a.first_name, ' ', a.last_name)) as fieldworker_name,a.current_location,a.current_latitude,a.current_longitude" );
 		  	$this->db->from ( TABLES::$ADMIN.' AS a' );
 		  	$this->db->join ( TABLES::$ADMIN_ATTENDANCE . ' AS aa', 'a.id=aa.admin_id', 'left' );
 		  	$this->db->where ( 'a.is_deleted', 0 );
+		  	$this->db->where ( 'DATE(aa.action_time)', date('Y-m-d') );
 		  	if(isset($param['user_role'])) {
 		  		$this->db->where ( 'a.user_role', $param['user_role'] );
 		  	}
@@ -369,7 +375,7 @@
 		  	}
 		  	$this->db->group_by ('aa.admin_id');
 		  	$query_last = $this->db->get_compiled_select ();
-		  	$query1 = 'select *, (CASE WHEN FIND_IN_SET( "1", CAST( m1.action AS CHAR ) ) > 0 THEN "Present" ELSE "absent" END) AS attendance from ( '.$query_last.') as m1  ';
+		  	 $query1 = 'select *, (CASE WHEN FIND_IN_SET( "1", CAST( m1.action AS CHAR ) ) > 0 THEN "Present" ELSE "absent" END) AS attendance from ( '.$query_last.') as m1  ';
 		  	
 		  	$this->db->select ( "COUNT(CASE WHEN j.status_id = 1 THEN 1 END) as completed_job,
 		  									COUNT(CASE WHEN j.status_id =0 THEN 1 END) AS pending_job,group_concat(j.status_id)
@@ -385,7 +391,7 @@
 		  	}
 		  	$this->db->group_by ('j.assign_to');
 		  	$query2 = $this->db->get_compiled_select ();
-		  	$final_query = 'select * from ('.$query1.') as t1 join ('.$query2.') as t2 on t1.id = t2.assign_to';
+		  	 $final_query = 'select * from ('.$query1.') as t1 join ('.$query2.') as t2 on t1.id = t2.assign_to';
 		  	$query = $this->db->query($final_query);
 		  	$query_last11 = $this->db->last_query();
 		  	$result = $query->result_array ();

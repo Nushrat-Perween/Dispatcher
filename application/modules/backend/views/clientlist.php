@@ -27,6 +27,7 @@ hr{margin-bottom:0rem}
 <thead>
 <tr>
 <th>Sr.No</th>
+<th>Company Name</th>
 <th>Name </th>
 <th>Email</th>
 <th>Mobile</th>
@@ -45,6 +46,7 @@ foreach($client_list as $row) {
 	?>
 <tr>
 <td><?php echo $sr ; ?> </td>
+<td> <?php echo $row['company_name'];?> </td>
 <td> <?php echo $row['client_name'];?> </td>
 <td> <?php echo $row['email'];?> </td>
 <td> <?php echo $row['mobile'];?> </td>

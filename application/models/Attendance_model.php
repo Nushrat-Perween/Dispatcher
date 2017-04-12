@@ -23,8 +23,12 @@ class Attendance_model extends CI_Model {
 	public function getAttendanceByAdminID ($param) {
 		$this->db->select ( '*' );
 		$this->db->from ( TABLES::$ADMIN_ATTENDANCE );
+		$this->db->join ( TABLES::$ADMIN . ' AS aa', 'id=aa.admin_id', 'left' );
 		if(isset($param['admin_id'])) {
 			$this->db->where ( 'admin_id', $param['admin_id'] );
+		}
+		if(isset($param['admin_id'])) {
+			$this->db->where ( 'aa.client_id', $param['client_id'] );
 		}
 		if(isset($param['is_limited'])) {
 			$this->db->limit (5);

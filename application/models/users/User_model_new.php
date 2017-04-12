@@ -91,7 +91,7 @@ class User_model_new extends CI_Model {
 	public function gettAllHospital()
 	{
 		$client_id = $_SESSION['admin']['client_id'];
-		$this->db->select ('(h.name) as hospital_name,h.address,h.locality,h.created_date,CONCAT(a.first_name," ",a.last_name) AS name,a.verified, a.email,a.mobile,h.id' );
+		$this->db->select ('(h.name) as hospital_name,h.address,h.locality,h.created_date,CONCAT(a.first_name," ",a.last_name) AS name,a.verified, a.email,a.mobile,h.id,h.city,h.business_name,h.state' );
 		$this->db->from ( TABLES::$HOSPITAL.' AS h' );
 		$this->db->join ( TABLES::$ADMIN.' AS a',"h.id=a.hospital_id","left" );
 		$this->db->where('a.user_role',6);
@@ -103,7 +103,7 @@ class User_model_new extends CI_Model {
 	
 	public function getHospitalById($id)
 	{
-		$this->db->select ('(h.name) as hospital_name,h.address,h.locality,h.created_date,a.first_name,a.last_name, a.email,a.mobile,h.id,a.hospital_id,a.verified,h.latitude,h.longitude,h.pincode' );
+		$this->db->select ('(h.name) as hospital_name,h.address,h.locality,h.created_date,a.first_name,a.last_name, a.email,a.mobile,h.id,a.hospital_id,a.verified,h.latitude,h.longitude,h.pincode,h.business_name,h.state,h.city' );
 		$this->db->from ( TABLES::$HOSPITAL.' AS h' );
 		$this->db->join ( TABLES::$ADMIN.' AS a',"h.id=a.hospital_id","left" );
 		$this->db->where('h.id',$id);

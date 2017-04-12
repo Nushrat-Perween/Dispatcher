@@ -17,6 +17,7 @@ class Attendance extends MX_Controller {
 public function index() {
 		$param = array();
 		$param['admin_id'] = $this->session->userdata('admin')['id'];
+		$param['client_id'] = $this->session->userdata('admin')['client_id'];
 		$param['is_limited'] = 1;
 		$this->load->library('dispatcher/AttendanceLib');
 		$attendance_list = $this->attendancelib->getAttendanceByAdminID ($param);

@@ -63,6 +63,7 @@ class ClientLib {
 		unset($data['mobile']);
 		unset($data['hospital_id']);
 		unset($data['verified']);
+		
 		//print_r($client);
 		$this->CI->load->model ( 'client/client_model', 'client' );
 		$client_data = $this->CI->client->updateClientById ($data );

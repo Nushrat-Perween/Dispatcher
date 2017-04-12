@@ -101,7 +101,7 @@
                     </i>
                 Home</a>
               </li>
-
+			<?php if($_SESSION['admin']['user_role']!=3){?>
               <div class="nav-item nav-link dropdown">
                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="material-icons " aria-hidden="true">
@@ -124,6 +124,7 @@
                  
                 </div>
               </div>
+              <?php } ?>
               
 
 <div class="nav-item nav-link dropdown">
@@ -154,7 +155,6 @@ Schedular
 perm_contact_calendar
 </i> <span>Attandance</span>
 </a>
-
 </div>
 </div>
 <!-- 			<div class="nav-item nav-link ">
@@ -234,7 +234,7 @@ playlist_add_check
 <!--                   </a> -->
 </div>
 </div>
-
+<?php if($_SESSION['admin']['user_role']!=3){?>
 
 <div class="nav-item nav-link dropdown">
 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
@@ -256,7 +256,7 @@ radio_button_checked
 
 </div>
 </div>
-
+<?php } ?>
 
 
 </ul>

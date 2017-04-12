@@ -17,11 +17,21 @@
 				<div class="form-control" id="response" style="display: none"> </div>
 				<form class="form-validation form-horizontal" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
 				<div class="row">
+					<div class="form-group col-md-4">
+						<div class="row"> 
+						Company Name
+							<div class="col-md-12 input-group"> 
+								<input type="text" class="form-control" name="data[company_name]" placeholder="Company Name" required/>
+							</div>
+							<div class="messageContainer"></div>
+							
+						</div>
+						</div>
 						<div class="form-group col-md-4">
 						<div class="row"> 
 						 First Name
 							<div class="col-md-12 input-group"> 
-								<input type="text" class="form-control" name="data[first_name]" placeholder="Name" required/>
+								<input type="text" class="form-control" name="data[first_name]" placeholder="First Name" required/>
 							</div>
 							<div class="messageContainer"></div>
 							
@@ -31,12 +41,15 @@
 						<div class="row"> 
 						Last Name
 							<div class="col-md-12 input-group"> 
-								<input type="text" class="form-control" name="data[last_name]" placeholder="Name" required/>
+								<input type="text" class="form-control" name="data[last_name]" placeholder="Last Name" required/>
 							</div>
 							<div class="messageContainer"></div>
 							
 						</div>
 						</div>
+						
+						</div>
+						<div class="row">
 						<div class="form-group col-md-4">
 						
 						<div class="row"> 
@@ -47,8 +60,6 @@
 							<div class="messageContainer"></div>
 						</div>
 						</div>
-						</div>
-						<div class="row">
 						<div class="form-group col-md-4">
 						<div class="row"> 
 						Email
@@ -58,7 +69,6 @@
 							<div class="messageContainer"></div>
 						</div>
 						</div>
-						
 						<div class="form-group col-md-4">
 						<div class="row"> 
 						Mobile Number
@@ -68,19 +78,18 @@
 							<div class="messageContainer"></div>
 						</div>
 						</div>
-						<div class="form-group col-md-4">
-						
+						</div>
+						<div class="row">
+							<div class="form-group col-md-4">
 						<div class="row"> 
-						Pincode
+						Zip code
 							<div class="col-md-12 input-group"> 
-								<input type="text"  class="form-control" name="data[pincode]" placeholder="Pincode" required/>
+								<input type="text"  class="form-control" name="data[pincode]" placeholder="Zip code" required/>
 								<input type="hidden"  class="form-control" name="password" value ="<?php echo $password['text_password'] ?>" placeholder="Pincode" required/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
 						</div>
-						</div>
-						<div class="row">
 						<div class="form-group col-md-4">
 						<div class="row"> 
 						City Name
@@ -102,6 +111,9 @@
 						</div>
 						</div>
 						
+						</div>
+						
+						<div class="row">
 						<div class="form-group col-md-4">
 							<div class="row"> 
 							Package
@@ -116,9 +128,6 @@
 								<div class="messageContainer"></div>
 							</div>
 							</div>
-						</div>
-						
-						<div class="row">
 							<div class="form-group col-md-4">
 						
 						<div class="row"> 

@@ -15,6 +15,16 @@
 				<div class="form-control" id="response" style="display: none"> </div>
 				<form class="form-validation " method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
 						<div class="row">
+						<div class="form-group col-md-4">
+						<div class="row"> 
+						Company Name
+							<div class="col-md-12 input-group"> 
+								<input type="text" class="form-control" name="data[company_name]" value="<?php echo $client['company_name'];?>" placeholder="Company Name" required/>
+							</div>
+							<div class="messageContainer"></div>
+							
+						</div>
+						</div>
 							<div class=" col-md-4">
 							<input type="hidden" name="data[id]" value="<?php echo $client['id'];?>">
 							<label>
@@ -40,12 +50,15 @@
 						<div class="row"> 
 						
 							<div class="col-md-10 input-group"> 
-								<input type="text" class="form-control" name="data[first_name]" placeholder="Name" value="<?php if(isset($client['first_name'])) echo $client['first_name'];?>" required/>
+								<input type="text" class="form-control" name="data[first_name]" placeholder="First Name" value="<?php if(isset($client['first_name'])) echo $client['first_name'];?>" required/>
 							</div>
 							<div class="messageContainer"></div>
 							
 						</div>
 						</div>
+						
+						</div>
+						<div class="row">
 						<div class=" col-md-4">
 						<label>
 						Last Name
@@ -53,14 +66,12 @@
 						<div class="row"> 
 						
 							<div class="col-md-10 input-group"> 
-								<input type="text" class="form-control" name="data[last_name]" placeholder="Name" value="<?php if(isset($client['last_name'])) echo $client['last_name'];?>" required/>
+								<input type="text" class="form-control" name="data[last_name]" placeholder="Last Name" value="<?php if(isset($client['last_name'])) echo $client['last_name'];?>" required/>
 							</div>
 							<div class="messageContainer"></div>
 							
 						</div>
 						</div>
-						</div>
-						<div class="row">
 						<div class=" col-md-4">
 						<label>
 						Mobile Number
@@ -85,12 +96,14 @@
 						
 							<div class="col-md-10 input-group"> 
 								<input type="text" class="form-control" name="data[locality]" placeholder="City" id="locality" value="<?php if(isset($client['locality'])) echo $client['locality'];?>" required/>
-								<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" value= " <?php if(isset($client['latitude'])) echo $client['latitude'];?>" required/>
-								<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude" value = "<?php if(isset($client['locality'])) echo $client['longitude'];?> " required/>
+								<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" value= " <?php if(isset($client['latitude'])) echo $client['latitude'];?>" />
+								<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude" value = "<?php if(isset($client['locality'])) echo $client['longitude'];?> " />
 							</div>
 							<div class="messageContainer"></div>
 						</div>
 						</div>
+						</div>
+						<div class="row">
 						<div class=" col-md-4">
 						<label>
 						Address
@@ -103,8 +116,6 @@
 							<div class="messageContainer"></div>
 						</div>
 						</div>
-						</div>
-						<div class="row">
 						<div class=" col-md-4">
 						<label>
 						Pincode

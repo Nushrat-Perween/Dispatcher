@@ -11,7 +11,14 @@ class HospitalLib {
 		$patient = array();
 		$job = array();
 		$data['client_id'] = $_SESSION['admin']['client_id'];
-		$data['hospital_id'] = $_SESSION['admin']['hospital_id'];
+		if($_SESSION['admin']['user_role']==3 ||$_SESSION['admin']['user_role']==5 ||$_SESSION['admin']['user_role']==4)
+		{
+			
+		}
+		else {
+			$data['hospital_id'] = $_SESSION['admin']['hospital_id'];
+		}
+		
 		/********** Patient Data *****************/
 		$patient['name'] = $data['name'];
 		$patient['room_no'] = $data['room_no'];
@@ -20,7 +27,7 @@ class HospitalLib {
 		$patient['special_instruction'] =  $data['special_instruction'];
 		$patient['created_by'] = $data['created_by'];
 		$patient['created_date'] = $data['created_date'];
-		$patient['hospital_id'] = $_SESSION['admin']['hospital_id'];
+		$patient['hospital_id'] = $data['hospital_id'];
 		$patient['client_id'] = $_SESSION['admin']['client_id'];
 		//print_r($patient);
 		//print_r($data);
@@ -30,7 +37,7 @@ class HospitalLib {
 		$job['description'] = $data['description'];
 		$job['created_by']=$data['created_by'];
 		$job['created_date']=$data['created_date'];
-		$job['hospital_id'] = $_SESSION['admin']['hospital_id'];
+		$job['hospital_id'] = $data['hospital_id'];
 		$job['client_id'] = $_SESSION['admin']['client_id'];
 		$job['delivery_date']=$data['delivery_date'];
 		$job['delivery_time']=$data['delivery_time'];
@@ -144,6 +151,19 @@ class HospitalLib {
 		$this->CI->load->model ( 'patient/patient_model', 'patient' );
 		$patient= $this->CI->patient->getPatientListBydate ($data);
 		return $patient;
+	}
+	public function getCity($data)
+	{
+		$this->CI->load->model ('hospital/hospital_model', 'hospital' );
+		$job= $this->CI->hospital->getCity ( $data );
+		return $job;
+	}
+	
+	public function getState($data)
+	{
+		$this->CI->load->model ('hospital/hospital_model', 'hospital' );
+		$job= $this->CI->hospital->getState ( $data );
+		return $job;
 	}
 	
 }

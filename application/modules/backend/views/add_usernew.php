@@ -139,10 +139,6 @@
     	       	 validators: {
     	                notEmpty: {
     	                    message: ' Mobile No. is required and cannot be empty'
-    	                },
-    	                regexp: {
-    	                    regexp: '^[7-9][0-9]{9}$',
-    	                    message: 'Invalid Mobile Number'
     	                }
     	            }
     	       	},

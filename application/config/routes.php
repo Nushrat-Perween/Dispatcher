@@ -229,4 +229,6 @@ $route['admin/save_hospital'] = 'backend/UserNew/saveHospital';
 $route['admin/hospital_list'] = 'backend/UserNew/hospitalList';
 $route['admin/edit_hospital/([0-9]+)'] = 'backend/UserNew/editHospital/$1';
 $route['admin/update_hospital'] = 'backend/UserNew/updateHospital';
+$route['admin/searchcity'] = 'backend/Hospital/searchCity';
+$route['admin/searchstate'] = 'backend/Hospital/searchState';
 

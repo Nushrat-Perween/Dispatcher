@@ -86,6 +86,9 @@ class ClientJob extends MX_Controller {
 	}
 	
 	public function addJob (){
+		$this->load->library('dispatcher/UserLibNew');
+		$hospital_list = $this->userlibnew->gettAllHospital ();
+		$this->template->set ('hospitallist', $hospital_list );
 		$this->template->set ( 'page', 'Job List' );
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout ('backend')

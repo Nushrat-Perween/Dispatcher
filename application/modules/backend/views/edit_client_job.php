@@ -92,7 +92,10 @@
 			         		<div class="row"> 
 									State/Region
 								<div class="col-md-12 input-group">
-									<input type="text" name="state" id= "state" class="form-control" value ="<?php echo $customer[0]['state_name'];?>" required>
+									<input type="text" name="state" id= "state" onkeyup="ajaxSearch1()" class="form-control" value ="<?php echo $customer[0]['state_name'];?>" required>
+									<div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
+										<div id="autoSuggestionsList1" ></div>
+									 </div>
 								</div>
 								<div class="messageContainer text-danger"></div>
 							</div>
@@ -101,7 +104,10 @@
 			         		<div class="row"> 
 									City
 								<div class="col-md-12 input-group">
-									<input type="text" name="city" id= "city" class="form-control" value ="<?php echo $customer[0]['city_name'];?>" required>
+									<input type="text" name="city" id= "city" onkeyup="ajaxSearch()" class="form-control" value ="<?php echo $customer[0]['city_name'];?>" required>
+									 <div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
+									 	<div id="autoSuggestionsList" ></div>
+									 </div>
 								</div>
 								<div class="messageContainer text-danger"></div>
 							</div>
@@ -201,7 +207,7 @@
 	         	</div>
 	         	
          	</div>
-         	<div class="col-md-1 pull-right"> <button type="submit" class="btn btn-primary m-r">Update</button> </div>
+         	<div class="col-md-1 pull-right"> <button type="submit" class="btn btn-primary m-r" style="margin-top:10px">Update</button> </div>
          </div>
          </form>
 		 </div>
@@ -468,6 +474,89 @@
           i=0;
         });
     }
+
+    function ajaxSearch()
+    {
+    	$('#autoSuggestionsList').show();
+        var input_data = $('#city').val();
+
+        if (input_data.length === 0)
+        {
+            $('#suggestions').hide();
+        }
+        else
+        {
+
+            var post_data = {
+                'city': input_data,
+                '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
+                };
+
+            $.ajax({
+                type: "POST",
+                url: base_url+"admin/searchcity",
+                data: post_data,
+                success: function (data) {
+                    // return success
+                    if (data.length > 0) {
+                        $('#suggestions').show();
+                        $('#autoSuggestionsList').addClass('auto_list');
+                        $('#autoSuggestionsList').html(data);
+                    }
+                }
+             });
+
+         }
+     }
+     function fill(id)
+     {
+    	 var value = $('#div'+id).text();
+    	 //alert(value);
+    	 $('#city').val(value);
+    	 $('#autoSuggestionsList').hide();
+    	 
+     }
+     function ajaxSearch1()
+     {
+     	$('#autoSuggestionsList1').show();
+         var input_data = $('#state').val();
+
+         if (input_data.length === 0)
+         {
+             $('#suggestions').hide();
+         }
+         else
+         {
+
+             var post_data = {
+                 'state': input_data,
+                 '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
+                 };
+
+             $.ajax({
+                 type: "POST",
+                 url: base_url+"admin/searchstate",
+                 data: post_data,
+                 success: function (data) {
+                     // return success
+                     if (data.length > 0) {
+                         $('#suggestions').show();
+                         $('#autoSuggestionsList1').addClass('auto_list');
+                         $('#autoSuggestionsList1').html(data);
+                     }
+                 }
+              });
+
+          }
+      }
+      function fill1(id)
+      {
+     	 var value = $('#div1'+id).text();
+     	 //alert(value);
+     	 $('#state').val(value);
+     	 $('#autoSuggestionsList1').hide();
+     	 
+      }
     </script>
 	
 	

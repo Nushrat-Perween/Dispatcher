@@ -75,6 +75,8 @@ class Auth {
 						$userinfo['verified'] = $userdetail[0]['verified'];
 						$userinfo['is_blocked'] = $userdetail[0]['is_blocked'];
 						$userinfo['password'] = $userdetail[0]['password'];
+						$userinfo['text_password'] = $userdetail[0]['text_password'];
+						$userinfo['profile_pic'] = $userdetail[0]['profile_pic'];
 						$map ['status'] = 1;
 						$map ['msg'] = "Logged In successfully.";
 						$map['result'] = $userinfo;
@@ -149,9 +151,12 @@ class Auth {
 						$userinfo['email'] = $userdetail[0]['email'];
 						$userinfo['mobile'] = $userdetail[0]['mobile'];
 						$userinfo['user_role'] = $userdetail[0]['user_role'];
+						$userinfo['role_name'] = $userdetail[0]['role_name'];
 						$userinfo['verified'] = $userdetail[0]['verified'];
 						$userinfo['is_blocked'] = $userdetail[0]['is_blocked'];
 						$userinfo['password'] = $userdetail[0]['password'];
+						$userinfo['text_password'] = $userdetail[0]['text_password'];
+						$userinfo['profile_pic'] = $userdetail[0]['profile_pic'];
 						$map ['status'] = 1;
 						$map ['msg'] = "Logged In successfully.";
 						$map['result'] = $userinfo;
@@ -168,6 +173,25 @@ class Auth {
 			}
 	
 		return $map;
+	}
+	
+	public function editPassword($data) {
+		$this->CI->load->model ( 'users/AdminUser_model', 'admin' );
+		return $userdetail = $this->CI->admin->editPassword ( $data );
+	}
+	public function checkPassword($data) {
+		$response = array ();
+		$this->CI->load->model ( 'users/AdminUser_model', 'admin' );
+		$result = $userdetail = $this->CI->admin->checkPassword ( $data );
+		if (count ( $result ) > 0) {
+			$response ['status'] = 1;
+			$response ['msg'] = "Record Found";
+		} else {
+				
+			$response ['status'] = 0;
+			$response ['msg'] = "Old Password Not correct";
+		}
+		return $response;
 	}
 	
 

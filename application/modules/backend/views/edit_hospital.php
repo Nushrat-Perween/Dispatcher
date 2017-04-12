@@ -36,6 +36,19 @@
 							
 						</div>
 						</div>
+						 <div class="form-group col-md-4">
+						<div class="row"> 
+						Business Name
+							<div class="col-md-12 input-group"> 
+								<input type="text" class="form-control" name="data[business_name]" placeholder="Business Name" value="<?php echo $hospital['business_name']; ?>" required/>
+							</div>
+							<div class="messageContainer"></div>
+							
+						</div>
+						</div>
+						
+						</div>
+						<div class="row">
 						<div class="form-group col-md-4">
 						<div class="row"> 
 						Hospital Name
@@ -46,8 +59,6 @@
 							
 						</div>
 						</div>
-						</div>
-						<div class="row">
 						<div class="form-group col-md-4">
 						<div class="row"> 
 						Email
@@ -68,20 +79,28 @@
 							
 						</div>
 						</div>
-						
-						<div class="form-group col-md-4">
-						<div class="row"> 
-						Pincode
-							<div class="col-md-12 input-group"> 
-								<input type="text" class="form-control" name="data[pincode]" placeholder="Pincode" value ="<?php echo $hospital['pincode']; ?>" required/>
-							</div>
-							<div class="messageContainer"></div>
-							
-						</div>
-						</div>
-						
 						</div>
 						<div class="row">
+							<div class="form-group col-md-4">
+						
+						<div class="row"> 
+						State
+							<div class="col-md-12 input-group"> 
+								<input type="text"  class="form-control" name="data[state]" value ="<?php echo $hospital['state']; ?>" placeholder="State" required/>
+							</div>
+							<div class="messageContainer"></div>
+						</div>
+						</div>
+						<div class="form-group col-md-4">
+						
+						<div class="row"> 
+						City
+							<div class="col-md-12 input-group"> 
+								<input type="text"  class="form-control" name="data[city]" value ="<?php echo $hospital['city']; ?>" placeholder="City" required/>
+							</div>
+							<div class="messageContainer"></div>
+						</div>
+						</div>
 						<div class="form-group col-md-4">
 						<div class="row"> 
 						Street
@@ -95,6 +114,20 @@
 							<div class="messageContainer"></div>
 						</div>
 						</div>
+						
+						</div>
+						<div class="row">
+							<div class="form-group col-md-4">
+						<div class="row"> 
+						Zip Code
+							<div class="col-md-12 input-group"> 
+								<input type="text" class="form-control" name="data[pincode]" placeholder="Pincode" value ="<?php echo $hospital['pincode']; ?>" required/>
+							</div>
+							<div class="messageContainer"></div>
+							
+						</div>
+						</div>
+					
 						<div class="form-group col-md-4">
 						<div class="row"> 
 						Address

@@ -62,16 +62,6 @@ channel.bind('my_event', function(data) {
 <option value="4">This year</option>
 </select>
 </div>
-
-<div class="dropdown pull-right bg-warning" style="padding:3px 5px 4px 5px">
-<select class="bg-warning" style="border:0" id="priority" onchange="priority_filter ();">
-<option value="">Priority</option>
-<option value="0">Low</option>
-<option value="1">Medium</option>
-<option value="2">Heigh</option>
-</select>
-</div>
-
 <div class="dropdown pull-right bg-success" style="padding:3px 5px 4px 5px">
 <select class="bg-success" style="border:0" id="status" onchange="status_filter ();">
 <option value="">Status</option>
@@ -83,7 +73,7 @@ channel.bind('my_event', function(data) {
 
 <div class="dropdown pull-right bg-purple" style="padding:3px 5px 4px 5px">
 <select class="bg-purple" style="border:0" id="action" onchange="action_filter ();">
-<option value="">Action</option>
+<option value="">State</option>
 <?php foreach($job_action_list as $row) {?>
 <option value="<?php echo $row['id']; ?>"><?php echo $row['action']; ?></option>
 <?php }?>
@@ -194,7 +184,7 @@ channel.bind('my_event', function(data) {
 <th > End Time </th>
 <th>&nbsp;&nbsp;&nbsp;Re-Assign&nbsp;&nbsp;&nbsp; </th>
 <th > Priority </th>
-<th > &nbsp;&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp; </th>
+<th > &nbsp;&nbsp;&nbsp;State&nbsp;&nbsp;&nbsp; </th>
 <th > Status </th>
 <th > Job Assignment </th>
 </tr>

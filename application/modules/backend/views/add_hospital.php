@@ -36,6 +36,19 @@
 							
 						</div>
 						</div>
+					 <div class="form-group col-md-4">
+						<div class="row"> 
+						Business Name
+							<div class="col-md-12 input-group"> 
+								<input type="text" class="form-control" name="data[business_name]" placeholder="Business Name" required/>
+							</div>
+							<div class="messageContainer"></div>
+							
+						</div>
+						</div>
+						
+						</div>
+						<div class="row">
 						<div class="form-group col-md-4">
 						<div class="row"> 
 						Hospital Name
@@ -46,8 +59,6 @@
 							
 						</div>
 						</div>
-						</div>
-						<div class="row">
 						<div class="form-group col-md-4">
 						<div class="row"> 
 						Email
@@ -68,18 +79,30 @@
 							
 						</div>
 						</div>
+						
+						</div>
+						<div class="row">
+					
 						<div class="form-group col-md-4">
 						
 						<div class="row"> 
-						Password
+						State
 							<div class="col-md-12 input-group"> 
-								<input type="text"  class="form-control" name="data[password]" value ="<?php echo $password['text_password'] ?>" placeholder="Password" required/>
+								<input type="text"  class="form-control" name="data[state]" value ="" placeholder="State" required/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
 						</div>
+						<div class="form-group col-md-4">
+						
+						<div class="row"> 
+						City
+							<div class="col-md-12 input-group"> 
+								<input type="text"  class="form-control" name="data[city]" value ="" placeholder="City" required/>
+							</div>
+							<div class="messageContainer"></div>
 						</div>
-						<div class="row">
+						</div>
 						<div class="form-group col-md-4">
 						<div class="row"> 
 						Street
@@ -91,6 +114,8 @@
 							<div class="messageContainer"></div>
 						</div>
 						</div>
+						</div>
+						<div class="row">
 						<div class="form-group col-md-4">
 						<div class="row"> 
 						Address
@@ -100,11 +125,20 @@
 							<div class="messageContainer"></div>
 						</div>
 						</div>
-						
 						<div class="form-group col-md-4">
 						
 						<div class="row"> 
-						Pincode
+						Password
+							<div class="col-md-12 input-group"> 
+								<input type="text"  class="form-control" name="data[password]" value ="<?php echo $password['text_password'] ?>" placeholder="Password" required/>
+							</div>
+							<div class="messageContainer"></div>
+						</div>
+						</div>
+						<div class="form-group col-md-4">
+						
+						<div class="row"> 
+						Zip Code
 							<div class="col-md-12 input-group"> 
 								<input type="text"  class="form-control" name="data[pincode]" placeholder="Pincode" required/>
 								<input type="hidden"  class="form-control" name="password" value ="<?php echo $password['text_password'] ?>" placeholder="Pincode" required/>
@@ -112,8 +146,6 @@
 							<div class="messageContainer"></div>
 						</div>
 						</div>
-						</div>
-						<div class="row">
 							<div class="form-group col-md-4">
 						
 						<div class="row"> 

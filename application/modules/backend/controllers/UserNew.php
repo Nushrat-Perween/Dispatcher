@@ -293,6 +293,7 @@ class UserNew extends MX_Controller {
 		$data['longitude'] = $this->input->post('longitude');
 		$data['id'] = $this->input->post('id');
 		$data['hospital_id'] = $this->input->post('hospital_id');
+		
 		$this->load->library('dispatcher/UserLibNew');
 		//print_r($data);
 		$id = $this->userlibnew->updateHospital ($data);

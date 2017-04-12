@@ -26,10 +26,12 @@ hr{margin-bottom:0rem}
 <thead>
 <tr>
 <th>Sr.No</th>
+<th>Business Name </th>
 <th>Hospital Name </th>
 <th>Name </th>
 <th>Email</th>
 <th>Mobile</th>
+<th>City</th>
 <th>Street</th>
 <th>Address</th>
 <th>Created Date</th>
@@ -47,10 +49,12 @@ foreach($hospitallist as $row) {
 	?>
 <tr>
 <td><?php echo $sr ; ?> </td>
+<td> <?php echo $row['business_name'];?> </td>
 <td> <?php echo $row['hospital_name'];?> </td>
 <td> <?php echo $row['name'];?> </td>
 <td> <?php echo $row['email'];?> </td>
 <td> <?php echo $row['mobile'];?> </td>
+<td> <?php echo $row['city'];?> </td>
 <td> <?php echo $row['locality'];?> </td>
 <td> <?php echo $row['address'];?> </td>
 <td> <?php echo (isset($row['created_date']) && !empty($row['created_date']))?date("d-m-Y", strtotime($row['created_date'])):'';?> </td>
@@ -60,7 +64,6 @@ foreach($hospitallist as $row) {
 
 <?php }?>
 </tbody>
-
 </table>
 </div>
 </div>

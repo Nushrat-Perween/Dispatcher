@@ -80,6 +80,9 @@ class UserLibNew {
 		$hospital['pincode'] = $data['pincode'];
 		$hospital['latitude'] = $data['latitude'];
 		$hospital['longitude'] = $data['longitude'];
+		$hospital['business_name'] = $data['business_name'];
+		$hospital['state'] = $data['state'];
+		$hospital['city'] = $data['city'];
 	
 		$this->CI->load->model ( 'users/user_model_new', 'user' );
 		$hospital_id = $this->CI->user->saveHospital ($hospital);
@@ -121,6 +124,9 @@ class UserLibNew {
 		$hospital['latitude'] = $data['latitude'];
 		$hospital['longitude'] = $data['longitude'];
 		$hospital['id'] = $data['id'];
+		$hospital['business_name'] = $data['business_name'];
+		$hospital['city'] = $data['city'];
+		$hospital['state'] = $data['state'];
 	
 		$this->CI->load->model ( 'users/user_model_new', 'user' );
 		$hospital_id = $this->CI->user->updateHospital ($hospital);

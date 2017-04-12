@@ -96,7 +96,7 @@ class adminUser_model extends CI_Model {
 		if($query)
 			return 1;
 		else
-			return 0;
+			return 0; 
 	}
 	
 	public function checkPassword($data)

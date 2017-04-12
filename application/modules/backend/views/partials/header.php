@@ -111,13 +111,14 @@
                 <i class="material-icons">chat_bubble</i>
               </a>
                 <div class="nav-item nav-link dropdown">
-               <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <img src="<?php echo base_url();?>assets/images/avatar.jpg" style ="position: relative;width: 25px;height: 25px;display: inline-block;" alt="" class="img-responsive img-circle"/>&nbsp;
+               <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <img src='<?php  if($admindata['profile_pic']!='') {echo asset_url().$admindata['profile_pic'];} else { echo base_url()."assets/images/avatar.jpg"; }?>' style ="position: relative;width: 25px;height: 25px;display: inline-block;" alt="" class="img-responsive img-circle"/>&nbsp;
 				<span class="hidden-xs">
 					<?php echo $admindata['first_name']." ".$admindata['last_name'];?>   <i class="material-icons">arrow_drop_down</i>
 				</span>
 				</a>
-                <div class="dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item" href="<?php echo base_url();?>admin/logout"><i class="fa fa-key"></i>Log Out</a>
+                	<div class="dropdown-menu dropdown-menu-right">
+                	<a class="dropdown-item" href="<?php echo base_url();?>admin/profile"><i class="fa fa-user"></i> Profile</a>
+                  <a class="dropdown-item" href="<?php echo base_url();?>admin/logout"><i class="fa fa-key"></i> Log Out</a>
                   </div>
                   </div>
             </div>

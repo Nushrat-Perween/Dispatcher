@@ -85,5 +85,30 @@ class adminUser_model extends CI_Model {
 		unset($data['id']);
 		return $this->db->update(TABLES::$ADMIN,$data);
 	}
+	
+	public function editPassword($data)
+	{
+		$oldpassword = $data['oldpassword'];
+		unset($data['oldpassword']);
+		$this->db->where('id',$data['id']);
+		$this->db->where('text_password',$oldpassword);
+		$query = $this->db->update(TABLES::$ADMIN ,$data );
+		if($query)
+			return 1;
+		else
+			return 0; 
+	}
+	
+	public function checkPassword($data)
+	{
+		$this->db->select ( 'id,first_name' );
+		$this->db->from ( TABLES::$ADMIN);
+		$this->db->where('id',$data['id']);
+		$this->db->where ( 'text_password', $data['oldpassword'] );
+		$query = $this->db->get ();
+		//echo $this->db->last_query ();
+		$result = $query->result_array ();
+		return $result;
+	}
 }
 

@@ -75,6 +75,9 @@ class Hospital extends MX_Controller {
 	}
 	
 	public function addJob (){
+		$this->load->library('dispatcher/UserLibNew');
+		$hospital_list = $this->userlibnew->gettAllHospital ();
+		$this->template->set ('hospitallist', $hospital_list );
 		$this->template->set ( 'page', 'Job List' );
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout ('backend')
@@ -101,6 +104,10 @@ class Hospital extends MX_Controller {
 	public function clientSaveJob()
 	{
 		$data = array();
+		if($_SESSION['admin']['user_role']==3 ||$_SESSION['admin']['user_role']==5 ||$_SESSION['admin']['user_role']==4)
+		{
+			$data['hospital_id'] = $this->input->post('hospital_id');
+		}
 		$data['job_name'] = $this->input->post('jobname');
 		$data['description'] = $this->input->post('jobdesc');
 		$data['lookup_name'] = $this->input->post('jobname');
@@ -128,6 +135,7 @@ class Hospital extends MX_Controller {
 		$data['special_instruction'] = $this->input->post('sintruction');
 		$data['created_date'] = date('Y-m-d H:i:s');
 		$data['created_by'] = $_SESSION['admin']['id'];
+		//print_r($data);
 		$this->load->library('dispatcher/HospitalLib');
 		//print_r($data);
 		$id = $this->hospitallib->clientSaveJob ($data);
@@ -254,5 +262,46 @@ class Hospital extends MX_Controller {
 		//print_r($joblist);
 		echo json_encode($customerlist);
 	}
+	public function searchCity()
+	{
+		$data = $this->input->post('city');
+		$this->load->library('dispatcher/HospitalLib');
+		$city = $this->hospitallib->getCity ($data);
+		$i=0;
+		if (!empty($city))
+		{
+			
+			foreach ($city as $row):
+			$i++;
+			echo "<div class='col-md-12' style='border-bottom:1px solid #aaa;padding:2px;cursor:pointer' id='div".$i."' onclick='fill(".$i.")'>". $row['name']." </div>";
+			endforeach;
+		}
+		else
+		{
+			echo "<div class='col-md-12'> <em> Not found ... </em> </div>";
+		}
+	}
+	
+	public function searchState()
+	{
+		$data = $this->input->post('state');
+		$this->load->library('dispatcher/HospitalLib');
+		$state = $this->hospitallib->getState ($data);
+		$i=0;
+		if (!empty($state))
+		{
+				
+			foreach ($state as $row):
+			$i++;
+			echo "<div class='col-md-12' style='border-bottom:1px solid #aaa;padding:2px;cursor:pointer' id='div1".$i."' onclick='fill1(".$i.")'>". $row['name']." </div>";
+			endforeach;
+		}
+		else
+		{
+			echo "<div class='col-md-12'> <em> Not found ... </em> </div>";
+		}
+	}
+	
+	
 	
 }

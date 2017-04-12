@@ -7,6 +7,31 @@
 			   	<div class="col-md-6">
 				   	<div class="row">
 				   	<h6 class="text-danger"> <b>Basic Information</b></h6>
+				   	<?php if($_SESSION['admin']['user_role']==5 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==3){?>
+			         	<div class="col-md-6">
+				         	<div class="row"> 
+									Select Hospital
+								<div class="col-md-12 input-group">
+								
+									<select class="form-control" name="hospital_id">
+									<?php foreach($hospitallist as $item){?>
+									<option value="<?php echo $item['id']?>"><?php echo $item['hospital_name']?></option>
+									<?php }?>
+									</select>
+								</div>
+								<div class="messageContainer text-danger"></div>
+							</div>
+			         	</div>
+			         	<div class="col-md-6">
+				         	<div class="row"> 
+									Job Name
+								<div class="col-md-12 input-group">
+									<input type="text" name="jobname" id= "jobname" class="form-control" required>
+								</div>
+								<div class="messageContainer text-danger"></div>
+							</div>
+			         	</div>
+			         	<?php } else {?>
 			         	<div class="col-md-12">
 				         	<div class="row"> 
 									Job Name
@@ -16,6 +41,7 @@
 								<div class="messageContainer text-danger"></div>
 							</div>
 			         	</div>
+			         	<?php } ?>
 			         	<div class="col-md-12">
 			         		<div class="row"> 
 									Description
@@ -91,17 +117,25 @@
 			         		<div class="row"> 
 									State/Region
 								<div class="col-md-12 input-group">
-									<input type="text" name="state" id= "state" class="form-control" required>
-									
+									<input type="text" name="state" id= "state" class="form-control" onkeyup="ajaxSearch1()" required>
+									<div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
+										<div id="autoSuggestionsList1" ></div>
+									 </div>
+								</div>									
 								</div>
+								
 								<div class="messageContainer text-danger"></div>
 							</div>
 			         	</div>
 			         	<div class="col-md-6">
+			         	
 			         		<div class="row"> 
 									City
 								<div class="col-md-12 input-group">
-									<input type="text" name="city" id= "city" class="form-control" required>
+									<input type="text" name="city" id= "city" class="form-control" onkeyup="ajaxSearch()" required>
+								 <div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
+									 <div id="autoSuggestionsList" ></div>
+								</div>
 								</div>
 								<div class="messageContainer text-danger"></div>
 							</div>
@@ -128,15 +162,14 @@
 			         	</div>
 			         	<div class="col-md-6"> 
 			         		<div class="row"> 
-									Postal Code
+									Zip Code
 								<div class="col-md-12 input-group">
 									<input type="text" name="postalcode" id= "postalcode" class="form-control" required>
 								</div>
 								<div class="messageContainer text-danger"></div>
 							</div>	
 			         	</div>
-	         		</div>
-	         		<div class="row">
+	         		
 				   	<h6 class="text-danger"> <b>Contact</b></h6>
 			        	<div class="col-md-6">
 			        		<div class="row"> 
@@ -196,9 +229,9 @@
 			         	
 	         		</div>
 	         	</div>
-	         	
+	         	<div class="col-md-1 pull-right" style="margin-top:10px"> <button type="submit" class="btn btn-primary m-r">Submit</button> </div> 
          	</div>
-         	<div class="col-md-1 pull-right"> <button type="submit" class="btn btn-primary m-r">Submit</button> </div>
+         	
          </div>
          </form>
 		 </div>
@@ -413,10 +446,9 @@
   	            	$("#response").addClass('alert-success');
   	            	$("#response").html(resp.msg);
   	            alert("Job added successfully.");
-  	            	window.location.href = "<?php echo base_url(); ?>client/job_list";
+  	            	window.location.href = "<?php echo base_url(); ?><?php if($_SESSION['admin']['user_role']==3 || $_SESSION['admin']['user_role']==4|| $_SESSION['admin']['user_role']==5){?>admin/job_list <?php } else {?>client/job_list<?php }?>";
   	          	}
   	    	}
-  	 
   		});
   	   	return false;  //stop the actual form post !important!
   	}
@@ -427,8 +459,6 @@
           $('#timepicker1').timepicker();
       });
     </script>
-    
-    
     <script>
     $.getScript("https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCH-u-UD2bz6cfPEAe8mCVyrnnI7ONx9ro&callback=initMap");
     function initMap() {
@@ -466,4 +496,86 @@
           i=0;
         });
     }
+    function ajaxSearch()
+    {
+    	$('#autoSuggestionsList').show();
+        var input_data = $('#city').val();
+
+        if (input_data.length === 0)
+        {
+            $('#suggestions').hide();
+        }
+        else
+        {
+
+            var post_data = {
+                'city': input_data,
+                '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
+                };
+
+            $.ajax({
+                type: "POST",
+                url: base_url+"admin/searchcity",
+                data: post_data,
+                success: function (data) {
+                    // return success
+                    if (data.length > 0) {
+                        $('#suggestions').show();
+                        $('#autoSuggestionsList').addClass('auto_list');
+                        $('#autoSuggestionsList').html(data);
+                    }
+                }
+             });
+
+         }
+     }
+     function fill(id)
+     {
+    	 var value = $('#div'+id).text();
+    	 //alert(value);
+    	 $('#city').val(value);
+    	 $('#autoSuggestionsList').hide();
+    	 
+     }
+     function ajaxSearch1()
+     {
+     	$('#autoSuggestionsList1').show();
+         var input_data = $('#state').val();
+
+         if (input_data.length === 0)
+         {
+             $('#suggestions').hide();
+         }
+         else
+         {
+
+             var post_data = {
+                 'state': input_data,
+                 '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
+                 };
+
+             $.ajax({
+                 type: "POST",
+                 url: base_url+"admin/searchstate",
+                 data: post_data,
+                 success: function (data) {
+                     // return success
+                     if (data.length > 0) {
+                         $('#suggestions').show();
+                         $('#autoSuggestionsList1').addClass('auto_list');
+                         $('#autoSuggestionsList1').html(data);
+                     }
+                 }
+              });
+
+          }
+      }
+      function fill1(id)
+      {
+     	 var value = $('#div1'+id).text();
+     	 //alert(value);
+     	 $('#state').val(value);
+     	 $('#autoSuggestionsList1').hide();
+     	 
+      }
     </script>

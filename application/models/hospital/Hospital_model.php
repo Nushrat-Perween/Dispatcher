@@ -95,4 +95,27 @@ class Hospital_model extends CI_Model {
 		$result = $query->result_array ();
 		return $result;
 	}
+	public function getCity($data)
+	{
+		$this->db->select('j.city_name as name');
+		$this->db->from ( TABLES::$JOB_CONTACT.' AS j' );
+		$this->db->where("j.city_name LIKE '%$data%'");
+		$this->db->group_by('j.city_name');
+		$query = $this->db->get ();
+		$result = $query->result_array ();
+		return $result;
+		
+	}
+	
+	public function getState($data)
+	{
+		$this->db->select('j.state_name as name');
+		$this->db->from ( TABLES::$JOB_CONTACT.' AS j' );
+		$this->db->where("j.state_name LIKE '%$data%'");
+		$this->db->group_by('j.state_name');
+		$query = $this->db->get ();
+		$result = $query->result_array ();
+		return $result;
+	
+	}
 }

@@ -101,7 +101,7 @@
                     </i>
                 Home</a>
               </li>
-			<?php if($_SESSION['admin']['user_role']!=3){?>
+			<?php if($_SESSION['admin']['user_role']!=5){?>
               <div class="nav-item nav-link dropdown">
                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="material-icons " aria-hidden="true">
@@ -208,33 +208,18 @@ playlist_add_check
 </i>  <span>Jobs</span>
 
 </a>
-<!--                <a class="dropdown-item" href="<?php echo base_url();?>all_job_on_map">
-<i class="fa fa-map text-warning"  style="margin-right:12px" aria-hidden="true">
+<a class="dropdown-item"  href="<?php echo base_url();?>client/client_add_job">
+<i class="material-icons text-info" aria-hidden="true">
+playlist_add_check
+</i>  <span>Add</span>
 
-</i>  <span>Map</span> -->
-
-<!--                   </a>
-<a class="dropdown-item" href="<?php echo base_url();?>job_detail">
-<!--                     <i class="material-icons text-primary" aria-hidden="true"> -->
-<!--                       details -->
-<!--                     </i> <span> Pending</span> -->
-
-<!--                   </a> -->
-<!--                   <a class="dropdown-item" href="#"> -->
-<!--                     <i class="material-icons text-success" aria-hidden="true"> -->
-<!--                       check_circle -->
-<!--                     </i><span> Complited </span> -->
-
-<!--                   </a> -->
-<!--                   <a class="dropdown-item" href="#"> -->
-<!--                    <i class="material-icons text-danger" aria-hidden="true"> -->
-<!--                       cancel -->
-<!--                     </i> <span> Cancel </span> -->
-
-<!--                   </a> -->
+</a>
 </div>
+
+
+
 </div>
-<?php if($_SESSION['admin']['user_role']!=3){?>
+<?php if($_SESSION['admin']['user_role']!=5){?>
 
 <div class="nav-item nav-link dropdown">
 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">

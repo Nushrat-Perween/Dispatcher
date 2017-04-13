@@ -87,7 +87,9 @@
               <span>Dispature Tool</span>
             </a>
             <div class="navbar-item nav navbar-nav">
+             <?php if( $_SESSION['admin']['user_role']==3 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==5){?>
               <div class="nav-item nav-link dropdown">
+             
                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="material-icons">notifications</i>
                   <span class="tag tag-danger" id="notification_count"><?php echo $admin_notification_count;?></span>
@@ -108,9 +110,12 @@
                   </div>
                 </div>
               </div>
+              <?php }?>
+              <?php if( $_SESSION['admin']['user_role']==3 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==5 || $_SESSION['admin']['user_role']==6){?>
               <a href="javascript:;" class="nav-item nav-link nav-link-icon" data-toggle="modal" data-target=".chat-panel" data-backdrop="false">
                 <i class="material-icons">chat_bubble</i>
               </a>
+              <?php }?>
                 <div class="nav-item nav-link dropdown">
                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <img src='<?php  if($admindata['profile_pic']!='') {echo asset_url().$admindata['profile_pic'];} else { echo base_url()."assets/images/avatar.jpg"; }?>' style ="position: relative;width: 25px;height: 25px;display: inline-block;" alt="" class="img-responsive img-circle"/>&nbsp;
 				<span class="hidden-xs">

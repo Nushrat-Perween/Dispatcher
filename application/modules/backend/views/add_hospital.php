@@ -82,45 +82,57 @@
 						
 						</div>
 						<div class="row">
-					
-						<div class="form-group col-md-4">
-						
-						<div class="row"> 
-						State
-							<div class="col-md-12 input-group"> 
-								<input type="text"  class="form-control" name="data[state]" value ="" placeholder="State" required/>
+							<div class="form-group col-md-4">
+								<div class="row"> 
+								Address
+									<div class="col-md-12 input-group"> 
+										<input type="text" class="form-control" name="data[address]" placeholder="Address" required/>
+									</div>
+									<div class="messageContainer"></div>
+								</div>
 							</div>
-							<div class="messageContainer"></div>
-						</div>
-						</div>
-						<div class="form-group col-md-4">
-						
-						<div class="row"> 
-						City
-							<div class="col-md-12 input-group"> 
-								<input type="text"  class="form-control" name="data[city]" value ="" placeholder="City" required/>
+							<div class="form-group col-md-4">
+							
+							<div class="row"> 
+							City
+								<div class="col-md-12 input-group"> 
+									<input type="text"  class="form-control" name="data[city]" value ="" placeholder="City" required/>
+								</div>
+								<div class="messageContainer"></div>
 							</div>
-							<div class="messageContainer"></div>
-						</div>
-						</div>
-						<div class="form-group col-md-4">
-						<div class="row"> 
-						Street
-							<div class="col-md-12 input-group"> 
-								<input type="text" class="form-control" name="data[locality]" placeholder="Street" id="locality" required/>
-								<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" required/>
-								<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude" required/>
 							</div>
-							<div class="messageContainer"></div>
-						</div>
-						</div>
+							<div class="form-group col-md-4">
+							
+							<div class="row"> 
+							State
+								<div class="col-md-12 input-group"> 
+									<input type="text"  class="form-control" name="data[state]" value ="" placeholder="State" required/>
+								</div>
+								<div class="messageContainer"></div>
+							</div>
+							</div>
+							
+							
 						</div>
 						<div class="row">
 						<div class="form-group col-md-4">
+							<div class="row"> 
+							Street
+								<div class="col-md-12 input-group"> 
+									<input type="text" class="form-control" name="data[locality]" placeholder="Street" id="locality" required/>
+									<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" required/>
+									<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude" required/>
+								</div>
+								<div class="messageContainer"></div>
+							</div>
+							</div>
+						<div class="form-group col-md-4">
+						
 						<div class="row"> 
-						Address
+						Zip Code
 							<div class="col-md-12 input-group"> 
-								<input type="text" class="form-control" name="data[address]" placeholder="Address" required/>
+								<input type="text"  class="form-control" name="data[pincode]" placeholder="Pincode" required/>
+								<input type="hidden"  class="form-control" name="password" value ="<?php echo $password['text_password'] ?>" placeholder="Pincode" required/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
@@ -135,17 +147,8 @@
 							<div class="messageContainer"></div>
 						</div>
 						</div>
-						<div class="form-group col-md-4">
-						
-						<div class="row"> 
-						Zip Code
-							<div class="col-md-12 input-group"> 
-								<input type="text"  class="form-control" name="data[pincode]" placeholder="Pincode" required/>
-								<input type="hidden"  class="form-control" name="password" value ="<?php echo $password['text_password'] ?>" placeholder="Pincode" required/>
-							</div>
-							<div class="messageContainer"></div>
 						</div>
-						</div>
+						<div class = "row">
 							<div class="form-group col-md-4">
 						
 						<div class="row"> 
@@ -161,7 +164,6 @@
 							<div class="messageContainer"></div>
 						</div>
 						</div>
-						
 						</div>						
 						<div class="form-group pull-right">
 							<button type="submit" class="btn btn-primary m-r">
@@ -179,7 +181,7 @@
   
 
     <script src="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.js"></script>
-<script src="<?php echo asset_url();?>vendor/bootstrap/jquery.form.js"></script>
+	<script src="<?php echo asset_url();?>vendor/bootstrap/jquery.form.js"></script>
     <!-- end page scripts -->
 
     <!-- initialize page scripts -->

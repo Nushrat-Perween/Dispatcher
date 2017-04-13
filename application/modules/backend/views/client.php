@@ -82,14 +82,14 @@
 						<div class="row">
 							<div class="form-group col-md-4">
 						<div class="row"> 
-						Zip code
+						Address
 							<div class="col-md-12 input-group"> 
-								<input type="text"  class="form-control" name="data[pincode]" placeholder="Zip code" required/>
-								<input type="hidden"  class="form-control" name="password" value ="<?php echo $password['text_password'] ?>" placeholder="Pincode" required/>
+								<input type="text" class="form-control" name="data[address]" placeholder="address" required/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
 						</div>
+						
 						<div class="form-group col-md-4">
 						<div class="row"> 
 						City Name
@@ -101,11 +101,12 @@
 							<div class="messageContainer"></div>
 						</div>
 						</div>
-						<div class="form-group col-md-4">
+							<div class="form-group col-md-4">
 						<div class="row"> 
-						Address
+						Zip code
 							<div class="col-md-12 input-group"> 
-								<input type="text" class="form-control" name="data[address]" placeholder="address" required/>
+								<input type="text"  class="form-control" name="data[pincode]" placeholder="Zip code" required/>
+								<input type="hidden"  class="form-control" name="password" value ="<?php echo $password['text_password'] ?>" placeholder="Pincode" required/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>

@@ -62,6 +62,15 @@ channel.bind('my_event', function(data) {
 <option value="4">This year</option>
 </select>
 </div>
+<div class="dropdown pull-right bg-warning" style="padding:3px 5px 4px 5px">
+<select class="bg-warning" style="border:0" id="priority" onchange="priority_filter ();">
+	<option value="">Priority</option>
+	<option value="0">AM</option>
+	<option value="1">Timed</option>
+	<option value="2">Stat</option>
+	<option value="3">Today</option>
+</select>
+</div>
 <div class="dropdown pull-right bg-success" style="padding:3px 5px 4px 5px">
 <select class="bg-success" style="border:0" id="status" onchange="status_filter ();">
 <option value="">Status</option>
@@ -206,7 +215,7 @@ channel.bind('my_event', function(data) {
 <td> <?php if($row['end_date'] == NULL) echo 'NA';else echo date("d-m-Y",strtotime($row['end_date']));?>  </td>
 <td> <?php if($row['end_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($row['end_time']));?>   </td>
 <td> <a href=""  class="txt-warning" onclick="edit_assign_job_to_fieldworker ('<?php echo $row['id'];?>','<?php echo $row['assign_to'];?>');" data-toggle="modal" data-backdrop="static"  data-target="#modal-login1"><i class="fa fa-edit text-primary"></i>&nbsp;<?php if($row['fieldworker_name'] == "" or $row['fieldworker_name'] == NULL) echo "Not Assigned"; else echo $row['fieldworker_name'];?> </a></td>
-<td> <?php if($row['priority'] ==0) echo "Low"; else if($row['priority'] == 1) echo "Medium"; else if($row['priority'] == 2) echo "Heigh"; else echo "Not Define";?> </td>
+<td> <?php if($row['priority'] ==0) echo "AM"; else if($row['priority'] == 1) echo "Timed"; else if($row['priority'] == 2) echo "Stat"; else if($row['priority'] == 3) echo "Today"; else echo "Not Define";?> </td>
 <td> <a href=""  class="txt-warning" data-toggle="modal" data-backdrop="static"  onclick="edit_action ('<?php echo $row['id'];?>','<?php echo $row['action_id'];?>');" data-target="#modal-login1"><i class="fa fa-edit text-primary"></i>&nbsp;<?php echo $row['action'];?> </a> </td>
 <td> <?php echo $row['status'];?>  </td>
 <td><a href="<?php echo base_url();?>admin/job/assignment/<?php echo $row['id'];?>" class="bg-green" style="margin:2px">&nbsp;&nbsp;<i class="fa fa-pencil text-white"></i>&nbsp;Assign&nbsp;&nbsp;</a></td>

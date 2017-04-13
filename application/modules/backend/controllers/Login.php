@@ -48,7 +48,7 @@ class Login extends MX_Controller {
 			$this->session->set_userdata('chat_admin',$chat_admin);
 			$this->session->set_userdata('admin',$userdata['result']);
 			$notification_param = array();
-				
+			$notification_param['client_id'] = $this->session->userdata('admin')['client_id'];
 			$this->load->library('dispatcher/NotificationLib');
 			$notification = $this->notificationlib->getAllAdminNotification($notification_param);
 			$this->session->set_userdata('admin_notification_count',count($notification));

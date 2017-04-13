@@ -164,11 +164,13 @@
                 $data[$i]['status_id']=$row['status_id'];
                 $data[$i]['action_id']=$row['action_id'];
                 if($row['priority'] == 0) {
-                    $data[$i]['priority']="Low";
+                    $data[$i]['priority']="AM";
                 } else if($row['priority'] == 1) {
-                    $data[$i]['priority']="Medium";
+                    $data[$i]['priority']="Timed";
                 } else if($row['priority'] == 2) {
-                    $data[$i]['priority']="Heigh";
+                    $data[$i]['priority']="Stat";
+                } else if($row['priority'] == 3) {
+                    $data[$i]['priority']="Today";
                 } else {
                     $data[$i]['priority']="Not Define";
                 }
@@ -242,13 +244,15 @@
                 $data[$i]['status_id']=$row['status_id'];
                 $data[$i]['action_id']=$row['action_id'];
                 if($row['priority'] == 0) {
-                    $data[$i]['priority']="Low";
+                	$data[$i]['priority']="AM";
                 } else if($row['priority'] == 1) {
-                    $data[$i]['priority']="Medium";
+                	$data[$i]['priority']="Timed";
                 } else if($row['priority'] == 2) {
-                    $data[$i]['priority']="Heigh";
+                	$data[$i]['priority']="Stat";
+                } else if($row['priority'] == 3) {
+                	$data[$i]['priority']="Today";
                 } else {
-                    $data[$i]['priority']="Not Define";
+                	$data[$i]['priority']="Not Define";
                 }
                 
                 $i++;

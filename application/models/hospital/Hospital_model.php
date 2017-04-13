@@ -19,6 +19,16 @@ class Hospital_model extends CI_Model {
 		parent::__construct ();
 	}
 	
+	public function getHospitalById($id)
+	{
+		$this->db->select('*')->from ( TABLES::$HOSPITAL );
+		$this->db->where ( 'id', $id );
+		//echo $this->db->last_query();
+		$query = $this->db->get ();
+		$result = $query->result_array ();
+		return $result;
+	}
+	
 	public function save_job ($job)
 	{
 		//print_r($job);

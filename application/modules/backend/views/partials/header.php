@@ -24,35 +24,36 @@
 			window.console.log(message);
 		}
 	};
-	
+	var client_id = <?php echo $this->session->userdata('admin')['client_id'];?>;
 	var pusher = new Pusher('<?php echo $pusher_key;?>'); 
 	var channel = pusher.subscribe('test_channel');
-	channel.bind('my_event', function(data) {
+	channel.bind('my_event', function(pusherdata) {
 
 		$.post("<?php echo base_url();?>admin/getAllNotification",{},function(data) {
 			$("#notification_count").empty();
 			$("#notification_bar").empty();
 		
-		
 			var divdata = "";
-			document.getElementById('notification_count').innerHTML = data.notification_count;
-			 $(data.notification).each(function(index) {
-				  divdata = divdata+"<li>"+data.notification[index].title+"<br>"+data.notification[index].notification+"</li>";
+			document.getElementById('notification_count').innerHTML = data.admin_notification_count;
+			 $(data.admin_notification).each(function(index) {
+				  divdata = divdata+"<li>"+data.admin_notification[index].title+"<br>"+data.admin_notification[index].notification+"</li>";
 			 });
 			
 			document.getElementById('notification_bar').innerHTML = divdata;
 			//alert(JSON.stringify(data));
 		},'json');
-		
+
+		if(client_id == pusherdata.client_id) {
 			// General Notification
 			// Play sound
 		    document.getElementById('audiotag1').play ();
 			$.gritter.add ({
-				title: data.title,
-				text: data.admin_message,
+				title: pusherdata.title,
+				text: pusherdata.admin_message,
 				image: '<?php echo asset_url()."/images/logo-icon.png";?>',
 				sticky: true
 			});
+		}
 		return true;
 	});
 </script>
@@ -89,12 +90,12 @@
               <div class="nav-item nav-link dropdown">
                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="material-icons">notifications</i>
-                  <span class="tag tag-danger"><?php echo $admin_notification_count;?></span>
+                  <span class="tag tag-danger" id="notification_count"><?php echo $admin_notification_count;?></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right notifications">
                   <div class="dropdown-item">
                     <div class="notifications-wrapper">
-                      <ul class="notifications-list">
+                      <ul class="notifications-list" id="notification_bar">
                        <?php
 								foreach ($admin_notification as $row) {
 								

@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="<?php echo asset_url();?>vendor/c3/c3.min.css">	
 		 <div class="content-view">
             <div class="row">
+            <?php if($_SESSION['admin']['user_role']!=5){?>
               <div class="col-sm-6 col-md-4 col-lg-2">
                 <div class="card card-block ">
                   <h5 class="m-b-0 v-align-middle text-overflow">
@@ -37,6 +38,7 @@
                   </div>
                 </div>
               </div>
+              <?php }?>
                <div class="col-sm-6 col-md-4 col-lg-2">
                 <div class="card card-block ">
                   <h5 class="m-b-0 v-align-middle text-overflow">
@@ -181,7 +183,6 @@
                   </div>
                 </div>
               </div>
-              
               <div class="col-sm-6 col-md-4 col-lg-2">
                 <div class="card card-block ">
                   <h5 class="m-b-0 v-align-middle text-overflow">
@@ -238,7 +239,60 @@
                   </div>
                 </div>
               </div>
-           
+                  <div class="col-sm-6 col-md-4 col-lg-2">
+                <div class="card card-block ">
+                  <h5 class="m-b-0 v-align-middle text-overflow">
+					<span class="small pull-xs-right tag bg-success p-y-0 p-x-xs" style="line-height: 24px;">
+						<span ><i class="material-icons " aria-hidden="true">
+                      group
+                    </i></span>
+                    </span>
+                    <span><?php if(isset($getcustomeralljobdetail[0]['stat'])) {echo $getcustomeralljobdetail[0]['stat'];} else { echo "0"; }?></span>
+                  </h5>
+                  <div class="small text-overflow text-muted">
+                    &nbsp
+                  </div>
+                  <div class="small text-overflow">
+                Stat Job
+                  </div>
+                </div>
+              </div>
+                  <div class="col-sm-6 col-md-4 col-lg-2">
+                <div class="card card-block ">
+                  <h5 class="m-b-0 v-align-middle text-overflow">
+					<span class="small pull-xs-right tag bg-success p-y-0 p-x-xs" style="line-height: 24px;">
+						<span ><i class="material-icons " aria-hidden="true">
+                      group
+                    </i></span>
+                    </span>
+                    <span><?php if(isset($getcustomeralljobdetail[0]['am'])) {echo $getcustomeralljobdetail[0]['am'];} else { echo "0"; }?></span>
+                  </h5>
+                  <div class="small text-overflow text-muted">
+                    &nbsp
+                  </div>
+                  <div class="small text-overflow">
+                Am Job
+                  </div>
+                </div>
+              </div>
+               <div class="col-sm-6 col-md-4 col-lg-2">
+                <div class="card card-block ">
+                  <h5 class="m-b-0 v-align-middle text-overflow">
+					<span class="small pull-xs-right tag bg-success p-y-0 p-x-xs" style="line-height: 24px;">
+						<span ><i class="material-icons " aria-hidden="true">
+                      group
+                    </i></span>
+                    </span>
+                    <span><?php if(isset($getcustomeralljobdetail[0]['timed'])) {echo $getcustomeralljobdetail[0]['timed'];} else { echo "0"; }?></span>
+                  </h5>
+                  <div class="small text-overflow text-muted">
+                    &nbsp
+                  </div>
+                  <div class="small text-overflow">
+                Timed Job
+                  </div>
+                </div>
+              </div>
      
            
             </div>

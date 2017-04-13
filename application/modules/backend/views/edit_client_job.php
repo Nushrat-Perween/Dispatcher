@@ -20,7 +20,7 @@
 			         		<div class="row"> 
 									Description
 								<div class="col-md-12 input-group">
-									<textarea  name="jobdesc" class="form-control" required><?php echo $job[0]['description'];?></textarea>
+									<textarea  name="jobdesc" class="form-control"><?php echo $job[0]['description'];?></textarea>
 								</div>
 								<div class="messageContainer text-danger"></div>
 							</div>
@@ -69,7 +69,7 @@
 	         				<div class="row"> 
 									Special instrunction
 								<div class="col-md-12 input-group">
-									<textarea  name="sintruction" class="form-control" required><?php echo $patient[0]['special_instruction'];?> </textarea>
+									<textarea  name="sintruction" class="form-control"><?php echo $patient[0]['special_instruction'];?> </textarea>
 								</div>
 								<div class="messageContainer text-danger"></div>
 							</div>
@@ -88,19 +88,7 @@
 								<div class="messageContainer text-danger"></div>
 							</div>
 			        	</div>
-			         	<div class="col-md-6">
-			         		<div class="row"> 
-									State/Region
-								<div class="col-md-12 input-group">
-									<input type="text" name="state" id= "state" onkeyup="ajaxSearch1()" class="form-control" value ="<?php echo $customer[0]['state_name'];?>" required>
-									<div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
-										<div id="autoSuggestionsList1" ></div>
-									 </div>
-								</div>
-								<div class="messageContainer text-danger"></div>
-							</div>
-			         	</div>
-			         	<div class="col-md-6">
+			        	<div class="col-md-6">
 			         		<div class="row"> 
 									City
 								<div class="col-md-12 input-group">
@@ -114,6 +102,19 @@
 			         	</div>
 			         	<div class="col-md-6">
 			         		<div class="row"> 
+									State/Region
+								<div class="col-md-12 input-group">
+									<input type="text" name="state" id= "state" onkeyup="ajaxSearch1()" class="form-control" value ="<?php echo $customer[0]['state_name'];?>" required>
+									<div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
+										<div id="autoSuggestionsList1" ></div>
+									 </div>
+								</div>
+								<div class="messageContainer text-danger"></div>
+							</div>
+			         	</div>
+			         	
+			         	<div class="col-md-6">
+			         		<div class="row"> 
 									Street
 								<div class="col-md-12 input-group">
 									<input type="text" name="street" id= "locality" class="form-control" value ="<?php echo $customer[0]['street'];?>" required>
@@ -125,6 +126,15 @@
 								<div class="messageContainer text-danger"></div>
 							</div>
 			         	</div>
+			         	<div class="col-md-6"> 
+			         		<div class="row"> 
+									Zip Code
+								<div class="col-md-12 input-group">
+									<input type="text" name="postalcode" id= "postalcode" class="form-control" value ="<?php echo $customer[0]['postalcode'];?>" required>
+								</div> 
+								<div class="messageContainer text-danger"></div>
+							</div>	
+			         	</div>
 			         	<div class="col-md-6">
 			         		<div class="row"> 
 									Apartment / Suit / Building
@@ -134,15 +144,7 @@
 								<div class="messageContainer text-danger"></div>
 							</div>
 			         	</div>
-			         	<div class="col-md-6"> 
-			         		<div class="row"> 
-									Postal Code
-								<div class="col-md-12 input-group">
-									<input type="text" name="postalcode" id= "postalcode" class="form-control" value ="<?php echo $customer[0]['postalcode'];?>" required>
-								</div> 
-								<div class="messageContainer text-danger"></div>
-							</div>	
-			         	</div>
+			         	
 	         		</div>
 	         		<div class="row">
 				   	<h6 class="text-danger"> <b>Contact</b></h6>
@@ -245,14 +247,6 @@
     	                }
     	            }
     	        },
-    	        
-    	        'jobdesc': {
-    	       	 validators: {
-    	                notEmpty: {
-    	                    message: ' job description is required and cannot be empty'
-    	                }
-    	            }
-    	        },
     	        'pname': {
     	       	 validators: {
     	                notEmpty: {
@@ -284,15 +278,6 @@
        	       	 validators: {
        	                notEmpty: {
        	                    message: 'Caller is required and cannot be empty'
-       	                }
-
-       	            }
-       	       	},
-
-       	     'sintruction': {
-       	       	 validators: {
-       	                notEmpty: {
-       	                    message: 'Special instruction is required and cannot be empty'
        	                }
 
        	            }

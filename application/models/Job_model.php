@@ -413,13 +413,13 @@
 		  	$query2 = $this->db->get_compiled_select ();
 		  	 $final_query = 'select * from ('.$query1.') as t1 join ('.$query2.') as t2 on t1.id = t2.assign_to';
 		  	$query = $this->db->query($final_query);
-		  	$query_last11 = $this->db->last_query();
+		  	//$query_last11 = $this->db->last_query();
 		  	$result = $query->result_array ();
 		  	return $result;
 		  }
 		  public function getJobScheduleByFieldworkerId($id)
 		  {
-		  	$this->db->select ( 'j.id as job_id,j.job_name,j.start_time,ja.action,js.status,date_add(start_time, INTERVAL estimated_duration hour) as end_time,ad.current_location' );
+		  	$this->db->select ( 'j.id as job_id,j.job_name,j.start_time,ja.action,js.status,date_add(j.start_time, INTERVAL j.estimated_duration hour) as end_time1,j.end_time,ad.current_location' );
 		  	$this->db->from ( TABLES::$JOB. ' AS j');
 		  	$this->db->join ( TABLES::$JOB_STATUS.' AS js',"js.id=j.status_id","left" );
 		  	$this->db->join ( TABLES::$JOB_ACTION.' AS ja',"ja.id=j.action_id","left" );
@@ -430,8 +430,6 @@
 		  	$result = $query->result_array ();
 		  	return $result;
 		  }
-		  
-		  
 		  public function getTripDetails($id)
 		  {
 		  	$this->db->select('jh.latitude,jh.longitude,(j.id) as job_id,jh.last_known_location')->from(TABLES::$JOB_HISTORY.' AS jh',false)

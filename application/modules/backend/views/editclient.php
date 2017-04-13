@@ -87,7 +87,21 @@
 							
 						</div>
 						</div>
+						<div class=" col-md-4">
+						<label>
+						Address
+						</label>
+						<div class="row"> 
 						
+							<div class="col-md-10 input-group"> 
+								<input type="text" class="form-control" name="data[address]" placeholder="address"  value="<?php if(isset($client['address'])) echo $client['address'];?>" required/>
+							</div>
+							<div class="messageContainer"></div>
+						</div>
+						</div>
+						
+						</div>
+						<div class="row">
 						<div class=" col-md-4">
 						<label>
 						City Name
@@ -102,23 +116,11 @@
 							<div class="messageContainer"></div>
 						</div>
 						</div>
-						</div>
-						<div class="row">
-						<div class=" col-md-4">
-						<label>
-						Address
-						</label>
-						<div class="row"> 
 						
-							<div class="col-md-10 input-group"> 
-								<input type="text" class="form-control" name="data[address]" placeholder="address"  value="<?php if(isset($client['address'])) echo $client['address'];?>" required/>
-							</div>
-							<div class="messageContainer"></div>
-						</div>
-						</div>
+						
 						<div class=" col-md-4">
 						<label>
-						Pincode
+						Zip Code
 						</label>
 						<div class="row"> 
 							<div class="col-md-10 input-group"> 

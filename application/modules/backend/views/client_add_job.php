@@ -46,7 +46,7 @@
 			         		<div class="row"> 
 									Description
 								<div class="col-md-12 input-group">
-									<textarea  name="jobdesc" class="form-control" required> </textarea>
+									<textarea  name="jobdesc" class="form-control"> </textarea>
 								</div>
 								<div class="messageContainer text-danger"></div>
 							</div>
@@ -94,7 +94,7 @@
 	         				<div class="row"> 
 									Special instrunction
 								<div class="col-md-12 input-group">
-									<textarea  name="sintruction" class="form-control" required> </textarea>
+									<textarea  name="sintruction" class="form-control"> </textarea>
 								</div>
 								<div class="messageContainer text-danger"></div>
 							</div>
@@ -113,6 +113,23 @@
 								<div class="messageContainer text-danger"></div>
 							</div>
 			        	</div>
+			        	<div class="col-md-6">
+			         	
+			         		<div class="row"> 
+									City
+								<div class="col-md-12 input-group">
+									<input type="text" name="city" id= "city" class="form-control" onkeyup="ajaxSearch()" required>
+								 <div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
+									 <div id="autoSuggestionsList" ></div>
+								</div>
+								</div>
+								<div class="messageContainer text-danger"></div>
+							</div>
+			         	</div>
+			         	
+			         	
+			         	
+			         	</div>
 			         	<div class="col-md-6">
 			         		<div class="row"> 
 									State/Region
@@ -126,20 +143,6 @@
 								
 								<div class="messageContainer text-danger"></div>
 							</div>
-			         	</div>
-			         	<div class="col-md-6">
-			         	
-			         		<div class="row"> 
-									City
-								<div class="col-md-12 input-group">
-									<input type="text" name="city" id= "city" class="form-control" onkeyup="ajaxSearch()" required>
-								 <div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
-									 <div id="autoSuggestionsList" ></div>
-								</div>
-								</div>
-								<div class="messageContainer text-danger"></div>
-							</div>
-			         	</div>
 			         	<div class="col-md-6">
 			         		<div class="row"> 
 									Street
@@ -147,15 +150,6 @@
 									<input type="text" name="street" class="form-control" id ="locality" required>
 									<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" required/>
 									<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude" required/>
-								</div>
-								<div class="messageContainer text-danger"></div>
-							</div>
-			         	</div>
-			         	<div class="col-md-6">
-			         		<div class="row"> 
-									Apartment / Suit / Building
-								<div class="col-md-12 input-group">
-									<input type="text" name="building" id= "building" class="form-control" required>
 								</div>
 								<div class="messageContainer text-danger"></div>
 							</div>
@@ -169,6 +163,16 @@
 								<div class="messageContainer text-danger"></div>
 							</div>	
 			         	</div>
+			         	<div class="col-md-6">
+			         		<div class="row"> 
+									Apartment / Suit / Building
+								<div class="col-md-12 input-group">
+									<input type="text" name="building" id= "building" class="form-control" required>
+								</div>
+								<div class="messageContainer text-danger"></div>
+							</div>
+			         	</div>
+			         	
 	         		
 				   	<h6 class="text-danger"> <b>Contact</b></h6>
 			        	<div class="col-md-6">
@@ -270,13 +274,6 @@
     	            }
     	        },
     	        
-    	        'jobdesc': {
-    	       	 validators: {
-    	                notEmpty: {
-    	                    message: ' job description is required and cannot be empty'
-    	                }
-    	            }
-    	        },
     	        'pname': {
     	       	 validators: {
     	                notEmpty: {
@@ -308,15 +305,6 @@
        	       	 validators: {
        	                notEmpty: {
        	                    message: 'Caller is required and cannot be empty'
-       	                }
-
-       	            }
-       	       	},
-
-       	     'sintruction': {
-       	       	 validators: {
-       	                notEmpty: {
-       	                    message: 'Special instruction is required and cannot be empty'
        	                }
 
        	            }

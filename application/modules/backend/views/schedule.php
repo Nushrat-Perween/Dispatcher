@@ -111,7 +111,6 @@ function update_dataTable () {
 	    oTable.fnClearTable();
 	    var row = [];
 	    $(data).each(function(index) {
-	                 alert(data[index].job_name);
 	                 row.push(data[index].job_name);
 	                 row.push(data[index].start_time);
 	                 row.push(data[index].end_time);

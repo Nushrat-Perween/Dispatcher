@@ -19,7 +19,8 @@ class Notification extends MX_Controller {
 	public function getAllNotification () {
 		
 		$notification_param = array();
-	
+		$notification_param['client_id'] = $this->session->userdata('admin')['client_id'];
+		
 		$this->load->library('dispatcher/NotificationLib');
 		$notification = $this->notificationlib->getAllAdminNotification($notification_param);
 		
@@ -31,6 +32,8 @@ class Notification extends MX_Controller {
 		foreach ($notification as $row) {
 			$count_notification++ ;
 			$data[$i]['id'] = $row['id'];
+			$data[$i]['client_id'] = $row['client_id'];
+			$data[$i]['hospital_id'] = $row['hospital_id'];
 			$data[$i]['title'] = $row['title'];
 			$data[$i]['notification'] = $row['notification'];
 			$data[$i]['notification_type'] = $row['notification_type'];
@@ -39,8 +42,8 @@ class Notification extends MX_Controller {
 			$i++;
 		}
 		//echo $count_notification;
-		$res['notification_count'] = $count_notification;
-		$res['notification'] = $data;
+		$res['admin_notification_count'] = $count_notification;
+		$res['admin_notification'] = $data;
 		$this->session->set_userdata('admin_notification_count',$count_notification);
 		$this->session->set_userdata('admin_notification',$data);
 		echo json_encode($res);

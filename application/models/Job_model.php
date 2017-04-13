@@ -53,7 +53,7 @@
 	            			$this->db->where ( 'j.client_id', $data['client_id'] );
 	            		}
 	                              
-	             $this->db->where ( 'date(j.created_date) ','date(now())');
+	             $this->db->where ( 'date(j.created_date) = date(now())');
 	             $this->db->order_by('j.id','DESC');
 	             //echo $this->db->last_query();
 	             $query = $this->db->get ();

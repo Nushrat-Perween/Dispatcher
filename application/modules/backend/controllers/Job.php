@@ -21,7 +21,12 @@
             //$branch_list = $this->generallib->getBranchByCompanyID ($this->session->userdata('user')['company_id']);
             $job_status_list = $this->joblib->getAllJobStatus ();
             $job_action_list = $this->joblib->getAllJobAction ();
+            $data = array();
+            $data = $this->input->post();
+            $data = $this->input->get();
+            $data['is_deleted'] = 0;
             $data['client_id'] = $this->session->userdata('admin')['client_id'];
+           
             $job = $this->joblib->getAllClientJob ($data);
             $this->template->set ( 'job', $job );
             $this->template->set ( 'company_list', $company_list );
@@ -184,11 +189,12 @@
         public function filter_job () {
             $params = array();
             $params = $this->input->post();
+            
             $params['is_deleted'] = 0;
             $params['client_id'] = $this->session->userdata('admin')['client_id'];
             $this->load->library('dispatcher/JobLib');
             //print_r($params);
-            $result = $this->joblib->getFilterJob ($params);
+            $result = $this->joblib->getAllClientJob ($params);
             
             $i=0;
             $sr=1;

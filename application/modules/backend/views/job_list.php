@@ -234,7 +234,7 @@ channel.bind('my_event', function(data) {
 <div class="modal-content">
 <div class="modal-header" >
 <h3 id="modal-login-label" class="web_dialog_title">
-<button type="button" data-dismiss="modal" aria-hidden="true"
+<button type="button" data-dismiss="modal" aria-hidden="true" id="close_button"
 class="close">&times;</button>
 <label id="pop_up_title">Assign Field Worker </label>
 
@@ -276,6 +276,7 @@ function update_assign_job_to_fieldworker (job_id) {
                $.post("<?php echo base_url();?>admin/filter_job",{},function(data1){
                       tableid="table_id1";
                       update_dataTable(data1,tableid);
+                      document.getElementById("close_button").click(); 
                       ajaxindicatorstop();
                       },'json');
                } else {
@@ -310,6 +311,7 @@ function update_job_action (id) {
                $.post("<?php echo base_url();?>admin/filter_job",{},function(data1){
                       tableid="table_id1";
                       update_dataTable(data1,tableid);
+                      document.getElementById("close_button").click(); 
                       ajaxindicatorstop();
                       },'json');
                } else {

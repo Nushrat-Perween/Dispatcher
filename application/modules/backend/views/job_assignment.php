@@ -217,9 +217,11 @@ Cancel
 <button type="submit" class="btn btn-primary m-r">
 Submit
 </button>
-<button type="reset" id="reset" class="btn btn-default" >
-Reset
+<a href="<?php echo base_url(); ?>admin/job_list">
+<button type="button" id="reset" class="btn btn-default" >
+Back
 </button>
+</a>
 <?php }?>
 </div>
 </div>
@@ -342,7 +344,7 @@ $("#assign_form").submit(function(e) {
 						$("#response").addClass('alert-success');
 						$("#response").html(resp.msg);
 						alert("Assigned successfully.");
-						//window.location.href = "<?php echo base_url(); ?>admin/add_locality";
+						window.location.href = "<?php echo base_url(); ?>admin/job_list";
 					}
 				}
 

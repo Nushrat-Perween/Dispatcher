@@ -39,6 +39,7 @@
                 </div>
               </div>
               <?php }?>
+               <a href="<?php echo base_url();?>admin/job_list">
                <div class="col-sm-6 col-md-4 col-lg-2">
                 <div class="card card-block ">
                   <h5 class="m-b-0 v-align-middle text-overflow">
@@ -57,6 +58,8 @@
                   </div>
                 </div>
               </div>
+              </a>
+               <a href="<?php echo base_url();?>admin/job_list?status=1">
                <div class="col-sm-6 col-md-4 col-lg-2">
                 <div class="card card-block ">
                   <h5 class="m-b-0 v-align-middle text-overflow">
@@ -75,6 +78,8 @@
                   </div>
                 </div>
               </div>
+              </a>
+               <a href="<?php echo base_url();?>admin/job_list?status=2">
                <div class="col-sm-6 col-md-4 col-lg-2">
                 <div class="card card-block ">
                   <h5 class="m-b-0 v-align-middle text-overflow">
@@ -93,6 +98,8 @@
                   </div>
                 </div>
               </div>
+              </a>
+                <a href="<?php echo base_url();?>admin/job_list?status=0">
                <div class="col-sm-6 col-md-4 col-lg-2">
                 <div class="card card-block ">
                   <h5 class="m-b-0 v-align-middle text-overflow">
@@ -111,6 +118,8 @@
                   </div>
                 </div>
               </div>
+              </a>
+                <a href="<?php echo base_url();?>admin/job_list?action=1">
                <div class="col-sm-6 col-md-4 col-lg-2">
                 <div class="card card-block ">
                   <h5 class="m-b-0 v-align-middle text-overflow">
@@ -129,6 +138,8 @@
                   </div>
                 </div>
               </div>
+              </a>
+                <a href="<?php echo base_url();?>admin/job_list?action=2">
                <div class="col-sm-6 col-md-4 col-lg-2">
                 <div class="card card-block ">
                   <h5 class="m-b-0 v-align-middle text-overflow">
@@ -147,6 +158,8 @@
                   </div>
                 </div>
               </div>
+              </a>
+                <a href="<?php echo base_url();?>admin/job_list?action=3">
                <div class="col-sm-6 col-md-4 col-lg-2">
                 <div class="card card-block ">
                   <h5 class="m-b-0 v-align-middle text-overflow">
@@ -165,6 +178,8 @@
                   </div>
                 </div>
               </div>
+              </a>
+                <a href="<?php echo base_url();?>admin/job_list?action=4">
                <div class="col-sm-6 col-md-4 col-lg-2">
                 <div class="card card-block ">
                   <h5 class="m-b-0 v-align-middle text-overflow">
@@ -183,6 +198,8 @@
                   </div>
                 </div>
               </div>
+              </a>
+                <a href="<?php echo base_url();?>admin/job_list?action=5">
               <div class="col-sm-6 col-md-4 col-lg-2">
                 <div class="card card-block ">
                   <h5 class="m-b-0 v-align-middle text-overflow">
@@ -201,7 +218,8 @@
                   </div>
                 </div>
               </div>
-              
+              </a>
+                <a href="<?php echo base_url();?>admin/job_list?action=6">
               <div class="col-sm-6 col-md-4 col-lg-2">
                 <div class="card card-block ">
                   <h5 class="m-b-0 v-align-middle text-overflow">
@@ -220,7 +238,8 @@
                   </div>
                 </div>
               </div>
-              
+              </a>
+               <a href="<?php echo base_url();?>admin/job_list?action=7">
               <div class="col-sm-6 col-md-4 col-lg-2">
                 <div class="card card-block ">
                   <h5 class="m-b-0 v-align-middle text-overflow">
@@ -239,6 +258,8 @@
                   </div>
                 </div>
               </div>
+              </a>
+              <a href="<?php echo base_url();?>admin/job_list?priority=2">
                   <div class="col-sm-6 col-md-4 col-lg-2">
                 <div class="card card-block ">
                   <h5 class="m-b-0 v-align-middle text-overflow">
@@ -257,24 +278,28 @@
                   </div>
                 </div>
               </div>
-                  <div class="col-sm-6 col-md-4 col-lg-2">
-                <div class="card card-block ">
-                  <h5 class="m-b-0 v-align-middle text-overflow">
-					<span class="small pull-xs-right tag bg-success p-y-0 p-x-xs" style="line-height: 24px;">
-						<span ><i class="material-icons " aria-hidden="true">
-                      group
-                    </i></span>
-                    </span>
-                    <span><?php if(isset($getcustomeralljobdetail[0]['am'])) {echo $getcustomeralljobdetail[0]['am'];} else { echo "0"; }?></span>
-                  </h5>
-                  <div class="small text-overflow text-muted">
-                    &nbsp
-                  </div>
-                  <div class="small text-overflow">
-                Am Job
-                  </div>
-                </div>
-              </div>
+              </a>
+              <a href="<?php echo base_url();?>admin/job_list?priority=0">
+	               <div class="col-sm-6 col-md-4 col-lg-2">
+	                <div class="card card-block ">
+	                  <h5 class="m-b-0 v-align-middle text-overflow">
+						<span class="small pull-xs-right tag bg-success p-y-0 p-x-xs" style="line-height: 24px;">
+							<span ><i class="material-icons " aria-hidden="true">
+	                      group
+	                    </i></span>
+	                    </span>
+	                    <span><?php if(isset($getcustomeralljobdetail[0]['am'])) {echo $getcustomeralljobdetail[0]['am'];} else { echo "0"; }?></span>
+	                  </h5>
+	                  <div class="small text-overflow text-muted">
+	                    &nbsp
+	                  </div>
+	                  <div class="small text-overflow">
+	                Am Job
+	                  </div>
+	                </div>
+	              </div>
+              </a>
+              <a href="<?php echo base_url();?>admin/job_list?priority=1">
                <div class="col-sm-6 col-md-4 col-lg-2">
                 <div class="card card-block ">
                   <h5 class="m-b-0 v-align-middle text-overflow">
@@ -294,6 +319,6 @@
                 </div>
               </div>
      
-           
+           </a>
             </div>
         </div>

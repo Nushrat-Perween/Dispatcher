@@ -273,6 +273,7 @@ function update_assign_job_to_fieldworker (job_id) {
                if(data.status) {
                document.getElementById('update_job_alert').style.display = "block";
                document.getElementById('not_update_job_alert').style.display = "none";
+               alert("Updated Successfully.");
                $.post("<?php echo base_url();?>admin/filter_job",{},function(data1){
                       tableid="table_id1";
                       update_dataTable(data1,tableid);
@@ -308,6 +309,7 @@ function update_job_action (id) {
                if(data.status) {
                document.getElementById('update_job_alert').style.display = "block";
                document.getElementById('not_update_job_alert').style.display = "none";
+               alert("Updated Successfully.");
                $.post("<?php echo base_url();?>admin/filter_job",{},function(data1){
                       tableid="table_id1";
                       update_dataTable(data1,tableid);

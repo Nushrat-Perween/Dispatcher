@@ -32,7 +32,7 @@
             return $result;
         }
         
-        public function getAllClientJob($data)
+        public function getAllClientJob1 ($data)
         		{
 	            //$data['created_date'] = date("Y-m-d");
 	            $this->db->select('j.*,concat(jc.first_name," ",jc.last_name) as contact_name,jc.mobile,(jc.id) as job_contact_id,
@@ -61,13 +61,15 @@
 	             return $result;
        		}
                                             
-		public function getFilterJob ($param)
+		public function getAllClientJob ($param)
 			{
 				if(isset($param['startdate'])) {
 					if($param['startdate']!="")
 						$startdate = date('Y-m-d',strtotime($param['startdate']));
 					else
 						$startdate="";
+				} else {
+					$startdate=date("Y-m-d");
 				}
 		                              
 				if(isset($param['enddate'])) {
@@ -75,7 +77,11 @@
 						$enddate = date('Y-m-d',strtotime($param['enddate']));
 					else
 						$enddate="";
+				} else {
+					$enddate=date("Y-m-d");
 				}
+// 				echo $enddate;
+// 				echo $startdate;
 				//$data['created_date'] = date("Y-m-d");
 		 		$this->db->select('j.*,concat(jc.first_name," ",jc.last_name) as contact_name,jc.mobile,(jc.id) as job_contact_id,
 											(p.name) as patient_name,p.caller,p.created_date,(p.id) as patient_id,ja.action,
@@ -95,7 +101,6 @@
 						$this->db->where ( 'j.client_id', $param['client_id'] );
 					}
 		
-				if(isset($param['enddate']) or isset($param['startdate'])) {
 					if($startdate!="" and $enddate!="") {
 						$this->db->where("DATE(j.created_date) >='".$startdate."' AND DATE(j.created_date) <='".$enddate."'",'',FALSE);
 					}
@@ -107,7 +112,6 @@
 					if($startdate=="" and $enddate!="") {
 						$this->db->where("DATE(j.created_date) <='".$enddate."'",'',FALSE);
 					}
-				}
 				
 				if(isset($param['time_period'])) {
 					                                

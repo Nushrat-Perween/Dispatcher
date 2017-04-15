@@ -216,20 +216,21 @@ channel.bind('my_event', function(data) {
 <!-- endbuild -->
 
 <div class="modal fade "  id="modal-login1" tabindex="-1" role="dialog"  aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header" >
-				<h3 id="modal-login-label" class="web_dialog_title">
-					<button type="button" data-dismiss="modal" aria-hidden="true"
-					class="close">&times;</button>
-					<label id="pop_up_title">Assign Field Worker </label>
-				</h3>
-			</div>
-			<div class="modal-body " id="modal_body">
-				<br> <br> <br> <br> <br> <br> <br><br> <br> <br> <br> <br> <br> <br>
-			</div>
-		</div>
-	</div>
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header" >
+<h3 id="modal-login-label" class="web_dialog_title">
+<button type="button" data-dismiss="modal" aria-hidden="true" id="close_button"
+class="close">&times;</button>
+<label id="pop_up_title">Assign Field Worker </label>
+
+</h3>
+</div>
+
+<div class="modal-body " id="modal_body">
+<br> <br> <br> <br> <br> <br> <br><br> <br> <br> <br> <br> <br> <br>
+
+</div>
 </div>
 <!-- page scripts -->
 <script src="<?php echo asset_url();?>vendor/datatables/media/js/jquery.dataTables.js"></script>
@@ -254,9 +255,11 @@ function update_assign_job_to_fieldworker (job_id) {
                if(data.status) {
                document.getElementById('update_job_alert').style.display = "block";
                document.getElementById('not_update_job_alert').style.display = "none";
+               alert("Updated Successfully.");
                $.post("<?php echo base_url();?>admin/filter_job",{},function(data1){
                       tableid="table_id1";
                       update_dataTable(data1,tableid);
+                      document.getElementById("close_button").click(); 
                       ajaxindicatorstop();
                       },'json');
                } else {
@@ -288,9 +291,11 @@ function update_job_action (id) {
                if(data.status) {
                document.getElementById('update_job_alert').style.display = "block";
                document.getElementById('not_update_job_alert').style.display = "none";
+               alert("Updated Successfully.");
                $.post("<?php echo base_url();?>admin/filter_job",{},function(data1){
                       tableid="table_id1";
                       update_dataTable(data1,tableid);
+                      document.getElementById("close_button").click(); 
                       ajaxindicatorstop();
                       },'json');
                } else {

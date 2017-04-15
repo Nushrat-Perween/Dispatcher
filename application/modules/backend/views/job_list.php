@@ -237,7 +237,7 @@ class="close">&times;</button>
 <script src="<?php echo asset_url();?>vendor/datatables/media/js/jquery.dataTables.js"></script>
 <script src="<?php echo asset_url();?>vendor/datatables/media/js/dataTables.bootstrap4.js"></script>
 <script src="<?php echo asset_url();?>vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js"></script>
-
+<script src="<?php echo asset_url(); ?>js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript">
 
 function edit_assign_job_to_fieldworker (job_id,field_worker_id) {

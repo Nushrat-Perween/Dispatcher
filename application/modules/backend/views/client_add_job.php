@@ -466,12 +466,18 @@
   		});
   	   	return false;  //stop the actual form post !important!
   	}
-      $(function() {
-          $("#start_date").datepicker({
-              dateFormat: "dd-mm-yyyy"
-          }).datepicker("setDate", "0");
+      $(document).ready(function() {
+          $("#start_date").datepicker({format:"dd-mm-yyyy"}).datepicker("setDate", "0");
           $('#timepicker1').timepicker();
-      });
+          });
+      
+//       $(function() {
+          
+//           $("#start_date").datepicker({
+//               dateFormat: "dd-mm-yyyy"
+//           }).datepicker("setDate", "0");
+//           $('#timepicker1').timepicker();
+//       });
     </script>
     <script>
     $.getScript("https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCH-u-UD2bz6cfPEAe8mCVyrnnI7ONx9ro&callback=initMap");

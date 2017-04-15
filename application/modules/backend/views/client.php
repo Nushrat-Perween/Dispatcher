@@ -12,7 +12,7 @@
 <div class="content-view" >
 	<div class="row"> 
 		<div class="col-md-12"> 
-				<div class="card card-block" style="padding:40px">
+			<div class="card card-block" style="padding:40px">
 				<h2>Add Client</h2>
 				<div class="form-control" id="response" style="display: none"> </div>
 				<form class="form-validation form-horizontal" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
@@ -24,7 +24,6 @@
 								<input type="text" class="form-control" name="data[company_name]" placeholder="Company Name" required/>
 							</div>
 							<div class="messageContainer"></div>
-							
 						</div>
 						</div>
 						<div class="form-group col-md-4">
@@ -34,7 +33,6 @@
 								<input type="text" class="form-control" name="data[first_name]" placeholder="First Name" required/>
 							</div>
 							<div class="messageContainer"></div>
-							
 						</div>
 						</div>
 						<div class="form-group col-md-4">
@@ -155,10 +153,10 @@
 							Reset
 							</button>
 						</div>
-						</form>
-					</div>
-				</div>
+				</form>
 			</div>
+		</div>
+	</div>
 </div>
   
 

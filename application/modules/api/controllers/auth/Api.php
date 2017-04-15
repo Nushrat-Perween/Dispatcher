@@ -23,7 +23,7 @@ class Api extends REST_Controller {
 	  
 		$this->load->library('dispatcher/auth');
 		$userdata = $this->auth->adminlogin($data);
-		$map = $userdata['result'];
+		//$map = $userdata['result'];
 		$map ['status'] = $userdata['status'];
 		if($userdata['status'] == 1) {
 			$this->session->set_userdata('admin',$userdata['result']);
@@ -73,7 +73,8 @@ class Api extends REST_Controller {
 	public function updateCurrentLocationById_post()
 	{
 		$data = array();
-		$data['current_locality'] = $this->post('locality');
+		$res = array();
+		$data['current_location'] = $this->post('locality');
 		$data['id'] = $this->post('id');
 		$data['current_latitude'] = $this->post('latitude');
 		$data['current_longitude'] = $this->post('longitude');
@@ -81,7 +82,7 @@ class Api extends REST_Controller {
 		$fieldworker = $this->adminlib->updateCurrentLocationById ($data);
 		if($fieldworker)
 		{
-			$res['staus'] = 1;
+			$res['status'] = 1;
 			$res['msg'] = "Updated Successfully";
 		}
 		else

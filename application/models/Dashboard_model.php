@@ -141,6 +141,7 @@ class Dashboard_model extends CI_Model {
    	$this->db->select('sum(if(status=1,1,0)) as completed_job,count(id) as total_job, sum(if(status=2,1,0)) as cancel_job, sum(if(status =0,1,0)) as pendin_job,sum(if(action_id=1,1,0)) as not_started_job,sum(if(action_id=2,1,0)) as accepted_job,sum(if(action_id=3,1,0)) as in_route_job,sum(if(action_id=4,1,0)) as arrived_job,sum(if(action_id=5,1,0)) as departed_job,sum(if(action_id=6,1,0)) as droppedof_job,sum(if(action_id=7,1,0)) as submitted_job,sum(if(priority=0,1,0)) as am,sum(if(priority=1,1,0)) as timed,sum(if(priority=2,1,0)) as stat,',false);
    	$this->db->from(TABLES :: $JOB);
    	$this->db->where('client_id',$data['client_id']);
+   	$this->db->where('(delivery_date)=date(now())');
    	$this->db->group_by('client_id');
    	$query = $this->db->get ();
    	$result = $query->result_array ();

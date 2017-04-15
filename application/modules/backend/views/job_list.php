@@ -123,7 +123,7 @@ channel.bind('my_event', function(data) {
 
 </select>
 </div>
-<span class="input-group-addon bg-success"><button id="range_button" style="background-color:transparent;color:white;border:0" onclick="filter();">Go</button></span>
+<span class="input-group-addon bg-success"><button id="range_button" style="background-color:transparent;color:white;border:0" >Go</button></span>
 <span class="input-group-addon bg-primary"><button onclick="resetdate();" style="background-color:transparent;color:white;border:0">Reset</button></span>
 </div>
 </div>
@@ -399,7 +399,7 @@ $("#range_button").click(function() {
                          });
 
 $("#jobid_button").click(function() {
-                         $.post("<?php echo base_url();?>admin/filter_job",{"job_id": $('#job_id').val()},function(data){
+                         $.post("<?php echo base_url();?>admin/filter_job",{"job_id": $('#job_id').val(),"startdate": "","enddate": ""},function(data){
                                 tableid="table_id1";
                                 update_dataTable(data,tableid);
                                 
@@ -408,7 +408,7 @@ $("#jobid_button").click(function() {
                          });
                          
 $("#jobname_button").click(function() {
-                         $.post("<?php echo base_url();?>admin/filter_job",{"job_name": $('#job_name').val()},function(data){
+                         $.post("<?php echo base_url();?>admin/filter_job",{"job_name": $('#job_name').val(),"startdate": "","enddate": ""},function(data){
                                 tableid="table_id1";
                                 update_dataTable(data,tableid);
                                 
@@ -417,7 +417,7 @@ $("#jobname_button").click(function() {
                          });
 
 function period_filter () {
-    $.post("<?php echo base_url();?>admin/filter_job",{"period": $('#period').val()},function(data){
+    $.post("<?php echo base_url();?>admin/filter_job",{"period": $('#period').val(),"startdate": "","enddate": ""},function(data){
            tableid="table_id1";
            update_dataTable(data,tableid);
     							
@@ -426,7 +426,7 @@ function period_filter () {
 }
 
 function status_filter () {
-    $.post("<?php echo base_url();?>admin/filter_job",{"status": $('#status').val()},function(data){
+    $.post("<?php echo base_url();?>admin/filter_job",{"status": $('#status').val(),"startdate": $('#startdate').val(),"enddate": $('#enddate').val()},function(data){
            tableid="table_id1";
            update_dataTable(data,tableid);
     							
@@ -435,7 +435,7 @@ function status_filter () {
 }
 
 function action_filter () {
-    $.post("<?php echo base_url();?>admin/filter_job",{"action": $('#action').val()},function(data){
+    $.post("<?php echo base_url();?>admin/filter_job",{"action": $('#action').val(),"startdate": $('#startdate').val(),"enddate": $('#enddate').val()},function(data){
            tableid="table_id1";
            update_dataTable(data,tableid);
     							
@@ -444,7 +444,7 @@ function action_filter () {
 }
 
 function priority_filter () {
-    $.post("<?php echo base_url();?>admin/filter_job",{"priority": $('#priority').val()},function(data){
+    $.post("<?php echo base_url();?>admin/filter_job",{"priority": $('#priority').val(),"startdate": $('#startdate').val(),"enddate": $('#enddate').val()},function(data){
            tableid="table_id1";
            update_dataTable(data,tableid);
     							

@@ -26,7 +26,9 @@
             $data = $this->input->get();
             $data['is_deleted'] = 0;
             $data['client_id'] = $this->session->userdata('admin')['client_id'];
-           
+            if($this->session->userdata('admin')['user_role'] == '6') {
+            	$data['hospital_id'] = $this->session->userdata('admin')['hospital_id'];
+            }
             $job = $this->joblib->getAllClientJob ($data);
             $this->template->set ( 'job', $job );
             $this->template->set ( 'company_list', $company_list );
@@ -53,11 +55,14 @@
             $this->load->library('dispatcher/AdminLib');
             
             $param['client_id'] = $this->session->userdata('admin')['client_id'];
+          
             $field_worker = $this->adminlib->getAllAdmin ($param);
             $param['id'] = $id;
             $data['id'] = $id;
             $data['client_id'] = $this->session->userdata('admin')['client_id'];
-            $data['hospital_id'] = $this->session->userdata('admin')['hospital_id'];
+            if($this->session->userdata('admin')['user_role'] == '6') {
+            	$data['hospital_id'] = $this->session->userdata('admin')['hospital_id'];
+            }
             $advisor = $this->joblib->getAdvisorInsight ($param);
             $job = $this->joblib->getJobByID ($data);
             if(count($job)) {
@@ -113,72 +118,75 @@
         public function update_jobList_through_pusher () {
             $this->load->library('dispatcher/JobLib');
             $data['client_id'] = $this->session->userdata('admin')['client_id'];
+            if($this->session->userdata('admin')['user_role'] == '6') {
+            	$data['hospital_id'] = $this->session->userdata('admin')['hospital_id'];
+            }
             $job = $this->joblib->getAllClientJob ($data);
             
             $i=0;
             $sr=1;
             $data = array();
             foreach($job as $row) {
-                $data[$i]['id']=$row['id'];
-                $data[$i]['sr']=$sr;
-                $data[$i]['job_id'] = getJobID ($row['id']);
-                if($row['created_date'] == '0000-00-00 00:00:00' OR $row['created_date'] == NULL)
-                    $data[$i]['created_date'] = 'NA';
-                else
-                    $data[$i]['created_date']=date('d-m-Y g:i A',strtotime($row['created_date']));
-                
-                if($row['delivery_date'] == '0000-00-00' OR $row['delivery_date'] == NULL)
-                    $data[$i]['delivery_date'] = 'NA';
-                else
-                    $data[$i]['delivery_date']=date('d-m-Y',strtotime($row['delivery_date']));
-                
-                if($row['delivery_time'] == '00:00:00' OR $row['delivery_time'] == NULL)
-                    $data[$i]['delivery_time'] = 'NA';
-                else
-                    $data[$i]['delivery_time']=date('g:i A',strtotime($row['delivery_time']));
-                
-                if($row['start_date'] == NULL)
-                    $data[$i]['start_date'] = 'NA';
-                else
-                    $data[$i]['start_date']=date('d-m-Y',strtotime($row['start_date']));
-                
-                if($row['start_time'] == NULL)
-                    $data[$i]['start_time'] = 'NA';
-                else
-                    $data[$i]['start_time']=date(' g:i A',strtotime($row['start_time']));
-                
-                if($row['end_date'] == NULL)
-                    $data[$i]['end_date'] = 'NA';
-                else
-                    $data[$i]['end_date']=date('d-m-Y',strtotime($row['end_date']));
-                
-                if($row['end_time'] == NULL)
-                    $data[$i]['end_time'] = 'NA';
-                else
-                    $data[$i]['end_time']=date('g:i A',strtotime($row['end_time']));
-                
-                $data[$i]['job_name']=$row['job_name'];
-                if($row['fieldworker_name'] == "" OR $row['fieldworker_name'] == NULL) {
-                    $data[$i]['fieldworker_name'] = "Not Assigned";
-                } else {
-                    $data[$i]['fieldworker_name'] = $row['fieldworker_name'];
-                }
-                $data[$i]['assign_to']=$row['assign_to'];
-                $data[$i]['status']=$row['status'];
-                $data[$i]['action']=$row['action'];
-                $data[$i]['status_id']=$row['status_id'];
-                $data[$i]['action_id']=$row['action_id'];
-                if($row['priority'] == 0) {
-                    $data[$i]['priority']="AM";
-                } else if($row['priority'] == 1) {
-                    $data[$i]['priority']="Timed";
-                } else if($row['priority'] == 2) {
-                    $data[$i]['priority']="Stat";
-                } else if($row['priority'] == 3) {
-                    $data[$i]['priority']="Today";
-                } else {
-                    $data[$i]['priority']="Not Define";
-                }
+            	$data[$i]['id']=$row['id'];
+            	$data[$i]['sr']=$sr;
+            	$data[$i]['job_id'] = getJobID ($row['id']);
+            	if($row['created_date'] == '0000-00-00 00:00:00' OR $row['created_date'] == NULL)
+            		$data[$i]['created_date'] = 'NA';
+            	else
+            		$data[$i]['created_date']=date('d-m-Y g:i A',strtotime($row['created_date']));
+            	
+            	if($row['delivery_date'] == '0000-00-00' OR $row['delivery_date'] == NULL)
+            		$data[$i]['delivery_date'] = 'NA';
+            	else
+            		$data[$i]['delivery_date']=date('d-m-Y',strtotime($row['delivery_date']));
+            	
+            	if($row['delivery_time'] == '00:00:00' OR $row['delivery_time'] == NULL)
+            		$data[$i]['delivery_time'] = 'NA';
+            	else
+            		$data[$i]['delivery_time']=date('g:i A',strtotime($row['delivery_time']));
+            	
+            	if($row['start_date'] == NULL)
+            		$data[$i]['start_date'] = 'NA';
+            	else
+            		$data[$i]['start_date']=date('d-m-Y',strtotime($row['start_date']));
+            	
+            	if($row['start_time'] == NULL)
+            		$data[$i]['start_time'] = 'NA';
+            	else
+            		$data[$i]['start_time']=date(' g:i A',strtotime($row['start_time']));
+            	
+            	if($row['end_date'] == NULL)
+            		$data[$i]['end_date'] = 'NA';
+            	else
+            		$data[$i]['end_date']=date('d-m-Y',strtotime($row['end_date']));
+            	
+            	if($row['end_time'] == NULL)
+            		$data[$i]['end_time'] = 'NA';
+            	else
+            		$data[$i]['end_time']=date('g:i A',strtotime($row['end_time']));
+            	
+            	$data[$i]['job_name']=$row['job_name'];
+            	if($row['fieldworker_name'] == "" OR $row['fieldworker_name'] == NULL) {
+				$data[$i]['fieldworker_name'] = "Not Assigned";
+			} else {
+				$data[$i]['fieldworker_name'] = $row['fieldworker_name'];
+			}
+			$data[$i]['assign_to']=$row['assign_to'];
+			$data[$i]['status']=$row['status'];
+			$data[$i]['action']=$row['action'];
+			$data[$i]['status_id']=$row['status_id'];
+			$data[$i]['action_id']=$row['action_id'];
+			if($row['priority'] == 0) {
+				$data[$i]['priority']="AM";
+			} else if($row['priority'] == 1) {
+				$data[$i]['priority']="Timed";
+			} else if($row['priority'] == 2) {
+				$data[$i]['priority']="Stat";
+			} else if($row['priority'] == 3) {
+				$data[$i]['priority']="Today";
+			} else {
+				$data[$i]['priority']="Not Define";
+			}
                 
                 $i++;
                 $sr++;
@@ -192,6 +200,9 @@
             
             $params['is_deleted'] = 0;
             $params['client_id'] = $this->session->userdata('admin')['client_id'];
+            if($this->session->userdata('admin')['user_role'] == '6') {
+            	$params['hospital_id'] = $this->session->userdata('admin')['hospital_id'];
+            }
             $this->load->library('dispatcher/JobLib');
             //print_r($params);
             $result = $this->joblib->getAllClientJob ($params);
@@ -299,6 +310,10 @@
         public function edit_assign_fieldworker () {
             $param = array();
             $param['user_role'] = 7;
+            $param['client_id'] = $this->session->userdata('admin')['client_id'];
+            if($this->session->userdata('admin')['user_role'] == '6') {
+            	$param['hospital_id'] = $this->session->userdata('admin')['hospital_id'];
+            }
             $this->load->library('dispatcher/AdminLib');
             $field_worker = $this->adminlib->getAllAdmin ($param);
             $this->template->set ( 'field_worker', $field_worker );

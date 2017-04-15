@@ -13,6 +13,7 @@
      * @copyright Copyright &copy; 2015, Dispatcher
      * @category CI_Model API
      */
+    
     class Job_model extends CI_Model {
         
         function __construct() {
@@ -102,15 +103,15 @@
 					}
 		
 					if($startdate!="" and $enddate!="") {
-						$this->db->where("DATE(j.created_date) >='".$startdate."' AND DATE(j.created_date) <='".$enddate."'",'',FALSE);
+						$this->db->where("DATE(j.delivery_date) >='".$startdate."' AND DATE(j.delivery_date) <='".$enddate."'",'',FALSE);
 					}
 		                                                
 					if($startdate!="" and $enddate=="") {
-						$this->db->where("DATE(j.created_date) >='".$startdate."'",'',FALSE);
+						$this->db->where("DATE(j.delivery_date) >='".$startdate."'",'',FALSE);
 					}
 		                                                
 					if($startdate=="" and $enddate!="") {
-						$this->db->where("DATE(j.created_date) <='".$enddate."'",'',FALSE);
+						$this->db->where("DATE(j.delivery_date) <='".$enddate."'",'',FALSE);
 					}
 				
 				if(isset($param['time_period'])) {
@@ -126,14 +127,14 @@
 				if(isset($param['period'])) {
 					$cdate = date('Y-m-d');
 					if ($param['period'] == 1) {
-						$this->db->where("DATE(j.created_date) = '".$cdate."'",'',FALSE);
+						$this->db->where("DATE(j.delivery_date) = '".$cdate."'",'',FALSE);
 					} else if ($param['period'] == 2) {
-						$this->db->where(" (DATE(j.created_date) BETWEEN DATE(DATE_SUB(NOW(), INTERVAL 7 DAY)) AND DATE(NOW()))",'',FALSE);
+						$this->db->where(" (DATE(j.delivery_date) BETWEEN DATE(DATE_SUB(NOW(), INTERVAL 7 DAY)) AND DATE(NOW()))",'',FALSE);
 					} else if ($param['period'] == 3) {
-		 				$this->db->where(" (DATE(j.created_date) BETWEEN DATE(DATE_SUB(NOW(), INTERVAL 1 MONTH)) AND DATE(NOW()))",'',FALSE);
+		 				$this->db->where(" (DATE(j.delivery_date) BETWEEN DATE(DATE_SUB(NOW(), INTERVAL 1 MONTH)) AND DATE(NOW()))",'',FALSE);
 		                                                
 					} else if ($param['period'] == 4) {
-						$this->db->where(" (DATE(j.created_date) BETWEEN DATE(DATE_SUB(NOW(), INTERVAL 1 YEAR)) AND DATE(NOW()))",'',FALSE);
+						$this->db->where(" (DATE(j.delivery_date) BETWEEN DATE(DATE_SUB(NOW(), INTERVAL 1 YEAR)) AND DATE(NOW()))",'',FALSE);
 					}
 				}
 				if(isset($param['job_id']) and $param['job_id'] != "") {

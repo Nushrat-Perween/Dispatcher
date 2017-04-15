@@ -45,25 +45,21 @@ channel.bind('my_event', function(data) {
 <div class="content-view">
 <div class="card">
 <div class="card-header no-bg b-a-0">
-
-<div class="dropdown pull-left " style="padding:3px 5px 4px 5px">
-<H2>Schedule</H2>
+<div class="row">
+	<div class="col-md-12">
+		<div class="dropdown pull-left " style="padding:3px 5px 4px 5px">
+			<H2>Schedule</H2>
+		</div>
+		<div class="dropdown pull-right bg-purple" style="padding:3px 5px 4px 5px">
+			<select class="bg-purple" style="border:0" id="cep">
+			<option value="">Fieldworker</option>
+			<?php foreach($fieldworker as $row) {?>
+			<option value="<?php echo $row['id']; ?>"><?php echo $row['first_name']; ?></option>
+			<?php }?>
+			</select>
+		</div>
+	</div>
 </div>
-
-<!--<button class="btn bg-warning btn-sm pull-right no-radius" onclick="display_filter();" >
-<i class="fa fa-filter" aria-hidden="true"> </i> Filter -->
-<!-- </button> -->
-
-
-<div class="dropdown pull-right bg-purple" style="padding:3px 5px 4px 5px">
-<select class="bg-purple" style="border:0" id="cep">
-<option value="">Fieldworker</option>
-<?php foreach($fieldworker as $row) {?>
-<option value="<?php echo $row['id']; ?>"><?php echo $row['first_name']; ?></option>
-<?php }?>
-</select>
-</div>
-
 <div class="dataTables_wrapper">
 <table class="table table-bordered datatable" id="schedular">
 <thead class="thead-inverse">

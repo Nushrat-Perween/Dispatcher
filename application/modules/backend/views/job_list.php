@@ -18,10 +18,13 @@ position: relative;
 .dataTables_wrapper {
     overflow-x: scroll;
 }
-
 .thead-inverse th {
 color: #fff;
     background-color: #0275d8;
+}
+.prev,.next{
+color:#fff;
+background-color: #0275d8;
 }
 </style>
 <script>
@@ -43,189 +46,172 @@ channel.bind('my_event', function(data) {
              });
 </script>
 <div class="content-view">
-<div class="card">
-<div class="card-header no-bg b-a-0">
-
-<div class="dropdown pull-left " style="padding:3px 5px 4px 5px">
-<H2>List Of Jobs</H2>
-</div>
-
-<!--<button class="btn bg-warning btn-sm pull-right no-radius" onclick="display_filter();" >
-<i class="fa fa-filter" aria-hidden="true"> </i> Filter -->
-<!-- </button> -->
-<div class="dropdown pull-right bg-primary" style="padding:3px 5px 4px 5px">
-<select class="bg-primary" style="border:0" id="period" onchange="period_filter ();">
-<option value="">Period</option>
-<option value="1">Today</option>
-<option value="2">This week</option>
-<option value="3">This month</option>
-<option value="4">This year</option>
-</select>
-</div>
-<div class="dropdown pull-right bg-warning" style="padding:3px 5px 4px 5px">
-<select class="bg-warning" style="border:0" id="priority" onchange="priority_filter ();">
-	<option value="">Priority</option>
-	<option value="0">AM</option>
-	<option value="1">Timed</option>
-	<option value="2">Stat</option>
-	<option value="3">Today</option>
-</select>
-</div>
-<div class="dropdown pull-right bg-success" style="padding:3px 5px 4px 5px">
-<select class="bg-success" style="border:0" id="status" onchange="status_filter ();">
-<option value="">Status</option>
-<?php foreach($job_status_list as $row) {?>
-<option value="<?php echo $row['id']; ?>"><?php echo $row['status']; ?></option>
-<?php }?>
-</select>
-</div>
-
-<div class="dropdown pull-right bg-purple" style="padding:3px 5px 4px 5px">
-<select class="bg-purple" style="border:0" id="action" onchange="action_filter ();">
-<option value="">State</option>
-<?php foreach($job_action_list as $row) {?>
-<option value="<?php echo $row['id']; ?>"><?php echo $row['action']; ?></option>
-<?php }?>
-</select>
-</div>
-
-
-<br>
-<div id="filter_div" style="display:block;margin-top:35px">
-<div class="col-md-8">
-<div class="row">
-<div class="col-md-12">
-<label class="col-md-12 control-label">Custom Date Range (dd-mm-yy) :</label>
-</div>
-</div>
-
-<?php
-    
-    $startdate = date('Y-m-d');
-    $startdate = date('d-m-Y');
-    
-    ?>
-<div class="row">
-<div class="col-md-12 form-group">
-<div class="row">
-<div class="form-group">
-<div class="col-md-11 input-group" style="margin-left:10px;">
-<div class="input-group input-daterange">
-
-<input placeholder="From" type="text" style="height:40px" name="startdate" id="startdate" value="<?php echo $startdate;?>" class="form-control ">
-<span class="input-group-addon btn-success" style="border:0">-</span>
-<input placeholder="To" type="text" value="" style="height:40px" name="enddate" id="enddate" class="form-control datepicker">
-<span class="input-group-addon btn-success" style="border:0">-</span>
-<select class="form-control" id="time_period" onchange="time_period_filter ();">
-<option value="">Time Period</option>
-<option value="AM">AM</option>
-<option value="PM">PM</option>
-
-</select>
-</div>
-<span class="input-group-addon bg-success"><button id="range_button" style="background-color:transparent;color:white;border:0" onclick="filter();">Go</button></span>
-<span class="input-group-addon bg-primary"><button onclick="resetdate();" style="background-color:transparent;color:white;border:0">Reset</button></span>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<!-- <div class="col-md-4"> -->
-<!-- <div class="row"> -->
-<!-- <div class="col-md-12"> -->
-<!-- <label class="col-md-12 control-label">Search by Job ID:</label> -->
-<!-- </div> -->
-<!-- </div> -->
-
-<!-- <div class="row"> -->
-<!-- <div class="col-md-12 form-group"> -->
-<!-- <div class="row"> -->
-<!-- <div class="form-group"> 
-<div class="col-md-11 input-group" style="margin-left:10px;">
-<input placeholder="ID" type="text" value="" style="height:40px" name="job_id" id="job_id" class="form-control ">
-<span class="input-group-addon bg-success"><button id="jobid_button" style="background-color:transparent;color:white;border:0" >Go</button></span>
-<span class="input-group-addon bg-primary"><button onclick="resetjobid();" style="background-color:transparent;color:white;border:0">Reset</button></span>
-<!-- </div> -->
-<!-- </div> -->
-<!-- </div> -->
-<!-- </div> -->
-<!-- </div> -->
-<!-- </div> -->
-
-<div class="col-md-4">
-<div class="row">
-<div class="col-md-12">
-<label class="col-md-12 control-label">Search by Job Name:</label>
-</div>
-</div>
-
-<div class="row">
-<div class="col-md-12 form-group">
-<div class="row">
-<div class="form-group">
-<div class="col-md-11 input-group" style="margin-left:10px;">
-<input placeholder="Job Name" type="text" value="" style="height:40px" name="job_name" id="job_name" class="form-control ">
-<span class="input-group-addon bg-success"><button id="jobname_button" style="background-color:transparent;color:white;border:0" >Go</button></span>
-<span class="input-group-addon bg-primary"><button onclick="resetjobname();" style="background-color:transparent;color:white;border:0">Reset</button></span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-
-</div>
-<br>	<br>	<br>	<br>	<br><br><br>
-<div class="dataTables_wrapper">
-<table class="table table-bordered datatable" id="table_id1">
-<thead class="thead-inverse">
-<tr>
-<th> Job Name </th>
-<th > Delivery Date </th>
-<th > Delivery Time </th>
-<th > Start&nbsp;Date </th>
-<th > Start Time </th>
-<th > End&nbsp;Date </th>
-<th > End Time </th>
-<th>&nbsp;&nbsp;&nbsp;Re-Assign&nbsp;&nbsp;&nbsp; </th>
-<th > Priority </th>
-<th > &nbsp;&nbsp;&nbsp;State&nbsp;&nbsp;&nbsp; </th>
-<th > Status </th>
-<th > Job Assignment </th>
-</tr>
-</thead>
-<tbody >
-
-<?php
-    
-    $sr=0;
-    foreach($job as $row) {
-        $sr++;
-    ?>
-<tr>
-<td> <a href="job_details/<?php echo $row['id']?>"><?php echo $row['job_name'];?></a></td>
-<td> <?php if($row['delivery_date'] == NULL) echo 'NA';else echo date("d-m-Y",strtotime($row['delivery_date']));?> </td>
-<td> <?php if($row['delivery_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($row['delivery_time']));?>   </td>
-<td> <?php if($row['start_date'] == NULL) echo 'NA';else echo date("d-m-Y",strtotime($row['start_date']));?>   </td>
-<td> <?php if($row['start_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($row['start_time']));?>   </td>
-<td> <?php if($row['end_date'] == NULL) echo 'NA';else echo date("d-m-Y",strtotime($row['end_date']));?>  </td>
-<td> <?php if($row['end_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($row['end_time']));?>   </td>
-<td> <a href=""  class="txt-warning" onclick="edit_assign_job_to_fieldworker ('<?php echo $row['id'];?>','<?php echo $row['assign_to'];?>');" data-toggle="modal" data-backdrop="static"  data-target="#modal-login1"><i class="fa fa-edit text-primary"></i>&nbsp;<?php if($row['fieldworker_name'] == "" or $row['fieldworker_name'] == NULL) echo "Not Assigned"; else echo $row['fieldworker_name'];?> </a></td>
-<td> <?php if($row['priority'] ==0) echo "AM"; else if($row['priority'] == 1) echo "Timed"; else if($row['priority'] == 2) echo "Stat"; else if($row['priority'] == 3) echo "Today"; else echo "Not Define";?> </td>
-<td> <a href=""  class="txt-warning" data-toggle="modal" data-backdrop="static"  onclick="edit_action ('<?php echo $row['id'];?>','<?php echo $row['action_id'];?>');" data-target="#modal-login1"><i class="fa fa-edit text-primary"></i>&nbsp;<?php echo $row['action'];?> </a> </td>
-<td> <?php echo $row['status'];?>  </td>
-<td><a href="<?php echo base_url();?>admin/job/assignment/<?php echo $row['id'];?>" class="bg-green" style="margin:2px">&nbsp;&nbsp;<i class="fa fa-pencil text-white"></i>&nbsp;Assign&nbsp;&nbsp;</a></td>
-<?php }?>
-</tbody>
-
-</table>
-</div>
-</div>
-</div>
+	<div class="card">
+		<div class="card-header no-bg b-a-0">
+			<div class="dropdown pull-left " style="padding:3px 5px 4px 5px">
+				<H2>List Of Jobs</H2>
+			</div>
+			<!--<button class="btn bg-warning btn-sm pull-right no-radius" onclick="display_filter();" >
+			<i class="fa fa-filter" aria-hidden="true"> </i> Filter -->
+			<!-- </button> -->
+			<div class="dropdown pull-right bg-primary" style="padding:3px 5px 4px 5px">
+				<select class="bg-primary" style="border:0" id="period" onchange="period_filter ();">
+					<option value="">Period</option>
+					<option value="1">Today</option>
+					<option value="2">This week</option>
+					<option value="3">This month</option>
+					<option value="4">This year</option>
+				</select>
+			</div>
+			<div class="dropdown pull-right bg-warning" style="padding:3px 5px 4px 5px">
+				<select class="bg-warning" style="border:0" id="priority" onchange="priority_filter ();">
+					<option value="">Priority</option>
+					<option value="0">AM</option>
+					<option value="1">Timed</option>
+					<option value="2">Stat</option>
+					<option value="3">Today</option>
+				</select>
+			</div>
+			<div class="dropdown pull-right bg-success" style="padding:3px 5px 4px 5px">
+				<select class="bg-success" style="border:0" id="status" onchange="status_filter ();">
+					<option value="">Status</option>
+					<?php foreach($job_status_list as $row) {?>
+					<option value="<?php echo $row['id']; ?>"><?php echo $row['status']; ?></option>
+					<?php }?>
+				</select>
+			</div>
+			<div class="dropdown pull-right bg-purple" style="padding:3px 5px 4px 5px">
+				<select class="bg-purple" style="border:0" id="action" onchange="action_filter ();">
+					<option value="">State</option>
+					<?php foreach($job_action_list as $row) {?>
+					<option value="<?php echo $row['id']; ?>"><?php echo $row['action']; ?></option>
+					<?php }?>
+				</select>
+			</div>
+			<br>
+			<div id="filter_div" style="display:block;margin-top:35px">
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-12">
+						<label class="col-md-12 control-label">Custom Date Range (dd-mm-yy) :</label>
+						</div>
+					</div>
+					<?php
+					    $startdate = date('Y-m-d');
+					    $startdate = date('d-m-Y');
+					 ?>
+					<div class="row">
+						<div class="col-md-12 form-group">
+							<div class="row">
+								<div class="form-group">
+									<div class="col-md-11 input-group" style="margin-left:10px;">
+										<div class="input-group input-daterange">
+											<input placeholder="From" type="text" style="height:40px" name="startdate" id="startdate" value="<?php echo $startdate;?>" class="form-control ">
+											<span class="input-group-addon btn-success" style="border:0">-</span>
+											<input placeholder="To" type="text" value="" style="height:40px" name="enddate" id="enddate" class="form-control datepicker">
+											<span class="input-group-addon btn-success" style="border:0">-</span>
+											<select class="form-control" id="time_period" onchange="time_period_filter ();">
+												<option value="">Time Period</option>
+												<option value="AM">AM</option>
+												<option value="PM">PM</option>
+											</select>
+										</div>
+										<span class="input-group-addon bg-success"><button id="range_button" style="background-color:transparent;color:white;border:0" onclick="filter();">Go</button></span>
+										<span class="input-group-addon bg-primary"><button onclick="resetdate();" style="background-color:transparent;color:white;border:0">Reset</button></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="col-md-4"> -->
+				<!-- <div class="row"> -->
+				<!-- <div class="col-md-12"> -->
+				<!-- <label class="col-md-12 control-label">Search by Job ID:</label> -->
+				<!-- </div> -->
+				<!-- </div> -->
+				
+				<!-- <div class="row"> -->
+				<!-- <div class="col-md-12 form-group"> -->
+				<!-- <div class="row"> -->
+				<!-- <div class="form-group"> 
+				<div class="col-md-11 input-group" style="margin-left:10px;">
+				<input placeholder="ID" type="text" value="" style="height:40px" name="job_id" id="job_id" class="form-control ">
+				<span class="input-group-addon bg-success"><button id="jobid_button" style="background-color:transparent;color:white;border:0" >Go</button></span>
+				<span class="input-group-addon bg-primary"><button onclick="resetjobid();" style="background-color:transparent;color:white;border:0">Reset</button></span>
+				<!-- </div> -->
+				<!-- </div> -->
+				<!-- </div> -->
+				<!-- </div> -->
+				<!-- </div> -->
+				<!-- </div> -->
+				
+				<div class="col-md-4">
+					<div class="row">
+						<div class="col-md-12">
+							<label class="col-md-12 control-label">Search by Job Name:</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 form-group">
+							<div class="row">
+								<div class="form-group">
+									<div class="col-md-11 input-group" style="margin-left:10px;">
+										<input placeholder="Job Name" type="text" value="" style="height:40px" name="job_name" id="job_name" class="form-control ">
+										<span class="input-group-addon bg-success"><button id="jobname_button" style="background-color:transparent;color:white;border:0" >Go</button></span>
+										<span class="input-group-addon bg-primary"><button onclick="resetjobname();" style="background-color:transparent;color:white;border:0">Reset</button></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br><br><br><br><br>
+			<div class="dataTables_wrapper">
+				<table class="table table-bordered datatable" id="table_id1">
+					<thead class="thead-inverse">
+						<tr>
+							<th> Job Name </th>
+							<th > Delivery Date </th>
+							<th > Delivery Time </th>
+							<th > Start&nbsp;Date </th>
+							<th > Start&nbsp;Time </th>
+							<th > End&nbsp;Date </th>
+							<th > End&nbsp;Time </th>
+							<th>Re-&nbsp;Assign </th>
+							<th > Priority </th>
+							<th > State</th>
+							<th > Status </th>
+							<th > Job Assignment </th>
+						</tr>
+					</thead>
+					<tbody >
+						<?php
+						    $sr=0;
+						    foreach($job as $row) {
+						        $sr++;
+						    ?>
+						<tr>
+							<td> <a href="job_details/<?php echo $row['id']?>"><?php echo $row['job_name'];?></a></td>
+							<td> <?php if($row['delivery_date'] == NULL) echo 'NA';else echo date("d-m-Y",strtotime($row['delivery_date']));?> </td>
+							<td> <?php if($row['delivery_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($row['delivery_time']));?>   </td>
+							<td> <?php if($row['start_date'] == NULL) echo 'NA';else echo date("d-m-Y",strtotime($row['start_date']));?>   </td>
+							<td> <?php if($row['start_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($row['start_time']));?>   </td>
+							<td> <?php if($row['end_date'] == NULL) echo 'NA';else echo date("d-m-Y",strtotime($row['end_date']));?>  </td>
+							<td> <?php if($row['end_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($row['end_time']));?>   </td>
+							<td> <a href=""  class="txt-warning" onclick="edit_assign_job_to_fieldworker ('<?php echo $row['id'];?>','<?php echo $row['assign_to'];?>');" data-toggle="modal" data-backdrop="static"  data-target="#modal-login1"><i class="fa fa-edit text-primary"></i>&nbsp;<?php if($row['fieldworker_name'] == "" or $row['fieldworker_name'] == NULL) echo "Not Assigned"; else echo $row['fieldworker_name'];?> </a></td>
+							<td> <?php if($row['priority'] ==0) echo "AM"; else if($row['priority'] == 1) echo "Timed"; else if($row['priority'] == 2) echo "Stat"; else if($row['priority'] == 3) echo "Today"; else echo "Not Define";?> </td>
+							<td> <a href=""  class="txt-warning" data-toggle="modal" data-backdrop="static"  onclick="edit_action ('<?php echo $row['id'];?>','<?php echo $row['action_id'];?>');" data-target="#modal-login1"><i class="fa fa-edit text-primary"></i>&nbsp;<?php echo $row['action'];?> </a> </td>
+							<td> <?php echo $row['status'];?>  </td>
+							<td><a href="<?php echo base_url();?>admin/job/assignment/<?php echo $row['id'];?>" class="bg-green" style="margin:2px">&nbsp;&nbsp;<i class="fa fa-pencil text-white"></i>&nbsp;Assign&nbsp;&nbsp;</a></td>
+						<?php }?>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- endbuild -->
 
@@ -245,11 +231,7 @@ class="close">&times;</button>
 <br> <br> <br> <br> <br> <br> <br><br> <br> <br> <br> <br> <br> <br>
 
 </div>
-
 </div>
-</div>
-</div>
-
 <!-- page scripts -->
 <script src="<?php echo asset_url();?>vendor/datatables/media/js/jquery.dataTables.js"></script>
 <script src="<?php echo asset_url();?>vendor/datatables/media/js/dataTables.bootstrap4.js"></script>

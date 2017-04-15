@@ -1,221 +1,244 @@
 <link rel="stylesheet" href="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.css"/>
 <div class="content-view">
 	<div class="card" style ="padding:20px;">
-	<form class="form-validation form-horizontal" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
-		 <div class="card-block" style="padding-bottom:40px">
-		   <div class="row">
-			   	<div class="col-md-6">
-				   	<div class="row">
-				   	<h6 class="text-danger"> <b>Basic Information</b></h6>
-			         	<div class="col-md-12">
-				         	<div class="row"> 
-									Job Name
-								<div class="col-md-12 input-group">
-									<input type="text" name="jobname" id= "jobname" class="form-control" value ="<?php echo $job[0]['job_name'];?>" required>
+		<form class="form-validation form-horizontal" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
+			 <div class="card-block" style="padding-bottom:40px">
+			   <div class="row">
+				   	<div class="col-md-4">
+					   	<div class="row">
+					   		<h6 class="text-danger"> <b>Basic Information</b></h6>
+				         	<div class="col-md-12">
+					         	<div class="row"> 
+										Job Name
+									<div class="col-md-12 input-group">
+										<input type="text" name="jobname" id= "jobname" class="form-control" value ="<?php echo $job[0]['job_name'];?>" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
 								</div>
-								<div class="messageContainer text-danger"></div>
-							</div>
-			         	</div>
-			         	<div class="col-md-12">
-			         		<div class="row"> 
-									Description
-								<div class="col-md-12 input-group">
-									<textarea  name="jobdesc" class="form-control"><?php echo $job[0]['description'];?></textarea>
+				         	</div>
+				         	<div class="col-md-12">
+				         		<div class="row"> 
+										Description
+									<div class="col-md-12 input-group">
+										<textarea  name="jobdesc" class="form-control" rows="1"><?php echo $job[0]['description'];?></textarea>
+									</div>
+									<div class="messageContainer text-danger"></div>
 								</div>
-								<div class="messageContainer text-danger"></div>
-							</div>
-			         	 </div>
-	         		</div>
-	         			<div class="row">
-	         			<h6 class="text-danger"> <b>Patient Information</b></h6>
-			        	<div class="col-md-6">
-			        		<div class="row"> 
-									Patient Name
-								<div class="col-md-12 input-group">
-									<input type="text" name="pname" id= "pname" class="form-control" value ="<?php echo $patient[0]['name'];?>" required>
+				         	 </div>
+		         		</div>
+		         		<div class="row">
+		         			<h6 class="text-danger"> <b>Patient Information</b></h6>
+				        	<div class="col-md-12">
+				        		<div class="row"> 
+										Patient Name
+									<div class="col-md-12 input-group">
+										<input type="text" name="pname" id= "pname" class="form-control" value ="<?php echo $patient[0]['name'];?>" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
 								</div>
-								<div class="messageContainer text-danger"></div>
-							</div>
-			        	</div>
-			         	<div class="col-md-6">
-			         		<div class="row"> 
-									Room Number
-								<div class="col-md-12 input-group">
-									<input type="text" name="rnumber" id= "rnumber" class="form-control" value ="<?php echo $patient[0]['room_no'];?>" required>
+				        	</div>
+				        </div>
+				       	<div class="row">
+				         	<div class="col-md-12">
+				         		<div class="row"> 
+										Room Number
+									<div class="col-md-12 input-group">
+										<input type="text" name="rnumber" id= "rnumber" class="form-control" value ="<?php echo $patient[0]['room_no'];?>" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
 								</div>
-								<div class="messageContainer text-danger"></div>
-							</div>
-			         	</div>
-			         	<div class="col-md-6">
-			         		<div class="row"> 
-									Tests
-								<div class="col-md-12 input-group">
-									<input type="text" name="tests" id= "tests" class="form-control" value ="<?php echo $patient[0]['test'];?>" required>
+				         	</div>
+				         </div>
+				         <div class="row">
+				         	<div class="col-md-12">
+				         		<div class="row"> 
+										Tests
+									<div class="col-md-12 input-group">
+										<input type="text" name="tests" id= "tests" class="form-control" value ="<?php echo $patient[0]['test'];?>" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
 								</div>
-								<div class="messageContainer text-danger"></div>
-							</div>
-			         	</div>
-			         	<div class="col-md-6">
-			         		<div class="row"> 
-									Caller
-								<div class="col-md-12 input-group">
-									<input type="text" name="caller" id= "caller" class="form-control" value ="<?php echo $patient[0]['caller'];?>" required>
-									<input type="hidden" name="patient_id" id= "" class="form-control" value ="<?php echo $patient[0]['id'];?>" required>
+				         	</div>
+				         </div>
+				         <div class="row">
+				         	<div class="col-md-12">
+				         		<div class="row"> 
+										Caller
+									<div class="col-md-12 input-group">
+										<input type="text" name="caller" id= "caller" class="form-control" value ="<?php echo $patient[0]['caller'];?>" required>
+										<input type="hidden" name="patient_id" id= "" class="form-control" value ="<?php echo $patient[0]['id'];?>" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div >
+				         	</div>
+				         </div>
+				         <div class="row">			         	
+		         			<div class="col-md-12">
+		         				<div class="row"> 
+										Special instrunction
+									<div class="col-md-12 input-group">
+										<textarea  name="sintruction" class="form-control" rows="1"><?php echo $patient[0]['special_instruction'];?> </textarea>
+									</div>
+									<div class="messageContainer text-danger"></div>
 								</div>
-								<div class="messageContainer text-danger"></div>
-							</div >
-			         	</div>			         	
-	         			<div class="col-md-12">
-	         				<div class="row"> 
-									Special instrunction
-								<div class="col-md-12 input-group">
-									<textarea  name="sintruction" class="form-control"><?php echo $patient[0]['special_instruction'];?> </textarea>
+		         			</div>
+		         		</div>
+		         	</div>
+		         	<div class="col-md-4">
+					   	<div class="row">
+					   		<h6 class="text-danger"> <b>Address</b></h6>
+				        	<div class="col-md-12">
+				        		<div class="row"> 
+										Location/ Lookup Name
+									<div class="col-md-12 input-group">
+										<input type="text" name="lookupname" id= "lookupname" class="form-control" value ="<?php echo $customer[0]['lookup_name'];?>" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
 								</div>
-								<div class="messageContainer text-danger"></div>
-							</div>
-	         			</div>
-	         		</div>
-	         	</div>
-	         	<div class="col-md-6">
-				   	<div class="row">
-				   	<h6 class="text-danger"> <b>Address</b></h6>
-			        	<div class="col-md-6">
-			        		<div class="row"> 
-									Location/ Lookup Name
-								<div class="col-md-12 input-group">
-									<input type="text" name="lookupname" id= "lookupname" class="form-control" value ="<?php echo $customer[0]['lookup_name'];?>" required>
-								</div>
-								<div class="messageContainer text-danger"></div>
-							</div>
-			        	</div>
-			        	<div class="col-md-6">
-			         		<div class="row"> 
-									City
-								<div class="col-md-12 input-group">
-									<input type="text" name="city" id= "city" onkeyup="ajaxSearch()" class="form-control" value ="<?php echo $customer[0]['city_name'];?>" required>
-									 <div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
-									 	<div id="autoSuggestionsList" ></div>
-									 </div>
-								</div>
-								<div class="messageContainer text-danger"></div>
-							</div>
-			         	</div>
-			         	<div class="col-md-6">
-			         		<div class="row"> 
-									State/Region
-								<div class="col-md-12 input-group">
-									<input type="text" name="state" id= "state" onkeyup="ajaxSearch1()" class="form-control" value ="<?php echo $customer[0]['state_name'];?>" required>
-									<div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
-										<div id="autoSuggestionsList1" ></div>
-									 </div>
-								</div>
-								<div class="messageContainer text-danger"></div>
-							</div>
-			         	</div>
-			         	
-			         	<div class="col-md-6">
-			         		<div class="row"> 
-									Street
-								<div class="col-md-12 input-group">
-									<input type="text" name="street" id= "locality" class="form-control" value ="<?php echo $customer[0]['street'];?>" required>
-									<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" value ="<?php echo $customer[0]['latitude'];?>" />
-									<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude" value ="<?php echo $customer[0]['longitude'];?>" />
-									<input type="hidden" class="form-control" name="contact_id" placeholder="City" value ="<?php echo $customer[0]['id'];?>" />
-									
-								</div>
-								<div class="messageContainer text-danger"></div>
-							</div>
-			         	</div>
-			         	<div class="col-md-6"> 
-			         		<div class="row"> 
-									Zip Code
-								<div class="col-md-12 input-group">
-									<input type="text" name="postalcode" id= "postalcode" class="form-control" value ="<?php echo $customer[0]['postalcode'];?>" required>
-								</div> 
-								<div class="messageContainer text-danger"></div>
-							</div>	
-			         	</div>
-			         	<div class="col-md-6">
-			         		<div class="row"> 
-									Apartment / Suit / Building
-								<div class="col-md-12 input-group">
-									<input type="text" name="building" id= "building" class="form-control" value ="<?php echo $customer[0]['building'];?>" required>
-								</div>
-								<div class="messageContainer text-danger"></div>
-							</div>
-			         	</div>
-			         	
-	         		</div>
-	         		<div class="row">
-				   	<h6 class="text-danger"> <b>Contact</b></h6>
-			        	<div class="col-md-6">
-			        		<div class="row"> 
-									First Name
-								<div class="col-md-12 input-group">
-									<input type="text" name="fname" id= "fname" class="form-control" value ="<?php echo $customer[0]['first_name'];?>" required>
-								</div>
-								<div class="messageContainer text-danger"></div>
-							</div>	
-			        	</div>
-			         	<div class="col-md-6">
-			         		<div class="row"> 
-									Last Name
-								<div class="col-md-12 input-group">
-									<input type="text" name="lname" id= "end_dalnamete" class="form-control" value ="<?php echo $customer[0]['last_name'];?>" required>
-								</div>
-								<div class="messageContainer text-danger"></div>
-							</div>	
-			         	</div>
-			         	<div class="col-md-6">
-			         		<div class="row"> 
-									Mobile No
-								<div class="col-md-12 input-group">
-									<input type="text" name="mobno" id= "mobno" class="form-control" value ="<?php echo $customer[0]['mobile'];?>" required>
-								</div>
-								<div class="messageContainer text-danger"></div>
-							</div>	
-			         	</div>
-			         	<div class="col-md-6">
-			         		<div class="row"> 
-									Email Id
-								<div class="col-md-12 input-group">
-									<input type="email" name="email" id= "email" class="form-control" value ="<?php echo $customer[0]['email'];?>" required>
-								</div>
-								<div class="messageContainer text-danger"></div>
-							</div>	
-			         	</div>
-			         	<div class="col-md-6">
-			         		<div class="row"> 
-									Delivery Date
-								<div class="col-md-12 input-group">
-									<input type="text" name="delivery_date" id= "start_date" value="<?php echo (isset($job[0]['delivery_date']) && !empty($job[0]['delivery_date']))?date("d-m-Y", strtotime($job[0]['delivery_date'])):'';?>" class="form-control">
-									<input type="hidden" class="form-control" name="job_id" placeholder="City" id="" value ="<?php echo $job[0]['id'];?>" />
-								</div>
-								<div class="messageContainer text-danger"></div>
-							</div>	
-			         	</div>
-			         	<div class="col-md-6">
+				        	</div>
+				        </div>
+				        	<div class="row">
+					        	<div class="col-md-12">
+					         		<div class="row"> 
+											City
+										<div class="col-md-12 input-group">
+											<input type="text" name="city" id= "city" onkeyup="ajaxSearch()" class="form-control" value ="<?php echo $customer[0]['city_name'];?>" required>
+											 <div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
+											 	<div id="autoSuggestionsList" ></div>
+											 </div>
+										</div>
+										<div class="messageContainer text-danger"></div>
+									</div>
+					         	</div>
+					         </div>
+					         <div class="row">
+					         	<div class="col-md-12">
+					         		<div class="row"> 
+											State/Region
+										<div class="col-md-12 input-group">
+											<input type="text" name="state" id= "state" onkeyup="ajaxSearch1()" class="form-control" value ="<?php echo $customer[0]['state_name'];?>" required>
+											<div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
+												<div id="autoSuggestionsList1" ></div>
+											 </div>
+										</div>
+										<div class="messageContainer text-danger"></div>
+									</div>
+					         	</div>
+					         </div>
+					         <div class="row">
+					         	<div class="col-md-12">
+					         		<div class="row"> 
+											Street
+										<div class="col-md-12 input-group">
+											<input type="text" name="street" id= "locality" class="form-control" value ="<?php echo $customer[0]['street'];?>" required>
+											<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" value ="<?php echo $customer[0]['latitude'];?>" />
+											<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude" value ="<?php echo $customer[0]['longitude'];?>" />
+											<input type="hidden" class="form-control" name="contact_id" placeholder="City" value ="<?php echo $customer[0]['id'];?>" />										
+										</div>
+										<div class="messageContainer text-danger"></div>
+									</div>
+					         	</div>
+				         	</div>
+				         	<div class="row">
+					         	<div class="col-md-12"> 
+					         		<div class="row"> 
+											Zip Code
+										<div class="col-md-12 input-group">
+											<input type="text" name="postalcode" id= "postalcode" class="form-control" value ="<?php echo $customer[0]['postalcode'];?>" required>
+										</div> 
+										<div class="messageContainer text-danger"></div>
+									</div>	
+					         	</div>
+					         </div>
+					        <div class="row">
+					         	<div class="col-md-12">
+					         		<div class="row"> 
+											Apartment / Suit / Building
+										<div class="col-md-12 input-group">
+											<input type="text" name="building" id= "building" class="form-control" value ="<?php echo $customer[0]['building'];?>" required>
+										</div>
+										<div class="messageContainer text-danger"></div>
+									</div>
+					         	</div>
+				         	</div>
+				         </div>
+				        <div class="col-md-4">
 			         		<div class="row">
-									Delivery Time
-								<div class="input-group bootstrap-timepicker timepicker">
-						            <input id="timepicker1" type="text" name = "delivery_time" value="<?php echo (isset($job[0]['delivery_time']) && !empty($job[0]['delivery_time']))?date("H:i", strtotime($job[0]['delivery_time'])):'';?>" class="form-control input-small">
-						            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-						        </div>
-								<div class="messageContainer text-danger"></div>
-							</div>	
+						   		<h6 class="text-danger"> <b>Contact</b></h6>
+					        	<div class="col-md-12">
+					        		<div class="row"> 
+											First Name
+										<div class="col-md-12 input-group">
+											<input type="text" name="fname" id= "fname" class="form-control" value ="<?php echo $customer[0]['first_name'];?>" required>
+										</div>
+										<div class="messageContainer text-danger"></div>
+									</div>	
+					        	</div>
+					        </div>
+					        <div class="row">
+					         	<div class="col-md-12">
+					         		<div class="row"> 
+											Last Name
+										<div class="col-md-12 input-group">
+											<input type="text" name="lname" id= "end_dalnamete" class="form-control" value ="<?php echo $customer[0]['last_name'];?>" required>
+										</div>
+										<div class="messageContainer text-danger"></div>
+									</div>	
+					         	</div>
+					         </div>
+					         <div class="row">
+					         	<div class="col-md-12">
+					         		<div class="row"> 
+											Mobile No
+										<div class="col-md-12 input-group">
+											<input type="text" name="mobno" id= "mobno" class="form-control" value ="<?php echo $customer[0]['mobile'];?>" required>
+										</div>
+										<div class="messageContainer text-danger"></div>
+									</div>	
+					         	</div>
+					         </div>
+					         <div class="row">
+					         	<div class="col-md-12">
+					         		<div class="row"> 
+											Email Id
+										<div class="col-md-12 input-group">
+											<input type="email" name="email" id= "email" class="form-control" value ="<?php echo $customer[0]['email'];?>" required>
+										</div>
+										<div class="messageContainer text-danger"></div>
+									</div>	
+					         	</div>
+					         </div>
+					         <div class="row">
+					         	<div class="col-md-12">
+					         		<div class="row"> 
+											Delivery Date
+										<div class="col-md-12 input-group">
+											<input type="text" name="delivery_date" id= "start_date" value="<?php echo (isset($job[0]['delivery_date']) && !empty($job[0]['delivery_date']))?date("d-m-Y", strtotime($job[0]['delivery_date'])):'';?>" class="form-control">
+											<input type="hidden" class="form-control" name="job_id" placeholder="City" id="" value ="<?php echo $job[0]['id'];?>" />
+										</div>
+										<div class="messageContainer text-danger"></div>
+									</div>	
+					         	</div>
+					         </div>
+					         <div class="row">
+					         	<div class="col-md-12">
+					         		<div class="row">
+											Delivery Time
+										<div class="input-group bootstrap-timepicker timepicker">
+								            <input id="timepicker1" type="text" name = "delivery_time" value="<?php echo (isset($job[0]['delivery_time']) && !empty($job[0]['delivery_time']))?date("H:i", strtotime($job[0]['delivery_time'])):'';?>" class="form-control input-small">
+								            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+								        </div>
+										<div class="messageContainer text-danger"></div>
+									</div>	
+					         	</div>
+					         </div>
 			         	</div>
-			         	
-	         		</div>
+		         	</div>
+		         	<div class="col-md-1 pull-right"> <button type="submit" class="btn btn-primary m-r" >Update</button> </div>
 	         	</div>
-	         	
-         	</div>
-         	<div class="col-md-1 pull-right"> <button type="submit" class="btn btn-primary m-r" style="margin-top:10px">Update</button> </div>
-         </div>
-         </form>
+	         </form>
 		 </div>
 	</div>
-	
-	
 	<script src="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.js"></script>
 	<script src="<?php echo asset_url();?>vendor/bootstrap/jquery.form.js"></script>
 	<script src="<?php echo asset_url(); ?>js/bootstrap-datepicker.min.js"></script>

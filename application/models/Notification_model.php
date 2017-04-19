@@ -59,7 +59,7 @@ class Notification_model extends CI_Model {
 			if(isset($param['hospital_id'])) {
 				$this->db->where ( 'hospital_id', $param['hospital_id'] );
 			}
-			//$this->db->where ( 'DATE(created_date)', date('Y-m-d') );
+			$this->db->where ( 'DATE(created_date)', date('Y-m-d') );
 			$this->db->order_by ( 'created_date', 'DESC' );
 			$query = $this->db->get ();
 			//echo $query = $this->db->last_query ();
@@ -83,7 +83,7 @@ class Notification_model extends CI_Model {
 			if(isset($param['hospital_id'])) {
 				$this->db->where ( 'hospital_id', $param['hospital_id'] );
 			}
-			//$this->db->where ( 'DATE(created_date)', date('Y-m-d') );
+			$this->db->where ( 'DATE(created_date)', date('Y-m-d') );
 			$this->db->order_by ( 'created_date', 'DESC' );
 			$query = $this->db->get ();
 			//echo $query = $this->db->last_query ();

@@ -168,7 +168,7 @@ channel.bind('my_event', function(data) {
 					</div>
 				</div>
 			</div>
-			<br><br><br><br><br>
+			<br><br><br><br><br><br>
 			<div class="dataTables_wrapper">
 				<table class="table table-bordered datatable" id="table_id1">
 					<thead class="thead-inverse">
@@ -231,6 +231,8 @@ class="close">&times;</button>
 <div class="modal-body " id="modal_body">
 <br> <br> <br> <br> <br> <br> <br><br> <br> <br> <br> <br> <br> <br>
 
+</div>
+</div>
 </div>
 </div>
 <!-- page scripts -->

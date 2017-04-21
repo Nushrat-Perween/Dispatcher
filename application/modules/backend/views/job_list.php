@@ -176,10 +176,10 @@ channel.bind('my_event', function(data) {
 							<th> Job Name </th>
 							<th > Delivery Date </th>
 							<th > Delivery Time </th>
-							<th > Start&nbsp;Date </th>
-							<th > Start&nbsp;Time </th>
-							<th > End&nbsp;Date </th>
-							<th > End&nbsp;Time </th>
+<!-- 							<th > Start&nbsp;Date </th> -->
+<!-- 							<th > Start&nbsp;Time </th> -->
+<!-- 							<th > End&nbsp;Date </th> -->
+<!-- 							<th > End&nbsp;Time </th> -->
 							<th>Re-&nbsp;Assign </th>
 							<th > Priority </th>
 							<th > State</th>
@@ -194,13 +194,13 @@ channel.bind('my_event', function(data) {
 						        $sr++;
 						    ?>
 						<tr>
-							<td> <a href="job_details/<?php echo $row['id']?>"><?php echo $row['job_name'];?></a></td>
+							<td> <u><a href="job_detail/<?php echo $row['id']?>"><?php echo $row['job_name'];?></a></u></td>
 							<td> <?php if($row['delivery_date'] == NULL) echo 'NA';else echo date("d-m-Y",strtotime($row['delivery_date']));?> </td>
 							<td> <?php if($row['delivery_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($row['delivery_time']));?>   </td>
-							<td> <?php if($row['start_date'] == NULL) echo 'NA';else echo date("d-m-Y",strtotime($row['start_date']));?>   </td>
+							<!--  <td> <?php if($row['start_date'] == NULL) echo 'NA';else echo date("d-m-Y",strtotime($row['start_date']));?>   </td>
 							<td> <?php if($row['start_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($row['start_time']));?>   </td>
 							<td> <?php if($row['end_date'] == NULL) echo 'NA';else echo date("d-m-Y",strtotime($row['end_date']));?>  </td>
-							<td> <?php if($row['end_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($row['end_time']));?>   </td>
+							<td> <?php if($row['end_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($row['end_time']));?>   </td>-->
 							<td> <a href=""  class="txt-warning" onclick="edit_assign_job_to_fieldworker ('<?php echo $row['id'];?>','<?php echo $row['assign_to'];?>');" data-toggle="modal" data-backdrop="static"  data-target="#modal-login1"><i class="fa fa-edit text-primary"></i>&nbsp;<?php if($row['fieldworker_name'] == "" or $row['fieldworker_name'] == NULL) echo "Not Assigned"; else echo $row['fieldworker_name'];?> </a></td>
 							<td> <?php if($row['priority'] ==0) echo "AM"; else if($row['priority'] == 1) echo "Timed"; else if($row['priority'] == 2) echo "Stat"; else if($row['priority'] == 3) echo "Today"; else echo "Not Define";?> </td>
 							<td> <a href=""  class="txt-warning" data-toggle="modal" data-backdrop="static"  onclick="edit_action ('<?php echo $row['id'];?>','<?php echo $row['action_id'];?>');" data-target="#modal-login1"><i class="fa fa-edit text-primary"></i>&nbsp;<?php echo $row['action'];?> </a> </td>
@@ -351,7 +351,7 @@ function update_dataTable(data,tableid) {
     oTable.fnClearTable();
     
     $(data).each(function(index) {
-                 var order_details = '<a href="job_details/'+data[index].id+'">'+data[index].job_name+'</a>';
+                 var order_details = '<u><a href="job_detail/'+data[index].id+'">'+data[index].job_name+'</a></u>';
                  var map ='<a><i class="fa fa-map text-warning" aria-hidden="true"> </i></a>';
                  var edit = '<a href="<?php echo base_url();?>edit_job/'+data[index].id+'"><i class="fa fa-external-link-square text-red" aria-hidden="true"></i></a>';
                  var job_id = '<a href="<?php echo base_url();?>admin/job_detail/'+data[index].id+'"><span class="tag bg-red"> '+data[index].job_id+'  </span> </a>';
@@ -363,10 +363,10 @@ function update_dataTable(data,tableid) {
                  row.push(order_details);
                  row.push(data[index].delivery_date);
                  row.push(data[index].delivery_time);
-                 row.push(data[index].start_date);
-                 row.push(data[index].start_time);
-                 row.push(data[index].end_date);
-                 row.push(data[index].end_time);
+//                  row.push(data[index].start_date);
+//                  row.push(data[index].start_time);
+//                  row.push(data[index].end_date);
+//                  row.push(data[index].end_time);
                  row.push(assign_to);
                  row.push(data[index].priority);
                  row.push(action);

@@ -41,12 +41,18 @@ class Login extends MX_Controller {
 			$_SESSION['admin_timeout'] =time();
 			$_SESSION['admin_lock_count'] = 0;
 			$this->load->library('dispatcher/AdminLib');
-			$param = array();
-			$chat_admin = $this->adminlib->getAllAdmin ($param);
-			//print_r($chat_users);
-			 
-			$this->session->set_userdata('chat_admin',$chat_admin);
 			$this->session->set_userdata('admin',$userdata['result']);
+			
+			$param = array();
+			$param['client_id'] =  $this->session->userdata('admin')['client_id'];
+			$param['user_role'] =  $this->session->userdata('admin')['user_role'];
+			if($this->session->userdata('admin')['user_role'] == '6') {
+				$param['hospital_id'] = $this->session->userdata('admin')['hospital_id'];
+			}
+			$chat_admin = $this->adminlib->getChatPeople ($param);
+			//print_r($chat_users);
+			
+			$this->session->set_userdata('chat_admin',$chat_admin);
 			$notification_param = array();
 			$notification_param['client_id'] = $this->session->userdata('admin')['client_id'];
 			$this->load->library('dispatcher/NotificationLib');
@@ -60,8 +66,13 @@ class Login extends MX_Controller {
 
 	public function get_chat_people () {
 		$param = array();
+		$param['client_id'] =  $this->session->userdata('admin')['client_id'];
+		$param['user_role'] =  $this->session->userdata('admin')['user_role'];
+		if($this->session->userdata('admin')['user_role'] == '6') {
+			$param['hospital_id'] = $this->session->userdata('admin')['hospital_id'];
+		}
 		$this->load->library('dispatcher/AdminLib');
-		$chat_admin = $this->adminlib->getAllAdmin ($param);
+		$chat_admin = $this->adminlib->getChatPeople ($param);
 		$this->template->set_theme( 'default_theme' );
 		$this->template->set('chat_admin', $chat_admin);
 		$this->template->set_layout (false);

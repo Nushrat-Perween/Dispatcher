@@ -337,10 +337,17 @@
 
 		  public function getJobDetailById($id)
 		  {
-		  	$this->db->select ( 'j.id as job_id,j.job_name,j.description,jc.mobile,concat(jc.first_name," ",jc.last_name) as contact_name,jc.latitude as pickup_latitide,jc.longitude as pickup_logitude,jc.street as pickup_street,jc.lookup_name as pickup_lookup_name,h.locality as del_street,h.latitude as del_latitude,h.longitude as del_longitude,h.address as del_address,(concat(a.first_name," ",a.last_name)) as del_name,a.mobile as del_mobile,j.delivery_date,j.delivery_time,j.status_id,j.action_id' );
+		  	$this->db->select ( 'j.id as job_id,j.job_name,j.description,jc.mobile,concat(jc.first_name," ",jc.last_name) as contact_name,
+		  			jc.latitude as pickup_latitide,jc.longitude as pickup_logitude,jc.street as pickup_street,jc.lookup_name as pickup_lookup_name,
+		  			h.locality as del_street,h.latitude as del_latitude,h.longitude as del_longitude,h.address as del_address,j.priority,
+		  			p.name as patient_name,room_no,test,caller,special_instruction,j.created_date,js.status,j.start_date,j.start_time,j.end_date,
+		  			j.end_time,j.time_on_job,j.estimated_duration,j.delivery_date,date_add(j.start_time, INTERVAL j.estimated_duration hour) as schedule_end_time,
+		  			(concat(a.first_name," ",a.last_name)) as del_name,a.mobile as del_mobile,j.delivery_date,j.delivery_time,j.status_id,j.action_id' );
 		  	$this->db->from ( TABLES::$JOB. ' AS j');
 		  	$this->db->join ( TABLES::$JOB_CONTACT . ' AS jc', 'jc.id=j.job_contact_id', 'inner' );
 		  	$this->db->join ( TABLES::$HOSPITAL . ' AS h', 'h.id=j.hospital_id', 'inner' );
+		  	$this->db->join ( TABLES::$JOB_STATUS . ' AS js', 'js.id=j.status_id', 'inner' );
+		  	$this->db->join ( TABLES::$PATIENT . ' AS p', 'p.id=j.patient_id', 'inner' );
 		  	$this->db->join ( TABLES::$ADMIN . ' AS a', 'h.id=a.hospital_id', 'inner' );
 		  	$this->db->where('j.id',$id);
 		  	$query = $this->db->get ();
@@ -348,7 +355,17 @@
 		  	return $result;
 		  	
 		  }
-
+		  
+		  public function getJobActionHistoryByID($id) {
+		  	$this->db->select ('*,ja.action as action_name');
+		  	$this->db->from ( TABLES::$JOB_HISTORY. ' AS jh');
+		  	$this->db->join ( TABLES::$JOB_ACTION . ' AS ja', 'ja.id=jh.action_id', 'inner' );
+		  	$this->db->where('jh.job_id',$id);
+		  	$this->db->order_by ('jh.action_id','ASC');
+		  	$query = $this->db->get ();
+		  	$result = $query->result_array ();
+		  	return $result;
+		  }
 		  
 		  public function updateJobAction($data)
 		  {

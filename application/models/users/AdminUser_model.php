@@ -44,6 +44,27 @@ class adminUser_model extends CI_Model {
 		if(isset($param['client_id'])) {
 			$this->db->where ( 'a.client_id', $param['client_id'] );
 		}
+		if(isset($param['hospital_id'])) {
+			$this->db->where ( 'a.hospital_id', $param['hospital_id'] );
+		}
+		$query = $this->db->get ();
+		//echo $this->db->last_query();
+		$result = $query->result_array ();
+		return $result;
+	}
+	
+	public function getChatPeople ($param) {
+		$this->db->select ( 'a.*,ar.name as role_name' );
+		$this->db->from ( TABLES::$ADMIN.' AS a' );
+		$this->db->join ( TABLES::$ADMIN_USER_ROLE.' AS ar',"ar.id=a.user_role","left" );
+		$this->db->where ( 'a.is_deleted', 0 );
+		if($param['user_role'] == 6) {
+			$this->db->where ( "a.client_id='".$param['client_id']."' AND (a.hospital_id ='".$param['hospital_id']."' OR a.hospital_id = 'NULL' ) ",'',FALSE );
+		}
+		if(isset($param['client_id'])) {
+			$this->db->where ( 'a.client_id', $param['client_id'] );
+		}
+		
 		$query = $this->db->get ();
 		//echo $this->db->last_query();
 		$result = $query->result_array ();

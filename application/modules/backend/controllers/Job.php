@@ -294,7 +294,11 @@
         }
         
         public function job_detail ($id){
-            
+        	$this->load->library('dispatcher/JobLib');
+            $job_detail = $this->joblib->getJobDetailById ($id);
+            $job_action = $this->joblib->getJobActionHistoryByID ($id);
+            $this->template->set ( 'job_details',$job_detail );
+            $this->template->set ( 'job_action',$job_action );
             $this->template->set ( 'page', 'Job Detail' );
             $this->template->set_theme('default_theme');
             $this->template->set_layout ('backend')

@@ -11,6 +11,12 @@ class AdminLib {
 		return $res;
 	}
 	
+	public function getChatPeople ($param) {
+		$this->CI->load->model ( 'users/AdminUser_model', 'admin' );
+		$res = $this->CI->admin->getChatPeople ( $param );
+		return $res;
+	}
+	
 	public function getAdminById ($id) {
 		$this->CI->load->model ( 'users/AdminUser_model', 'admin' );
 		$res = $this->CI->admin->getAdminById ($id);

@@ -214,10 +214,18 @@
         	$res = $this->CI->job->getJobDetailById ($id);
         	return $res;
         }
+        
         public function updateJobAction($id)
         {
         	$this->CI->load->model ( 'Job_model', 'job' );
         	$res = $this->CI->job->updateJobAction ($id);
+        	return $res;
+        }
+        
+        public function getJobActionHistoryByID ($id)
+        {
+        	$this->CI->load->model ( 'Job_model', 'job' );
+        	$res = $this->CI->job->getJobActionHistoryByID ($id);
         	return $res;
         }
         

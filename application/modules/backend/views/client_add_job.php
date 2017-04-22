@@ -41,6 +41,24 @@
 			         	</div>
 			         	<div class="row">
 				         	<div class="col-md-12">
+					         	<div class="row"> 
+										Job Priority
+									<div class="col-md-12 input-group">
+										<select name="priority" id="priority" class="form-control" >
+											<option value="">Select</option>
+											<option value="0">AM</option>
+											<option value="1">Timed</option>
+											<option value="2">Stat</option>
+											<option value="3">Today</option>
+										</select>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				         	</div>
+			         	</div>
+			         	
+			         	<div class="row">
+				         	<div class="col-md-12">
 				         		<div class="row"> 
 										Description
 									<div class="col-md-12 input-group">
@@ -301,6 +319,14 @@
     	       	 validators: {
     	                notEmpty: {
     	                    message: ' job name is required and cannot be empty'
+    	                }
+    	            }
+    	        },
+    	        
+    	    	'priority': {
+    	       	 validators: {
+    	                notEmpty: {
+    	                    message: ' Priority is required and cannot be empty'
     	                }
     	            }
     	        },

@@ -64,6 +64,9 @@ class adminUser_model extends CI_Model {
 		if(isset($param['client_id'])) {
 			$this->db->where ( 'a.client_id', $param['client_id'] );
 		}
+		if(isset($param['session_id'])) {
+			$this->db->where ( 'a.id !=', $param['session_id'] );
+		}
 		
 		$query = $this->db->get ();
 		//echo $this->db->last_query();

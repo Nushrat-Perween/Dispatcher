@@ -30,5 +30,6 @@ class TABLES {
 	public static $PACKAGING = 'tbl_package'; 
 	public static $JOB_HISTORY = 'tbl_job_history';
 	public static $CLIENT = 'tbl_client';
+	public static $CHAT = 'tbl_chat';
 
 }

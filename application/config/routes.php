@@ -156,6 +156,10 @@ $route['admin/update_zone'] = 'backend/Area/update_zone';
 $route['admin/schedule'] = 'backend/Schedule';
 $route['admin/getfieldworkerschedule/([0-9]+)'] = 'backend/Schedule/getSchedule/$1';
 
+// Chat 
+$route['admin/open_chat_box'] = 'backend/Chat/open_chat_box';
+$route['admin/save_chat'] = 'backend/Chat/save_chat';
+
 // Error Pages
 
 $route['admin/error_screen'] = 'backend/Login/error_screen';

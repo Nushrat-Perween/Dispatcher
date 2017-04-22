@@ -141,6 +141,7 @@ class Hospital extends MX_Controller {
 		$id = $this->hospitallib->clientSaveJob ($data);
 		$userdata = array();
 		if($id) {
+			$userdata['id'] = $id;
 			$userdata['status'] = 1;
 			$userdata['msg'] = "Job added successfully.";
 		} else {

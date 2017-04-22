@@ -1,5 +1,5 @@
 <div class="modal fade sidebar-modal chat-panel" tabindex="-1" role="dialog" aria-labelledby="chat-panel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="width:60%" >
           <div class="modal-content" id="chat_sidebar">
           <div class="chat-header">
 <a class="pull-right" href="javascript:;" data-dismiss="modal">
@@ -14,7 +14,7 @@
 <?php foreach($chat_admin as $row) {
 	if($row['is_logged_in'] == 1) {
 		?>
-                <a href="javascript:;" data-toggle="modal" data-target=".chat-message">
+                <a href="javascript:;" data-toggle="modal" data-target=".chat-message" onclick="open_chat_box(`<?php echo $row['id'];?>`,`<?php echo $row['first_name']." ".$row['last_name'];?>`);">
                   <span class="status-online"></span>
                   <span><?php echo $row['first_name']." ".$row['last_name'];?></span>
                 </a>
@@ -29,7 +29,7 @@
                   <?php foreach($chat_admin as $row) {
                	 	if($row['is_logged_in'] == 0) {
                 ?>
-                <a href="javascript:;" data-toggle="modal" data-target=".chat-message">
+                <a href="javascript:;" data-toggle="modal" data-target=".chat-message" onclick="open_chat_box(`<?php echo $row['id'];?>`,`<?php echo $row['first_name']." ".$row['last_name'];?>`);">
                   <span class="status-offline"></span>
                   <span><?php echo $row['first_name']." ".$row['last_name'];?></span>
                 </a>
@@ -52,21 +52,19 @@
                   <i class="material-icons">more_vert</i>
                 </a>
                 <div class="dropdown-menu" role="menu">
-                  <a class="dropdown-item" href="javascript:;">Profile</a>
-                  <a class="dropdown-item" href="javascript:;">Clear messages</a>
                   <a class="dropdown-item" href="javascript:;">Delete conversation</a>
                   <a class="dropdown-item" href="javascript:;" data-dismiss="modal">Close chat</a>
                 </div>
               </div>
               <div class="chat-conversation-title">
                 <img src="<?php echo base_url();?>assets/images/face1.jpg" class="avatar avatar-xs img-circle m-r-1 pull-left" alt="">
-                <div class="overflow-hidden">
-                  <span><strong>Charles Wilson</strong></span>
+                <div class="overflow-hidden" id="receiver_name">
+                  <span ><strong>Charles Wilson</strong></span>
                   <small>Last seen today at 03:11</small>
                 </div>
               </div>
             </div>
-            <div class="modal-body flex scroll-y">
+            <div class="modal-body flex scroll-y" id="chat_box" style="height:300px">
               <p class="text-xs-center text-muted small text-uppercase bold m-b-1">Yesterday</p>
               <div class="chat-conversation-user them">
                 <div class="chat-conversation-message">
@@ -104,7 +102,8 @@
                 <button class="chat-left">
                   <i class="material-icons">face</i>
                 </button>
-                <div class="chat-input" contenteditable=""></div>
+                <input type="hidden" id="receiver_id" value="">
+                <div class="chat-input" id="message" contenteditable=""></div>
                 <button class="chat-right">
                   <i class="material-icons">photo</i>
                 </button>
@@ -114,22 +113,37 @@
       </div>
      
       <script>
-    //method to trigger when user hits enter key
-//       $('.chat-input').live("keyup", function(event) {
-//           if(event.keyCode == '13'){
-//       		set_chat_msg();
-//           }
-//       });
       
-      function set_chat_msg()
-      { 	
-      	 var txtmsg = document.getElementById('message').value;
-      	 var tripid = document.getElementById('tid').value;
+      function open_chat_box (id,name) {
+    		document.getElementById('receiver_id').value = id;
+    		document.getElementById('receiver_name').innerHTML = '<span ><strong>'+name+'</strong></span>'+
+                '<small>Last seen today at 03:11</small>';
+    		$.post("<?php echo base_url();?>admin/open_chat_box",{"receiver_id":id},function(data){
+    			 	$('#chat_box').html(data);
+    			 	var scrolltoh = $('#chat_box')[0].scrollHeight;
+    		   		$('#chat_box').scrollTop(scrolltoh);
+    		});
+    	}
+  	
+   // method to trigger when user hits enter key
+      $('.chat-input').on("keyup", function(event) {
+          if(event.keyCode == '13'){
+      		set_chat_msg();
+          }
+      });
+      
+      function set_chat_msg () { 	
+      	 var message = document.getElementById('message').innerHTML;
+      	message = message.substring(0, message.length - 15);
+      	 var receiver_id = document.getElementById('receiver_id').value;
       	
-      	 $.post("<?php echo base_url();?>trip/savechat",{txtmsg:txtmsg,tripid:tripid},function(data){
-      		// document.getElementById('message_box1').innerHTML = data;
-      		 document.getElementById('message').value="";
+      	 $.post("<?php echo base_url();?>admin/save_chat",{"message":message,"receiver_id":receiver_id},function(data){
+      		 document.getElementById('message').innerHTML="";
+      		$('#chat_box').html(data);
+      		var scrolltoh = $('#chat_box')[0].scrollHeight;
+       		$('#chat_box').scrollTop(scrolltoh);
       	 });
+      	
       }
       
     //automatically refresh after every 1000 milliseconds.

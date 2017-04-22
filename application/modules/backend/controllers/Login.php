@@ -46,6 +46,7 @@ class Login extends MX_Controller {
 			$param = array();
 			$param['client_id'] =  $this->session->userdata('admin')['client_id'];
 			$param['user_role'] =  $this->session->userdata('admin')['user_role'];
+			$param['session_id'] =  $this->session->userdata('admin')['id'];
 			if($this->session->userdata('admin')['user_role'] == '6') {
 				$param['hospital_id'] = $this->session->userdata('admin')['hospital_id'];
 			}
@@ -66,6 +67,7 @@ class Login extends MX_Controller {
 
 	public function get_chat_people () {
 		$param = array();
+		$param['session_id'] =  $this->session->userdata('admin')['id'];
 		$param['client_id'] =  $this->session->userdata('admin')['client_id'];
 		$param['user_role'] =  $this->session->userdata('admin')['user_role'];
 		if($this->session->userdata('admin')['user_role'] == '6') {

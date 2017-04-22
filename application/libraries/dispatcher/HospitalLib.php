@@ -34,6 +34,7 @@ class HospitalLib {
 		
 		/********** Job Data *****************/
 		$job['job_name'] = $data['job_name'];
+		$job['priority'] = $data['priority'];
 		$job['description'] = $data['description'];
 		$job['created_by']=$data['created_by'];
 		$job['created_date']=$data['created_date'];
@@ -50,6 +51,7 @@ class HospitalLib {
 		unset($data['job_name']);
 		unset($data['description']);
 		unset($data['delivery_date']);
+		unset($data['priority']);
 		unset($data['delivery_time']);
 		//print_r($data);
 		$this->CI->load->model ( 'patient/patient_model', 'patient' );

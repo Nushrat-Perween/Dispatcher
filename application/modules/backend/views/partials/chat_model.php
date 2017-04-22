@@ -157,5 +157,13 @@
       			 	$('#chat_sidebar').html(data);
       		    
       		 });
-      }, 6000);
+      var	id = document.getElementById('receiver_id').value;
+		
+           
+		$.post("<?php echo base_url();?>admin/open_chat_box",{"receiver_id":id},function(data){
+			 	$('#chat_box').html(data);
+			 	var scrolltoh = $('#chat_box')[0].scrollHeight;
+		   		$('#chat_box').scrollTop(scrolltoh);
+		});
+      }, 3000);
       </script>

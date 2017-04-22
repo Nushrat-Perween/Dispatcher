@@ -14,7 +14,7 @@
 <?php foreach($chat_admin as $row) {
 	if($row['is_logged_in'] == 1) {
 		?>
-                <a href="javascript:;" data-toggle="modal" data-target=".chat-message" onclick="open_chat_box(`<?php echo $row['id'];?>`,`<?php echo $row['first_name']." ".$row['last_name'];?>`);">
+                <a href="javascript:;" data-toggle="modal" data-target=".chat-message" onclick="open_chat_box(`<?php echo $row['id'];?>`,`<?php echo $row['first_name']." ".$row['last_name'];?>`,`<?php if($row['last_visit_date'] != "0000-00-00 00:00:00") { echo date('d-m-Y g:i A',strtotime($row['last_visit_date']));} else { echo "NA";}?>`);">
                   <span class="status-online"></span>
                   <span><?php echo $row['first_name']." ".$row['last_name'];?></span>
                 </a>
@@ -29,7 +29,7 @@
                   <?php foreach($chat_admin as $row) {
                	 	if($row['is_logged_in'] == 0) {
                 ?>
-                <a href="javascript:;" data-toggle="modal" data-target=".chat-message" onclick="open_chat_box(`<?php echo $row['id'];?>`,`<?php echo $row['first_name']." ".$row['last_name'];?>`);">
+                <a href="javascript:;" data-toggle="modal" data-target=".chat-message" onclick="open_chat_box(`<?php echo $row['id'];?>`,`<?php echo $row['first_name']." ".$row['last_name'];?>`,`<?php if($row['last_visit_date'] != "0000-00-00 00:00:00") { echo date('d-m-Y g:i A',strtotime($row['last_visit_date']));} else { echo "NA";}?>`);">
                   <span class="status-offline"></span>
                   <span><?php echo $row['first_name']." ".$row['last_name'];?></span>
                 </a>
@@ -114,10 +114,14 @@
      
       <script>
       
-      function open_chat_box (id,name) {
+      function open_chat_box (id,name,last_visit) {
     		document.getElementById('receiver_id').value = id;
-    		document.getElementById('receiver_name').innerHTML = '<span ><strong>'+name+'</strong></span>'+
-                '<small>Last seen today at 03:11</small>';
+    		user_info = '<span ><strong>'+name+'</strong></span>';
+    		if(last_visit != "NA") {
+    		user_info = user_info+'<small>Last seen at '+last_visit+'</small>';
+    		}
+    		document.getElementById('receiver_name').innerHTML = user_info; 
+               
     		$.post("<?php echo base_url();?>admin/open_chat_box",{"receiver_id":id},function(data){
     			 	$('#chat_box').html(data);
     			 	var scrolltoh = $('#chat_box')[0].scrollHeight;

@@ -4,54 +4,47 @@
 		<form class="form-validation form-horizontal" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
 			<div class="card-block" style="padding-bottom:40px">
 		   		<div class="row">
-			   		<div class="col-md-4">
-				   		<div class="row">
+		   		<div class="col-md-4">
+		   			<div class="row">
+		   			
 				   			<h6 class="text-danger"> <b>Basic Information</b></h6>
+				   			</div>
+				   			
 				   				<?php if($_SESSION['admin']['user_role']==5 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==3){?>
-			         		<div class="col-md-12">
-					         	<div class="row"> 
-										Select Hospital
-									<div class="col-md-12 input-group">
-										<select class="form-control" name="hospital_id">
-											<?php foreach($hospitallist as $item){?>
-											<option value="<?php echo $item['id']?>"><?php echo $item['hospital_name']?></option>
-											<?php }?>
-										</select>
+			         		<div class="row">
+				         		<div class="col-md-12">
+						         	<div class="row"> 
+											Select Hospital
+										<div class="col-md-12 input-group">
+											<select class="form-control" name="hospital_id">
+												<?php foreach($hospitallist as $item){?>
+												<option value="<?php echo $item['id']?>"><?php echo $item['hospital_name']?></option>
+												<?php }?>
+											</select>
+										</div>
+										<div class="messageContainer text-danger"></div>
 									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
-			         		</div>
+				         		</div>
 			         	</div>
-			         	<div class="row">
-				         	<div class="col-md-12">
-					         	<div class="row"> 
-										Job Name
-									<div class="col-md-12 input-group">
-										<input type="text" name="jobname" id= "jobname" class="form-control" required>
-									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
-				         	</div>
-			         	</div>
-			         	<?php } else {?>
-			         	<div class="row">
-				         	<div class="col-md-12">
-					         	<div class="row"> 
-										Job Name
-									<div class="col-md-12 input-group">
-										<input type="text" name="jobname" id= "jobname" class="form-control" required>
-									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
-				         	</div>
-			         	</div>
+			         	
 			         	<?php } ?>
+			         	<div class="row">
+				         	<div class="col-md-12">
+					         	<div class="row"> 
+										Job Name
+									<div class="col-md-12 input-group">
+										<input type="text" name="jobname" id= "jobname" class="form-control" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				         	</div>
+			         	</div>
 			         	<div class="row">
 				         	<div class="col-md-12">
 				         		<div class="row"> 
 										Description
 									<div class="col-md-12 input-group">
-										<textarea  name="jobdesc" class="form-control" rows="1"> </textarea>
+										<textarea  name="jobdesc" class="form-control" rows="3"> </textarea>
 									</div>
 									<div class="messageContainer text-danger"></div>
 								</div>
@@ -112,88 +105,14 @@
 								</div>
 		         			</div>
 	         			</div>
-	         		</div>
-		         	<div class="col-md-4">
-					   	<div class="row">
-					   		<h6 class="text-danger"> <b>Address</b></h6>
-				        	<div class="col-md-12">
-				        		<div class="row"> 
-										Location/ Lookup Name
-									<div class="col-md-12 input-group">
-										<input type="text" name="lookupname" id= "lookupname" class="form-control" required>
-									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
-				        	</div>
-				        </div>
-				        <div class="row">
-				        	<div class="col-md-12">
-				         		<div class="row"> 
-										City
-									<div class="col-md-12 input-group">
-										<input type="text" name="city" id= "city" class="form-control" onkeyup="ajaxSearch()" required>
-									 <div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
-										 <div id="autoSuggestionsList" ></div>
-									</div>
-									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
-				         	</div>
-				         </div>
-				         <div class="row">
-				         	<div class="col-md-12">
-				         		<div class="row"> 
-										State/Region
-									<div class="col-md-12 input-group">
-										<input type="text" name="state" id= "state" class="form-control" onkeyup="ajaxSearch1()" required>
-										<div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
-											<div id="autoSuggestionsList1" ></div>
-										 </div>
-									</div>									
-								</div>
-								<div class="messageContainer text-danger"></div>
-							</div>
-						</div>
-						<div class="row">
-				         	<div class="col-md-12">
-				         		<div class="row"> 
-										Street
-									<div class="col-md-12 input-group">
-										<input type="text" name="street" class="form-control" id ="locality" required>
-										<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" required/>
-										<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude" required/>
-									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
-				         	</div>
-				         </div>
-				         <div class="row">
-				         	<div class="col-md-12"> 
-				         		<div class="row"> 
-										Zip Code
-									<div class="col-md-12 input-group">
-										<input type="text" name="postalcode" id= "postalcode" class="form-control" required>
-									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>	
-				         	</div>
-				         </div>
-				         <div class="row">
-				         	<div class="col-md-12">
-				         		<div class="row"> 
-										Apartment / Suit / Building
-									<div class="col-md-12 input-group">
-										<input type="text" name="building" id= "building" class="form-control" required>
-									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
-				         	</div>
-				         </div>
+					   
 				      </div>
 				      <div class="col-md-4">
 				      
 				         <div class="row"> 
 					   		<h6 class="text-danger"> <b>Contact</b></h6>
+					   	</div>
+					   	<div class="row">
 				        	<div class="col-md-12">
 				        		<div class="row"> 
 										First Name
@@ -261,12 +180,98 @@
 				         	</div>
 				         </div>
 		         	</div>
+			   		<div class="col-md-4">
+				   			<div class="row">
+					   		<h6 class="text-danger"> <b>Address</b></h6>
+					   	</div>
+					    <div class="row">
+				        	<div class="col-md-12">
+				        		<div class="row"> 
+										Location/ Lookup Name
+									<div class="col-md-12 input-group">
+										<input type="text" name="lookupname" id= "lookupname" class="form-control" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				        	</div>
+				        </div>
+				        <div class="row">
+				         	<div class="col-md-12">
+				         		<div class="row"> 
+										Apartment / Suit / Building
+									<div class="col-md-12 input-group">
+										<input type="text" name="building" id= "building" class="form-control" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				         	</div>
+				         </div>
+				         	<div class="row">
+				         	<div class="col-md-12">
+				         		<div class="row"> 
+										Street
+									<div class="col-md-12 input-group">
+										<input type="text" name="street" class="form-control" id ="locality" required>
+										<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" required/>
+										<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude" required/>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				         	</div>
+				         </div>
+				        <div class="row">
+				        	<div class="col-md-12">
+				         		<div class="row"> 
+										City
+									<div class="col-md-12 input-group">
+										<input type="text" name="city" id= "city" class="form-control" onkeyup="ajaxSearch()" required>
+									 <div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
+										 <div id="autoSuggestionsList" ></div>
+									</div>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				         	</div>
+				         </div>
+				         <div class="row">
+				         	<div class="col-md-12">
+				         		<div class="row"> 
+										State/Region
+									<div class="col-md-12 input-group">
+										<input type="text" name="state" id= "state" class="form-control" onkeyup="ajaxSearch1()" required>
+										<div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
+											<div id="autoSuggestionsList1" ></div>
+										 </div>
+									</div>									
+								</div>
+								<div class="messageContainer text-danger"></div>
+							</div>
+						</div>
+					
+				         <div class="row">
+				         	<div class="col-md-12"> 
+				         		<div class="row"> 
+										Zip Code
+									<div class="col-md-12 input-group">
+										<input type="text" name="postalcode" id= "postalcode" class="form-control" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>	
+				         	</div>
+				         </div>
+				    
+	         		</div>
+		         	
 	         	</div>
-	         	<div class="col-md-1 pull-right" style="margin-top:10px"> <button type="submit" class="btn btn-primary m-r">Submit</button> </div> 
+	         	
+	         	<div class="col-md-12 pull-right" style="margin-top:10px"> <button type="submit" class="btn btn-primary m-r">Submit</button> </div> 
+         	<br><br>
          	</div>
+         	
          </form>
 	</div>
 </div>
+
 	
 	<script src="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.js"></script>
 	<script src="<?php echo asset_url();?>vendor/bootstrap/jquery.form.js"></script>
@@ -460,8 +465,12 @@
   	            	$("#response").addClass('alert-success');
   	            	$("#response").html(resp.msg);
   	            alert("Job added successfully.");
-  	            	window.location.href = "<?php echo base_url(); ?><?php if($_SESSION['admin']['user_role']==3 || $_SESSION['admin']['user_role']==4|| $_SESSION['admin']['user_role']==5){?>admin/job_list <?php } else {?>client/job_list<?php }?>";
-  	          	}
+	  	        <?php if($_SESSION['admin']['user_role']==5 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==3) {?>
+					window.location.href = "<?php echo base_url(); ?>admin/job/assignment/"+resp.id;
+				<?php } else {?>
+		        		window.location.href = "<?php echo base_url(); ?><?php if($_SESSION['admin']['user_role']==3 || $_SESSION['admin']['user_role']==4|| $_SESSION['admin']['user_role']==5){?>admin/job_list <?php } else {?>client/job_list<?php }?>";
+				<?php }?>
+			          	}
   	    	}
   		});
   	   	return false;  //stop the actual form post !important!

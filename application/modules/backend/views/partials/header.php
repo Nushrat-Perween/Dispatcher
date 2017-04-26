@@ -122,7 +122,7 @@
               </a>
               <?php }?>
                 <div class="nav-item nav-link dropdown">
-               <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <img src='<?php  if($admindata['profile_pic']!='') {echo asset_url().$admindata['profile_pic'];} else { echo base_url()."assets/images/avatar.jpg"; }?>' style ="position: relative;width: 25px;height: 25px;display: inline-block;" alt="" class="img-responsive img-circle"/>&nbsp;
+               <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <img src='<?php  if($admindata['profile_pic']!='') {echo asset_url().$admindata['profile_pic'];} else { echo asset_url()."images/avatar.jpg"; }?>' style ="position: relative;width: 25px;height: 25px;display: inline-block;" alt="" class="img-responsive img-circle"/>&nbsp;
 				<span class="hidden-xs">
 					<?php echo $admindata['first_name']." ".$admindata['last_name'];?>   <i class="material-icons">arrow_drop_down</i>
 				</span>

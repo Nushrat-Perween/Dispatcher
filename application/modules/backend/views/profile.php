@@ -87,7 +87,9 @@
 			                             	<div class="form-group">
 			                             		<?php if($adminusers['profile_pic']!=''){ ?>
 													<img src="<?php echo asset_url()?><?php echo $adminusers['profile_pic'];?>"  style="margin-left:15%;border:2px solid grey;width:60%;height:40%" id="profile_pic" alt="Image not available">
-												<?php } ?>
+												<?php } else {?>
+													<img src="<?php echo asset_url()?>images/avatar.jpg"  style="margin-left:15%;border:2px solid grey;width:50%;height:30%" id="profile_pic" alt="Image not available">
+												<?php }?>
 			                             	</div>
 										 </div>
 										 <div class="col-md-2">

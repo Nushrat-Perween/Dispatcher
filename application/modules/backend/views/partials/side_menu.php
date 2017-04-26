@@ -1,5 +1,5 @@
  <!-- Site admin  -->
-   <?php if($_SESSION['admin']['user_role']==1 || $_SESSION['admin']['user_role']==2){?>
+   <?php if($_SESSION['admin']['user_role']==1 || $_SESSION['admin']['user_role']==2) {?>
         <nav class="header-secondary navbar  bg-faded shadow">
           <div class="navbar-collapse">
             <a class="navbar-heading hidden-md-down" href="<?php echo base_url();?>admin/dashboard">
@@ -84,7 +84,7 @@
             </ul>
           </div>
         </nav>
-     <?php } else if($_SESSION['admin']['user_role']==3 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==5){?>
+     <?php } else if($_SESSION['admin']['user_role']==3 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==5) {?>
         <!-- menu header -->
         <nav class="header-secondary navbar  bg-faded shadow">
           <div class="navbar-collapse">
@@ -153,7 +153,7 @@ Schedular
 <a class="dropdown-item" href="<?php echo base_url();?>admin/fieldworker_attendance">
 <i class="material-icons" aria-hidden="true">
 perm_contact_calendar
-</i> <span>Attandance</span>
+</i> <span>Attendance</span>
 </a>
 </div>
 </div>

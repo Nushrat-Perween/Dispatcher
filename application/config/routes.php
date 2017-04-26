@@ -120,6 +120,7 @@ $route['report/filter_fieldworker'] = 'frontend/Report/filter_fieldworker';
 // Notification
 $route['notification/getAllNotification'] = 'frontend/Notification/getAllNotification';
 
+
 /* *********** Backend Routes ********** */
 $route['admin'] = 'backend/Login';
 $route['admin/authlogin'] = 'backend/Login/loginuser';
@@ -187,6 +188,7 @@ $route['admin/job/update_job_assignment'] = 'backend/Job/update_job_assignment';
 
 // Backend Notification
 $route['admin/getAllNotification'] = 'backend/Notification/getAllNotification';
+$route['admin/turn_on_off_notification'] = 'backend/Notification/turn_on_off_notification';
 
 // Reports
 $route['report/fieldworker_report'] = 'backend/Report/fieldworker_report';

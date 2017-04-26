@@ -50,7 +50,54 @@ class Notification extends MX_Controller {
 	}
 
 
-
+	/**
+	 * Turn on/off automatic notification
+	 *
+	 * @return array
+	 */
+	public function turn_on_off_notification () {
+		$this->load->library('dispatcher/AdminLib');
+		$param = array();
+		$result = 0;
+		//unset($param['user_id']);
+		$param = $this->input->post();
+		$params['id'] = $this->session->userdata('admin')['id'];
+		$params['updated_date'] = date('Y-m-d H:i:s');
+		$params['updated_by'] = $this->session->userdata('admin')['id'];
+	
+		if(isset($param['turn_on'])) {
+			$params['is_notification_active'] = 1;
+	
+		} else if(isset($param['turn_off'])) {
+			$params['is_notification_active'] = 0;
+		}
+	
+		$result = $this->adminlib->updateAdminById ($params);
+	
+	
+		if($result)
+		{
+			$message = "No message";
+			if(isset($param['turn_on'])) {
+				$message = "Turn on getting notification is successfully.";
+				$_SESSION['admin']['is_notification_active'] = 1;
+			} else if(isset($param['turn_off'])) {
+				$message = "Turned off getting notification is successfully.";
+				$_SESSION['admin']['is_notification_active'] = 0;
+			}
+			$response['status'] = 1;
+			$response['message'] = $message;
+	
+		}
+		else
+		{
+			$response['status'] = 0;
+			$response['message'] = "<b>Failed ! Please check.</b>";
+	
+		}
+	
+		echo json_encode($response);
+	}
 
 }
 

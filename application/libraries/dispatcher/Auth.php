@@ -157,6 +157,7 @@ class Auth {
 						$userinfo['password'] = $userdetail[0]['password'];
 						$userinfo['text_password'] = $userdetail[0]['text_password'];
 						$userinfo['profile_pic'] = $userdetail[0]['profile_pic'];
+						$userinfo['is_notification_active'] = $userdetail[0]['is_notification_active'];
 						$map ['status'] = 1;
 						$map ['msg'] = "Logged In successfully.";
 						$map['result'] = $userinfo;

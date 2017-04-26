@@ -7,6 +7,53 @@
 	color:red;
 	margin-left:3%;
 }
+
+.onoffswitch {
+    position: relative; width: 90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 20px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "ON";
+    padding-left: 10px;
+    background-color: #5cb85c; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "OFF";
+    padding-right: 10px;
+    background-color: #EEEEEE; color: #999999;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 18px; margin: 6px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 56px;
+    border: 2px solid #999999; border-radius: 20px;
+    transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+}
+
 </style>
 <div class="content-view">
 <div class="card">
@@ -43,6 +90,18 @@
 												<?php } ?>
 			                             	</div>
 										 </div>
+										 <div class="col-md-2">
+										 </div>
+										 <div class="col-md-4">
+										 	<div class="onoffswitch">
+											   <a href="" data-toggle="tooltip" title="<?php  if($_SESSION['admin']['is_notification_active'] == 1) echo "Click to turn off";else echo "Click to turn on";?>" >
+											   <input type="checkbox"  name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onclick="turned_on_off();" <?php if($_SESSION['admin']['is_notification_active'] == 1) echo "value='on' checked"; else {echo "value='off'";}?>> 
+											    <label class="onoffswitch-label" for="myonoffswitch">
+											        <span class="onoffswitch-inner"></span>
+											        <span class="onoffswitch-switch"></span>
+											    </label></a>
+											</div><b> (Automated Notification On/Off)</b>
+										 </div>
 									 </div>
 								 </div><br>
 								 <div class="row">
@@ -59,8 +118,10 @@
 			                             	</div>
 										 </div>
 									 </div>
-								 </div><br><br>
-								 <br>
+								 </div><br>
+								 
+								 
+								<br><br>
 		                         <div class="row">
 		                    		<div class="col-md-12">
 										<div class="col-md-6">
@@ -180,6 +241,63 @@
 <!-- initialize page scripts -->
 <!-- initialize page scripts -->
 <script type="text/javascript">
+$(function () {
+    $("[data-toggle='tooltip']").tooltip();
+});
+
+function turned_on_off () {
+	var val=document.getElementById("myonoffswitch").value;
+	//alert(val);
+	if(val == "on") {
+		var r = confirm("Are you sure you wants to stop getting notification automatically?");
+		if (r == true) {
+			$.post("<?php echo base_url();?>admin/turn_on_off_notification",{"turn_off": 1},function(res)
+					{
+						if(res.status == '0') {
+							alert("Failed to stop getting notification automatically.");
+			           	} else {
+				            	alert("Getting notification is successfully stoped.");
+				            	document.getElementById("myonoffswitch").checked = false;
+				    			document.getElementById("myonoffswitch").value="off";
+				    			window.location.href = "<?php echo base_url(); ?>admin/profile";
+			    			}
+					},'json');
+			
+			
+			
+		} else {
+
+			document.getElementById("myonoffswitch").checked = true;
+			document.getElementById("myonoffswitch").value="on";
+			
+		}
+	} else {
+		var r = confirm("Are you sure you wants to start getting notification automatically?"); 
+		if (r == true) {
+			$.post("<?php echo base_url();?>admin/turn_on_off_notification",{"turn_on": 1},function(res)
+					{
+						if(res.status == '0') {
+							alert("Failed to start getting notification automatically.");
+			           	} else {
+				            	alert("Getting notification is successfully started.");
+				            	document.getElementById("myonoffswitch").checked = true;
+				    			document.getElementById("myonoffswitch").value="on";
+				    			window.location.href = "<?php echo base_url(); ?>admin/profile";
+			    			}
+					},'json');
+			
+			
+			
+		} else {
+	
+			document.getElementById("myonoffswitch").checked = false;
+			document.getElementById("myonoffswitch").value="off";
+			
+		}
+	}
+	
+}
+
 function display()
 {
 	document.getElementById("profile_pic_div").style.display = 'block';

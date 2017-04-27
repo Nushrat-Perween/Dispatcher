@@ -212,6 +212,7 @@ class UserNew extends MX_Controller {
 		$data = $this->input->post('data');
 		$this->load->library('dispatcher/UserLibNew');
 		//print_r($data);
+		$data['password'] = md5($data['text_password']);
 		$id = $this->userlibnew->updateClientUserByID ($data);
 		$userdata = array();
 		if($id) {
@@ -237,6 +238,7 @@ class UserNew extends MX_Controller {
 		$data['longitude'] = $this->input->post('longitude');
 		$this->load->library('dispatcher/UserLibNew');
 		//print_r($data);
+		$data ['name'] = $data ['first_name']." ".$data ['last_name'];
 		$id = $this->userlibnew->saveHospital ($data);
 		$userdata = array();
 		if($id) {
@@ -296,6 +298,7 @@ class UserNew extends MX_Controller {
 		
 		$this->load->library('dispatcher/UserLibNew');
 		//print_r($data);
+		$data ['name'] = $data ['first_name']." ".$data ['last_name'];
 		$id = $this->userlibnew->updateHospital ($data);
 		$userdata = array();
 		if($id) {
@@ -306,6 +309,12 @@ class UserNew extends MX_Controller {
 			$userdata['msg'] = "Error! Please check your data.";
 		}
 		echo json_encode($userdata);
+	}
+	public function getHospitalAddress($id)
+	{
+		$this->load->library('dispatcher/UserLibNew');
+		$hospital = $this->userlibnew->getHospitalById ($id);
+		echo json_encode($hospital);
 	}
 }
 

@@ -225,6 +225,8 @@ $route['client/update_job_client'] = 'backend/Hospital/updateJobClient';
 $route['client/clientjob_byMob'] = 'backend/Hospital/clientjobByMob';
 $route['client/getPatientListBydate'] = 'backend/Hospital/getPatientListBydate';
 $route['client/getCustomerListBydate'] = 'backend/Hospital/getCustomerListBydate';
+$route['client/gethospitaladdress/([0-9]+)'] = 'backend/UserNew/getHospitalAddress/$1';
+
 
 $route['admin/add_hospital'] = 'backend/UserNew/addHospital';
 $route['admin/add_client_user'] = 'backend/UserNew/addClientUser';

@@ -194,6 +194,7 @@ channel.bind('my_event', function(data) {
 						        $sr++;
 						    ?>
 						<tr>
+							<td><a href="<?php echo base_url();?>client/edit_client_job/<?php echo $row['id']?>">Edit</a></td>
 							<td> <u><a href="job_detail/<?php echo $row['id']?>"><?php echo $row['job_name'];?></a></u></td>
 							<td> <?php if($row['delivery_date'] == NULL) echo 'NA';else echo date("d-m-Y",strtotime($row['delivery_date']));?> </td>
 							<td> <?php if($row['delivery_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($row['delivery_time']));?>   </td>

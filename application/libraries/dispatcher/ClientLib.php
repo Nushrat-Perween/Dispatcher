@@ -58,12 +58,16 @@ class ClientLib {
 		$client['mobile'] = $data['mobile'];
 		$client['verified'] = $data['verified'];
 		$client['id'] = $data['id'];
+		$client['text_password'] = $data['text_password'];
+		$client['password'] = md5($data['text_password']);
+		$client['email'] = $data['email'];
+		unset($data['text_password']);
 		unset($data['first_name']);
 		unset($data['last_name']);
 		unset($data['mobile']);
 		unset($data['hospital_id']);
 		unset($data['verified']);
-		
+		unset($data['email']);
 		//print_r($client);
 		$this->CI->load->model ( 'client/client_model', 'client' );
 		$client_data = $this->CI->client->updateClientById ($data );

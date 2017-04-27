@@ -14,7 +14,7 @@ hr{margin-bottom:0rem}
 <div class="card">
 <div class="card-header no-bg b-a-0">
 <div class="dropdown pull-left " style="padding:3px 5px 4px 5px">
-<H2>List Of Hospital</H2>
+<H2>List Of Client</H2>
 </div>
 <a href="<?php echo base_url();?>admin/add_hospital"><button class="btn bg-primary btn-sm pull-right no-radius">
 <i class="fa fa-plus" aria-hidden="true"> </i> Hospital
@@ -27,7 +27,6 @@ hr{margin-bottom:0rem}
 <tr>
 <th>Sr.No</th>
 <th>Business Name </th>
-<th>Hospital Name </th>
 <th>Name </th>
 <th>Email</th>
 <th>Mobile</th>
@@ -50,7 +49,7 @@ foreach($hospitallist as $row) {
 <tr>
 <td><?php echo $sr ; ?> </td>
 <td> <?php echo $row['business_name'];?> </td>
-<td> <?php echo $row['hospital_name'];?> </td>
+
 <td> <?php echo $row['name'];?> </td>
 <td> <?php echo $row['email'];?> </td>
 <td> <?php echo $row['mobile'];?> </td>

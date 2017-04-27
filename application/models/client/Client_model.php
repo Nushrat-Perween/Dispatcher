@@ -40,7 +40,7 @@ class Client_model extends CI_Model {
 	
 	public function getClientById($id)
 	{
-		$this->db->select ('c.*,a.first_name,a.last_name, a.email,a.mobile,a.user_role,a.client_id,a.verified' );
+		$this->db->select ('c.*,a.email,a.text_password,a.first_name,a.last_name, a.email,a.mobile,a.user_role,a.client_id,a.verified' );
 		$this->db->from ( TABLES::$CLIENT.' AS c' );
 		$this->db->join ( TABLES::$ADMIN.' AS a',"c.id=a.client_id","left" );
 		$this->db->where('c.id',$id);

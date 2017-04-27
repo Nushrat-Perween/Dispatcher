@@ -101,7 +101,7 @@ class Login extends MX_Controller {
 		$this->session->unset_userdata('admin');
 		$this->session->set_userdata('admin_notification_count');
 		$this->session->set_userdata('admin_notification');
-		redirect(base_url()."admin");
+		redirect(base_url());
 	}
 
 

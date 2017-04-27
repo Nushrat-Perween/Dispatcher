@@ -147,6 +147,23 @@ Fieldworker
 </div>
 <div class="row">
 
+<div class="form-group m-b col-md-6">
+<label>
+Job Priority
+</label>
+<div class="row">
+<div class="col-md-10 input-group">
+<select name="data[priority]" id="priority" class="form-control">
+<option value="">Select </option>
+<option value="0" <?php if(isset($job)) { if($job['priority'] == 0) { echo "selected";}}?>>AM</option>
+<option value="1" <?php if(isset($job)) { if($job['priority'] == 1) { echo "selected";}}?>>Timed</option>
+<option value="2" <?php if(isset($job)) { if($job['priority'] == 2) { echo "selected";}}?>>Stat</option>
+<option value="3" <?php if(isset($job)) { if($job['priority'] == 2) { echo "selected";}}?>>Today</option>
+</select>
+</div>
+<div class="messageContainer"></div>
+</div>
+</div>
 
 <div class="form-group m-b col-md-6">
 <label>

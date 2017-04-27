@@ -18,7 +18,7 @@
 <div class="col-lg-12">
 <div class="card">
 <div class="card-header">
-Job Summary
+Job Summary 
 </div>
 <div class="card-block">
 <p class="card-text ">
@@ -52,7 +52,64 @@ Job Summary
 </div>
 </div>
 </div>
+
+<div class="col-lg-12">
+<div class="card no-border">
+<div class="card-header no-border">
+Scheduled Time
 </div>
+<div class="card-block">
+<p class="card-text ">
+<span class="col-md-6"> <b>Scheduled Start : </b></span>
+<span class="col-md-6 border"> <?php if($job_details[0]['start_date'] != "" || $job_details[0]['start_time'] != "") { echo date("d-m-Y",strtotime($job_details[0]['start_date'])); if($job_details[0]['start_time'] != "") echo " ".date("g:i A",strtotime($job_details[0]['start_time'])); } else echo  "NA";?></span>
+</p>
+<p class="card-text">
+<span class="col-md-6"><b>Scheduled End :</b> </span>
+<span class="col-md-6 border"> <?php if($job_details[0]['start_date'] != "" || $job_details[0]['start_time'] != "") { echo date("d-m-Y",strtotime($job_details[0]['start_date'])); if($job_details[0]['schedule_end_time'] != "") echo " ".date("g:i A",strtotime($job_details[0]['schedule_end_time'])); } else echo  "NA";?> </span>
+</p>
+<p class="card-text">
+<span class="col-md-6"><b>Estimated Duration : </b> </span>
+<span class="col-md-6 border"> <?php echo $job_details[0]['estimated_duration'];?> </span>
+</p>
+</div>
+</div>
+</div>
+
+<div class="col-lg-12">
+<div class="card no-border">
+<div class="card-header no-border">
+Actual Time
+</div>
+<div class="card-block">
+<p class="card-text ">
+<span class="col-md-6"> <b>Actual Start :</b></span>
+<span class="col-md-6 border"> <?php if(isset($job_action[0])) echo date("g:i A",strtotime($job_action[0]['last_location_time'])); else echo "NA";?></span>
+</p>
+<p class="card-text">
+<span class="col-md-6"><b>Actual End :</b> </span>
+<span class="col-md-6 border"> <?php if(isset($job_action[7])) echo date("g:i A",strtotime($job_action[7]['last_location_time'])); else echo "NA";?>
+ </span>
+</p>
+<p class="card-text">
+<span class="col-md-6"><b>Time On Job :</b> </span>
+<span class="col-md-6 border"> <?php if(isset($job_action[0]) && isset($job_action[7]))  echo $job_action[7]['last_location_time'] - $job_action[0]['last_location_time']; else echo  "NA";?> </span>
+</p>
+<p class="card-text">
+<span class="col-md-6"><b>Suspended Time : </b> </span>
+<span class="col-md-6 border"> <?php if($job_details[0]['delivery_time'] != "") echo $job_details[0]['delivery_time']; else echo  "NA";?> </span>
+</p>
+<p class="card-text">
+<span class="col-md-6"><b>Total Job On Time :</b> </span>
+<span class="col-md-6 border"> <?php if($job_details[0]['time_on_job'] != "") echo $job_details[0]['time_on_job']; else echo  "NA";?> </span>
+</p>
+
+</div>
+</div>
+</div>
+
+
+</div>
+
 <div class="col-lg-6 " >
 <div class="col-lg-12">
 <div class="card">
@@ -124,65 +181,6 @@ Delivery Address
 </div>
 </div>
 </div>
-
-<div class="col-lg-6">
-<div class="col-lg-12">
-<div class="card no-border">
-<div class="card-header no-border">
-Scheduled Time
-</div>
-<div class="card-block">
-<p class="card-text ">
-<span class="col-md-6"> <b>Scheduled Start : </b></span>
-<span class="col-md-6 border"> <?php if($job_details[0]['start_date'] != "" || $job_details[0]['start_time'] != "") { echo date("d-m-Y",strtotime($job_details[0]['start_date'])); if($job_details[0]['start_time'] != "") echo " ".date("g:i A",strtotime($job_details[0]['start_time'])); } else echo  "NA";?></span>
-</p>
-<p class="card-text">
-<span class="col-md-6"><b>Scheduled End :</b> </span>
-<span class="col-md-6 border"> <?php if($job_details[0]['start_date'] != "" || $job_details[0]['start_time'] != "") { echo date("d-m-Y",strtotime($job_details[0]['start_date'])); if($job_details[0]['schedule_end_time'] != "") echo " ".date("g:i A",strtotime($job_details[0]['schedule_end_time'])); } else echo  "NA";?> </span>
-</p>
-<p class="card-text">
-<span class="col-md-6"><b>Estimated Duration : </b> </span>
-<span class="col-md-6 border"> <?php echo $job_details[0]['estimated_duration'];?> </span>
-</p>
-</div>
-</div>
-</div>
-</div>
-
-<div class="col-lg-6">
-<div class="col-lg-12">
-<div class="card no-border">
-<div class="card-header no-border">
-Actual Time
-</div>
-<div class="card-block">
-<p class="card-text ">
-<span class="col-md-6"> <b>Actual Start :</b></span>
-<span class="col-md-6 border"> <?php if(isset($job_action[0])) echo date("g:i A",strtotime($job_action[0]['last_location_time'])); else echo "NA";?></span>
-</p>
-<p class="card-text">
-<span class="col-md-6"><b>Actual End :</b> </span>
-<span class="col-md-6 border"> <?php if(isset($job_action[7])) echo date("g:i A",strtotime($job_action[7]['last_location_time'])); else echo "NA";?>
- </span>
-</p>
-<p class="card-text">
-<span class="col-md-6"><b>Time On Job :</b> </span>
-<span class="col-md-6 border"> <?php if(isset($job_action[0]) && isset($job_action[7]))  echo $job_action[7]['last_location_time'] - $job_action[0]['last_location_time']; else echo  "NA";?> </span>
-</p>
-<p class="card-text">
-<span class="col-md-6"><b>Suspended Time : </b> </span>
-<span class="col-md-6 border"> <?php if($job_details[0]['delivery_time'] != "") echo $job_details[0]['delivery_time']; else echo  "NA";?> </span>
-</p>
-<p class="card-text">
-<span class="col-md-6"><b>Total Job On Time :</b> </span>
-<span class="col-md-6 border"> <?php if($job_details[0]['time_on_job'] != "") echo $job_details[0]['time_on_job']; else echo  "NA";?> </span>
-</p>
-
-</div>
-</div>
-</div>
-</div>
-
 <div class="col-lg-12 " >
 <div class="col-lg-12">
 <div class="card">
@@ -278,6 +276,7 @@ Accepted
 </div>
 </section>
 </div>
+
 <?php } ?>
 <!-- timeline item-->
 <?php if($delivery_status['action_id'] == 3) { ?>
@@ -287,6 +286,7 @@ Accepted
 person
 </i>
 </div>
+
 <section class="timeline-content">
 <div class="timeline-body">
 <div class="timeline-heading bg-default text-success">
@@ -305,6 +305,7 @@ In route
 </section>
 </div>
 <?php } ?>
+
 <!-- timeline item-->
 <?php if($delivery_status['action_id'] == 4) { ?>
 <div class="timeline-card">

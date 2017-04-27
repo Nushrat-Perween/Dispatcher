@@ -69,6 +69,12 @@ class Api extends REST_Controller {
 		$id = $this->get('id');
 		$this->load->library('dispatcher/JobLib');
 		$jobcount = $this->joblib->getJobCount($id);
+		if($jobcount[0]['pending_job']==null)
+		{
+			$jobcount[0]['pending_job'] = "0";
+			$jobcount[0]['cancel_job'] = "0";
+			$jobcount[0]['success_job'] = "0";
+		}
 		$this->response($jobcount);
 	}
 

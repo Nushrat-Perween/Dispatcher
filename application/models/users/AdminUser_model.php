@@ -134,5 +134,13 @@ class adminUser_model extends CI_Model {
 		$result = $query->result_array ();
 		return $result;
 	}
+	
+	/**
+	 *  Reset User Password
+	 */
+	public  function resetPassword ($param){
+		$this->db->where( 'email',$param['email'] );
+		return $this->db->update(TABLES::$ADMIN,$param);
+	}
 }
 

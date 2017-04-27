@@ -6,7 +6,7 @@
 <div class="card card-block form-layout" style="max-width:450px">
 <form class="form-horizontal form-validate-signin" method="post"  id="loginForm" action="">
 <div class="text-xs-center m-b-3">
-<img src="<?php echo asset_url();?>images/logo-icon.png" height="80" alt="" class="m-b-1"/>
+<img src="<?php echo asset_url();?>images/logo-icon.png" height="130" alt="" class="m-b-1"/>
 <p class="text-muted">
 Sign in with your admin id to continue.
 </p>
@@ -38,7 +38,7 @@ OR
 </span>
 </div>
 <div class="text-xs-center">
-<a href="forgot.html">
+<a href="<?php echo base_url();?>admin/forgot_password">
 Forgot password?
 </a>
 </div>
@@ -53,10 +53,12 @@ Forgot password?
 <!-- end page scripts -->
 <!-- initialize page scripts -->
 <script type="text/javascript">
-$('#loginForm').validate();
+
 $('#loginForm').submit(function () {
-	loginUser();
-	 return false;
+	if($('#loginForm').validate()) {
+		loginUser();
+		 return false;
+	}
 	});
 
 function loginUser()

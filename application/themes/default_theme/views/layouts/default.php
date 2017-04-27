@@ -2,6 +2,8 @@
 <!doctype html>
 <html lang="en">
   <head>
+   <!-- App Favicon -->
+        <link rel="shortcut icon" href="<?php echo asset_url();?>images/logo-icon.png">
     <title><?php echo $template['title']; ?></title>
 <meta charset="utf-8">
 <meta name="google" content="Dispatcher management" />

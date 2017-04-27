@@ -156,6 +156,10 @@ $route['admin/edit_zone/([0-9]+)'] = 'backend/Area/edit_zone/$1';
 $route['admin/update_zone'] = 'backend/Area/update_zone';
 $route['admin/schedule'] = 'backend/Schedule';
 $route['admin/getfieldworkerschedule/([0-9]+)'] = 'backend/Schedule/getSchedule/$1';
+$route['admin/forgot_password'] = 'backend/Login/forgot_password';
+$route['admin/send_password_reset_instruction'] = 'backend/Login/send_password_reset_instruction';
+$route['admin/reset_password'] = 'backend/Login/reset_password';
+$route['admin/save_reset_password'] = 'backend/Login/save_reset_password';
 
 // Chat 
 $route['admin/open_chat_box'] = 'backend/Chat/open_chat_box';

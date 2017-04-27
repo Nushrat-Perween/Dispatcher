@@ -34,10 +34,25 @@ class AdminLib {
 		$res = $this->CI->admin->addAdmin ( $data );
 		return $res;
 	}
+	
 	public function updateCurrentLocationById($data)
 	{
 		$this->CI->load->model ( 'users/AdminUser_model', 'admin' );
 		$res = $this->CI->admin->updateCurrentLocationById ( $data);
+		return $res;
+	}
+	
+	public function getAdminByUserName ($data)
+	{
+		$this->CI->load->model ( 'users/AdminUser_model', 'admin' );
+		$res = $this->CI->admin->getAdminByUserName ( $data);
+		return $res;
+	}
+	
+	public function resetPassword ($param)
+	{
+		$this->CI->load->model ( 'users/AdminUser_model', 'admin' );
+		$res = $this->CI->admin->resetPassword ( $param);
 		return $res;
 	}
 	

@@ -23,10 +23,15 @@ class Api extends REST_Controller {
 	  
 		$this->load->library('dispatcher/auth');
 		$userdata = $this->auth->adminlogin($data);
-		//$map = $userdata['result'];
-		$map ['status'] = $userdata['status'];
+		
+		//$map ['status'] = $userdata['status'];
 		if($userdata['status'] == 1) {
 			$this->session->set_userdata('admin',$userdata['result']);
+			$map = $userdata['result'];
+		}
+		else
+		{
+			$map['status'] = 0;
 		}
 		echo json_encode($map);
 	  

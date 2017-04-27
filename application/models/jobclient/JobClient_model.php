@@ -52,7 +52,7 @@ class JobClient_model extends CI_Model {
 	
 	public function getjobClientById($jobid)
 	{
-		$this->db->select('jc.first_name,jc.last_name,jc.mobile,(jc.id) as job_contact_id,j.job_name,j.status,(j.id) as job_id,(p.name) as patient_name,p.caller,(p.id) as patient_id');
+		$this->db->select('j.hospital_id,jc.first_name,jc.last_name,jc.mobile,(jc.id) as job_contact_id,j.job_name,j.status,(j.id) as job_id,(p.name) as patient_name,p.caller,(p.id) as patient_id');
 		$this->db->from ( TABLES::$JOB.' AS j' );
 		$this->db->join ( TABLES::$JOB_CONTACT.' AS jc',"jc.id=j.job_contact_id","left" );
 		$this->db->join ( TABLES::$PATIENT.' AS p',"p.id=j.patient_id","left" );

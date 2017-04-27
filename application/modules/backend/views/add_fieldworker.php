@@ -13,10 +13,9 @@
 	<div class="row"> 
 		<div class="col-md-offset-3 col-md-6"> 
 				<div class="card card-block">
-				<h2>Add New Fieldworker</h2>
+				<h2>Add New Driver</h2>
 				<div class="form-control" id="response" style="display: none"> </div>
 				<form class="form-validation form-horizontal" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
-				
 						<div class="form-group m-b">
 						<label>
 						Designation
@@ -24,12 +23,12 @@
 						<div class="row">
 							<div class="col-md-10 input-group">
 								<select class="form-control" name="data[user_role]"  id="user_role" required>
-									<option value="3">Field Worker</option>
+									<option value="3">Driver</option>
 								</select>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
-						</div>
+					</div>
 						
 						<div class="form-group m-b">
 						<label>

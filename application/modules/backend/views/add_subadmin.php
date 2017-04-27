@@ -24,7 +24,7 @@
 									<option value="">Select</option>
 									<option value="4">Sub Admin</option>
 									<option value="5">Dispatcher</option>
-									<option value="7">FieldWorker</option>
+									<option value="7">Driver</option>
 								</select>
 							</div>
 							<div class="messageContainer"></div>

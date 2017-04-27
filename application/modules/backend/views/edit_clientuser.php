@@ -26,7 +26,7 @@
 									<option value="">Select</option>
 									<option value="4" <?php if($user['user_role']==4) echo "selected";?>>Sub Admin</option>
 									<option value="5" <?php if($user['user_role']==5) echo "selected";?>>Dispatcher</option>
-									<option value="7" <?php if($user['user_role']==7) echo "selected";?>>FieldWorker</option>
+									<option value="7" <?php if($user['user_role']==7) echo "selected";?>>Driver</option>
 								</select>
 							</div>
 							<div class="messageContainer"></div>
@@ -68,6 +68,15 @@
 						Mobile No.
 							<div class="col-md-12 input-group"> 
 								<input type="text"  class="form-control" name="data[mobile]" placeholder="Mobile"  value ="<?php echo $user['mobile']; ?>" equired/>
+							</div>
+							<div class="messageContainer"></div>
+						</div>
+						</div>
+						<div class="form-group col-md-4">
+						<div class="row"> 
+						Password
+							<div class="col-md-12 input-group"> 
+								<input type="text"  class="form-control" name="data[text_password]" placeholder="Mobile"  value ="<?php echo $user['text_password']; ?>" equired/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>

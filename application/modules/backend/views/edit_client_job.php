@@ -4,12 +4,12 @@
 		<form class="form-validation form-horizontal" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
 			 <div class="card-block" style="padding-bottom:40px">
 			   <div class="row">
-				   	<div class="col-md-4">
+				   	<div class="col-md-3">
 					   	<div class="row">
 					   		<h6 class="text-danger"> <b>Basic Information</b></h6>
 				         	<div class="col-md-12">
 					         	<div class="row"> 
-										Job Name
+										<label>Job Name</label>
 									<div class="col-md-12 input-group">
 										<input type="text" name="jobname" id= "jobname" class="form-control" value ="<?php echo $job[0]['job_name'];?>" required>
 									</div>
@@ -18,7 +18,7 @@
 				         	</div>
 				         	<div class="col-md-12">
 				         		<div class="row"> 
-										Description
+										<label>Description</label>
 									<div class="col-md-12 input-group">
 										<textarea  name="jobdesc" class="form-control" rows="1"><?php echo $job[0]['description'];?></textarea>
 									</div>
@@ -30,7 +30,7 @@
 		         			<h6 class="text-danger"> <b>Patient Information</b></h6>
 				        	<div class="col-md-12">
 				        		<div class="row"> 
-										Patient Name
+										<label>Patient Name</label>
 									<div class="col-md-12 input-group">
 										<input type="text" name="pname" id= "pname" class="form-control" value ="<?php echo $patient[0]['name'];?>" required>
 									</div>
@@ -41,7 +41,7 @@
 				       	<div class="row">
 				         	<div class="col-md-12">
 				         		<div class="row"> 
-										Room Number
+										<label>Room Number</label>
 									<div class="col-md-12 input-group">
 										<input type="text" name="rnumber" id= "rnumber" class="form-control" value ="<?php echo $patient[0]['room_no'];?>" required>
 									</div>
@@ -52,7 +52,7 @@
 				         <div class="row">
 				         	<div class="col-md-12">
 				         		<div class="row"> 
-										Tests
+										<label>Tests</label>
 									<div class="col-md-12 input-group">
 										<input type="text" name="tests" id= "tests" class="form-control" value ="<?php echo $patient[0]['test'];?>" required>
 									</div>
@@ -63,7 +63,7 @@
 				         <div class="row">
 				         	<div class="col-md-12">
 				         		<div class="row"> 
-										Caller
+										<label>Caller</label>
 									<div class="col-md-12 input-group">
 										<input type="text" name="caller" id= "caller" class="form-control" value ="<?php echo $patient[0]['caller'];?>" required>
 										<input type="hidden" name="patient_id" id= "" class="form-control" value ="<?php echo $patient[0]['id'];?>" required>
@@ -75,7 +75,7 @@
 				         <div class="row">			         	
 		         			<div class="col-md-12">
 		         				<div class="row"> 
-										Special instrunction
+										<label>Special instrunction</label>
 									<div class="col-md-12 input-group">
 										<textarea  name="sintruction" class="form-control" rows="1"><?php echo $patient[0]['special_instruction'];?> </textarea>
 									</div>
@@ -84,12 +84,84 @@
 		         			</div>
 		         		</div>
 		         	</div>
-		         	<div class="col-md-4">
+		         
+				        <div class="col-md-3">
+			         		<div class="row">
+						   		<h6 class="text-danger"> <b>Contact</b></h6>
+					        	<div class="col-md-12">
+					        		<div class="row"> 
+											<label>First Name</label>
+										<div class="col-md-12 input-group">
+											<input type="text" name="fname" id= "fname" class="form-control" value ="<?php echo $customer[0]['first_name'];?>" required>
+										</div>
+										<div class="messageContainer text-danger"></div>
+									</div>	
+					        	</div>
+					        </div>
+					        <div class="row">
+					         	<div class="col-md-12">
+					         		<div class="row"> 
+											<label>Last Name</label>
+										<div class="col-md-12 input-group">
+											<input type="text" name="lname" id= "end_dalnamete" class="form-control" value ="<?php echo $customer[0]['last_name'];?>" required>
+										</div>
+										<div class="messageContainer text-danger"></div>
+									</div>	
+					         	</div>
+					         </div>
+					         <div class="row">
+					         	<div class="col-md-12">
+					         		<div class="row"> 
+											<label>Mobile No</label>
+										<div class="col-md-12 input-group">
+											<input type="text" name="mobno" id= "mobno" class="form-control" value ="<?php echo $customer[0]['mobile'];?>" required>
+										</div>
+										<div class="messageContainer text-danger"></div>
+									</div>	
+					         	</div>
+					         </div>
+					         <div class="row">
+					         	<div class="col-md-12">
+					         		<div class="row"> 
+											<label>Email Id</label>
+										<div class="col-md-12 input-group">
+											<input type="email" name="email" id= "email" class="form-control" value ="<?php echo $customer[0]['email'];?>" required>
+										</div>
+										<div class="messageContainer text-danger"></div>
+									</div>	
+					         	</div>
+					         </div>
+					         <div class="row">
+					         	<div class="col-md-12">
+					         		<div class="row"> 
+											<label>Delivery Date</label>
+										<div class="col-md-12 input-group">
+											<input type="text" name="delivery_date" id= "start_date" value="<?php echo (isset($job[0]['delivery_date']) && !empty($job[0]['delivery_date']))?date("d-m-Y", strtotime($job[0]['delivery_date'])):'';?>" class="form-control">
+											<input type="hidden" class="form-control" name="job_id" placeholder="City" id="" value ="<?php echo $job[0]['id'];?>" />
+										</div>
+										<div class="messageContainer text-danger"></div>
+									</div>	
+					         	</div>
+					         </div>
+					         <div class="row">
+					         	<div class="col-md-12">
+					         		<div class="row">
+											<label>Delivery Time</label>
+										<div class="input-group bootstrap-timepicker timepicker">
+								            <input id="timepicker1" type="text" name = "delivery_time" value="<?php echo (isset($job[0]['delivery_time']) && !empty($job[0]['delivery_time']))?date("H:i", strtotime($job[0]['delivery_time'])):'';?>" class="form-control input-small">
+								            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+								        </div>
+										<div class="messageContainer text-danger"></div>
+									</div>	
+					         	</div>
+					         </div>
+			         	</div>
+			         		<div class="col-md-3">
 					   	<div class="row">
 					   		<h6 class="text-danger"> <b>Address</b></h6>
 				        	<div class="col-md-12">
 				        		<div class="row"> 
-										Location/ Lookup Name
+										<label>Location/ Lookup Name</label>
 									<div class="col-md-12 input-group">
 										<input type="text" name="lookupname" id= "lookupname" class="form-control" value ="<?php echo $customer[0]['lookup_name'];?>" required>
 									</div>
@@ -100,7 +172,7 @@
 				        	<div class="row">
 					        	<div class="col-md-12">
 					         		<div class="row"> 
-											City
+											<label>City</label>
 										<div class="col-md-12 input-group">
 											<input type="text" name="city" id= "city" onkeyup="ajaxSearch()" class="form-control" value ="<?php echo $customer[0]['city_name'];?>" required>
 											 <div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
@@ -114,7 +186,7 @@
 					         <div class="row">
 					         	<div class="col-md-12">
 					         		<div class="row"> 
-											State/Region
+											<label>State/Region</label>
 										<div class="col-md-12 input-group">
 											<input type="text" name="state" id= "state" onkeyup="ajaxSearch1()" class="form-control" value ="<?php echo $customer[0]['state_name'];?>" required>
 											<div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
@@ -128,7 +200,7 @@
 					         <div class="row">
 					         	<div class="col-md-12">
 					         		<div class="row"> 
-											Street
+											<label>Street</label>
 										<div class="col-md-12 input-group">
 											<input type="text" name="street" id= "locality" class="form-control" value ="<?php echo $customer[0]['street'];?>" required>
 											<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" value ="<?php echo $customer[0]['latitude'];?>" />
@@ -142,7 +214,7 @@
 				         	<div class="row">
 					         	<div class="col-md-12"> 
 					         		<div class="row"> 
-											Zip Code
+											<label>Zip Code</label>
 										<div class="col-md-12 input-group">
 											<input type="text" name="postalcode" id= "postalcode" class="form-control" value ="<?php echo $customer[0]['postalcode'];?>" required>
 										</div> 
@@ -153,7 +225,7 @@
 					        <div class="row">
 					         	<div class="col-md-12">
 					         		<div class="row"> 
-											Apartment / Suit / Building
+											<label>Apartment / Suit / Building</label>
 										<div class="col-md-12 input-group">
 											<input type="text" name="building" id= "building" class="form-control" value ="<?php echo $customer[0]['building'];?>" required>
 										</div>
@@ -162,77 +234,90 @@
 					         	</div>
 				         	</div>
 				         </div>
-				        <div class="col-md-4">
+			         	  <div class="col-md-3">
+				   			<div class="row">
+					   		<h6 class="text-danger"> <b> Delivery Address</b></h6>
+					   	</div>
+					   		<?php if($_SESSION['admin']['user_role']==5 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==3){?>
 			         		<div class="row">
-						   		<h6 class="text-danger"> <b>Contact</b></h6>
-					        	<div class="col-md-12">
-					        		<div class="row"> 
-											First Name
+				         		<div class="col-md-12">
+						         	<div class="row"> 
+											<label>Select Client</label>
 										<div class="col-md-12 input-group">
-											<input type="text" name="fname" id= "fname" class="form-control" value ="<?php echo $customer[0]['first_name'];?>" required>
+											<select class="form-control" name="hospital_id" id="hospital_id" onchange="getHospital()">
+											<option value="">Select Client</option>
+												<?php foreach($hospitallist as $item){?>
+												<option value="<?php echo $item['id']?>" <?php if($item['id']==$job[0]['hospital_id']){?> selected <?php }?>><?php echo $item['hospital_name']?></option>
+												<?php }?>
+											</select>
 										</div>
 										<div class="messageContainer text-danger"></div>
-									</div>	
-					        	</div>
-					        </div>
-					        <div class="row">
-					         	<div class="col-md-12">
-					         		<div class="row"> 
-											Last Name
-										<div class="col-md-12 input-group">
-											<input type="text" name="lname" id= "end_dalnamete" class="form-control" value ="<?php echo $customer[0]['last_name'];?>" required>
-										</div>
-										<div class="messageContainer text-danger"></div>
-									</div>	
-					         	</div>
-					         </div>
-					         <div class="row">
-					         	<div class="col-md-12">
-					         		<div class="row"> 
-											Mobile No
-										<div class="col-md-12 input-group">
-											<input type="text" name="mobno" id= "mobno" class="form-control" value ="<?php echo $customer[0]['mobile'];?>" required>
-										</div>
-										<div class="messageContainer text-danger"></div>
-									</div>	
-					         	</div>
-					         </div>
-					         <div class="row">
-					         	<div class="col-md-12">
-					         		<div class="row"> 
-											Email Id
-										<div class="col-md-12 input-group">
-											<input type="email" name="email" id= "email" class="form-control" value ="<?php echo $customer[0]['email'];?>" required>
-										</div>
-										<div class="messageContainer text-danger"></div>
-									</div>	
-					         	</div>
-					         </div>
-					         <div class="row">
-					         	<div class="col-md-12">
-					         		<div class="row"> 
-											Delivery Date
-										<div class="col-md-12 input-group">
-											<input type="text" name="delivery_date" id= "start_date" value="<?php echo (isset($job[0]['delivery_date']) && !empty($job[0]['delivery_date']))?date("d-m-Y", strtotime($job[0]['delivery_date'])):'';?>" class="form-control">
-											<input type="hidden" class="form-control" name="job_id" placeholder="City" id="" value ="<?php echo $job[0]['id'];?>" />
-										</div>
-										<div class="messageContainer text-danger"></div>
-									</div>	
-					         	</div>
-					         </div>
-					         <div class="row">
-					         	<div class="col-md-12">
-					         		<div class="row">
-											Delivery Time
-										<div class="input-group bootstrap-timepicker timepicker">
-								            <input id="timepicker1" type="text" name = "delivery_time" value="<?php echo (isset($job[0]['delivery_time']) && !empty($job[0]['delivery_time']))?date("H:i", strtotime($job[0]['delivery_time'])):'';?>" class="form-control input-small">
-								            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-								        </div>
-										<div class="messageContainer text-danger"></div>
-									</div>	
-					         	</div>
-					         </div>
-			         	</div>
+									</div>
+				         		</div>
+			         		</div>
+			         	<?php } ?>
+			         	 <div class="row">
+				         	<div class="col-md-12">
+				         		<div class="row"> 
+										<label>Address</label>
+									<div class="col-md-12 input-group">
+										<input type="text" name="haddress" id= "haddress" class="form-control" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				         	</div>
+				         </div>
+				         	<div class="row">
+				         	<div class="col-md-12">
+				         		<div class="row"> 
+										<label>Street</label>
+									<div class="col-md-12 input-group">
+										<input type="text" name="hstreet" class="form-control" id ="hstreet" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				         	</div>
+				         </div>
+				        <div class="row">
+				        	<div class="col-md-12">
+				         		<div class="row"> 
+										<label>City</label>
+									<div class="col-md-12 input-group">
+										<input type="text" name="hcity" id= "hcity" class="form-control" onkeyup="ajaxSearch()" required>
+									 <div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
+										 <div id="autoSuggestionsList" ></div>
+									</div>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				         	</div>
+				         </div>
+				         <div class="row">
+				         	<div class="col-md-12">
+				         		<div class="row"> 
+										<label>State/Region</label>
+									<div class="col-md-12 input-group">
+										<input type="text" name="hstate" id= "hstate" class="form-control" onkeyup="ajaxSearch1()" required>
+										<div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
+											<div id="autoSuggestionsList1" ></div>
+										 </div>
+									</div>									
+								</div>
+								<div class="messageContainer text-danger"></div>
+							</div>
+						</div>
+				         <div class="row">
+				         	<div class="col-md-12"> 
+				         		<div class="row"> 
+										<label>Zip Code</label>
+									<div class="col-md-12 input-group">
+										<input type="text" name="hpincode" id= "hpincode" class="form-control" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>	
+				         	</div>
+				         </div>
+				       </div>
 		         	</div>
 		         	<div class="col-md-1 pull-right"> <button type="submit" class="btn btn-primary m-r" >Update</button> </div>
 	         	</div>
@@ -430,7 +515,7 @@
   	            	$("#response").addClass('alert-success');
   	            	$("#response").html(resp.msg);
   	            alert("Job updated successfully.");
-  	            	window.location.href = "<?php echo base_url(); ?>client/job_list";
+  	            	window.location.href = "<?php echo base_url(); ?><?php if($_SESSION['admin']['user_role']==6){?>client/job_list<?php } else {?>admin/job_list<?php }?>";
   	          	}
   	    	}
   	 
@@ -565,6 +650,46 @@
      	 $('#autoSuggestionsList1').hide();
      	 
       }
+      function getHospital()
+      {
+          var html ="";
+    	  var value = $('#hospital_id').val();
+    	 
+    		$.post(base_url+"client/gethospitaladdress/"+value,{}, function(data)
+    				{
+    					
+    					$(data).each(function(index){
+    						
+    						$('#haddress').val(data[index].address);
+    						$('#hstreet').val(data[index].locality);
+    						$('#hcity').val(data[index].city);
+    						$('#hstate').val(data[index].state);
+    						$('#hpincode').val(data[index].pincode);
+    						
+    					});
+    					//alert(data.value);
+    			},'json'); 
+      }
+      $(document).ready(function(){
+  		
+    	  var html ="";
+    	 var value = <?php echo $_SESSION['admin']['hospital_id']?>;
+    	
+    		$.post(base_url+"client/gethospitaladdress/"+value,{}, function(data)
+    				{
+    					
+    					$(data).each(function(index){
+    						
+    						$('#haddress').val(data[index].address);
+    						$('#hstreet').val(data[index].locality);
+    						$('#hcity').val(data[index].city);
+    						$('#hstate').val(data[index].state);
+    						$('#hpincode').val(data[index].pincode);
+    						
+    					});
+    					//alert(data.value);
+    			},'json');
+          });
     </script>
 	
 	

@@ -15,69 +15,46 @@
 				<div class="form-control" id="response" style="display: none"> </div>
 				<form class="form-validation " method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
 						<div class="row">
-						<div class="form-group col-md-4">
-						<div class="row"> 
-						Company Name
-							<div class="col-md-12 input-group"> 
-								<input type="text" class="form-control" name="data[company_name]" value="<?php echo $client['company_name'];?>" placeholder="Company Name" required/>
-							</div>
-							<div class="messageContainer"></div>
+							<div class="col-md-4">
 							
-						</div>
-						</div>
-							<div class=" col-md-4">
-							<input type="hidden" name="data[id]" value="<?php echo $client['id'];?>">
-							<label>
-							Package
-							</label>
 							<div class="row"> 
-								<div class="col-md-12"> 
-									<select class="form-control" name="data[package_id]"  id="verified" required>
-										<option value="">Select</option>
-										<?php foreach($package as $item) {  ?>
-										<option value="<?php echo $item['id']; ?>"  <?php if($item['id']== $client['package_id']) { echo 'selected';}?>><?php echo $item['name']; ?></option>
-										<?php } ?>
-									</select>
+							<label>Company Name</label>
+								<div class="col-md-12 input-group"> 
+									<input type="text" class="form-control" name="data[company_name]" value="<?php echo $client['company_name'];?>" placeholder="Company Name" required/>
 								</div>
 								<div class="messageContainer"></div>
+								
 							</div>
+							<div class="row"> 
+							<label>
+							 First Name
+							</label>
+								<div class="col-md-10 input-group"> 
+									<input type="text" class="form-control" name="data[first_name]" placeholder="First Name" value="<?php if(isset($client['first_name'])) echo $client['first_name'];?>" required/>
+								</div>
+								<div class="messageContainer"></div>
+								
 							</div>
-						
-						<div class=" col-md-4">
-						<label>
-						 First Name
-						</label>
-						<div class="row"> 
-						
-							<div class="col-md-10 input-group"> 
-								<input type="text" class="form-control" name="data[first_name]" placeholder="First Name" value="<?php if(isset($client['first_name'])) echo $client['first_name'];?>" required/>
-							</div>
-							<div class="messageContainer"></div>
 							
-						</div>
-						</div>
 						
-						</div>
-						<div class="row">
-						<div class=" col-md-4">
+						
+						
+						<div class="row"> 
 						<label>
 						Last Name
 						</label>
-						<div class="row"> 
-						
 							<div class="col-md-10 input-group"> 
 								<input type="text" class="form-control" name="data[last_name]" placeholder="Last Name" value="<?php if(isset($client['last_name'])) echo $client['last_name'];?>" required/>
 							</div>
 							<div class="messageContainer"></div>
 							
 						</div>
-						</div>
-						<div class=" col-md-4">
+						
+	
+							<div class="row"> 
 						<label>
 						Mobile Number
 						</label>
-						<div class="row"> 
-						
 							<div class="col-md-10 input-group"> 
 								<input type="text" class="form-control" name="data[mobile]" placeholder="Name" value="<?php if(isset($client['mobile'])) echo $client['mobile'];?>"/>
 								
@@ -86,54 +63,54 @@
 							<div class="messageContainer"></div>
 							
 						</div>
+							
+						
+							
+						
 						</div>
 						<div class=" col-md-4">
-						<label>
-						Address
-						</label>
+				
 						<div class="row"> 
-						
-							<div class="col-md-10 input-group"> 
-								<input type="text" class="form-control" name="data[address]" placeholder="address"  value="<?php if(isset($client['address'])) echo $client['address'];?>" required/>
+							<label>User Name</label>
+								<div class="col-md-12 input-group"> 
+									<input type="text" class="form-control" name="data[email]" value="<?php echo $client['email'];?>" placeholder="Company Name" required/>
+								</div>
+								<div class="messageContainer"></div>
+								
 							</div>
-							<div class="messageContainer"></div>
-						</div>
-						</div>
 						
-						</div>
-						<div class="row">
-						<div class=" col-md-4">
-						<label>
-						City Name
-						</label>
-						<div class="row"> 
-						
-							<div class="col-md-10 input-group"> 
-								<input type="text" class="form-control" name="data[locality]" placeholder="City" id="locality" value="<?php if(isset($client['locality'])) echo $client['locality'];?>" required/>
-								<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" value= " <?php if(isset($client['latitude'])) echo $client['latitude'];?>" />
-								<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude" value = "<?php if(isset($client['locality'])) echo $client['longitude'];?> " />
+							
+							<div class="row"> 
+							<label>Password</label>
+								<div class="col-md-12 input-group"> 
+									<input type="text" class="form-control" name="data[text_password]" value="<?php echo $client['text_password'];?>" placeholder="Company Name" required/>
+								</div>
+								<div class="messageContainer"></div>
+								
 							</div>
-							<div class="messageContainer"></div>
-						</div>
-						</div>
 						
-						
-						<div class=" col-md-4">
-						<label>
-						Zip Code
-						</label>
-						<div class="row"> 
-							<div class="col-md-10 input-group"> 
-								<input type="text"  class="form-control" name="data[pincode]" placeholder="Pincode" value="<?php if(isset($client['pincode'])) echo $client['pincode'];?>" required/>
-							</div>
-							<div class="messageContainer"></div>
-						</div>
-						</div>
-						
-						<div class="form-group col-md-4">
-						
-						<div class="row"> 
-						Is Verified
+								
+								<input type="hidden" name="data[id]" value="<?php echo $client['id'];?>">
+								
+								<div class="row"> 
+								<label>
+								Package
+								</label>
+									<div class="col-md-12"> 
+										<select class="form-control" name="data[package_id]"  id="verified" required>
+											<option value="">Select</option>
+											<?php foreach($package as $item) {  ?>
+											<option value="<?php echo $item['id']; ?>"  <?php if($item['id']== $client['package_id']) { echo 'selected';}?>><?php echo $item['name']; ?></option>
+											<?php } ?>
+										</select>
+									</div>
+									<div class="messageContainer"></div>
+								</div>
+								
+							
+							
+								<div class="row"> 
+							<label>Is Verified</label>
 							<div class="col-md-12 input-group"> 
 								<select class="form-control" name="data[verified]"  id="verified" required>
 									<option value="">Select</option>
@@ -144,12 +121,76 @@
 							</div>
 							<div class="messageContainer"></div>
 						</div>
-						</div>
+							
 						</div>
 						
+											
+						
+					
+					
+						<div class=" col-md-4">
+						
+						<div class="row"> 
+						<label>
+						Address
+						</label>
+							<div class="col-md-10 input-group"> 
+								<input type="text" class="form-control" name="data[address]" placeholder="address"  value="<?php if(isset($client['address'])) echo $client['address'];?>" required/>
+							</div>
+							<div class="messageContainer"></div>
+						</div>
+						
+						
+						
+						<div class="row"> 
+						<label>
+						State
+						</label>
+							<div class="col-md-10 input-group"> 
+								<input type="text" class="form-control" name="data[state]" placeholder="City" id="" value="<?php if(isset($client['state'])) echo $client['state'];?>" required/>
+						
+							</div>
+							<div class="messageContainer"></div>
+						</div>
+						
+						
+						
+						<div class="row"> 
+						<label>
+						City Name
+						</label>
+							<div class="col-md-10 input-group"> 
+								<input type="text" class="form-control" name="data[locality]" placeholder="City" id="locality" value="<?php if(isset($client['locality'])) echo $client['locality'];?>" required/>
+								<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" value= " <?php if(isset($client['latitude'])) echo $client['latitude'];?>" />
+								<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude" value = "<?php if(isset($client['locality'])) echo $client['longitude'];?> " />
+							</div>
+							<div class="messageContainer"></div>
+						</div>
+					
+						
+						
+						
+						
+						<div class="row"> 
+						<label>
+						Zip Code
+						</label>
+							<div class="col-md-10 input-group"> 
+								<input type="text"  class="form-control" name="data[pincode]" placeholder="Pincode" value="<?php if(isset($client['pincode'])) echo $client['pincode'];?>" required/>
+							</div>
+							<div class="messageContainer"></div>
+						</div>
+						
+						
+						
+						
+					
+						
+						</div>
+							</div>
 						
 								
-						<div class="form-group pull-right">
+						<div class="form-group pull-right" style="margin-top:10px">
 							<button type="submit" class="btn btn-primary m-r">
 							Update
 							</button>

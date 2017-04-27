@@ -12,147 +12,60 @@
 	<div class="row"> 
 		<div class="col-md-12"> 
 				<div class="card card-block" style = "padding-left:40px">
-				<h2>Add Hospital</h2>
+				<h2>Add Client</h2>
 				<div class="form-control" id="response" style="display: none"> </div>
 				<form class="form-validation form-horizontal" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
 				<div class="row">
-						<div class="form-group col-md-4">
+					<div class="form-group col-md-4">
 						<div class="row"> 
-						 First Name
+							<label>Business Name</label>
+							<div class="col-md-12 input-group"> 
+								<input type="text" class="form-control" name="data[business_name]" placeholder="Business Name" required/>
+							</div>
+							<div class="messageContainer"></div>
+						</div>
+						<div class="row"> 
+							<label> First Name</label>
 							<div class="col-md-12 input-group"> 
 								<input type="text" class="form-control" name="data[first_name]" placeholder=" First Name" required/>
 							</div>
 							<div class="messageContainer"></div>
 							
 						</div>
-						</div>
-						<div class="form-group col-md-4">
 						<div class="row"> 
-						Last Name
+							<label>Last Name</label>
 							<div class="col-md-12 input-group"> 
 								<input type="text" class="form-control" name="data[last_name]" placeholder="Last Name" required/>
 							</div>
 							<div class="messageContainer"></div>
-							
 						</div>
-						</div>
-					 <div class="form-group col-md-4">
 						<div class="row"> 
-						Business Name
-							<div class="col-md-12 input-group"> 
-								<input type="text" class="form-control" name="data[business_name]" placeholder="Business Name" required/>
-							</div>
-							<div class="messageContainer"></div>
-							
-						</div>
-						</div>
-						
-						</div>
-						<div class="row">
-						<div class="form-group col-md-4">
-						<div class="row"> 
-						Hospital Name
-							<div class="col-md-12 input-group"> 
-								<input type="text" class="form-control" name="data[name]" placeholder="Hospital Name" required/>
-							</div>
-							<div class="messageContainer"></div>
-							
-						</div>
-						</div>
-						<div class="form-group col-md-4">
-						<div class="row"> 
-						Email
-							<div class="col-md-12 input-group"> 
-								<input type="email" class="form-control" name="data[email]" placeholder="Email" required/>
-							</div>
-							<div class="messageContainer"></div>
-						</div>
-						</div>
-						
-						<div class="form-group col-md-4">
-						<div class="row"> 
-						Mobile Number
+						<label>Mobile Number</label>
 							<div class="col-md-12 input-group"> 
 								<input type="text" class="form-control" name="data[mobile]" placeholder="Mobile number" required/>
 							</div>
 							<div class="messageContainer"></div>
 							
 						</div>
-						</div>
-						
-						</div>
-						<div class="row">
-							<div class="form-group col-md-4">
-								<div class="row"> 
-								Address
-									<div class="col-md-12 input-group"> 
-										<input type="text" class="form-control" name="data[address]" placeholder="Address" required/>
-									</div>
-									<div class="messageContainer"></div>
-								</div>
-							</div>
-							<div class="form-group col-md-4">
-							
-							<div class="row"> 
-							City
-								<div class="col-md-12 input-group"> 
-									<input type="text"  class="form-control" name="data[city]" value ="" placeholder="City" required/>
-								</div>
-								<div class="messageContainer"></div>
-							</div>
-							</div>
-							<div class="form-group col-md-4">
-							
-							<div class="row"> 
-							State
-								<div class="col-md-12 input-group"> 
-									<input type="text"  class="form-control" name="data[state]" value ="" placeholder="State" required/>
-								</div>
-								<div class="messageContainer"></div>
-							</div>
-							</div>
-							
-							
-						</div>
-						<div class="row">
-						<div class="form-group col-md-4">
-							<div class="row"> 
-							Street
-								<div class="col-md-12 input-group"> 
-									<input type="text" class="form-control" name="data[locality]" placeholder="Street" id="locality" required/>
-									<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" required/>
-									<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude" required/>
-								</div>
-								<div class="messageContainer"></div>
-							</div>
-							</div>
-						<div class="form-group col-md-4">
-						
+					</div>
+					<div class="form-group col-md-4">
 						<div class="row"> 
-						Zip Code
+						<label>Email</label>
 							<div class="col-md-12 input-group"> 
-								<input type="text"  class="form-control" name="data[pincode]" placeholder="Pincode" required/>
-								<input type="hidden"  class="form-control" name="password" value ="<?php echo $password['text_password'] ?>" placeholder="Pincode" required/>
+								<input type="email" class="form-control" name="data[email]" placeholder="Email" required/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
-						</div>
-						<div class="form-group col-md-4">
 						
 						<div class="row"> 
-						Password
+						<label>Password</label>
 							<div class="col-md-12 input-group"> 
 								<input type="text"  class="form-control" name="data[password]" value ="<?php echo $password['text_password'] ?>" placeholder="Password" required/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
-						</div>
-						</div>
-						<div class = "row">
-							<div class="form-group col-md-4">
-						
 						<div class="row"> 
-						Is Verified
+						<label>Is Verified</label>
 							<div class="col-md-12 input-group"> 
 								<select class="form-control" name="data[verified]"  id="verified" required>
 									<option value="">Select</option>
@@ -163,8 +76,50 @@
 							</div>
 							<div class="messageContainer"></div>
 						</div>
+						<div class="row"> 
+								<label>Address</label>
+									<div class="col-md-12 input-group"> 
+										<input type="text" class="form-control" name="data[address]" placeholder="Address" required/>
+									</div>
+									<div class="messageContainer"></div>
+								</div>
+					</div>
+					<div class="form-group col-md-4">
+							
+							<div class="row"> 
+							<label>City</label>
+								<div class="col-md-12 input-group"> 
+									<input type="text"  class="form-control" name="data[city]" value ="" placeholder="City" required/>
+								</div>
+								<div class="messageContainer"></div>
+							</div>
+							<div class="row"> 
+							<label>State</label>
+								<div class="col-md-12 input-group"> 
+									<input type="text"  class="form-control" name="data[state]" value ="" placeholder="State" required/>
+								</div>
+								<div class="messageContainer"></div>
+							</div>
+				
+						<div class="row"> 
+							<label>Street</label>
+								<div class="col-md-12 input-group"> 
+									<input type="text" class="form-control" name="data[locality]" placeholder="Street" id="locality" required/>
+									<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" required/>
+									<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude" required/>
+								</div>
+								<div class="messageContainer"></div>
+							</div>
+						<div class="row"> 
+						<label>Zip Code</label>
+							<div class="col-md-12 input-group"> 
+								<input type="text"  class="form-control" name="data[pincode]" placeholder="Pincode" required/>
+								<input type="hidden"  class="form-control" name="password" value ="<?php echo $password['text_password'] ?>" placeholder="Pincode" required/>
+							</div>
+							<div class="messageContainer"></div>
 						</div>
-						</div>						
+					</div>
+				</div>	
 						<div class="form-group pull-right">
 							<button type="submit" class="btn btn-primary m-r">
 							Submit

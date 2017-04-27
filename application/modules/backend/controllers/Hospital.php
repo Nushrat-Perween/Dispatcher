@@ -42,7 +42,6 @@ class Hospital extends MX_Controller {
 	
 	public function getCustomerList ()
 	{
-		
 		$this->load->library('dispatcher/HospitalLib');
 		$customerlist = $this->hospitallib->getCustomerList ();
 		$this->template->set ('customerlist', $customerlist );
@@ -162,6 +161,9 @@ class Hospital extends MX_Controller {
 		//print_r($patient);
 		$customer = $this->hospitallib->getCustomerListByCustomerId ($job[0]['job_contact_id']);
 	//print_r($customer);
+		$this->load->library('dispatcher/UserLibNew');
+		$hospital_list = $this->userlibnew->gettAllHospital ();
+		$this->template->set ('hospitallist', $hospital_list );
 		$this->template->set ( 'patient', $patient );
 		$this->template->set ( 'customer', $customer );
 		$this->template->set ( 'job', $job );

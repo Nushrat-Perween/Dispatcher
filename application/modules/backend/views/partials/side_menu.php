@@ -119,7 +119,7 @@
                   <a class="dropdown-item"  href="<?php echo base_url();?>admin/hospital_list">
                        <i class="material-icons text-info" aria-hidden="true">
                       playlist_add_check
-                    </i> <span>Hospital</span>
+                    </i> <span>Client</span>
                   </a>
                  
                 </div>
@@ -132,14 +132,14 @@
 <i class="material-icons " aria-hidden="true">
 directions_bike
 </i>
-Field Worker</a>
+Driver</a>
 <div class="dropdown-menu dropdown-menu-right">
 
 
 <a class="dropdown-item"  href="<?php echo base_url();?>admin/field_worker_list">
 <i class="material-icons text-info" aria-hidden="true">
 playlist_add_check
-</i> <span> Fieldworker </span>
+</i> <span> Driver </span>
 </a>
 <a class="dropdown-item" href="<?php echo base_url();?>admin/error_screen">
 <i class="fa fa-bicycle " style="margin-right:7px" aria-hidden="true">

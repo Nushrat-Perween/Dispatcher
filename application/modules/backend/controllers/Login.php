@@ -160,7 +160,120 @@ class Login extends MX_Controller {
 		//session_destroy ();
 	}
 	
-
+	/**
+	 * Call Forgot Password Page
+	 */
+	public function forgot_password (){
+			
+		$this->template->set ( 'page', 'forgot password' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout ('login')
+		->title ( 'Dispatcher | Login' )
+		->set_partial ( 'header', 'partials/header_home' );
+	
+		$this->template->build ('forgot_password');
+	}
+	
+	/**
+	 * Function To Recover the password
+	 */
+	public function send_password_reset_instruction ()
+	{
+		$response = array();
+		$this->load->library('dispatcher/AdminLib');
+		$emailid = $this->input->post('email');
+		$emailchk = $this->adminlib->getAdminByUserName ($emailid);
+		if($emailchk[0]['email'] == $emailid)
+		{
+			if($emailchk[0]['verified'] == 1)
+			{
+				if($emailchk[0]['is_blocked'] == 0)
+				{
+					$this->load->library('encrypt');
+					$name = $emailchk[0]['first_name']." ".$emailchk[0]['last_name'];
+					$encrypted_string = $this->encrypt->encode($emailid);
+					$url = base_url('admin/reset_password?token='.urlencode($encrypted_string));
+					$this->load->library('email');
+					$this->email->initialize(array(
+						  'protocol' => 'smtp',
+						  'smtp_host' => 'ssl://smtp.googlemail.com',
+						  'smtp_port' => '465',
+						  'smtp_user' => 'nushahmad04@gmail.com', // change it to yours
+						  'smtp_pass' => '17@nushahmad', // change it to yours
+						  'mailtype' => 'html',
+						  'charset' => 'iso-8859-1',
+						  'wordwrap' => TRUE,
+						  'crlf' => "\r\n",
+  			 			  'newline' => "\r\n"
+					));
+					$this->email->from('nushahmad04@gmail.com', 'Nushrat Perween');
+					$this->email->to('nushahmad04@gmail.com');
+					//$this->email->cc('another@another-example.com');
+					//$this->email->bcc('them@their-example.com');
+					$this->email->subject('Password Recovery Of Dispatcher');
+					$msg = "Dear ".$name." <br><br>You have requested help with recovering your Dispatcher account password.
+							Please click on the link below to reset your password. If you have any questions or issues please contact our 
+							customer care at 123456. <br><br>URL : ".$url."<br><br>Regards,<br>Dispatcher.com";
+					$this->email->message($msg);
+					$this->email->send();
+					$this->email->print_debugger();
+					$response['status'] = 1;
+					$response['msg'] = "Password reset instructions have been sent to your email.";
+				} else {
+					$response['status'] = 0;
+					$response['msg'] = "This account is blocked.";
+				}
+			} else {
+				$response['status'] = 0;
+				$response['msg'] = "This account is not verified.";
+			}
+		
+		}
+		else
+		{
+			$response['status'] = 0;
+			$response['msg'] = "This Email Id is not exist.";
+		}
+		echo json_encode($response);
+	}
+	
+	/**
+	 * Call Reset Password Page
+	 */
+	public function reset_password (){
+		$this->load->library('encrypt');
+		$encrypted_emailid = $_GET['token'];
+		$emailid = $this->encrypt->decode($encrypted_emailid);
+		$this->template->set('emailid', $emailid);
+		$this->template->set ( 'page', 'forgot password' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout ('login')
+		->title ( 'Dispatcher | Reset Password' )
+		->set_partial ( 'header', 'partials/header_home' );
+	
+		$this->template->build ('reset_password');
+	}
+	
+	/**
+	 * Call Reset Password Page
+	 */
+	public function save_reset_password (){
+		$response = array();
+		$this->load->library('dispatcher/AdminLib');
+		$param['email'] = $this->input->post('email');
+		$param['text_password'] = $this->input->post('password');
+		$param['password'] = md5($param['text_password']);
+		$resp = $this->adminlib->resetPassword ($param);
+		if($resp) {
+			$response['status'] = 1;
+			$response['msg'] = "Your account password reset successfully.";
+		} else {
+			$response['status'] = 0;
+			$response['msg'] = "Please check some error is there.";
+		}
+		echo json_encode($response);
+		
+	}
 	
 }
 

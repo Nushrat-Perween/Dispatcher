@@ -109,6 +109,7 @@ class Hospital extends MX_Controller {
 			$data['hospital_id'] = $this->input->post('hospital_id');
 		}
 		$data['job_name'] = $this->input->post('jobname');
+		$data['priority'] = $this->input->post('priority');
 		$data['description'] = $this->input->post('jobdesc');
 		$data['lookup_name'] = $this->input->post('jobname');
 		$data['street'] = $this->input->post('street');

@@ -146,6 +146,7 @@ Fieldworker
 </div>
 </div>
 <div class="row">
+
 <div class="form-group m-b col-md-6">
 <label>
 Job Priority
@@ -179,9 +180,6 @@ Job Priority
 	<div class="messageContainer"></div>
 </div>
 </div>
-</div>
-
-<div class="row">
 <div class="form-group m-b col-md-6">
 <label>
 Time Of Job Notification To Send On Mobile Device
@@ -199,8 +197,12 @@ Time Of Job Notification To Send On Mobile Device
 	<div class="messageContainer"></div>
 </div>
 </div>
+</div>
 
-<div class="form-group col-md-6">
+<div class="row">
+
+
+<div class="form-group col-md-6" style="margin-left: 20px">
 <label>
 &nbsp;
 </label>

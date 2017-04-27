@@ -19,43 +19,48 @@
 	// Enable pusher logging - don't include this in production
 
 
-	Pusher.log = function(message) {
-		if (window.console && window.console.log) {
-			window.console.log(message);
-		}
-	};
-	var client_id = <?php echo $this->session->userdata('admin')['client_id'];?>;
-	var pusher = new Pusher('<?php echo $pusher_key;?>'); 
-	var channel = pusher.subscribe('test_channel');
-	channel.bind('my_event', function(pusherdata) {
-
-		$.post("<?php echo base_url();?>admin/getAllNotification",{},function(data) {
-			$("#notification_count").empty();
-			$("#notification_bar").empty();
-		
-			var divdata = "";
-			document.getElementById('notification_count').innerHTML = data.admin_notification_count;
-			 $(data.admin_notification).each(function(index) {
-				  divdata = divdata+"<li>"+data.admin_notification[index].title+"<br>"+data.admin_notification[index].notification+"</li>";
-			 });
+		Pusher.log = function(message) {
+			if (window.console && window.console.log) {
+				window.console.log(message);
+			}
+		};
+		var client_id = <?php echo $this->session->userdata('admin')['client_id'];?>;
+		var pusher = new Pusher('<?php echo $pusher_key;?>'); 
+		var channel = pusher.subscribe('test_channel');
+		channel.bind('my_event', function(pusherdata) {
+			<?php 
+					if($_SESSION['admin']['is_notification_active'] == 1) {
+				?>
+						$.post("<?php echo base_url();?>admin/getAllNotification",{},function(data) {
+							$("#notification_count").empty();
+							$("#notification_bar").empty();
+						
+							var divdata = "";
+							document.getElementById('notification_count').innerHTML = data.admin_notification_count;
+							 $(data.admin_notification).each(function(index) {
+								  divdata = divdata+"<li>"+data.admin_notification[index].title+"<br>"+data.admin_notification[index].notification+"</li>";
+							 });
+							
+							document.getElementById('notification_bar').innerHTML = divdata;
+							//alert(JSON.stringify(data));
+						},'json');
+				
+						if(client_id == pusherdata.client_id) {
+							// General Notification
+							// Play sound
+						    document.getElementById('audiotag1').play ();
+							$.gritter.add ({
+								title: pusherdata.title,
+								text: pusherdata.admin_message,
+								image: '<?php echo asset_url()."/images/logo-icon.png";?>',
+								sticky: true
+							});
+						}
+						<?php }?>
+					return true;
 			
-			document.getElementById('notification_bar').innerHTML = divdata;
-			//alert(JSON.stringify(data));
-		},'json');
+		});
 
-		if(client_id == pusherdata.client_id) {
-			// General Notification
-			// Play sound
-		    document.getElementById('audiotag1').play ();
-			$.gritter.add ({
-				title: pusherdata.title,
-				text: pusherdata.admin_message,
-				image: '<?php echo asset_url()."/images/logo-icon.png";?>',
-				sticky: true
-			});
-		}
-		return true;
-	});
 </script>
 <style>
 .main-panel > .header .navbar-nav .dropdown-toggle > .tag {
@@ -117,7 +122,7 @@
               </a>
               <?php }?>
                 <div class="nav-item nav-link dropdown">
-               <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <img src='<?php  if($admindata['profile_pic']!='') {echo asset_url().$admindata['profile_pic'];} else { echo base_url()."assets/images/avatar.jpg"; }?>' style ="position: relative;width: 25px;height: 25px;display: inline-block;" alt="" class="img-responsive img-circle"/>&nbsp;
+               <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <img src='<?php  if($admindata['profile_pic']!='') {echo asset_url().$admindata['profile_pic'];} else { echo asset_url()."images/avatar.jpg"; }?>' style ="position: relative;width: 25px;height: 25px;display: inline-block;" alt="" class="img-responsive img-circle"/>&nbsp;
 				<span class="hidden-xs">
 					<?php echo $admindata['first_name']." ".$admindata['last_name'];?>   <i class="material-icons">arrow_drop_down</i>
 				</span>

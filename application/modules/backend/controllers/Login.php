@@ -55,9 +55,12 @@ class Login extends MX_Controller {
 			
 			$this->session->set_userdata('chat_admin',$chat_admin);
 			$notification_param = array();
+			$notification = array();
 			$notification_param['client_id'] = $this->session->userdata('admin')['client_id'];
 			$this->load->library('dispatcher/NotificationLib');
-			$notification = $this->notificationlib->getAllAdminNotification($notification_param);
+			if($_SESSION['admin']['is_notification_active'] == 1) {
+				$notification = $this->notificationlib->getAllAdminNotification($notification_param);
+			}
 			$this->session->set_userdata('admin_notification_count',count($notification));
 			$this->session->set_userdata('admin_notification',$notification);
 
@@ -156,6 +159,9 @@ class Login extends MX_Controller {
 		$this->template->build ('coming_soon');
 		//session_destroy ();
 	}
+	
+
+	
 }
 
 ?>

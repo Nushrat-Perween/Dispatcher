@@ -439,6 +439,7 @@
 		  	$result = $query->result_array ();
 		  	return $result;
 		  }
+		  
 		  public function getJobScheduleByFieldworkerId($id)
 		  {
 		  	$this->db->select ( 'j.id as job_id,j.job_name,j.start_time,ja.action,js.status,date_add(j.start_time, INTERVAL j.estimated_duration hour) as end_time1,j.end_time,ad.current_location' );
@@ -452,6 +453,7 @@
 		  	$result = $query->result_array ();
 		  	return $result;
 		  }
+		  
 		  public function getTripDetails($id)
 		  {
 		  	$this->db->select('jh.latitude,jh.longitude,(j.id) as job_id,jh.last_known_location')->from(TABLES::$JOB_HISTORY.' AS jh',false)

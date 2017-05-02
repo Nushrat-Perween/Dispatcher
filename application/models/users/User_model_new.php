@@ -97,6 +97,7 @@ class User_model_new extends CI_Model {
 		$this->db->where('a.user_role',6);
 		$this->db->where('a.client_id',$client_id);
 		$query = $this->db->get ();
+		//echo $this->db->last_query ();
 		$result = $query->result_array ();
 		return $result;
 	}

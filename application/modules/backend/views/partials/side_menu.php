@@ -1,5 +1,5 @@
  <!-- Site admin  -->
-   <?php if($_SESSION['admin']['user_role']==1 || $_SESSION['admin']['user_role']==2) {?>
+   <?php if($_SESSION['admin']['user_role']==1 || $_SESSION['admin']['user_role']==2) { ?>
         <nav class="header-secondary navbar  bg-faded shadow">
           <div class="navbar-collapse">
             <a class="navbar-heading hidden-md-down" href="<?php echo base_url();?>admin/dashboard">
@@ -120,6 +120,11 @@
                        <i class="material-icons text-info" aria-hidden="true">
                       playlist_add_check
                     </i> <span>Client</span>
+                  </a>
+                  <a class="dropdown-item"  href="<?php echo base_url();?>admin/branch_list">
+                       <i class="material-icons text-info" aria-hidden="true">
+                      playlist_add_check
+                    </i> <span>Branch</span>
                   </a>
                  
                 </div>

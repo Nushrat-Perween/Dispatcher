@@ -160,6 +160,11 @@ $route['admin/forgot_password'] = 'backend/Login/forgot_password';
 $route['admin/send_password_reset_instruction'] = 'backend/Login/send_password_reset_instruction';
 $route['admin/reset_password'] = 'backend/Login/reset_password';
 $route['admin/save_reset_password'] = 'backend/Login/save_reset_password';
+$route['admin/add_branch'] = 'backend/Branch/add_branch';
+$route['admin/save_branch'] = 'backend/Branch/save_branch';
+$route['admin/branch_list'] = 'backend/Branch/branch_list';
+$route['admin/edit_branch/([0-9]+)'] = 'backend/Branch/edit_branch/$1';
+$route['admin/update_branch'] = 'backend/Branch/update_branch';
 
 // Chat 
 $route['admin/open_chat_box'] = 'backend/Chat/open_chat_box';

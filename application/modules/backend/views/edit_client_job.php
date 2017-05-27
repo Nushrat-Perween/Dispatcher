@@ -805,6 +805,8 @@
         var autocomplete = new google.maps.places.Autocomplete(input, options);
         autocomplete.addListener('place_changed', function () {
             var place = autocomplete.getPlace();
+            $('#city').val(place.address_components[1].long_name);
+            $('#state').val(place.address_components[2].long_name);
             if (!place.geometry) {
                 window.alert("Autocomplete's returned place contains no geometry");
                 return;
@@ -820,6 +822,8 @@
         var  autocomplete1 = new google.maps.places.Autocomplete(input, options);
          autocomplete1.addListener('place_changed', function () {
              var place = autocomplete1.getPlace();
+             $('#hcity').val(place.address_components[1].long_name);
+             $('#hstate').val(place.address_components[2].long_name);
              if (!place.geometry) {
                  window.alert("Autocomplete's returned place contains no geometry");
                  return;

@@ -20,7 +20,7 @@ class Hospital extends MX_Controller {
 		$this->template->set ('joblist', $joblist );
 		$this->template->set ( 'page', 'Job List' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Job List' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -31,7 +31,7 @@ class Hospital extends MX_Controller {
 	public function searchJobByDate (){
 		$this->template->set ( 'page', 'Job List' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Job List' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -47,7 +47,7 @@ class Hospital extends MX_Controller {
 		$this->template->set ('customerlist', $customerlist );
 		$this->template->set ( 'page', 'Job List' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Job List' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -63,7 +63,7 @@ class Hospital extends MX_Controller {
 		$this->template->set ('patientlist', $patientlist );
 		$this->template->set ( 'page', 'Job List' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Job List' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -74,12 +74,18 @@ class Hospital extends MX_Controller {
 	}
 	
 	public function addJob (){
+		$param = array();
+		$param['user_role'] = 7;
+		$param['client_id'] = $_SESSION['admin']['client_id'];
 		$this->load->library('dispatcher/UserLibNew');
+		$this->load->library('dispatcher/BranchLib');
 		$hospital_list = $this->userlibnew->gettAllHospital ();
 		$this->template->set ('hospitallist', $hospital_list );
+		$branch_list = $this->branchlib->getAllBranch ($param);
+		$this->template->set ('branchlist', $branch_list );
 		$this->template->set ( 'page', 'Job List' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Job List' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -91,7 +97,7 @@ class Hospital extends MX_Controller {
 	public function report (){
 		$this->template->set ( 'page', 'Job List' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Job List' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -107,6 +113,7 @@ class Hospital extends MX_Controller {
 		{
 			$data['hospital_id'] = $this->input->post('hospital_id');
 		}
+		$data['client_id'] = $this->session->userdata('admin')['client_id'];
 		$data['job_name'] = $this->input->post('jobname');
 		$data['priority'] = $this->input->post('priority');
 		$data['description'] = $this->input->post('jobdesc');
@@ -134,7 +141,7 @@ class Hospital extends MX_Controller {
 		$data['longitude'] = $this->input->post('longitude');
 		$data['special_instruction'] = $this->input->post('sintruction');
 		$data['created_date'] = date('Y-m-d H:i:s');
-		$data['created_by'] = $_SESSION['admin']['id'];
+		$data['created_by'] =  $this->session->userdata('admin')['id'];
 		//print_r($data);
 		$this->load->library('dispatcher/HospitalLib');
 		//print_r($data);

@@ -1,121 +1,144 @@
+<style>
+.form-group{margin-bottom:0px}
+.content-header-title{font-size:16px}
+</style>
+
 <link rel="stylesheet" href="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.css"/>
-<div class="content-view">
-	<div class="card" style="padding:20px">
-		<form class="form-validation form-horizontal" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
-			<div class="card-block" style="padding-bottom:40px">
-		   		<div class="row">
-		   		<div class="col-md-3">
-		   			<div class="row">
-				   		<h6 class="text-danger"> <b>Basic Information</b></h6>
-				   		</div>
-			         	<div class="row">
+<div class="container">
+  <div class="content">
+    <div class="content-container">
+		<div class="content-header">
+		<h2 class="content-header-title">
+				Add Job 
+			</h2>
+		</div>
+		<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+		<form class="form-validation form-horizontal" method="POST" action="" name="job_form" id="job_form" enctype="multipart/form-data">
+		   <div class="row">
+		   <ul class="nav nav-tabs">
+			  <li class="active"><a data-toggle="tab" href="#basic">Basic</a></li>
+			  <li><a data-toggle="tab" href="#contact">Contact</a></li>
+			  <li><a data-toggle="tab" href="#address">Address</a></li>
+			    <?php if($_SESSION['admin']['user_role']==5 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==3) {?> <li><a data-toggle="tab" href="#assign">Assign</a></li><?php }?>
+			</ul>
+				<div class="tab-content" >
+					<div id="basic" class="tab-pane fade in active">
+					<div class=" col-md-10 col-md-offset-1">
+						<div class="col-md-6">
+				         <div class="row">
 				         	<div class="col-md-12">
 					         	<div class="row"> 
 										<label>Job Name</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="jobname" id= "jobname" class="form-control" required>
+									<div class="col-md-12 form-group">
+										<input type="text" name="job[job_name]" id= "jobname" class="form-control" required>
 									</div>
 									<div class="messageContainer text-danger"></div>
 								</div>
 				         	</div>
 			         	</div>
-			         	<div class="row">
-				         	<div class="col-md-12">
-					         	<div class="row"> 
-										<label>Job Priority</label>
-									<div class="col-md-12 input-group">
-										<select name="priority" id="priority" class="form-control" >
+				         	<div class="row">
+					         	<div class="col-md-12">
+						         	<div class="row"> 
+											<label>Job Priority</label>
+										<div class="col-md-12 form-group">
+											<select name="job[priority]" id="priority" class="form-control" >
 											<option value="">Select</option>
 											<option value="0">AM</option>
 											<option value="1">Timed</option>
 											<option value="2">Stat</option>
 											<option value="3">Today</option>
 										</select>
+										</div>
+										<div class="messageContainer text-danger"></div>
 									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
+					         	</div>
 				         	</div>
-			         	</div>
-			         	
-			         	<div class="row">
-				         	<div class="col-md-12">
-				         		<div class="row"> 
-										<label>Description</label>
-									<div class="col-md-12 input-group">
-										<textarea  name="jobdesc" class="form-control" rows="2"> </textarea>
+		         			<div class="row">
+					        	<div class="col-md-12">
+					        		<div class="row"> 
+											<label>Patient Name</label>
+										<div class="col-md-12 form-group">
+											<input type="text" name="patient[name]" id= "pname" class="form-control" required>
+										</div>
+										<div class="messageContainer text-danger"></div>
 									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
-				         	 </div>
-				         </div>
-	         			<div class="row">
-				        	<div class="col-md-12">
-				        		<div class="row"> 
-										<label>Patient Name</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="pname" id= "pname" class="form-control" required>
-									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
+					        	</div>
 				        	</div>
-			        	</div>
-			        	<div class="row">
-				         	<div class="col-md-12">
-				         		<div class="row"> 
-										<label>Room Number</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="rnumber" id= "rnumber" class="form-control" required>
+				        		<div class="row">
+					         	<div class="col-md-12">
+					         		<div class="row"> 
+											<label>Room Number</label>
+										<div class="col-md-12 form-group">
+											<input type="text" name="patient[room_no]" id= "rnumber" class="form-control" required>
+										</div>
+										<div class="messageContainer text-danger"></div>
 									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
+					         	</div>
 				         	</div>
-			         	</div>
-			         	<div class="row"> 
-				         	<div class="col-md-12">
-				         		<div class="row"> 
-										<label>Tests</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="tests" id= "tests" class="form-control" required>
+				         	<div class="row"> 
+					         	<div class="col-md-12">
+					         		<div class="row"> 
+											<label>Tests</label>
+										<div class="col-md-12 form-group">
+											<input type="text" name="patient[test]" id= "tests" class="form-control" required>
+										</div>
+										<div class="messageContainer text-danger"></div>
 									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
+					         	</div>
 				         	</div>
-			         	</div>
-			         	<div class="row"> 
-				         	<div class="col-md-12">
-				         		<div class="row"> 
-										<label>Caller</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="caller" id= "caller" class="form-control" required>
+				        	</div>
+				        	<div class="col-md-6">
+				        
+				         	<div class="row"> 
+					         	<div class="col-md-12">
+					         		<div class="row"> 
+											<label>Caller</label>
+										<div class="col-md-12 form-group">
+											<input type="text" name="patient[caller]" id= "caller" class="form-control" required>
+										</div>
+										<div class="messageContainer text-danger"></div>
 									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
+					         	</div>
 				         	</div>
-			         	</div>
-			         	<div class="row"> 			         	
-		         			<div class="col-md-12">
-		         				<div class="row"> 
-										<label>Special instrunction</label>
-									<div class="col-md-12 input-group">
-										<textarea  name="sintruction" class="form-control" rows="1"> </textarea>
+				         	<div class="row">
+					         	<div class="col-md-12">
+					         		<div class="row"> 
+											<label>Description</label>
+										<div class="col-md-12 form-group">
+											<textarea  name="job[description]" class="form-control" rows="3"> </textarea>
+										</div>
+										<div class="messageContainer text-danger"></div>
 									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
+					         	 </div>
+					         </div>
+				         	<div class="row"> 			         	
+			         			<div class="col-md-12">
+			         				<div class="row"> 
+											<label>Special instrunction</label>
+										<div class="col-md-12 form-group">
+										<textarea  name="patient[special_instruction]" class="form-control" rows="3"> </textarea>
+										</div>
+										<div class="messageContainer text-danger"></div>
+									</div>
+			         			</div>
 		         			</div>
-	         			</div>
-					   
-				      </div>
-				       <div class="col-md-3">
-				      
-				         <div class="row"> 
-					   		<h6 class="text-danger"> <b>Contact</b></h6>
-					   	</div>
+		         			</div>
+						   
+					      </div>
+					</div>
+				
+	<!--    Contact -->
+					<div id="contact" class="tab-pane fade">
+					<div class=" col-md-10 col-md-offset-1">
+						<div class=" col-md-6">
+
 					   	<div class="row">
 				        	<div class="col-md-12">
 				        		<div class="row"> 
 										<label>First Name</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="fname" id= "fname" class="form-control" required>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[first_name]" id= "fname" class="form-control" required>
 									</div>
 									<div class="messageContainer text-danger"></div>
 								</div>	
@@ -125,8 +148,8 @@
 				         	<div class="col-md-12">
 				         		<div class="row"> 
 										<label>Last Name</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="lname" id= "end_dalnamete" class="form-control" required>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[last_name]" id= "end_dalnamete" class="form-control" required>
 									</div>
 									<div class="messageContainer text-danger"></div>
 								</div>	
@@ -136,19 +159,21 @@
 				         	<div class="col-md-12">
 				         		<div class="row"> 
 										<label>Mobile No</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="mobno" id= "mobno" class="form-control" required>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[mobile]" id= "mobno" class="form-control" required>
 									</div>
 									<div class="messageContainer text-danger"></div>
 								</div>	
 				         	</div>
 				         </div>
+				         </div>
+				         <div class="col-md-6">
 				         <div class="row"> 
 				         	<div class="col-md-12">
 				         		<div class="row"> 
 									<label>	Email Id</label>
-									<div class="col-md-12 input-group">
-										<input type="email" name="email" id= "email" class="form-control" required>
+									<div class="col-md-12 form-group">
+										<input type="email" name="contact[email]" id= "email" class="form-control" required>
 									</div>
 									<div class="messageContainer text-danger"></div>
 								</div>	
@@ -158,207 +183,310 @@
 				         	<div class="col-md-12">
 				         		<div class="row"> 
 									<label>	Delivery Date</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="delivery_date" id= "start_date" class="form-control">
+									<div class="col-md-12 form-group">
+										<input type="text" name="job[delivery_date]" id= "start_date" class="form-control">
 									</div>
 									<div class="messageContainer text-danger"></div>
 								</div>	
 				         	</div>
 				         </div>
 				         <div class="row"> 
-				         	<div class="col-md-12">
-				         		<div class="row">
+				         	
+				         		<div class="row" style="padding-left:13px">
 									<label>	Delivery Time</label>
-									<div class="input-group bootstrap-timepicker timepicker">
-							            <input id="timepicker1" type="text" name = "delivery_time" class="form-control input-small">
+									<div class="col-md-12 form-group" >
+									<div class="input-group bootstrap-timepicker timepicker ">
+							            <input id="timepicker1" type="text" name = "job[delivery_time]" class="form-control input-small">
 							            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
 							        </div>
+							        </div>
 									<div class="messageContainer text-danger"></div>
-								</div>	
-				         	</div>
+								</div>
 				         </div>
 		         	</div>
-				    
-				       <div class="col-md-3">
-				         <h6 class="text-danger"> <b>Pickup Address</b></h6>
-					    <div class="row">
-				        	<div class="col-md-12">
-				        		<div class="row"> 
-										<label>Location/ Lookup Name</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="lookupname" id= "lookupname" class="form-control" required>
-									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
-				        	</div>
-				        </div>
-				        <div class="row">
-				         	<div class="col-md-12">
-				         		<div class="row"> 
-										<label>Apartment / Suit / Building</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="building" id= "building" class="form-control" required>
-									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
-				         	</div>
-				         </div>
-				         	<div class="row">
-				         	<div class="col-md-12">
-				         		<div class="row"> 
-										<label>Street</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="street" class="form-control" id ="locality" required>
-										<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" required/>
-										<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude" required/>
-									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
-				         	</div>
-				         </div>
-				        <div class="row">
-				        	<div class="col-md-12">
-				         		<div class="row"> 
-										<label>City</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="city" id= "city" class="form-control" onkeyup="ajaxSearch()" required>
-									 <div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
-										 <div id="autoSuggestionsList" ></div>
-									</div>
-									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
-				         	</div>
-				         </div>
+					</div>
+				</div>
+	<!--     Address -->
+				
+					<div id="address" class="tab-pane fade">
+					<div class=" col-md-10 col-md-offset-1">
+					   <div class="row">
+				       <div class=" col-md-6">
 				         <div class="row">
-				         	<div class="col-md-12">
-				         		<div class="row"> 
-										<label>State/Region</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="state" id= "state" class="form-control" onkeyup="ajaxSearch1()" required>
-										<div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
-											<div id="autoSuggestionsList1" ></div>
-										 </div>
-									</div>									
-								</div>
-								<div class="messageContainer text-danger"></div>
-							</div>
-						</div>
-					
-				         <div class="row">
-				         	<div class="col-md-12"> 
-				         		<div class="row"> 
-										<label>Zip Code</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="postalcode" id= "postalcode" class="form-control" required>
-									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>	
-				         	</div>
-				         </div>
-				    
-	         		</div>
-				       <div class="col-md-3">
-				   			<div class="row">
-					   		<h6 class="text-danger"> <b> Delivery Address</b></h6>
-					   	</div>
-					   		<?php if($_SESSION['admin']['user_role']==5 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==3){?>
+				   			<h3 class="content-header-title"> <b>Pickup Address</b></h3>
+				   		</div>
+				         <?php if($_SESSION['admin']['user_role']==5 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==3) {?>
 			         		<div class="row">
 				         		<div class="col-md-12">
 						         	<div class="row"> 
-											<label>Select Client</label>
-										<div class="col-md-12 input-group">
-											<select class="form-control" name="hospital_id" id="hospital_id" onchange="getHospital()">
-											<option value="">Select Client</option>
-												<?php foreach($hospitallist as $item){?>
-												<option value="<?php echo $item['id']?>"><?php echo $item['hospital_name']?></option>
-												<?php }?>
-											</select>
+											<label>Select Branch/Client</label>
+										<div class="col-md-12 form-group">
+											<input type="radio" name="contact[pickup_address_type]" onchange="getPickupBranchDiv();">&nbsp;&nbsp;Branch &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="radio" name="contact[pickup_address_type]" onchange="getPickupHospitalDiv();">&nbsp;&nbsp;Hospital
 										</div>
 										<div class="messageContainer text-danger"></div>
 									</div>
 				         		</div>
 			         		</div>
+			         	<div id="pickup_address_div">
+			         	</div>
 			         	
 			         	<?php } ?>
-			         	 <div class="row">
-				         	<div class="col-md-12">
-				         		<div class="row"> 
-										<label>Address</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="haddress" id= "haddress" class="form-control" required>
+					    
+				        		<div class="row"> 
+										<label>Location/ Lookup Name</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[pickup_lookup_name]" id= "lookupname" class="form-control" required>
 									</div>
 									<div class="messageContainer text-danger"></div>
 								</div>
-				         	</div>
-				         </div>
-				         	<div class="row">
-				         	<div class="col-md-12">
+				        	
+				       
+				         		<div class="row"> 
+										<label>Apartment / Suit / Building</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[pickup_building]" id= "building" class="form-control" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				         	
+				         		
+				         		
 				         		<div class="row"> 
 										<label>Street</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="hstreet" class="form-control" id ="hstreet" required>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[pickup_street]" class="form-control" id ="locality" required>
+										<input type="hidden" class="form-control" name="contact[pickup_latitude]" placeholder="City" id="latitude" />
+										<input type="hidden" class="form-control" name="contact[pickup_longitude]" placeholder="City" id="longitude" />
 									</div>
 									<div class="messageContainer text-danger"></div>
 								</div>
-				         	</div>
-				         </div>
-				        <div class="row">
-				        	<div class="col-md-12">
+				         
 				         		<div class="row"> 
-										<label>City</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="hcity" id= "hcity" class="form-control" onkeyup="ajaxSearch()" required>
-									 <div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
-										 <div id="autoSuggestionsList" ></div>
-									</div>
+									<label>City.</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[pickup_city]" id= "city" class="form-control" onkeyup="ajaxSearch()" required>
 									</div>
 									<div class="messageContainer text-danger"></div>
-								</div>
-				         	</div>
-				         </div>
-				         <div class="row">
-				         	<div class="col-md-12">
+								</div>	
 				         		<div class="row"> 
 										<label>State/Region</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="hstate" id= "hstate" class="form-control" onkeyup="ajaxSearch1()" required>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[pickup_state]" id= "state" class="form-control" onkeyup="ajaxSearch1()" required>
 										<div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
 											<div id="autoSuggestionsList1" ></div>
 										 </div>
 									</div>									
 								</div>
 								<div class="messageContainer text-danger"></div>
-							</div>
-						</div>
-					
-				         <div class="row">
-				         	<div class="col-md-12"> 
+								<div class="row"> 
+										<label>Zip Code</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[pickup_postalcode]" id= "postalcode" class="form-control" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+	         		</div>
+				       <div class="col-md-6">
+				   			<div class="row">
+					   		<h6 class="content-header-title"> <b> Delivery Address</b></h6>
+					   	</div>
+					   		<?php if($_SESSION['admin']['user_role']==5 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==3) {?>
+			         		
+						         	<div class="row"> 
+											<label>Select Branch/Client</label>
+										<div class="col-md-12 form-group">
+											<input type="radio" name="contact[delivery_address_type]" onchange="getBranchDiv();">&nbsp;&nbsp;Branch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="radio" name="contact[delivery_address_type]" onchange="getHospitalDiv();">&nbsp;&nbsp;Hospital
+										</div>
+										<div class="messageContainer text-danger"></div>
+									</div>
+				         		
+			         	<div id="address_div">
+			         	</div>
+			         	
+			         	<?php } ?>
+			         	 		<div class="row"> 
+										<label>Location/ Lookup Name</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[delivery_lookup_name]" id= "delevry_lookupname" class="form-control" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				         		<div class="row"> 
+										<label>Address</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[delivery_address]" id= "haddress" class="form-control" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				         		<div class="row"> 
+										<label>Street</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[delivery_street]" class="form-control" id ="hstreet" required>
+										<input type="hidden" class="form-control" name="contact[delivery_latitude]" placeholder="City" id="hlatitude" />
+										<input type="hidden" class="form-control" name="contact[delivery_longitude]" placeholder="City" id="hlongitude" />
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				         		<div class="row"> 
+										<label>City.</label>
+									<div class="col-md-12 form-group">
+									<input type="text" name="contact[delivery_city]" id= "hcity" class="form-control" onkeyup="ajaxSearch()" required>
+									 <div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
+										 <div id="autoSuggestionsList" ></div>
+									</div>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				         		<div class="row"> 
+										<label>State/Region</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[delivery_state]" id= "hstate" class="form-control" onkeyup="ajaxSearch1()" required>
+										<div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
+											<div id="autoSuggestionsList1" ></div>
+										 </div>
+									</div>									
+								</div>
+								<div class="messageContainer text-danger"></div>
+							
 				         		<div class="row"> 
 										<label>Zip Code</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="hpincode" id= "hpincode" class="form-control" required>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[delivery_zipcode]" id= "hpincode" class="form-control" required>
 									</div>
 									<div class="messageContainer text-danger"></div>
 								</div>	
-				         	</div>
-				         </div>
+				         	
 				       </div>
 	         	</div>
+					</div>
+					</div>
+				
+		
+			
+	<!--    Assign -->			
+			
+					<div id="assign" class="tab-pane fade">
+					<?php if($_SESSION['admin']['user_role']==5 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==3) {?>
+	         	<div class="row">
+	         	<div class=" col-md-10 col-md-offset-1">
+		   		<div class="col-md-6">
+				         		<div class="row"> 
+										<label>Start Date</label>
+									<div class="col-md-11  input-group">
+										<input  type="text" value="<?php if(isset($job)) {if($job['start_date'] != NULL)echo date("d-m-Y",strtotime($job['start_date']));else echo date("d-m-Y"); } else echo date("d-m-Y");?> " name="data[start_date]" id="start_date2" placeholder="Start Date" class="form-control" />
+										<span class="input-group-addon" ><i class="fa fa-calendar"></i></span>
+									</div>									
+								</div>
+								<div class="messageContainer text-danger"></div>
+							
+					
+				         		<div class="row"> 
+										<label>Estimated Duration</label>
+									<div class="col-md-11 input-group">
+										<input  type="text" value="<?php if(isset($job)) { if($job['estimated_duration'] != NULL)echo $job['estimated_duration']; }?>" name="data[estimated_duration]" id="estimated_duration" placeholder="Duration" class="form-control" />
+										<span class="input-group-addon" >Hr</span>
+									</div>									
+								</div>
+								<div class="messageContainer text-danger"></div>
+							
 	         	
-	         	<div class="col-md-12 pull-right" style="margin-top:10px"> <button type="submit" class="btn btn-primary m-r">Submit</button> </div> 
+	         			<div class="row">
+				         	<div class="col-md-12">
+				         		<div class="row"> 
+										<label>Job Priority</label>
+									<div class="col-md-12 form-group">
+										<select name="data[priority]" id="priority" class="form-control">
+											<option value="">Select </option>
+											<option value="0" <?php if(isset($job)) { if($job['priority'] == 0) { echo "selected";}}?>>AM</option>
+											<option value="1" <?php if(isset($job)) { if($job['priority'] == 1) { echo "selected";}}?>>Timed</option>
+											<option value="2" <?php if(isset($job)) { if($job['priority'] == 2) { echo "selected";}}?>>Stat</option>
+											<option value="3" <?php if(isset($job)) { if($job['priority'] == 2) { echo "selected";}}?>>Today</option>
+										</select>
+									</div>									
+								</div>
+								<div class="messageContainer text-danger"></div>
+							</div>
+						</div>
+						
+				         		<div class="row"> 
+										<label>Time Of Job Notification To Send On Mobile Device</label>
+									<div class="col-md-12 form-group">
+										<select name="data[notification_time]" id="notification_time" class="form-control">
+											<option value=""> Select </option>
+											<option value="0" <?php if(isset($job)) { if($job['notification_time'] == 0) { echo "selected";}}?>>Now</option>
+											<option value="1" <?php if(isset($job)) { if($job['notification_time'] == 1) { echo "selected";}}?>>1 Day before the schedule day start</option>
+											<option value="2" <?php if(isset($job)) { if($job['notification_time'] == 2) { echo "selected";}}?>>On</option>
+											
+										</select>
+									</div>	
+									<div class="messageContainer text-danger"></div>								
+								</div>
+								
+							
+				</div>
+				<div class=" col-md-6">
+				         		<div class="row"> 
+										<label>	Start Time</label>
+									<div class="col-md-11 input-group">
+										<input  type="text" value="<?php if(isset($job)) {if($job['start_time'] != NULL)echo date("g:i A",strtotime($job['start_time'])); }?>" name="data[start_time]" id="timepicker2" placeholder="Start Date" class="form-control" />
+										<span class="input-group-addon" ><i class="fa fa-clock-o"></i></span>
+									</div>	
+									<div class="messageContainer text-danger"></div>								
+								</div>
+						
+				         		<div class="row"> 
+										<label>Driver</label>
+									<div class="col-md-12 form-group">
+										<select name="data[assign_to]" id="assign_to" class="form-control">
+											<option value="">Select </option>
+											<?php foreach ($field_worker as $row) {?>
+											<option value="<?php echo $row['id'];?>" ><?php echo $row['first_name']. " ".  $row['last_name'];?></option>
+											<?php }?>
+										</select>
+									</div>
+									<div class="messageContainer text-danger"></div>									
+								</div>
+						
+				         		<div class="row"> 
+										<label>Job Type</label>
+									<div class="col-md-12 form-group">
+										<select name="data[job_type_id]" id="job_type_id" class="form-control">
+											<option value="">Select </option>
+											<option value="0" <?php if(isset($job)) { if($job['job_type_id'] == 0) { echo "selected";}}?>>One Time Job</option>
+											<option value="1" <?php if(isset($job)) { if($job['job_type_id'] == 1) { echo "selected";}}?>>Regular Job</option>
+										</select>
+									</div>		
+									<div class="messageContainer text-danger"></div>							
+								</div>
+		</div>
+	</div>
+	</div>
+	<?php }?>
+					</div>
+			</div>
+		
+		   		
+				 
+	         	
+
+	         	<div class="col-md-12 " style="margin-top:10px;padding-right:110px"> <button type="submit" class="btn btn-primary m-r pull-right">Submit</button> </div> 
          	<br><br>
-         	</div>
+        
          	
          </form>
-	</div>
+         </div>
+</div>
+</div>
+</div>
 </div>
 
-	
 	<script src="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.js"></script>
 	<script src="<?php echo asset_url();?>vendor/bootstrap/jquery.form.js"></script>
 	<script src="<?php echo asset_url(); ?>js/bootstrap-datepicker.min.js"></script>
 	<script src="<?php echo asset_url(); ?>js/bootstrap-timepicker.min.js"></script>
+	
 	  
     <!-- end page scripts -->
 
@@ -366,10 +494,11 @@
     <script type="text/javascript">
    // $('.form-validation').validate();
 
-    $("#user_form").submit(function(e) {
+
+    $("#job_form").submit(function(e) {
         e.preventDefault();
     });
-      $('#user_form').bootstrapValidator({
+      $('#job_form').bootstrapValidator({
     		container: function($field, validator) {
     	    	return $field.parent().next('.messageContainer');
     	    },
@@ -534,7 +663,7 @@
       	}); 
 
       function save_user () {
-  		dataString = $("#user_form").serialize();
+  		dataString = $("#job_form").serialize();
   	    $(".text-danger").hide();
   	   	$.ajax({
   	    	type: "POST",
@@ -549,17 +678,17 @@
   					
   						
   	           	} else {
-  	           // 	$("#user_form").reset();
+  	           // 	$("#job_form").reset();
   	            	$('#reset').click();
   	            	$("#response").show();
   	            	$("#response").addClass('alert-success');
   	            	$("#response").html(resp.msg);
   	            alert("Job added successfully.");
-	  	        <?php if($_SESSION['admin']['user_role']==5 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==3) {?>
-					window.location.href = "<?php echo base_url(); ?>admin/job/assignment/"+resp.id;
-				<?php } else {?>
+	  	        <?php // if($_SESSION['admin']['user_role']==5 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==3) {?>
+					//window.location.href = "<?php //echo base_url(); ?>admin/job/assignment/"+resp.id;
+				<?php //} else {?>
 		        		window.location.href = "<?php echo base_url(); ?><?php if($_SESSION['admin']['user_role']==3 || $_SESSION['admin']['user_role']==4|| $_SESSION['admin']['user_role']==5){?>admin/job_list <?php } else {?>client/job_list<?php }?>";
-				<?php }?>
+				<?php //}?>
 			          	}
   	    	}
   		});
@@ -568,6 +697,9 @@
       $(document).ready(function() {
           $("#start_date").datepicker({format:"dd-mm-yyyy"}).datepicker("setDate", "0");
           $('#timepicker1').timepicker();
+          $("#start_date2").datepicker({format:"dd-mm-yyyy"}).datepicker("setDate", "0");
+          $('#timepicker2').timepicker();
+          $('#estimated_duration').timepicker();
           });
       
 //       $(function() {
@@ -601,7 +733,7 @@
         });
         
     
-         input = document.getElementById('locality1');
+         input = document.getElementById('hstreet');
        var  autocomplete1 = new google.maps.places.Autocomplete(input, options);
         autocomplete1.addListener('place_changed', function () {
             var place = autocomplete1.getPlace();
@@ -610,14 +742,15 @@
                 return;
             }
            
-            $('#latitude1').val(place.geometry.location.lat());
-            $('#longitude1').val(place.geometry.location.lng());
+            $('#hlatitude').val(place.geometry.location.lat());
+            $('#hlongitude').val(place.geometry.location.lng());
           i=0;
         });
     }
+    
     function ajaxSearch()
     {
-    	$('#autoSuggestionsList').show();
+    		$('#autoSuggestionsList').show();
         var input_data = $('#city').val();
 
         if (input_data.length === 0)
@@ -648,7 +781,8 @@
 
          }
      }
-     function fill(id)
+    
+     function fill (id)
      {
     	 var value = $('#div'+id).text();
     	 //alert(value);
@@ -697,26 +831,155 @@
      	 $('#autoSuggestionsList1').hide();
      	 
       }
+
+      function getPickupHospitalDiv () {
+          var hospitalDiv = 
+										       	'<div class="row"> '+
+															'<label>Select Hospital</label>'+
+														'<div class="col-md-12 form-group">'+
+															'<select class="form-control" name="contact[pickup_hospital_id]" id="pickup_hospital_id" onchange="getPickupHospital()">'+
+																'<option value="">Select Hospital</option>'+
+																<?php foreach($hospitallist as $item){?>
+																'<option value="<?php echo $item['id']?>"><?php echo $item['hospital_name']?></option>'+
+																<?php }?>
+															'</select>'+
+														'</div>'+
+														'<div class="messageContainer text-danger"></div>'+
+													'</div>';
+												
+		document.getElementById('pickup_address_div').innerHTML = hospitalDiv;
+      }
+      
+      function getPickupBranchDiv () {
+          
+    	  var hospitalDiv =    	'<div class="row"> '+
+															'<label>Select Branch</label>'+
+														'<div class="col-md-12 form-group">'+
+															'<select class="form-control" name="contact[pickup_branch_id]" id="pickup_branch_id" onchange="getPickupBranch()">'+
+																'<option value="">Select Branch</option>'+
+																<?php foreach($branchlist as $item){?>
+																'<option value="<?php echo $item['id']?>"><?php echo $item['branch_name']?></option>'+
+																<?php }?>
+															'</select>'+
+														'</div>'+
+														'<div class="messageContainer text-danger"></div>'+
+													'</div>';
+												
+		document.getElementById('pickup_address_div').innerHTML = hospitalDiv;
+      }
+      
+      function getHospitalDiv () {
+          
+    	  var hospitalDiv =	'<div class="row"> '+
+															'<label>Select Hospital</label>'+
+														'<div class="col-md-12 form-group">'+
+															'<select class="form-control" name="contact[delivery_hospital_id]" id="hospital_id" onchange="getHospital()">'+
+																'<option value="">Select Hospital</option>'+
+																<?php foreach($hospitallist as $item){?>
+																'<option value="<?php echo $item['id']?>"><?php echo $item['hospital_name']?></option>'+
+																<?php }?>
+															'</select>'+
+														'</div>'+
+														'<div class="messageContainer text-danger"></div>'+
+													'</div>';
+												
+		document.getElementById('address_div').innerHTML = hospitalDiv;
+      }
+      
+      function getBranchDiv () {
+         
+    	  var hospitalDiv =  	'<div class="row"> '+
+															'<label>Select Branch</label>'+
+														'<div class="col-md-12 form-group">'+
+															'<select class="form-control" name="contact[delivery_branch_id]" id="branch_id" onchange="getBranch()">'+
+																'<option value="">Select Branch</option>'+
+																<?php foreach($branchlist as $item){?>
+																'<option value="<?php echo $item['id']?>"><?php echo $item['branch_name']?></option>'+
+																<?php }?>
+															'</select>'+
+														'</div>'+
+														'<div class="messageContainer text-danger"></div>'+
+													'</div>';
+												
+		document.getElementById('address_div').innerHTML = hospitalDiv;
+      }
+      
+      function getBranch()
+      {
+    		$.post(base_url+"client/get_branch_by_id/"+$('#branch_id').val(),{}, function(data)
+    				{
+    					
+    					$(data).each(function(index){
+    						
+    						$('#haddress').val(data[index].address);
+    						$('#hstreet').val(data[index].street);
+    						$('#hcity').val(data[index].city);
+    						$('#hstate').val(data[index].state);
+    						$('#hpincode').val(data[index].zipcode);
+    						
+    					});
+    			},'json'); 
+      }
+      
       function getHospital()
       {
-          var html ="";
-    	  var value = $('#hospital_id').val();
-    	 
-    		$.post(base_url+"client/gethospitaladdress/"+value,{}, function(data)
+    		$.post(base_url+"client/gethospitaladdress/"+$('#hospital_id').val(),{}, function(data)
     				{
     					
     					$(data).each(function(index){
     						
     						$('#haddress').val(data[index].address);
     						$('#hstreet').val(data[index].locality);
+    						$('#hlatitude').val(data[index].latitude);
+    						$('#hlongitude').val(data[index].longitude);
     						$('#hcity').val(data[index].city);
     						$('#hstate').val(data[index].state);
     						$('#hpincode').val(data[index].pincode);
     						
     					});
-    					//alert(data.value);
     			},'json'); 
       }
+      function getPickupBranch()
+      {
+    		$.post(base_url+"client/get_branch_by_id/"+$('#pickup_branch_id').val(),{}, function(data)
+    				{
+    					
+    					$(data).each(function(index){
+    						
+    						$('#lookupname').val(data[index].address);
+    						$('#building').val(data[index].street);
+    						$('#locality').val(data[index].street);
+    						$('#latitude').val(data[index].latitude);
+    						$('#longitude').val(data[index].longitude);
+    						$('#city').val(data[index].city);
+    						$('#state').val(data[index].state);
+    						$('#postalcode').val(data[index].zipcode);
+    						
+    					});
+    			},'json'); 
+      }
+      
+      function getPickupHospital()
+      {
+    		$.post(base_url+"client/gethospitaladdress/"+$('#pickup_hospital_id').val(),{}, function(data)
+    				{
+    					
+    					$(data).each(function(index){
+    						
+    						$('#lookupname').val(data[index].address);
+    						$('#building').val(data[index].locality);
+    						$('#locality').val(data[index].locality);
+    						$('#latitude').val(data[index].latitude);
+    						$('#longitude').val(data[index].longitude);
+    						$('#city').val(data[index].city);
+    						$('#state').val(data[index].state);
+    						$('#postalcode').val(data[index].pincode);
+    						
+    					});
+    			},'json'); 
+      }
+      
+      <?php if($_SESSION['admin']['hospital_id'] != "" OR $_SESSION['admin']['hospital_id']!= NULL) { ?>
       $(document).ready(function(){
 		
     	  var html ="";
@@ -727,14 +990,18 @@
     					
     					$(data).each(function(index){
     						
-    						$('#haddress').val(data[index].address);
-    						$('#hstreet').val(data[index].locality);
-    						$('#hcity').val(data[index].city);
-    						$('#hstate').val(data[index].state);
-    						$('#hpincode').val(data[index].pincode);
+    						$('#lookupname').val(data[index].address);
+    						$('#building').val(data[index].locality);
+    						$('#locality').val(data[index].locality);
+    						$('#latitude').val(data[index].latitude);
+    						$('#longitude').val(data[index].longitude);
+    						$('#city').val(data[index].city);
+    						$('#state').val(data[index].state);
+    						$('#postalcode').val(data[index].pincode);
     						
     					});
     					//alert(data.value);
     			},'json');
           });
-    </script>
+      <?php }?>
+    </script>    

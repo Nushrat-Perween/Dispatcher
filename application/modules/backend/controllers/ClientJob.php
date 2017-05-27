@@ -19,7 +19,7 @@ class ClientJob extends MX_Controller {
 		$this->template->set ('joblist', $joblist );
 		$this->template->set ( 'page', 'Job List' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Job List' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -31,7 +31,7 @@ class ClientJob extends MX_Controller {
 		
 		$this->template->set ( 'page', 'Job List' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Job List' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -42,7 +42,7 @@ class ClientJob extends MX_Controller {
 	public function searchJobByDate (){
 		$this->template->set ( 'page', 'Job List' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Job List' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -59,7 +59,7 @@ class ClientJob extends MX_Controller {
 		$this->template->set ('customerlist', $customerlist );
 		$this->template->set ( 'page', 'Job List' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Job List' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -75,7 +75,7 @@ class ClientJob extends MX_Controller {
 		$this->template->set ('patientlist', $patientlist );
 		$this->template->set ( 'page', 'Job List' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Job List' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -91,7 +91,7 @@ class ClientJob extends MX_Controller {
 		$this->template->set ('hospitallist', $hospital_list );
 		$this->template->set ( 'page', 'Job List' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Job List' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -103,7 +103,7 @@ class ClientJob extends MX_Controller {
 	public function report (){
 		$this->template->set ( 'page', 'Job List' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Job List' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )

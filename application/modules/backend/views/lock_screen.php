@@ -1,40 +1,41 @@
 
 
-<div class="app error-page no-padding no-footer layout-static">
-<div class="session-panel">
-<div class="session bg-danger">
-<div class="session-content text-xs-center">
-<div>
-<div class="card b-a-0 no-bg no-shadow">
-<div class="card-block">
-<div class="lockscreen-avatar">
-<img src="<?php echo asset_url();?>images/avatar.jpg" class="avatar avatar-lg img-circle" alt="user" title="user"/>
-</div>
-<h6 class="center-block m-t-1">
- <?php echo $admindata['first_name']." ".$admindata['last_name'];?>
-</h6>
-<small>
-Please enter your password
-</small>
-<div class="center-block lockcode m-t-1">
-<form role="form" action="<?php echo base_url();?>admin/unlock" method="POST">
-<input type="password" class="form-control b-a-0 m-b-1" id="password" name="password" placeholder="Password"/>
-<input type="hidden" class="form-control b-a-0 m-b-1" id="global_password" name="global_password" value="<?php echo $admindata['password'];?>" placeholder="Password"/>
-<button class="btn btn-success btn-block b-a-0" type="submit">
-Unlock
-</button>
-</form>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+    
+ <hr class="account-header-divider">
 
-<script type="text/javascript">
+<div class="account-wrapper">
 
-</script>
+  <div class="account-logo">
+    <img src="<?php echo asset_url();?>img/logo-login.png" alt="Target Admin">
+  </div>
+
+    <div class="account-body">
+
+      <h3 class="account-body-title">Lock Screen</h3>
+
+      <h5 class="account-body-subtitle">  <h5 class="account-body-subtitle"> <?php echo $admindata['first_name']." ".$admindata['last_name'];?></h5>
+      <div class="form-control" id="response" style="display: none"> </div><br>
+
+      <form class="form account-form" action="unlock" method="POST">
+
+        <div class="form-group">
+          <label for="forgot-email" class="placeholder-hidden">Please enter your password</label>
+          <input type="password" class="form-control" name="password" id="password" placeholder="Your Password" tabindex="1">
+        </div> <!-- /.form-group -->
+			<input type="hidden" class="form-control b-a-0 m-b-1" id="global_password" name="global_password" value="<?php echo $admindata['password'];?>" placeholder="Password"/>
+        <div class="form-group">
+          <button type="submit" class="btn btn-secondary btn-block btn-lg" tabindex="2">
+            Unlock &nbsp; <i class="fa fa-"></i>
+          </button>
+        </div> <!-- /.form-group -->
+
+        <div class="form-group">
+          <a href="<?php echo base_url()?>"><i class="fa fa-angle-double-left"></i> &nbsp;Back to Login</a>
+        </div> <!-- /.form-group -->
+      </form>
+
+    </div> <!-- /.account-body -->
+
+  </div> <!-- /.account-wrapper -->
 
 

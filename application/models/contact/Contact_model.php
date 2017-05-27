@@ -30,7 +30,6 @@ class Contact_model extends CI_Model {
 	{
 		
 		$this->db->where ( 'id', $data['id'] );
-		unset($data['id']);
 		return $this->db->update(TABLES::$JOB_CONTACT,$data);
 	}
 	public function getCustomerListByCustomerId($id)

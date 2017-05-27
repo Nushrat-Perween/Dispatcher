@@ -1,43 +1,49 @@
-<!-- page stylesheets -->
-<link rel="stylesheet" href="<?php echo asset_url();?>vendor/datatables/media/css/dataTables.bootstrap4.css">
 
+<div class="container">
 
-<!-- page stylesheets -->
-<style>
-td{font-size:0.9em;padding:5px 5px 5px 5px !important;text-align:center}
-th{text-align:center}
-hr{margin-bottom:0rem}
-.icon-arrow-left {
-	color:black;
-}
-</style>
-<div class="content-view">
-<div class="card">
-<div class="card-header no-bg b-a-0">
-<div class="dropdown pull-left " style="padding:3px 5px 4px 5px">
-<H2>List Of User</H2>
-</div>
-<a href="<?php echo base_url();?>admin/add_client_user"><button class="btn bg-primary btn-sm pull-right no-radius">
+  <div class="content">
+
+    <div class="content-container">
+      <div class="content-header">
+        <h2 class="content-header-title">User List <a href="<?php echo base_url();?>admin/add_client_user"><button class="btn bg-primary btn-sm pull-right no-radius">
 <i class="fa fa-plus" aria-hidden="true"> </i> Users
-</button></a>
-<br>
-<br>
-<div class="card-block">
-<table class="table table-bordered datatable" >
-<thead>
-<tr>
-<th>Sr.No</th>
-<th>First Name</th>
-<th>Last Name </th>
-<th>Email</th>
-<th>Mobile</th>
-<th>Role</th>
-<th>Created Date</th>
-<th>Action </th>
-</tr>
-</thead>
-<tbody >
-<?php
+</button></a></h2>
+       
+      </div> <!-- /.content-header -->
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <div class="portlet">
+            <div class="portlet-content">           
+
+              <div class="table-responsive">
+
+              <table 
+                class="table table-striped table-bordered table-hover table-highlight table-checkable" 
+                data-provide="datatable" 
+                data-display-rows="10"
+                data-info="true"
+                data-search="true"
+                data-length-change="true"
+                data-paginate="true"
+              >
+                  <thead>
+                  
+                    <tr>
+                    <th >Sr.No</th>
+                    <th data-filterable="true" data-sortable="true"> Branch </th>
+					<th  >First Name </th>
+					<th >Last Name </th>
+					<th >Email</th>
+					<th >Mobile</th>
+					<th  data-filterable="true" data-sortable="true">Role</th>
+					<th  data-filterable="true" data-sortable="true">Created Date</th>
+					<th>Action </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+               <?php
 
 $sr=0;
 foreach($client_userlist as $row) {
@@ -47,6 +53,7 @@ foreach($client_userlist as $row) {
 	?>
 <tr>
 <td><?php echo $sr ; ?> </td>
+<td> <?php echo $row['branch_name'];?> </td>
 <td> <?php echo $row['first_name'];?> </td>
 <td> <?php echo $row['last_name'];?> </td>
 <td> <?php echo $row['email'];?> </td>
@@ -56,28 +63,27 @@ foreach($client_userlist as $row) {
 <td style="padding-left:5px !important">
 <a href="<?php echo base_url();?>admin/edit_clientuser/<?php echo $row['id'];?>" class="bg-green" style="margin:2px">&nbsp;&nbsp;<i class="fa fa-pencil text-white"></i>&nbsp;Edit&nbsp;&nbsp;</a>
 </td>
-
+</tr>
 <?php }?>
-</tbody>
+                  </tbody>
+                </table>
+              </div> <!-- /.table-responsive -->
+              
 
-</table>
-</div>
-</div>
-</div>
-</div>
-<script type="text/javascript">
+            </div> <!-- /.portlet-content -->
 
-</script>
+          </div> <!-- /.portlet -->
 
-   <!-- page scripts -->
-    <script src="<?php echo asset_url();?>vendor/datatables/media/js/jquery.dataTables.js"></script>
-    <script src="<?php echo asset_url();?>vendor/datatables/media/js/dataTables.bootstrap4.js"></script>
-    <script src="<?php echo asset_url();?>vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js"></script>
-   
+        
 
-<!-- initialize page scripts -->
-<!-- initialize page scripts -->
-<script type="text/javascript">
-$('.datatable').DataTable();
-</script>
-<!-- end initialize page scripts -->
+        </div> <!-- /.col -->
+
+      </div> <!-- /.row -->
+    </div>
+  </div>
+ </div>
+      
+ <script src="<?php echo asset_url();?>js/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="<?php echo asset_url();?>js/plugins/datatables/DT_bootstrap.js"></script>
+  <script src="<?php echo asset_url();?>js/plugins/tableCheckable/jquery.tableCheckable.js"></script>
+  <script src="<?php echo asset_url();?>js/plugins/icheck/jquery.icheck.min.js"></script>

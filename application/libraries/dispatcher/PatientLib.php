@@ -10,6 +10,12 @@ class PatientLib {
 		$patient_id = $this->CI->patient->addPatient ( $data );
 		return $patient_id;
 	}
+	
+	public function updatePatient ($data) {
+		$this->CI->load->model ( 'Patient_model', 'patient' );
+		$res = $this->CI->patient->updatePatient ( $data );
+		return $res;
+	}
 
 
 }

@@ -225,16 +225,17 @@ $route['admin/update_package'] = 'backend/Package/update_package';
 
 $route['client/job_list'] = 'backend/Hospital';
 $route['client/getcustomerlist'] = 'backend/Hospital/getCustomerList';
-$route['client/client_add_job'] = 'backend/Hospital/addJob';
+$route['client/client_add_job'] = 'backend/Job/addJob';
 $route['client/client_report'] = 'backend/Hospital/report';
 $route['client/getpatientlist'] = 'backend/Hospital/getPatientList';
-$route['client/client_save_job'] = 'backend/Hospital/clientSaveJob';
-$route['client/edit_client_job/([0-9]+)'] = 'backend/Hospital/edit_client_job/$1';
-$route['client/update_job_client'] = 'backend/Hospital/updateJobClient';
+$route['client/client_save_job'] = 'backend/Job/saveClientJob';
+$route['client/edit_client_job/([0-9]+)'] = 'backend/Job/edit_client_job/$1';
+$route['client/update_job_client'] = 'backend/Job/updateJobClient';
 $route['client/clientjob_byMob'] = 'backend/Hospital/clientjobByMob';
 $route['client/getPatientListBydate'] = 'backend/Hospital/getPatientListBydate';
 $route['client/getCustomerListBydate'] = 'backend/Hospital/getCustomerListBydate';
 $route['client/gethospitaladdress/([0-9]+)'] = 'backend/UserNew/getHospitalAddress/$1';
+$route['client/get_branch_by_id/([0-9]+)'] = 'backend/Branch/get_branch_by_id/$1';
 
 
 $route['admin/add_hospital'] = 'backend/UserNew/addHospital';

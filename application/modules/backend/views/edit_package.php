@@ -7,63 +7,66 @@
 }
 </style>
 <!-- endbuild -->
-<div class="content-view" style="margin-left:30%">
-	<div class="row"> 
-		<div class="col-md-offset-3 col-md-6"> 
-				<div class="card card-block">
-				<h2>Edit Package</h2>
-				<div class="form-control" id="response" style="display: none"> </div>
+<div class="container">
+  <div class="content">
+    <div class="content-container">
+      <div class="content-header">
+        <h2 class="content-header-title">Add Package</h2>
+      </div> <!-- /.content-header -->
+      	<div class="row">
+      		 <div class="col-md-6 col-md-offset-3">
 				<form class="form-validation form-horizontal" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
-						<div class="form-group m-b">
+						
+						<div class="row"> 
 						<label>
 						Name
 						</label>
-						<div class="row"> 
-						
-							<div class="col-md-10 input-group"> 
+							<div class="col-md-12 form-group"> 
 								<input type="text" class="form-control" name="data[name]" placeholder=" Name" value = "<?php echo $package['name'] ?>" />
 							</div>
 							<div class="messageContainer"></div>
 							
 						</div>
-						</div>
-						<div class="form-group m-b">
-						<label>
-						Year
-						</label>
+						
+						
+						
 						<div class="row"> 
-							<div class="col-md-10 input-group"> 
+							<div class="col-md-12 form-group">
+							<label>
+						Year
+						</label> 
 								<input type="text"  class="form-control" name="data[year]" placeholder="year" value = "<?php echo $package['year'] ?>"/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
-						</div>
 						
-						<div class="form-group m-b">
+						
+						
+						<div class="row"> 
 						<label>
 						Month
 						</label>
-						<div class="row"> 
-							<div class="col-md-10 input-group"> 
+							<div class="col-md-12 form-group"> 
 								<input type="text"  class="form-control" name="data[month]" placeholder="month" value = "<?php echo $package['month'] ?>"/>
 								
 							</div>
 							<div class="messageContainer"></div>
 						</div>
-						</div>
+						
 					
-						<div class="form-group m-b">
+						
+						
+						<div class="row"> 
 						<label>
 						Price
 						</label>
-						<div class="row"> 
-							<div class="col-md-10 input-group"> 
+							<div class="col-md-12 form-group"> 
 								<input type="text"  class="form-control" name="data[price]" placeholder="price" value = "<?php echo $package['price'] ?>"/>
 								<input type="hidden"  class="form-control" name="data[id]" placeholder="" value = "<?php echo $package['id'] ?>"/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
-						</div>
+					
 						
 						<div class="form-group pull-right">
 							<button type="submit" class="btn btn-primary m-r">
@@ -72,9 +75,11 @@
 						</div>
 						</form>
 					</div>
-				</div>
-			</div>
-</div>
+      		 
+      </div>
+    </div>
+   </div>
+ </div>
   
 
     <script src="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.js"></script>

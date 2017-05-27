@@ -34,7 +34,7 @@ class Admin extends MX_Controller {
 			
 		$this->template->set ( 'page', 'User' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Add FieldWorker' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -60,7 +60,7 @@ class Admin extends MX_Controller {
 		$this->template->set ( 'fieldworker_list', $fieldworker_list );
 		$this->template->set ( 'page', 'Fieldworker List' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | User List' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -146,7 +146,7 @@ class Admin extends MX_Controller {
 		$this->template->set('adminusers',$adminusers);
 		$this->template->set ( 'page', 'Profile' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Profile' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )

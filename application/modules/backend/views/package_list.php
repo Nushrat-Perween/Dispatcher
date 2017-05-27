@@ -1,41 +1,49 @@
-<!-- page stylesheets -->
-<link rel="stylesheet" href="<?php echo asset_url();?>vendor/datatables/media/css/dataTables.bootstrap4.css">
 
-<!-- page stylesheets -->
-<style>
-td{font-size:0.9em;padding:5px 5px 5px 5px !important;text-align:center}
-th{text-align:center}
-hr{margin-bottom:0rem}
-.icon-arrow-left {
-	color:black;
-}
-</style>
-<div class="content-view">
-<div class="card">
-<div class="card-header no-bg b-a-0">
-<div class="dropdown pull-left " style="padding:3px 5px 4px 5px">
-<H2>List Of Package</H2>
-</div>
-<a href="<?php echo base_url();?>admin/add_package"><button class="btn bg-primary btn-sm pull-right no-radius">
-<i class="fa fa-plus" aria-hidden="true"> </i> Package
-</button></a>
-<br>
-<br>
-<div class="card-block">
-<table class="table table-bordered datatable" >
-<thead>
-<tr>
 
-<th> ID </th>
-<th>Name </th>
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+      <div class="content-header">
+        <h2 class="content-header-title"> Package List <a href="<?php echo base_url();?>admin/add_package"><button class="btn bg-primary btn-sm pull-right no-radius">
+				<i class="fa fa-plus" aria-hidden="true"> </i> Package
+				</button></a></h2>
+       
+      </div> <!-- /.content-header -->
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <div class="portlet">
+            <div class="portlet-content">           
+
+              <div class="table-responsive">
+
+              <table 
+                class="table table-striped table-bordered table-hover table-highlight table-checkable" 
+                data-provide="datatable" 
+                data-display-rows="10"
+                data-info="true"
+                data-search="true"
+                data-length-change="true"
+                data-paginate="true"
+              >
+                  <thead>
+                    <tr>
+                    
+                    
+<th data-filterable="true" data-sortable="true"> ID </th>
+<th data-filterable="true" data-sortable="true">Name </th>
 <th>Year</th>
 <th>month</th>
-<th>Price</th>
+<th data-filterable="true" data-sortable="true">Price</th>
 <th> Action </th>
-</tr>
-</thead>
-<tbody >
-<?php
+                    
+                    </tr>
+                  </thead>
+                  <tbody>
+                 <?php
 
 $sr=0;
 foreach($package_list as $row) {
@@ -54,26 +62,25 @@ foreach($package_list as $row) {
 </td>
 
 <?php }?>
-</tbody>
+                  </tbody>
+                </table>
+              </div> <!-- /.table-responsive -->
+              
 
-</table>
-</div>
-</div>
-</div>
-</div>
-<script type="text/javascript">
+            </div> <!-- /.portlet-content -->
 
-</script>
+          </div> <!-- /.portlet -->
 
-   <!-- page scripts -->
-    <script src="<?php echo asset_url();?>vendor/datatables/media/js/jquery.dataTables.js"></script>
-    <script src="<?php echo asset_url();?>vendor/datatables/media/js/dataTables.bootstrap4.js"></script>
-    <script src="<?php echo asset_url();?>vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js"></script>
-   
+        
 
-<!-- initialize page scripts -->
-<!-- initialize page scripts -->
-<script type="text/javascript">
-$('.datatable').DataTable();
-</script>
-<!-- end initialize page scripts -->
+        </div> <!-- /.col -->
+
+      </div> <!-- /.row -->
+    </div>
+  </div>
+ </div>
+ <script src="<?php echo asset_url();?>js/plugins/datatables/jquery.dataTables.min.js"></script>
+ <script src="<?php echo asset_url();?>js/plugins/datatables/DT_bootstrap.js"></script>
+ <script src="<?php echo asset_url();?>js/plugins/tableCheckable/jquery.tableCheckable.js"></script>
+ <script src="<?php echo asset_url();?>js/plugins/icheck/jquery.icheck.min.js"></script>
+

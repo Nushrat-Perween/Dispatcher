@@ -136,7 +136,11 @@ class UserNew extends MX_Controller {
 		$this->template->build ('add_hospital');
 	}
 	public function addClientUser()
-	{
+	{		$param = array();
+		$param['client_id'] = $_SESSION['admin']['client_id'];
+		$this->load->library('dispatcher/BranchLib');
+		$branch_list = $this->branchlib->getAllBranch ($param);
+		$this->template->set ( 'branch_list', $branch_list );
 		$this->template->set ( 'page', 'User' );
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout ('default')
@@ -189,12 +193,18 @@ class UserNew extends MX_Controller {
 	
 	public function editClientUser ($id)
 	{
+		$param = array();
+		$param['client_id'] = $_SESSION['admin']['client_id'];
+		$this->load->library('dispatcher/BranchLib');
+		
+		$branch_list = $this->branchlib->getAllBranch ($param);
 		$this->load->library('dispatcher/UserLibNew');
 		$user = $this->userlibnew->getClientUserById ($id);
 		if($user)
 		{
 			$this->template->set ( 'user', $user[0] );
 		}
+		$this->template->set ( 'branch_list', $branch_list );
 		$this->template->set ( 'page', 'User' );
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout ('default')

@@ -1,63 +1,41 @@
-<!-- build:css({.tmp,app}) styles/app.min.css -->
-<link rel="stylesheet" href="<?php echo asset_url();?>vendor/bootstrap/dist/css/bootstrap.css"/>
-<link rel="stylesheet" href="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.css"/>
-<style>
-.messageContainer {
-	color:red;
-	margin-left:3%;
-}
-</style>
-<div class="app no-padding no-footer layout-static">
-	<div class="session-panel">
-		<div class="session">
-			<div class="session-content">
-				<div class="card card-block form-layout">
-				
-					<form class="form-validation form-horizontal" method="POST" action="" enctype="multipart/form-data" id="forgot_password_form">
-						<div class="text-xs-center m-b-3">
-							<img src="<?php echo asset_url();?>images/logo-icon.png" height="130" alt="" class="m-b-1"/>
-							<h5>
-							Forgot password
-							</h5>
-							<p class="text-muted">
-								Enter your email and we'll send you instructions on how to reset your password.
-	                  		</p>
-                			</div>
-                			<div class="form-control" id="response" style="display: none"> </div><br>
-		                <fieldset class="form-group">
-		                  <label for="password">
-		                    Your email address
-		                  </label>
-		                  <div class="row">
-							<div class="col-md-10 input-group">
-								<input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="email address" autofocus required/>
-							</div>
-							<div class="messageContainer"></div>
-						</div>
-		                  
-		                </fieldset>
-		                <button class="btn btn-primary btn-block btn-lg" type="submit">
-		                  Send instruction to reset password
-		                </button>
-		                
-		              </form>
-		              <div class="divider">
-						<span>
-						OR
-						</span>
-						</div>
-						<div class="text-xs-center">
-						<a href="<?php echo base_url();?>admin">
-			                Log in
-			            </a>
-					</div>
-            		</div>
-          </div>
-        
-        </div>
 
-      </div>
-    </div>
+    
+ <hr class="account-header-divider">
+
+<div class="account-wrapper">
+
+  <div class="account-logo">
+    <img src="<?php echo asset_url();?>img/logo-login.png" alt="Target Admin">
+  </div>
+
+    <div class="account-body">
+
+      <h3 class="account-body-title">Password Reset</h3>
+
+      <h5 class="account-body-subtitle">We'll email you instructions on how to reset your password.</h5>
+      <div class="form-control" id="response" style="display: none"> </div><br>
+
+      <form class="form account-form" method="POST" action="" enctype="multipart/form-data" id="forgot_password_form">
+
+        <div class="form-group">
+          <label for="forgot-email" class="placeholder-hidden">Your Email</label>
+          <input type="email" class="form-control" id="email" placeholder="Your Email" tabindex="1">
+        </div> <!-- /.form-group -->
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-secondary btn-block btn-lg" tabindex="2">
+            Reset Password &nbsp; <i class="fa fa-refresh"></i>
+          </button>
+        </div> <!-- /.form-group -->
+
+        <div class="form-group">
+          <a href="<?php echo base_url()?>"><i class="fa fa-angle-double-left"></i> &nbsp;Back to Login</a>
+        </div> <!-- /.form-group -->
+      </form>
+
+    </div> <!-- /.account-body -->
+
+  </div> <!-- /.account-wrapper -->
 
 <script src="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.js"></script>
 <script src="<?php echo asset_url();?>vendor/bootstrap/jquery.form.js"></script>
@@ -92,20 +70,18 @@
     	});
 
     	function send_instruction () {
-			dataString = $("#forgot_password_form").serialize();
+			var dataString = $("#email").val();
 			$(".text-danger").hide();
 			$.ajax({
 				type: "POST",
 				url: "<?php echo base_url(); ?>admin/send_password_reset_instruction",
-				data: dataString,
+				data: "email="+ dataString,
 				dataType: 'json',
 				success: function(resp){
 					if(resp.status == '0') {
 						$("#response").addClass('alert-danger');
 						$("#response").html(resp.msg);
-						$("#response").show();
-							
-
+						alert(resp.msg);
 					} else {
 						$('#reset').click();
 						$("#response").show();

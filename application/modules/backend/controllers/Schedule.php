@@ -12,8 +12,9 @@ class Schedule extends MX_Controller {
 	}
 	public function index()
 	{
+		$param = array();
 		$param['user_role'] = 7;
-		$param['client_id'] = $_SESSION['admin']['client_id'];
+		$param['client_id'] = $this->session->userdata('admin')['client_id'];
 		$this->load->library('dispatcher/AdminLib');
 		$this->load->library('dispatcher/JobLib');
 		$fieldworker_list = $this->adminlib->getAllAdmin ($param);
@@ -23,7 +24,7 @@ class Schedule extends MX_Controller {
 		$this->template->set ( 'fieldworker', $fieldworker_list );
 		$this->template->set ( 'page', 'User' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Add FieldWorker' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )

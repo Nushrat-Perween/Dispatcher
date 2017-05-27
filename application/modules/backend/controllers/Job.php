@@ -11,6 +11,203 @@
             $fb_config = parse_ini_file ( APPPATH . "config/FB.ini" );
         }
         
+        public function addJob (){
+        	$param = array();
+        	$param['user_role'] = 7;
+        	$this->load->library('dispatcher/JobLib');
+        	$this->load->library('dispatcher/AdminLib');
+        	$param['client_id'] = $this->session->userdata('admin')['client_id'];
+        	$field_worker = $this->adminlib->getAllAdmin ($param);
+        	$param['client_id'] = $this->session->userdata('admin')['client_id'];
+        	$this->load->library('dispatcher/UserLibNew');
+        	$this->load->library('dispatcher/BranchLib');
+        	$hospital_list = $this->userlibnew->gettAllHospital ();
+        	$this->template->set ('hospitallist', $hospital_list );
+        	$branch_list = $this->branchlib->getAllBranch ($param);
+        	$this->template->set ('branchlist', $branch_list );
+        	$this->template->set ( 'field_worker', $field_worker );
+        	$this->template->set ( 'page', 'Job List' );
+        	$this->template->set_theme('default_theme');
+        	$this->template->set_layout ('default')
+        	->title ( 'Dispatcher | Job List' )
+        	->set_partial ( 'header', 'partials/header' )
+        	->set_partial ( 'side_menu', 'partials/side_menu' )
+        	->set_partial ( 'chat_model', 'partials/chat_model' )
+        	->set_partial ( 'footer', 'partials/footer' );
+        	$this->template->build ('client_add_job');
+        }
+        
+        public function saveClientJob()
+        {
+	        	$admin = $this->session->userdata('admin');
+	        	$contact = array();
+	        	$job = array();
+	        	$patient = array();
+	       
+	        	
+	        $contact = $this->input->post('contact');
+	        $contact['client_id'] = $this->session->userdata('admin')['client_id'];
+	        $contact['created_date'] = date('Y-m-d H:i:s');
+	        $contact['created_by'] =  $this->session->userdata('admin')['id'];
+	        
+	        $job = $this->input->post('job');
+	        if($admin['user_role']==3 || $admin['user_role']==5 || $admin['user_role']==4)
+	        {
+		        	if(isset($contact['pickup_hospital_id']))
+		       	 	$job['hospital_id'] = $contact['pickup_hospital_id'];
+		        	else 
+		        		$job['hospital_id'] = 0;
+	        } else {
+	        		$job['hospital_id'] = $this->session->userdata('admin')['hospital_id'];
+	        }
+	        $job['client_id'] = $this->session->userdata('admin')['client_id'];
+	        $job['delivery_date'] = date('Y-m-d',strtotime($job['delivery_date']));
+	        $job['delivery_time'] = date('H:i:s',strtotime($job['delivery_time']));
+	        $job['created_date'] = date('Y-m-d H:i:s');
+	        $job['created_by'] =  $this->session->userdata('admin')['id'];
+	        
+	        $patient = $this->input->post('patient');
+	        if($admin['user_role']==3 || $admin['user_role']==5 || $admin['user_role']==4)
+	        {
+		        	if(isset($contact['pickup_hospital_id']))
+		        		$patient['hospital_id'] = $contact['pickup_hospital_id'];
+		        	else
+		        		$patient['hospital_id'] = 0;
+	        } else {
+	        		$patient['hospital_id'] = $this->session->userdata('admin')['hospital_id'];
+	        }
+	        $patient['client_id'] = $this->session->userdata('admin')['client_id'];
+	        $patient['created_date'] = date('Y-m-d H:i:s');
+	        $patient['created_by'] =  $this->session->userdata('admin')['id'];
+	        	$this->load->library('dispatcher/JobLib');
+	        	$id = $this->joblib->saveClientJob ($patient,$contact,$job);
+	        	$userdata = array();
+	        	if($id) {
+	        		if($admin['user_role']==3 || $admin['user_role']==5 || $admin['user_role']==4) {
+	        			$params = array();
+	        			$params = $this->input->post('data');
+	        			$params['id'] = $id;
+	        			$params['start_date'] = date("Y-m-d",strtotime($params['start_date']));
+	        			$params['start_time'] = date("H:i:s",strtotime($params['start_time']));
+	        			$params['assigned_by'] = $this->session->userdata('admin')['id'];
+	        			$params['assigned_date'] = date("Y-m-d H:i:s");
+	        			
+	        			$this->load->library('dispatcher/JobLib');
+	        			$res = $this->joblib->updateJobAssignment ($params);
+	        		}
+	        		$userdata['id'] = $id;
+	        		$userdata['status'] = 1;
+	        		$userdata['msg'] = "Job added successfully.";
+	        	} else {
+	        		$userdata['status'] = 0;
+	        		$userdata['msg'] = "Error! Please check your data.";
+	        	}
+	        	echo json_encode($userdata);
+        }
+        
+        public function edit_client_job($jobid)
+        {
+        
+        	$this->load->library('dispatcher/HospitalLib');
+        	$job = $this->hospitallib->getJobById ($jobid)[0];
+        	$patient = $this->hospitallib->getPatientListByPatientId ($job['patient_id'])[0];
+        	$contact = $this->hospitallib->getCustomerListByCustomerId ($job['job_contact_id'])[0];
+        	$param = array();
+        	$param['user_role'] = 7;
+        	$this->load->library('dispatcher/JobLib');
+        	$this->load->library('dispatcher/AdminLib');
+        	$param['client_id'] = $this->session->userdata('admin')['client_id'];
+        	$field_worker = $this->adminlib->getAllAdmin ($param);
+        	$param['client_id'] = $this->session->userdata('admin')['client_id'];
+        	$this->load->library('dispatcher/UserLibNew');
+        	$this->load->library('dispatcher/BranchLib');
+        	$hospital_list = $this->userlibnew->gettAllHospital ();
+        	$this->template->set ('hospitallist', $hospital_list );
+        	$branch_list = $this->branchlib->getAllBranch ($param);
+        	$this->template->set ('branchlist', $branch_list );
+        	$this->template->set ( 'field_worker', $field_worker );
+        	$this->template->set ( 'patient', $patient );
+        	$this->template->set ( 'contact', $contact );
+        	$this->template->set ( 'job', $job );
+        	$this->template->set ( 'page', 'User' );
+        	$this->template->set_theme('default_theme');
+        	$this->template->set_layout ('default')
+        	->title ( 'Dispatcher | Edit User' )
+        	->set_partial ( 'header', 'partials/header' )
+        	->set_partial ( 'side_menu', 'partials/side_menu' )
+        	->set_partial ( 'chat_model', 'partials/chat_model' )
+        	->set_partial ( 'footer', 'partials/footer' );
+        	$this->template->build ('edit_client_job');
+        }
+        
+        public function updateJobClient()
+        {
+	        	$admin = $this->session->userdata('admin');
+	        	$patient = array();
+	        	$contact = array();
+	        	$job = array();
+	        	$contact = $this->input->post('contact');
+	        	$contact['updated_date'] = date('Y-m-d H:i:s');
+	        	$contact['updated_by'] =  $this->session->userdata('admin')['id'];
+	        	$job = $this->input->post('job');
+	        	if($admin['user_role']==3 || $admin['user_role']==5 || $admin['user_role']==4)
+	        	{
+	        		if(isset($contact['pickup_hospital_id']))
+	        			$job['hospital_id'] = $contact['pickup_hospital_id'];
+	        			else
+	        				$job['hospital_id'] = 0;
+	        	} else {
+	        		$job['hospital_id'] = $this->session->userdata('admin')['hospital_id'];
+	        	}
+	        	$job['delivery_date'] = date('Y-m-d',strtotime($job['delivery_date']));
+	        	$job['delivery_time'] = date('H:i:s',strtotime($job['delivery_time']));
+	        	$job['updated_date'] = date('Y-m-d H:i:s');
+	        	$job['updated_by'] =  $this->session->userdata('admin')['id'];
+	        	$patient = $this->input->post('patient');
+	        	if($admin['user_role']==3 || $admin['user_role']==5 || $admin['user_role']==4)
+	        	{
+	        		if(isset($contact['pickup_hospital_id']))
+	        			$patient['hospital_id'] = $contact['pickup_hospital_id'];
+	        			else
+	        				$patient['hospital_id'] = 0;
+	        	} else {
+	        		$patient['hospital_id'] = $this->session->userdata('admin')['hospital_id'];
+	        	}
+	        	$patient['updated_date'] = date('Y-m-d H:i:s');
+	        	$patient['updated_by'] =  $this->session->userdata('admin')['id'];
+	        	
+	      
+	        	$this->load->library('dispatcher/JobLib');
+	        	$this->load->library('dispatcher/PatientLib');
+	        
+	        	//print_r($data);
+	        	$res = $this->joblib->updateJob ($job);
+	        	$res = $this->patientlib->updatePatient ($patient);
+	        	$res = $this->joblib->updateJobContact ($contact);
+	        	
+	        	$userdata = array();
+	        	if($res) {
+	        		if($admin['user_role']==3 || $admin['user_role']==5 || $admin['user_role']==4) {
+	        			$params = array();
+	        			$params = $this->input->post('data');
+	        			$params['id'] = $job['id'];
+	        			$params['start_date'] = date("Y-m-d",strtotime($params['start_date']));
+	        			$params['start_time'] = date("H:i:s",strtotime($params['start_time']));
+	        			$params['assigned_by'] = $this->session->userdata('admin')['id'];
+	        			$params['assigned_date'] = date("Y-m-d H:i:s");
+	        		
+	        			$this->load->library('dispatcher/JobLib');
+	        			$res = $this->joblib->updateJobAssignment ($params);
+	        		}
+	        		$userdata['status'] = 1;
+	        		$userdata['msg'] = "Client Job updated successfully.";
+	        	} else {
+	        		$userdata['status'] = 0;
+	        		$userdata['msg'] = "Error! Please check your data.";
+	        	}
+	        	echo json_encode($userdata);
+        }
+        
         public function job_list (){
             $this->load->library('dispatcher/GeneralLib');
             $this->load->library('dispatcher/JobLib');
@@ -37,7 +234,7 @@
             $this->template->set ( 'job_action_list', $job_action_list );
             $this->template->set ( 'page', 'Job List' );
             $this->template->set_theme('default_theme');
-            $this->template->set_layout ('backend')
+            $this->template->set_layout ('default')
             ->title ( 'Dispatcher | Job List' )
             ->set_partial ( 'header', 'partials/header' )
             ->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -77,7 +274,7 @@
             
             if(count($job)) {
                 $this->template->set_theme('default_theme');
-                $this->template->set_layout ('backend')
+                $this->template->set_layout ('default')
                 ->title ( 'Dispatcher | Job Detail' )
                 ->set_partial ( 'header', 'partials/header' )
                 ->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -301,7 +498,7 @@
             $this->template->set ( 'job_action',$job_action );
             $this->template->set ( 'page', 'Job Detail' );
             $this->template->set_theme('default_theme');
-            $this->template->set_layout ('backend')
+            $this->template->set_layout ('default')
             ->title ( 'Dispatcher | Job Detail' )
             ->set_partial ( 'header', 'partials/header' )
             ->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -549,7 +746,7 @@
         	$this->template->set ( 'job_details', $job_details);
         	$this->template->set ( 'page', 'Job List' );
         	$this->template->set_theme('default_theme');
-        	$this->template->set_layout ('backend')
+        	$this->template->set_layout ('default')
         	->title ( 'Dispatcher | Job List' )
         	->set_partial ( 'header', 'partials/header' )
         	->set_partial ( 'side_menu', 'partials/side_menu' )

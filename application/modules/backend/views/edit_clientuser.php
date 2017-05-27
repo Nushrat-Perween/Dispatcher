@@ -8,20 +8,39 @@
 }
 </style>
 <!-- endbuild -->
-<div class="content-view" >
-	<div class="row"> 
-		<div class=" col-md-12" > 
-				<div class="card card-block" style = "padding-left:40px">
-				<h2>Edit User</h2>
-				
-				<div class="form-control" id="response" style="display: none"> </div>
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+
+      <div class="content-header">
+        <h2 class="content-header-title">Edit User </h2>
+       
+      </div> <!-- /.content-header -->
+      <div class="row">
+       <div class="col-md-6 col-md-offset-3">
 				<form class="form-validation form-horizontal" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
-						<div class="row">
-						<div class="form-group col-md-4">
+					<div class="row">
+					<div class="col-md-6">
+						 <div class="row"> 
+				        <label>Branch</label>  
+				          <div class="col-md-12 form-group">
+				       		<select class="form-control" name="data[branch_id]"  id="verified" required>
+								<option value="">Select</option>
+								<?php foreach($branch_list as $branch){?>
+								<option value="<?php echo $branch['id'];?>" <?php if($branch['id']==$user['branch_id']){?> selected <?php }?>><?php echo $branch['branch_name'];?></option>
+								<?php } ?>
+							</select>
+						</div>
+				        <div class="messageContainer"></div>
+				        </div> <!-- /.form-group -->
+				        </div>
+				        <div class="col-md-6">
 						<div class="row"> 
-						User Role
+						<label>User Role</label>
 						<input type="hidden"  class="form-control" name="data[id]" placeholder="Last Name" value ="<?php echo $user['id']; ?>" />
-							<div class="col-md-12 input-group"> 
+							<div class="col-md-12 form-group"> 
 								<select class="form-control" name="data[user_role]"  id="verified" required>
 									<option value="">Select</option>
 									<option value="4" <?php if($user['user_role']==4) echo "selected";?>>Sub Admin</option>
@@ -32,59 +51,58 @@
 							<div class="messageContainer"></div>
 						</div>
 						</div>
-						<div class="form-group col-md-4">
+					</div>
+						
 						<div class="row"> 
-								First Name
-							<div class="col-md-12 input-group"> 
+								<label>First Name</label>
+							<div class="col-md-12 form-group"> 
 								<input type="text" class="form-control" name="data[first_name]" placeholder="First Name" value ="<?php echo $user['first_name']; ?>"/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
-						</div>
-						<div class="form-group col-md-4">
+					
 						
 						<div class="row">
-								Last Name						
-							<div class="col-md-12 input-group"> 
+							<label>	Last Name	</label>					
+							<div class="col-md-12 form-group"> 
 								<input type="text"  class="form-control" name="data[last_name]" placeholder="Last Name" value ="<?php echo $user['last_name']; ?>" required/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
-						</div>
 						
-						</div>
-						<div class="row">
-						<div class="form-group col-md-4">
+					
 						<div class="row"> 
-						Email
-							<div class="col-md-12 input-group"> 
+						<label>Email</label>
+							<div class="col-md-12 form-group"> 
 								<input type="email" class="form-control" name="data[email]" placeholder="email"  value ="<?php echo $user['email']; ?>" required/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
-						</div>
-						<div class="form-group col-md-4">
+					
+						
 						<div class="row"> 
-						Mobile No.
-							<div class="col-md-12 input-group"> 
+						<label>Mobile No.</label>
+							<div class="col-md-12 form-group"> 
 								<input type="text"  class="form-control" name="data[mobile]" placeholder="Mobile"  value ="<?php echo $user['mobile']; ?>" equired/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
-						</div>
-						<div class="form-group col-md-4">
+						
+					<div class="row">
+						<div class="col-md-6">
 						<div class="row"> 
-						Password
-							<div class="col-md-12 input-group"> 
+						<label>Password</label>
+							<div class="col-md-12 form-group"> 
 								<input type="text"  class="form-control" name="data[text_password]" placeholder="Mobile"  value ="<?php echo $user['text_password']; ?>" equired/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
-						</div>
-						<div class="form-group col-md-4">
+						
+					</div>
+					<div class="col-md-6">
 						<div class="row"> 
-						Is Verified
-							<div class="col-md-12 input-group"> 
+					<label>	Is Verified</label>
+							<div class="col-md-12 form-group"> 
 								<select class="form-control" name="data[verified]"  id="verified" required>
 									<option value="">Select</option>
 									<option value="1" <?php if($user['verified']==1) echo "selected";?>>Yes</option>
@@ -95,17 +113,21 @@
 							<div class="messageContainer"></div>
 						</div>
 						</div>
-						</div>
-						<div class="form-group pull-right">
+						<div class="form-group pull-right" style="margin-right:20px">
 							<button type="submit" class="btn btn-primary m-r pull-right">
 							Submit
 							</button>
 						</div>
+						</div>
+					
+						
 						</form>
-					</div>
-				</div>
-			</div>
-</div>
+					 </div>
+          </div>
+      </div>
+    </div>
+   </div>
+ </div>
   
 
     <script src="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.js"></script>

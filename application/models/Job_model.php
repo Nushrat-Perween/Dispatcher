@@ -335,27 +335,27 @@
 		  }
       
 
-		  public function getJobDetailById($id)
+  		 public function  getJobDetailById ($id)
 		  {
-		  	$this->db->select ( 'j.id as job_id,j.job_name,j.description,jc.mobile,concat(jc.first_name," ",jc.last_name) as contact_name,
-		  			jc.latitude as pickup_latitide,jc.longitude as pickup_logitude,jc.street as pickup_street,jc.lookup_name as pickup_lookup_name,
-		  			h.locality as del_street,h.latitude as del_latitude,h.longitude as del_longitude,h.address as del_address,j.priority,
-		  			p.name as patient_name,room_no,test,caller,special_instruction,j.created_date,js.status,j.start_date,j.start_time,j.end_date,
-		  			j.end_time,j.time_on_job,j.estimated_duration,j.delivery_date,date_add(j.start_time, INTERVAL j.estimated_duration hour) as schedule_end_time,
-		  			(concat(a.first_name," ",a.last_name)) as del_name,a.mobile as del_mobile,j.delivery_date,j.delivery_time,j.status_id,j.action_id' );
-		  	$this->db->from ( TABLES::$JOB. ' AS j');
-		  	$this->db->join ( TABLES::$JOB_CONTACT . ' AS jc', 'jc.id=j.job_contact_id', 'inner' );
-		  	$this->db->join ( TABLES::$HOSPITAL . ' AS h', 'h.id=j.hospital_id', 'inner' );
-		  	$this->db->join ( TABLES::$JOB_STATUS . ' AS js', 'js.id=j.status_id', 'inner' );
-		  	$this->db->join ( TABLES::$PATIENT . ' AS p', 'p.id=j.patient_id', 'inner' );
-		  	$this->db->join ( TABLES::$ADMIN . ' AS a', 'h.id=a.hospital_id', 'inner' );
-		  	$this->db->where('j.id',$id);
-		  	$query = $this->db->get ();
-		  	$result = $query->result_array ();
-		  	return $result;
-		  	
+			  $this->db->select ( 'j.id as job_id,j.job_name,j.description,jc.mobile,concat(jc.first_name," ",jc.last_name) as contact_name,
+			  jc.pickup_latitude as pickup_latitide,jc.pickup_longitude as pickup_longitude,jc.pickup_street as pickup_street,jc.pickup_lookup_name as pickup_lookup_name,jc.pickup_city ,jc.pickup_building,jc.pickup_state,jc.pickup_postalcode,jc.delivery_address,jc.delivery_city,jc.delivery_state,jc.delivery_zipcode,jc.delivery_street,jc.delivery_lookup_name,
+			  h.locality as del_street,h.latitude as del_latitude,h.longitude as del_longitude,h.address as del_address,j.priority,
+			  p.name as patient_name,room_no,test,caller,special_instruction,j.created_date,js.status,j.start_date,j.start_time,j.end_date,
+			  j.end_time,j.time_on_job,j.estimated_duration,j.delivery_date,date_add(j.start_time, INTERVAL j.estimated_duration hour) as schedule_end_time,
+			  (concat(a.first_name," ",a.last_name)) as del_name,a.mobile as del_mobile,j.delivery_date,j.delivery_time,j.status_id,j.action_id' );
+			  $this->db->from ( TABLES::$JOB. ' AS j');
+			  $this->db->join ( TABLES::$JOB_CONTACT . ' AS jc', 'jc.id=j.job_contact_id', 'inner' );
+			  $this->db->join ( TABLES::$HOSPITAL . ' AS h', 'h.id=j.hospital_id', 'left' );
+			  $this->db->join ( TABLES::$JOB_STATUS . ' AS js', 'js.id=j.status_id', 'left' );
+			  $this->db->join ( TABLES::$PATIENT . ' AS p', 'p.id=j.patient_id', 'inner' );
+			  $this->db->join ( TABLES::$ADMIN . ' AS a', 'h.id=a.hospital_id', 'left' );
+			  $this->db->where('j.id',$id);
+			  $query = $this->db->get ();
+			  //echo $this->db->last_query();
+			  $result = $query->result_array ();
+			  return $result;
+			 	
 		  }
-		  
 		  public function getJobActionHistoryByID($id) {
 		  	$this->db->select ('*,ja.action as action_name');
 		  	$this->db->from ( TABLES::$JOB_HISTORY. ' AS jh');
@@ -366,7 +366,6 @@
 		  	$result = $query->result_array ();
 		  	return $result;
 		  }
-		  
 		  public function updateJobAction($data)
 		  {
 			  	$this->db->where ( 'id', $data['id'] );

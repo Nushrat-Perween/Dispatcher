@@ -29,6 +29,20 @@ class Hospital_model extends CI_Model {
 		return $result;
 	}
 	
+	public function getAllHospital ($param)
+	{
+		$this->db->select ( 'h.*' );
+		$this->db->from ( TABLES::$HOSPITAL. ' AS h' );
+		$this->db->where ( 'h.is_deleted', 0 );
+		if(isset($param['client_id'])) {
+			$this->db->where ( 'h.client_id', $param['client_id'] );
+		}
+		$this->db->order_by ( 'h.created_date', 'DESC' );
+		$query = $this->db->get ();
+		//echo $query = $this->db->last_query ();
+		$result = $query->result_array ();
+		return $result;
+	}
 	public function save_job ($job)
 	{
 		//print_r($job);

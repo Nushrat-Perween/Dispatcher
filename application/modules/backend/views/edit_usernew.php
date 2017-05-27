@@ -7,63 +7,60 @@
 }
 </style>
 <!-- endbuild -->
-<div class="content-view" >
-	<div class="row"> 
-		<div class=" col-md-12" > 
-				<div class="card card-block" >
-				<h2>Edit User</h2>
-				<div class="form-control" id="response" style="display: none"> </div>
+<div class="container">
+  <div class="content">
+    <div class="content-container">
+      <div class="content-header">
+        <h2 class="content-header-title">Edit User</h2>
+       
+      </div> <!-- /.content-header -->
+      <div class="row">
+      		 <div class="col-md-6 col-md-offset-3">
 				<form class="form-validation form-horizontal" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
-						<div class="row">
-						<div class="form-group col-md-4">
+						
 						
 						<div class="row"> 
-								First Name
-							<div class="col-md-12 input-group"> 
+								<label>First Name</label>
+							<div class="col-md-12 form-group"> 
 								<input type="text" class="form-control" name="data[first_name]" placeholder="First Name" value ="<?php echo $user['first_name']; ?>"/>
 							</div>
 							<div class="messageContainer"></div>
-							
 						</div>
-						</div>
-						<div class="form-group col-md-4">
+						
 						
 						<div class="row">
-								Last Name						
-							<div class="col-md-12 input-group"> 
+								<label>Last Name</label>						
+							<div class="col-md-12 form-group"> 
 								<input type="text"  class="form-control" name="data[last_name]" placeholder="Last Name" value ="<?php echo $user['last_name']; ?>"/>
 								<input type="hidden" class="form-control" name="id" placeholder="City"  value ="<?php echo $user['id']; ?>"/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
-						</div>
-						<div class="form-group col-md-4">
+						
+					
 						
 						<div class="row"> 
-						Email
-							<div class="col-md-12 input-group"> 
+						<label>Email</label>
+							<div class="col-md-12 form-group"> 
 								<input type="email" class="form-control" name="data[email]" placeholder="email" value ="<?php echo $user['email']; ?>"/>
 							</div>
 							<div class="messageContainer"></div>
 							
 						</div>
-						</div>
-						</div>
-						<div class="row">
-						<div class="form-group col-md-4">
+						
+						
+						
 						<div class="row"> 
-						Mobile No.
-							<div class="col-md-12 input-group"> 
+						<label>Mobile No.</label>
+							<div class="col-md-12 form-group"> 
 								<input type="text"  class="form-control" name="data[mobile]" placeholder="Mobile" value ="<?php echo $user['mobile']; ?>"/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
-						</div>
-								<div class="form-group col-md-4">
 						
 						<div class="row"> 
-						Is Verified
-							<div class="col-md-12 input-group"> 
+						<label>Is Verified</label>
+							<div class="col-md-12 form-group"> 
 								<select class="form-control" name="data[verified]"  id="verified" required>
 									<option value="">Select</option>
 									<option value="1" <?php if($user['verified']==1) echo "selected";?>>Yes</option>
@@ -73,8 +70,8 @@
 							</div>
 							<div class="messageContainer"></div>
 						</div>
-						</div>
-						</div>
+						
+						
 						<div class="form-group pull-right">
 							<button type="submit" class="btn btn-primary m-r">
 							Update

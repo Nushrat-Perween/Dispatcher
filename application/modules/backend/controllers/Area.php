@@ -18,7 +18,7 @@ class Area extends MX_Controller {
 		
 		$this->template->set ( 'page', 'City' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | City' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -34,7 +34,7 @@ class Area extends MX_Controller {
 		$this->template->set ( 'city', $city );
 		$this->template->set ( 'page', 'Locality' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Locality' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -49,7 +49,7 @@ class Area extends MX_Controller {
 		$this->template->set ( 'city', $city );
 		$this->template->set ( 'page', 'Zone' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Zone' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -124,7 +124,7 @@ class Area extends MX_Controller {
 		$this->template->set ( 'city_list', $city );
 		$this->template->set ( 'page', 'City' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | City' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -138,7 +138,7 @@ class Area extends MX_Controller {
 		$this->template->set ( 'locality_list', $locality );
 		$this->template->set ( 'page', 'Locality' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Locality' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -153,7 +153,7 @@ class Area extends MX_Controller {
 		$this->template->set ( 'zone_list', $zone );
 		$this->template->set ( 'page', 'Zone' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Zone' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -172,7 +172,7 @@ class Area extends MX_Controller {
 		$this->template->set ( 'city', $city );
 		$this->template->set ( 'page', 'Zone' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Zone' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -208,7 +208,7 @@ class Area extends MX_Controller {
 		}
 		$this->template->set ( 'page', 'City' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | City' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -228,7 +228,7 @@ class Area extends MX_Controller {
 		}
 		$this->template->set ( 'page', 'Locality' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Locality' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -247,7 +247,7 @@ class Area extends MX_Controller {
 		}
 		$this->template->set ( 'page', 'Zone' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Zone' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )

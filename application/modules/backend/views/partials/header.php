@@ -11,9 +11,9 @@
  
   ?>
 
-<link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>css/jquery.gritter.css" />
-<script type="text/javascript" src="http://www.google.com/jsapi"></script>
-<script type="text/javascript" src="<?php echo asset_url();?>js/jquery.gritter.js"></script>
+
+
+
 <script src="//js.pusher.com/4.0/pusher.min.js"></script>
 <script type="text/javascript">
 	// Enable pusher logging - don't include this in production
@@ -72,66 +72,107 @@
     border-radius: 50%;
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
-</style>
-<nav class="header navbar">
-          <div class="header-inner">
-           <audio id="audiotag1" src="<?php echo asset_url();?>sound/doorbell.wav" preload="auto"></audio>
-            <div class="navbar-item navbar-spacer-right brand hidden-lg-up">
-              <!-- toggle offscreen menu -->
-              <a href="javascript:;" data-toggle="sidebar" class="toggle-offscreen">
-                <i class="material-icons">menu</i>
-              </a>
-              <!-- /toggle offscreen menu -->
-              <!-- logo -->
-              <a class="brand-logo hidden-xs-down">
-                <img src="<?php echo asset_url();?>images/logo_white.png" alt="logo"/>
-              </a>
-              <!-- /logo -->
-            </div>
-            <a class="navbar-item navbar-spacer-right navbar-heading hidden-md-down" href="<?php echo base_url();?>admin/dashboard">
-              <span>Dispature Tool</span>
-            </a>
-            <div class="navbar-item nav navbar-nav">
-             <?php if( $_SESSION['admin']['user_role']==3 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==5){?>
-              <div class="nav-item nav-link dropdown">
-             
-                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="material-icons">notifications</i>
-                  <span class="tag tag-danger" id="notification_count"><?php echo $admin_notification_count;?></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right notifications">
-                  <div class="dropdown-item">
-                    <div class="notifications-wrapper">
-                      <ul class="notifications-list" id="notification_bar">
-                       <?php
-								foreach ($admin_notification as $row) {
-								
-										echo " <li>".$row['title']."<br>".$row['notification']."</li>";
-											
-								 }?>
-                      </ul>
-                    </div>
-                    <div class="notification-footer">Notifications</div>
-                  </div>
-                </div>
+</style> 
+ <div class="navbar">
+ <audio id="audiotag1" src="<?php echo asset_url();?>sound/doorbell.wav" preload="auto"></audio>
+  <div class="container">
+
+    <div class="navbar-header">
+
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <i class="fa fa-cogs"></i>
+      </button>
+
+      <a class="navbar-brand navbar-brand-image" href="<?php echo base_url();?>admin/dashboard">
+        <img src="<?php echo asset_url();?>img/logo.png" alt="Site Logo">
+      </a>
+
+    </div> <!-- /.navbar-header -->
+
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav noticebar navbar-left">
+ <?php if( $_SESSION['admin']['user_role']==3 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==5){?>
+        <li class="dropdown">
+          <a href="./page-notifications.html" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-bell"></i>
+            <span class="navbar-visible-collapsed">&nbsp;Notifications&nbsp;</span>
+            <span class="badge"><?php echo $admin_notification_count;?></span>
+          </a>
+
+          <ul class="dropdown-menu noticebar-menu" role="menu">
+            <li class="nav-header">
+              <div class="pull-left">
+                Notifications
               </div>
-              <?php }?>
-              <?php if( $_SESSION['admin']['user_role']==3 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==5 || $_SESSION['admin']['user_role']==6){?>
-              <a href="javascript:;" class="nav-item nav-link nav-link-icon" data-toggle="modal" data-target=".chat-panel" data-backdrop="false">
-                <i class="material-icons">chat_bubble</i>
+
+              <div class="pull-right">
+                <a href="javascript:;">Mark as Read</a>
+              </div>
+            </li>
+ 							<?php
+								foreach ($admin_notification as $row) { ?>
+								
+										
+											
+								
+            <li>
+              
+                <span class="noticebar-item-image">
+                  <i class="fa fa-cloud-upload text-success"></i>
+                </span>
+                <span class="noticebar-item-body">
+                  <strong class="noticebar-item-title"><?php echo $row['title'];?></strong>
+                  <span class="noticebar-item-text"><?php echo $row['notification'];?></span>
+                </span>
+              
+            </li>
+            <?php } ?>
+           
+          </ul>
+        </li>
+      <?php }?>
+
+
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">   
+
+      
+
+        <li class="dropdown navbar-profile">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+            <img src='<?php  if($admindata['profile_pic']!='') {echo asset_url().$admindata['profile_pic'];} else { echo asset_url()."images/avatar.jpg"; }?>' class="navbar-profile-avatar" alt="">
+            <span class="navbar-profile-label">rod@rod.me &nbsp;</span>
+            <i class="fa fa-caret-down"></i>
+          </a>
+
+          <ul class="dropdown-menu" role="menu">
+
+            <li>
+              <a href="<?php echo base_url();?>admin/profile">
+                <i class="fa fa-user"></i> 
+                &nbsp;&nbsp;My Profile
               </a>
-              <?php }?>
-                <div class="nav-item nav-link dropdown">
-               <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <img src='<?php  if($admindata['profile_pic']!='') {echo asset_url().$admindata['profile_pic'];} else { echo asset_url()."images/avatar.jpg"; }?>' style ="position: relative;width: 25px;height: 25px;display: inline-block;" alt="" class="img-responsive img-circle"/>&nbsp;
-				<span class="hidden-xs">
-					<?php echo $admindata['first_name']." ".$admindata['last_name'];?>   <i class="material-icons">arrow_drop_down</i>
-				</span>
-				</a>
-                	<div class="dropdown-menu dropdown-menu-right">
-                	<a class="dropdown-item" href="<?php echo base_url();?>admin/profile"><i class="fa fa-user"></i> Profile</a>
-                  <a class="dropdown-item" href="<?php echo base_url();?>admin/logout"><i class="fa fa-key"></i> Log Out</a>
-                  </div>
-                  </div>
-            </div>
-          </div>
-        </nav>
+            </li>
+
+            <li class="divider"></li>
+
+            <li>
+              <a href="<?php echo base_url();?>admin/logout">
+                <i class="fa fa-sign-out"></i> 
+                &nbsp;&nbsp;Logout
+              </a>
+            </li>
+
+          </ul>
+
+        </li>
+
+      </ul>
+
+
+    </div> <!--/.navbar-collapse -->
+
+  </div> <!-- /.container -->
+
+</div> <!-- /.navbar -->

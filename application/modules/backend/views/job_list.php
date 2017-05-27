@@ -310,7 +310,7 @@ function update_dataTable(data,tableid) {
     $(data).each(function(index) {
                  var order_details = '<u><a href="job_detail/'+data[index].id+'">'+data[index].job_name+'</a></u>';
                  var map ='<a><i class="fa fa-map text-warning" aria-hidden="true"> </i></a>';
-                 var edit = '<a href="<?php echo base_url();?>client/edit_job/'+data[index].id+'"><i class="fa fa-external-link-square text-red" aria-hidden="true"></i></a>';
+                 var edit = '<a href="<?php echo base_url();?>client/edit_client_job/'+data[index].id+'"><i class="fa fa-external-link-square text-red" aria-hidden="true"></i></a>';
                  var job_id = '<a href="<?php echo base_url();?>admin/job_detail/'+data[index].id+'"><span class="tag bg-red"> '+data[index].job_id+'  </span> </a>';
                  var assign_to = '<a href=""  class="txt-warning" onclick="edit_assign_job_to_fieldworker (`'+data[index].id+'`,`'+data[index].assign_to+'`);" data-toggle="modal" data-backdrop="static"  data-target="#modal-login1"><i class="fa fa-edit text-primary"></i>&nbsp;'+data[index].fieldworker_name+'</a>';
                  var action = '<a href=""  class="txt-warning" data-toggle="modal" data-backdrop="static"  onclick="edit_action (`'+data[index].id+'`,`'+data[index].action_id+'`);" data-target="#modal-login1"><i class="fa fa-edit text-primary"></i>&nbsp;'+data[index].action+' </a> ';

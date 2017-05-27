@@ -51,6 +51,7 @@ class Client extends MX_Controller {
 	{
 		$data = array();
 		$data = $this->input->post('data');
+		//print_r($data);
 		$data['created_date'] = date('Y-m-d H:i:s');
 		$data['created_by'] = $_SESSION['admin']['id'];
 		$data['user_role'] = 3;

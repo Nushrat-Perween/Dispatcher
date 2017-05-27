@@ -30,7 +30,7 @@ public function index() {
 		$this->template->set ( 'attendance_list', $attendance_list );
 		$this->template->set ( 'page', 'Attendance' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Dashboard' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -94,7 +94,7 @@ public function fieldworker_attendance () {
 	$this->template->set ( 'attendance_list', $attendance_list );
 	$this->template->set ( 'page', 'Attendance' );
 	$this->template->set_theme('default_theme');
-	$this->template->set_layout ('backend')
+	$this->template->set_layout ('default')
 	->title ( 'Dispatcher | Dashboard' )
 	->set_partial ( 'header', 'partials/header' )
 	->set_partial ( 'side_menu', 'partials/side_menu' )

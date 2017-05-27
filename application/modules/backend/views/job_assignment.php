@@ -1,7 +1,9 @@
-<!-- build:css({.tmp,app}) styles/app.min.css -->
-<link rel="stylesheet" href="<?php echo asset_url();?>vendor/bootstrap/dist/css/bootstrap.css"/>
-<link rel="stylesheet" href="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.css"/>
-<link type="text/css" rel="stylesheet" href="<?php echo asset_url();?>css/bootstrap-timepicker.min.css">
+ <script src="<?php echo asset_url();?>js/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="<?php echo asset_url();?>js/plugins/datatables/DT_bootstrap.js"></script>
+  <script src="<?php echo asset_url();?>js/plugins/tableCheckable/jquery.tableCheckable.js"></script>
+  <script src="<?php echo asset_url();?>js/plugins/icheck/jquery.icheck.min.js"></script>
+  <!-- build:css({.tmp,app}) styles/app.min.css -->
+
 
 <style>
 .thead-inverse th {
@@ -10,17 +12,19 @@ color: #fff;
 }
 .messageContainer {
 	color:red;
-	margin-left:3%;
+	margin-left:10%;
 }
 </style>
 <!-- endbuild -->
-<div class="content-view" style="margin-left:10%">
-<div class="row">
-<div class="col-md-10">
-<div class="card card-block">
 
-
-<div class="dataTables_wrapper">
+<div class="container">
+  <div class="content">
+    <div class="content-container">
+		<div class="content-header">
+			<h2 class="content-header-title">
+				Assign Job To Driver
+			</h2>
+  		</div> 
                     <table class="table table-bordered datatable" id="table_id1">
                       <thead class="thead-inverse">
                        <tr >
@@ -76,8 +80,7 @@ color: #fff;
                         <?php }?>
                       </tbody>
                     </table>
-                  </div>
-                  <h2>Assign Job To Fieldworker </h2><br>
+               
 <div class="form-control" id="response" style="display: none"> </div>
 <form class="form-validation form-horizontal" method="POST" action="" name="assign_form" id="assign_form" enctype="multipart/form-data">
 
@@ -85,12 +88,12 @@ color: #fff;
 
 <div class="row">
 <div class="form-group m-b col-md-6">
-<label>
+<label class="col-md-offset-1 ">
 Start Date
 </label>
 <div class="row">
 
-<div class="col-md-10 input-group">
+<div class="col-md-offset-1  col-md-10 input-group">
 	<input  type="text" value="<?php if(isset($job)) {if($job['start_date'] != NULL)echo date("d-m-Y",strtotime($job['start_date']));else echo date("d-m-Y"); } else echo date("d-m-Y");?> " name="data[start_date]" id="start_date" placeholder="Start Date" class="form-control" />
 	<span class="input-group-addon" ><i class="fa fa-calendar"></i></span></div>
 <div class="messageContainer"></div>
@@ -99,12 +102,12 @@ Start Date
 </div>
 
 <div class="form-group m-b col-md-6">
-<label>
+<label class="col-md-offset-1 ">
 Start Time
 </label>
 <div class="row">
 
-<div class="col-md-10 input-group">
+<div class="col-md-offset-1  col-md-10 input-group">
 	<input  type="text" value="<?php if(isset($job)) {if($job['start_time'] != NULL)echo date("g:i A",strtotime($job['start_time'])); }?>" name="data[start_time]" id="start_time" placeholder="Start Date" class="form-control" />
 	<span class="input-group-addon" ><i class="fa fa-clock-o"></i></span></div>
 <div class="messageContainer"></div>
@@ -115,12 +118,12 @@ Start Time
 
 <div class="row">
 <div class="form-group m-b col-md-6">
-<label>
+<label class="col-md-offset-1 ">
 Estimated Duration
 </label>
 <div class="row">
 
-<div class="col-md-10 input-group">
+<div class="col-md-offset-1  col-md-10 input-group">
 	<input  type="text" value="<?php if(isset($job)) { if($job['estimated_duration'] != NULL)echo $job['estimated_duration']; }?>" name="data[estimated_duration]" id="estimated_duration" placeholder="Duration" class="form-control" />
 	<span class="input-group-addon" >Hr</span></div>
 <div class="messageContainer"></div>
@@ -129,11 +132,11 @@ Estimated Duration
 </div>
 
 <div class="form-group m-b col-md-6">
-<label>
+<label class="col-md-offset-1 ">
 Fieldworker
 </label>
 <div class="row">
-<div class="col-md-10 input-group">
+<div class="col-md-offset-1 col-md-10 input-group">
 <select name="data[assign_to]" id="assign_to" class="form-control">
 <option value="">Select </option>
 <?php foreach ($field_worker as $row) {?>
@@ -148,11 +151,11 @@ Fieldworker
 <div class="row">
 
 <div class="form-group m-b col-md-6">
-<label>
+<label class="col-md-offset-1 ">
 Job Priority
 </label>
 <div class="row">
-<div class="col-md-10 input-group">
+<div class="col-md-offset-1  col-md-10 input-group">
 <select name="data[priority]" id="priority" class="form-control">
 <option value="">Select </option>
 <option value="0" <?php if(isset($job)) { if($job['priority'] == 0) { echo "selected";}}?>>AM</option>
@@ -166,11 +169,11 @@ Job Priority
 </div>
 
 <div class="form-group m-b col-md-6">
-<label>
+<label class="col-md-offset-1 ">
  Job Type
 </label>
 <div class="row">
-	<div class="col-md-10 input-group">
+	<div class="col-md-offset-1 col-md-10 input-group">
 		<select name="data[job_type_id]" id="job_type_id" class="form-control">
 			<option value="">Select </option>
 			<option value="0" <?php if(isset($job)) { if($job['job_type_id'] == 0) { echo "selected";}}?>>One Time Job</option>
@@ -181,11 +184,11 @@ Job Priority
 </div>
 </div>
 <div class="form-group m-b col-md-6">
-<label>
+<label class="col-md-offset-1 ">
 Time Of Job Notification To Send On Mobile Device
 </label>
 <div class="row">
-	<div class="col-md-10 input-group">
+	<div class="col-md-offset-1 col-md-10 input-group">
 		<select name="data[notification_time]" id="notification_time" class="form-control">
 			<option value=""> Select </option>
 			<option value="0" <?php if(isset($job)) { if($job['notification_time'] == 0) { echo "selected";}}?>>Now</option>
@@ -229,11 +232,12 @@ Back
 </div>
 </div>
 </form>
-</div>
+
 </div>
 </div>
 </div>
 
+<link type="text/css" rel="stylesheet" href="<?php echo asset_url();?>css/bootstrap-timepicker.min.css">
 <script src="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.js"></script>
 <script src="<?php echo asset_url();?>vendor/bootstrap/jquery.form.js"></script>
 <script src="<?php echo asset_url();?>js/bootstrap-datepicker.min.js"></script>

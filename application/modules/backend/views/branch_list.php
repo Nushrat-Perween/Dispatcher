@@ -1,45 +1,50 @@
-<!-- page stylesheets -->
-<link rel="stylesheet" href="<?php echo asset_url();?>vendor/datatables/media/css/dataTables.bootstrap4.css">
-<link rel="stylesheet" href="<?php echo asset_url();?>vendor/bootstrap/dist/css/bootstrap.css"/>
 
-<!-- page stylesheets -->
-<style>
-td{font-size:0.9em;padding:5px 5px 5px 5px !important;text-align:center}
-th{text-align:center}
-hr{margin-bottom:0rem}
-.icon-arrow-left {
-	color:black;
-}
-</style>
-<div class="content-view">
-<div class="card">
-<div class="card-header no-bg b-a-0">
-<div class="dropdown pull-left " style="padding:3px 5px 4px 5px">
-<H2>List Of Branch</H2>
-</div>
-<a href="<?php echo base_url();?>admin/add_branch"><button class="btn bg-primary btn-sm pull-right no-radius">
+
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+
+      
+
+      <div class="content-header">
+        <h2 class="content-header-title"> Branch List  <a href="<?php echo base_url();?>admin/add_branch"><button class="btn bg-primary btn-sm pull-right no-radius">
 <i class="fa fa-plus" aria-hidden="true"> </i> Branch
-</button></a>
-<br>
-<br>
-<div class="card-block">
-<table class="table table-bordered datatable" >
-<thead>
-<tr>
+</button></a></h2>
+       
+      </div> <!-- /.content-header -->
+      <div class="row">
 
-<th> ID </th>
-<th> Hospital Name </th>
-<th> Branch Name </th>
-<th>  Address </th>
-<th>  Street </th>
-<th>  City </th>
-<th>  State </th>
-<th>  Zipcode </th>
-<th>  Action </th>
-</tr>
-</thead>
-<tbody >
-<?php
+        <div class="col-md-12">
+
+          <div class="portlet">
+            <div class="portlet-content">           
+
+              <div class="table-responsive">
+
+              <table 
+                class="table table-striped table-bordered table-hover table-highlight table-checkable" 
+                data-provide="datatable" 
+                data-display-rows="10"
+                data-info="true"
+                data-search="true"
+                data-length-change="true"
+                data-paginate="true"
+              >
+                  <thead>
+                    <tr>
+                     <th> ID </th>
+                      <th data-filterable="true" data-sortable="true" data-direction="desc">Branch Name</th>
+                      <th data-direction="asc" data-filterable="true" data-sortable="true">Address</th>
+                      <th data-filterable="true" data-sortable="true"> City</th>
+                      <th  data-filterable="true" data-sortable="true"> State</th>
+                      <th data-filterable="true" class="hidden-xs hidden-sm"> Zipcode</th>
+                      <th> Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                 <?php
 
 $sr=0;
 foreach($branch_list as $row) {
@@ -49,10 +54,10 @@ foreach($branch_list as $row) {
 	?>
 <tr>
 <td> <?php echo $row['id'];?> </td>
-<td> <?php if($row['hospital_name'] != "") echo ucwords($row['hospital_name']); else echo "NA";?> </td>
+
 <td> <?php if($row['branch_name'] != "") echo ucwords($row['branch_name']); else echo "NA";?> </td>
 <td> <?php if($row['address'] != "") echo $row['address']; else echo "NA";?> </td>
-<td> <?php if($row['street'] != "") echo $row['street']; else echo "NA";?> </td>
+
 <td> <?php if($row['city'] != "") echo $row['city']; else echo "NA";?> </td>
 <td> <?php if($row['state'] != "") echo $row['state']; else echo "NA";?> </td>
 <td> <?php if($row['zipcode'] != "") echo $row['zipcode']; else echo "NA";?> </td>
@@ -61,26 +66,25 @@ foreach($branch_list as $row) {
 </td>
 
 <?php }?>
-</tbody>
+                  </tbody>
+                </table>
+              </div> <!-- /.table-responsive -->
+              
 
-</table>
-</div>
-</div>
-</div>
-</div>
-<script type="text/javascript">
+            </div> <!-- /.portlet-content -->
 
-</script>
+          </div> <!-- /.portlet -->
 
-   <!-- page scripts -->
-    <script src="<?php echo asset_url();?>vendor/datatables/media/js/jquery.dataTables.js"></script>
-    <script src="<?php echo asset_url();?>vendor/datatables/media/js/dataTables.bootstrap4.js"></script>
-    <script src="<?php echo asset_url();?>vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js"></script>
-   
+        
 
-<!-- initialize page scripts -->
-<!-- initialize page scripts -->
-<script type="text/javascript">
-$('.datatable').DataTable();
-</script>
-<!-- end initialize page scripts -->
+        </div> <!-- /.col -->
+
+      </div> <!-- /.row -->
+    </div>
+  </div>
+ </div>
+      
+ <script src="<?php echo asset_url();?>js/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="<?php echo asset_url();?>js/plugins/datatables/DT_bootstrap.js"></script>
+  <script src="<?php echo asset_url();?>js/plugins/tableCheckable/jquery.tableCheckable.js"></script>
+  <script src="<?php echo asset_url();?>js/plugins/icheck/jquery.icheck.min.js"></script>

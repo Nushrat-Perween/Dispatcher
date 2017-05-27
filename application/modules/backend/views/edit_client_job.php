@@ -1,267 +1,291 @@
+<style>
+.form-group{margin-bottom:0px}
+.content-header-title{font-size:16px}
+</style>
+
 <link rel="stylesheet" href="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.css"/>
-<div class="content-view">
-	<div class="card" style ="padding:20px;">
-		<form class="form-validation form-horizontal" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
-			 <div class="card-block" style="padding-bottom:40px">
-			   <div class="row">
-				   	<div class="col-md-3">
-					   	<div class="row">
-					   		<h6 class="text-danger"> <b>Basic Information</b></h6>
+<div class="container">
+  <div class="content">
+    <div class="content-container">
+		<div class="content-header">
+		<h2 class="content-header-title">
+				Edit Job 
+			</h2>
+		</div>
+		<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+		<form class="form-validation form-horizontal" method="POST" action="" name="job_form" id="job_form" enctype="multipart/form-data">
+		   <div class="row">
+		   <ul class="nav nav-tabs">
+			  <li class="active"><a data-toggle="tab" href="#basic">Basic</a></li>
+			  <li><a data-toggle="tab" href="#contact">Contact</a></li>
+			  <li><a data-toggle="tab" href="#address">Address</a></li>
+				<?php if($_SESSION['admin']['user_role']==5 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==3) {?> <li><a data-toggle="tab" href="#assign">Assign</a></li><?php }?>
+				</ul>
+				<div class="tab-content" >
+					<div id="basic" class="tab-pane fade in active">
+						<div class=" col-md-10 col-md-offset-1">
+							<div class="col-md-6">
+								 <input type="hidden" name="job[id]" value="<?php if(isset($job)) { if($job['id'] != NULL)echo $job['id']; }?>" id= "jobid" class="form-control" >
+						   		<input type="hidden" name="contact[id]" value="<?php if(isset($contact)) { if($contact['id'] != NULL)echo $contact['id']; }?>" id= "contactid" class="form-control" >
+						   		<input type="hidden" name="patient[id]" value="<?php if(isset($patient)) { if($patient['id'] != NULL)echo $patient['id']; }?>" id= "patientid" class="form-control" >
+			         	<div class="row">
 				         	<div class="col-md-12">
 					         	<div class="row"> 
 										<label>Job Name</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="jobname" id= "jobname" class="form-control" value ="<?php echo $job[0]['job_name'];?>" required>
+									<div class="col-md-12 form-group">
+										<input type="text" name="job[job_name]" value="<?php if(isset($job)) { if($job['job_name'] != NULL)echo $job['job_name']; }?>" id= "jobname" class="form-control" required>
 									</div>
 									<div class="messageContainer text-danger"></div>
 								</div>
 				         	</div>
+			         	</div>
+							<div class="row">
+				         	<div class="col-md-12">
+					         	<div class="row"> 
+										<label>Job Priority</label>
+									<div class="col-md-12 form-group">
+										<select name="job[priority]" id="priority" class="form-control" >
+											<option value="">Select</option>
+											<option value="0" <?php if(isset($job)) { if($job['priority'] == 0)echo 'selected'; }?>>AM</option>
+											<option value="1" <?php if(isset($job)) { if($job['priority'] == 1)echo 'selected'; }?>>Timed</option>
+											<option value="2" <?php if(isset($job)) { if($job['priority'] == 2)echo 'selected'; }?>>Stat</option>
+											<option value="3" <?php if(isset($job)) { if($job['priority'] == 3)echo 'selected'; }?>>Today</option>
+										</select>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				         	</div>
+			         	</div>			  
+			         	
+	         			<div class="row">
+				        	<div class="col-md-12">
+				        		<div class="row"> 
+										<label>Patient Name</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="patient[name]" value="<?php if(isset($patient)) { if($patient['name'] != NULL)echo $patient['name']; }?>" id= "pname" class="form-control" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				        	</div>
+			        	</div>
+			        		<div class="row">
+				         	<div class="col-md-12">
+				         		<div class="row"> 
+										<label>Room Number</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="patient[room_no]"  value="<?php if(isset($patient)) { if($patient['room_no'] != NULL)echo $patient['room_no']; }?>" id= "rnumber" class="form-control" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				         	</div>
+			         	</div>
+			         	<div class="row"> 
+				         	<div class="col-md-12">
+				         		<div class="row"> 
+										<label>Tests</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="patient[test]" value="<?php if(isset($patient)) { if($patient['test'] != NULL)echo $patient['test']; }?>" id= "tests" class="form-control" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				         	</div>
+			         	</div>
+			        	</div>
+			        	<div class="col-md-6">
+			        
+			         	<div class="row"> 
+				         	<div class="col-md-12">
+				         		<div class="row"> 
+										<label>Caller</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="patient[caller]" value="<?php if(isset($patient)) { if($patient['caller'] != NULL)echo $patient['caller']; }?>" id= "caller" class="form-control" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				         	</div>
+			         	</div>
+			         	<div class="row">
 				         	<div class="col-md-12">
 				         		<div class="row"> 
 										<label>Description</label>
-									<div class="col-md-12 input-group">
-										<textarea  name="jobdesc" class="form-control" rows="1"><?php echo $job[0]['description'];?></textarea>
+									<div class="col-md-12 form-group">
+										<textarea  name="job[description]" value="" class="form-control" rows="3"> <?php if(isset($job)) { if($job['description'] != NULL)echo $job['description']; }?></textarea>
 									</div>
 									<div class="messageContainer text-danger"></div>
 								</div>
 				         	 </div>
-		         		</div>
-		         		<div class="row">
-		         			<h6 class="text-danger"> <b>Patient Information</b></h6>
-				        	<div class="col-md-12">
-				        		<div class="row"> 
-										<label>Patient Name</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="pname" id= "pname" class="form-control" value ="<?php echo $patient[0]['name'];?>" required>
-									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
-				        	</div>
-				        </div>
-				       	<div class="row">
-				         	<div class="col-md-12">
-				         		<div class="row"> 
-										<label>Room Number</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="rnumber" id= "rnumber" class="form-control" value ="<?php echo $patient[0]['room_no'];?>" required>
-									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
-				         	</div>
 				         </div>
-				         <div class="row">
-				         	<div class="col-md-12">
-				         		<div class="row"> 
-										<label>Tests</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="tests" id= "tests" class="form-control" value ="<?php echo $patient[0]['test'];?>" required>
-									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
-				         	</div>
-				         </div>
-				         <div class="row">
-				         	<div class="col-md-12">
-				         		<div class="row"> 
-										<label>Caller</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="caller" id= "caller" class="form-control" value ="<?php echo $patient[0]['caller'];?>" required>
-										<input type="hidden" name="patient_id" id= "" class="form-control" value ="<?php echo $patient[0]['id'];?>" required>
-									</div>
-									<div class="messageContainer text-danger"></div>
-								</div >
-				         	</div>
-				         </div>
-				         <div class="row">			         	
+			         	<div class="row"> 			         	
 		         			<div class="col-md-12">
 		         				<div class="row"> 
 										<label>Special instrunction</label>
-									<div class="col-md-12 input-group">
-										<textarea  name="sintruction" class="form-control" rows="1"><?php echo $patient[0]['special_instruction'];?> </textarea>
+									<div class="col-md-12 form-group">
+										<textarea  name="patient[special_instruction]" class="form-control" rows="3"><?php if(isset($patient)) { if($patient['special_instruction'] != NULL)echo $patient['special_instruction']; }?> </textarea>
 									</div>
 									<div class="messageContainer text-danger"></div>
 								</div>
 		         			</div>
-		         		</div>
-		         	</div>
-		         
-				        <div class="col-md-3">
-			         		<div class="row">
-						   		<h6 class="text-danger"> <b>Contact</b></h6>
-					        	<div class="col-md-12">
-					        		<div class="row"> 
-											<label>First Name</label>
-										<div class="col-md-12 input-group">
-											<input type="text" name="fname" id= "fname" class="form-control" value ="<?php echo $customer[0]['first_name'];?>" required>
-										</div>
-										<div class="messageContainer text-danger"></div>
-									</div>	
-					        	</div>
-					        </div>
-					        <div class="row">
-					         	<div class="col-md-12">
-					         		<div class="row"> 
-											<label>Last Name</label>
-										<div class="col-md-12 input-group">
-											<input type="text" name="lname" id= "end_dalnamete" class="form-control" value ="<?php echo $customer[0]['last_name'];?>" required>
-										</div>
-										<div class="messageContainer text-danger"></div>
-									</div>	
-					         	</div>
-					         </div>
-					         <div class="row">
-					         	<div class="col-md-12">
-					         		<div class="row"> 
-											<label>Mobile No</label>
-										<div class="col-md-12 input-group">
-											<input type="text" name="mobno" id= "mobno" class="form-control" value ="<?php echo $customer[0]['mobile'];?>" required>
-										</div>
-										<div class="messageContainer text-danger"></div>
-									</div>	
-					         	</div>
-					         </div>
-					         <div class="row">
-					         	<div class="col-md-12">
-					         		<div class="row"> 
-											<label>Email Id</label>
-										<div class="col-md-12 input-group">
-											<input type="email" name="email" id= "email" class="form-control" value ="<?php echo $customer[0]['email'];?>" required>
-										</div>
-										<div class="messageContainer text-danger"></div>
-									</div>	
-					         	</div>
-					         </div>
-					         <div class="row">
-					         	<div class="col-md-12">
-					         		<div class="row"> 
-											<label>Delivery Date</label>
-										<div class="col-md-12 input-group">
-											<input type="text" name="delivery_date" id= "start_date" value="<?php echo (isset($job[0]['delivery_date']) && !empty($job[0]['delivery_date']))?date("d-m-Y", strtotime($job[0]['delivery_date'])):'';?>" class="form-control">
-											<input type="hidden" class="form-control" name="job_id" placeholder="City" id="" value ="<?php echo $job[0]['id'];?>" />
-										</div>
-										<div class="messageContainer text-danger"></div>
-									</div>	
-					         	</div>
-					         </div>
-					         <div class="row">
-					         	<div class="col-md-12">
-					         		<div class="row">
-											<label>Delivery Time</label>
-										<div class="input-group bootstrap-timepicker timepicker">
-								            <input id="timepicker1" type="text" name = "delivery_time" value="<?php echo (isset($job[0]['delivery_time']) && !empty($job[0]['delivery_time']))?date("H:i", strtotime($job[0]['delivery_time'])):'';?>" class="form-control input-small">
-								            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-								        </div>
-										<div class="messageContainer text-danger"></div>
-									</div>	
-					         	</div>
-					         </div>
-			         	</div>
-			         		<div class="col-md-3">
+	         			</div>
+	         		</div>
+				 </div>
+			</div>
+ <!--    Contact -->
+			<div id="contact" class="tab-pane fade">
+				<div class=" col-md-10 col-md-offset-1">
+					<div class=" col-md-6">
 					   	<div class="row">
-					   		<h6 class="text-danger"> <b>Address</b></h6>
 				        	<div class="col-md-12">
 				        		<div class="row"> 
-										<label>Location/ Lookup Name</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="lookupname" id= "lookupname" class="form-control" value ="<?php echo $customer[0]['lookup_name'];?>" required>
+										<label>First Name</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[first_name]" value="<?php if(isset($contact)) { if($contact['first_name'] != NULL)echo $contact['first_name']; }?>" id= "fname" class="form-control" required>
 									</div>
 									<div class="messageContainer text-danger"></div>
-								</div>
+								</div>	
 				        	</div>
 				        </div>
-				        	<div class="row">
-					        	<div class="col-md-12">
-					         		<div class="row"> 
-											<label>City</label>
-										<div class="col-md-12 input-group">
-											<input type="text" name="city" id= "city" onkeyup="ajaxSearch()" class="form-control" value ="<?php echo $customer[0]['city_name'];?>" required>
-											 <div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
-											 	<div id="autoSuggestionsList" ></div>
-											 </div>
-										</div>
-										<div class="messageContainer text-danger"></div>
+				        <div class="row"> 
+				         	<div class="col-md-12">
+				         		<div class="row"> 
+										<label>Last Name</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[last_name]"  value="<?php if(isset($contact)) { if($contact['last_name'] != NULL)echo $contact['last_name']; }?>" id= "end_dalnamete" class="form-control" required>
 									</div>
-					         	</div>
-					         </div>
-					         <div class="row">
-					         	<div class="col-md-12">
-					         		<div class="row"> 
-											<label>State/Region</label>
-										<div class="col-md-12 input-group">
-											<input type="text" name="state" id= "state" onkeyup="ajaxSearch1()" class="form-control" value ="<?php echo $customer[0]['state_name'];?>" required>
-											<div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
-												<div id="autoSuggestionsList1" ></div>
-											 </div>
-										</div>
-										<div class="messageContainer text-danger"></div>
-									</div>
-					         	</div>
-					         </div>
-					         <div class="row">
-					         	<div class="col-md-12">
-					         		<div class="row"> 
-											<label>Street</label>
-										<div class="col-md-12 input-group">
-											<input type="text" name="street" id= "locality" class="form-control" value ="<?php echo $customer[0]['street'];?>" required>
-											<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" value ="<?php echo $customer[0]['latitude'];?>" />
-											<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude" value ="<?php echo $customer[0]['longitude'];?>" />
-											<input type="hidden" class="form-control" name="contact_id" placeholder="City" value ="<?php echo $customer[0]['id'];?>" />										
-										</div>
-										<div class="messageContainer text-danger"></div>
-									</div>
-					         	</div>
-				         	</div>
-				         	<div class="row">
-					         	<div class="col-md-12"> 
-					         		<div class="row"> 
-											<label>Zip Code</label>
-										<div class="col-md-12 input-group">
-											<input type="text" name="postalcode" id= "postalcode" class="form-control" value ="<?php echo $customer[0]['postalcode'];?>" required>
-										</div> 
-										<div class="messageContainer text-danger"></div>
-									</div>	
-					         	</div>
-					         </div>
-					        <div class="row">
-					         	<div class="col-md-12">
-					         		<div class="row"> 
-											<label>Apartment / Suit / Building</label>
-										<div class="col-md-12 input-group">
-											<input type="text" name="building" id= "building" class="form-control" value ="<?php echo $customer[0]['building'];?>" required>
-										</div>
-										<div class="messageContainer text-danger"></div>
-									</div>
-					         	</div>
+									<div class="messageContainer text-danger"></div>
+								</div>	
 				         	</div>
 				         </div>
-			         	  <div class="col-md-3">
-				   			<div class="row">
-					   		<h6 class="text-danger"> <b> Delivery Address</b></h6>
-					   	</div>
-					   		<?php if($_SESSION['admin']['user_role']==5 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==3){?>
+				         <div class="row"> 
+				         	<div class="col-md-12">
+				         		<div class="row"> 
+										<label>Mobile No</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[mobile]"  value="<?php if(isset($contact)) { if($contact['mobile'] != NULL)echo $contact['mobile']; }?>" id= "mobno" class="form-control" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>	
+				         	</div>
+				         </div>
+				        </div>
+				        <div class="col-md-6">
+				         <div class="row"> 
+				         	<div class="col-md-12">
+				         		<div class="row"> 
+									<label>	Email Id</label>
+									<div class="col-md-12 form-group">
+										<input type="email" name="contact[email]" value="<?php if(isset($contact)) { if($contact['email'] != NULL)echo $contact['email']; }?>" id= "email" class="form-control" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>	
+				         	</div>
+				         </div>
+				         <div class="row"> 
+				         	<div class="col-md-12">
+				         		<div class="row"> 
+									<label>	Delivery Date</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="job[delivery_date]" value="<?php if(isset($job)) { if($job['delivery_date'] != NULL)echo $job['delivery_date']; }?>" id= "start_date" class="form-control">
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>	
+				         	</div>
+				         </div>
+				         <div class="row"  style="padding-left:13px"> 
+				         	<div class="col-md-11 form-group">
+				         		<div class="row" >
+									<label>	Delivery Time</label>
+									<div class="input-group bootstrap-timepicker timepicker">
+							            <input id="timepicker1" type="text" name = "job[delivery_time]" value="<?php if(isset($job)) { if($job['delivery_time'] != NULL)echo $job['delivery_time']; }?>" class="form-control input-small">
+							            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+							        </div>
+									<div class="messageContainer text-danger"></div>
+								</div>	
+				         	</div>
+				         </div>
+					</div>
+				</div>
+			</div> 
+<!--     Address -->
+				
+			<div id="address" class="tab-pane fade">
+				<div class=" col-md-10 col-md-offset-1">
+					<div class="row">
+				       <div class="col-md-offset-1 col-md-5">
+				         <div class="row">
+				   			<h3 class="content-header-title"> <b>Pickup Address</b></h3>
+				   		</div>
+				         <?php if($_SESSION['admin']['user_role']==5 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==3) {?>
 			         		<div class="row">
 				         		<div class="col-md-12">
 						         	<div class="row"> 
-											<label>Select Client</label>
-										<div class="col-md-12 input-group">
-											<select class="form-control" name="hospital_id" id="hospital_id" onchange="getHospital()">
-											<option value="">Select Client</option>
-												<?php foreach($hospitallist as $item){?>
-												<option value="<?php echo $item['id']?>" <?php if($item['id']==$job[0]['hospital_id']){?> selected <?php }?>><?php echo $item['hospital_name']?></option>
-												<?php }?>
-											</select>
+											<label>Select Branch/Hospital</label>
+										<div class="col-md-12 form-group">
+											<input type="radio" value="1" name="contact[pickup_address_type]" <?php if(isset($contact)) { if($contact['pickup_address_type'] == 1)echo "checked"; }?> onchange="getPickupBranchDiv();">Branch
+											<input type="radio" value="2" name="contact[pickup_address_type]" <?php if(isset($contact)) { if($contact['pickup_address_type'] == 2)echo "checked"; }?> onchange="getPickupHospitalDiv();">Hospital
 										</div>
 										<div class="messageContainer text-danger"></div>
 									</div>
 				         		</div>
 			         		</div>
+			         	<div id="pickup_address_div">
+			         	
+			         	<?php if(isset($contact)) { if($contact['pickup_address_type'] == 1) {?>
+								<div class="row">
+						       		<div class="col-md-12">
+								       	<div class="row">
+													<label>Select Branch</label>
+												<div class="col-md-12 form-group">
+													<select class="form-control" name="contact[pickup_branch_id]" id="branch_id" onchange="getBranch()">
+														<option value="">Select Branch</option>
+														<?php foreach($branchlist as $item){?>
+														<option value="<?php echo $item['id'];?>" <?php if(isset($contact)) { if($contact['pickup_branch_id'] == $item['id']) { echo"selected";}}?>><?php echo $item['branch_name']?></option>
+														<?php }?>
+													</select>
+												</div>
+												<div class="messageContainer text-danger"></div>
+											</div>
+										</div>
+									</div>
+								<?php } }?>
+			         		<?php if(isset($contact)) { if($contact['pickup_address_type'] == 2) {?>
+				         	<div class="row">
+					       		<div class="col-md-12">
+							       	<div class="row">
+												<label>Select Hospital</label>
+											<div class="col-md-12 form-group">
+												<select class="form-control" name="contact[pickup_hospital_id]" id="hospital_id" onchange="getHospital()">'+
+													<option value="">Select Hospital</option>
+													<?php foreach($hospitallist as $item){?>
+													<option value="<?php echo $item['id']?>" <?php if(isset($contact)) { if($contact['pickup_hospital_id'] == $item['id']) { echo"selected";}}?>><?php echo $item['hospital_name']?></option>
+													<?php }?>
+												</select>
+											</div>
+											<div class="messageContainer text-danger"></div>
+										</div>
+									</div>
+								</div>
+							<?php } }?>
+								</div>
 			         	<?php } ?>
-			         	 <div class="row">
+			         	
+					    <div class="row">
+				        	<div class="col-md-12">
+				        		<div class="row"> 
+										<label>Location/ Lookup Name</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[pickup_lookup_name]" value="<?php if(isset($contact)) { if($contact['pickup_lookup_name'] != NULL)echo $contact['pickup_lookup_name']; }?>" id= "lookupname" class="form-control" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				        	</div>
+				        </div>
+				        <div class="row">
 				         	<div class="col-md-12">
 				         		<div class="row"> 
-										<label>Address</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="haddress" id= "haddress" class="form-control" required>
+										<label>Apartment / Suit / Building</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[pickup_building]" value="<?php if(isset($contact)) { if($contact['pickup_building'] != NULL)echo $contact['pickup_building']; }?>" id= "building" class="form-control" required>
 									</div>
 									<div class="messageContainer text-danger"></div>
 								</div>
@@ -271,8 +295,10 @@
 				         	<div class="col-md-12">
 				         		<div class="row"> 
 										<label>Street</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="hstreet" class="form-control" id ="hstreet" required>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[pickup_street]" value="<?php if(isset($contact)) { if($contact['pickup_street'] != NULL)echo $contact['pickup_street']; }?>" class="form-control" id ="locality" required>
+										<input type="hidden" class="form-control" name="contact[pickup_latitude]" value="<?php if(isset($contact)) { if($contact['pickup_latitude'] != NULL)echo $contact['pickup_latitude']; }?>" placeholder="City" id="latitude" />
+										<input type="hidden" class="form-control" name="contact[pickup_longitude]" value="<?php if(isset($contact)) { if($contact['pickup_longitude'] != NULL)echo $contact['pickup_longitude']; }?>" placeholder="City" id="longitude" />
 									</div>
 									<div class="messageContainer text-danger"></div>
 								</div>
@@ -281,9 +307,9 @@
 				        <div class="row">
 				        	<div class="col-md-12">
 				         		<div class="row"> 
-										<label>City</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="hcity" id= "hcity" class="form-control" onkeyup="ajaxSearch()" required>
+										<label>City.</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[pickup_city]" value="<?php if(isset($contact)) { if($contact['pickup_city'] != NULL)echo $contact['pickup_city']; }?>" id= "city" class="form-control" onkeyup="ajaxSearch()" required>
 									 <div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
 										 <div id="autoSuggestionsList" ></div>
 									</div>
@@ -296,8 +322,8 @@
 				         	<div class="col-md-12">
 				         		<div class="row"> 
 										<label>State/Region</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="hstate" id= "hstate" class="form-control" onkeyup="ajaxSearch1()" required>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[pickup_state]" value="<?php if(isset($contact)) { if($contact['pickup_state'] != NULL)echo $contact['pickup_state']; }?>" id= "state" class="form-control" onkeyup="ajaxSearch1()" required>
 										<div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
 											<div id="autoSuggestionsList1" ></div>
 										 </div>
@@ -306,24 +332,261 @@
 								<div class="messageContainer text-danger"></div>
 							</div>
 						</div>
+					
 				         <div class="row">
 				         	<div class="col-md-12"> 
 				         		<div class="row"> 
 										<label>Zip Code</label>
-									<div class="col-md-12 input-group">
-										<input type="text" name="hpincode" id= "hpincode" class="form-control" required>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[pickup_postalcode]" value="<?php if(isset($contact)) { if($contact['pickup_postalcode'] != NULL)echo $contact['pickup_postalcode']; }?>" id= "postalcode" class="form-control" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>	
+				         	</div>
+				         </div>
+				    
+	         		</div>
+				       <div class="col-md-offset-1 col-md-5">
+				   			<div class="row">
+					   		<h6 class="content-header-title"> <b> Delivery Address</b></h6>
+					   	</div>
+					   		<?php if($_SESSION['admin']['user_role']==5 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==3) {?>
+			         		<div class="row">
+				         		<div class="col-md-12">
+						         	<div class="row"> 
+											<label>Select Branch/Hospital</label>
+										<div class="col-md-12 form-group">
+											<input type="radio" value="1" name="contact[delivery_address_type]" <?php if(isset($contact)) { if($contact['delivery_address_type'] == 1)echo "checked"; }?> onchange="getBranchDiv();">Branch
+											<input type="radio" value="2" name="contact[delivery_address_type]"  <?php if(isset($contact)) { if($contact['delivery_address_type'] == 2)echo "checked"; }?> onchange="getHospitalDiv();">Hospital
+										</div>
+										<div class="messageContainer text-danger"></div>
+									</div>
+				         		</div>
+			         		</div>
+			         	<div id="address_div">
+			         	<?php if(isset($contact)) { if($contact['delivery_address_type'] == 1) {?>
+								<div class="row">
+						       		<div class="col-md-12">
+								       	<div class="row">
+													<label>Select Branch</label>
+												<div class="col-md-12 form-group">
+													<select class="form-control" name="contact[delivery_branch_id]" id="branch_id" onchange="getBranch()">
+														<option value="">Select Branch</option>
+														<?php foreach($branchlist as $item){?>
+														<option value="<?php echo $item['id'];?>" <?php if(isset($contact)) { if($contact['delivery_branch_id'] == $item['id']) { echo"selected";}}?>><?php echo $item['branch_name']?></option>
+														<?php }?>
+													</select>
+												</div>
+												<div class="messageContainer text-danger"></div>
+											</div>
+										</div>
+									</div>
+								<?php } }?>
+			         		<?php if(isset($contact)) { if($contact['delivery_address_type'] == 2) {?>
+				         	<div class="row">
+					       		<div class="col-md-12">
+							       	<div class="row">
+												<label>Select Hospital</label>
+											<div class="col-md-12 input-group">
+												<select class="form-control" name="contact[delivery_hospital_id]" id="hospital_id" onchange="getHospital()">'+
+													<option value="">Select Hospital</option>
+													<?php foreach($hospitallist as $item){?>
+													<option value="<?php echo $item['id']?>" <?php if(isset($contact)) { if($contact['delivery_hospital_id'] == $item['id']) { echo"selected";}}?>><?php echo $item['hospital_name']?></option>
+													<?php }?>
+												</select>
+											</div>
+											<div class="messageContainer text-danger"></div>
+										</div>
+									</div>
+								</div>
+							<?php } }?>
+			         	</div>
+			         	
+			         	<?php } ?>
+			         	<div class="row"> 
+							<label>Location/ Lookup Name</label>
+							<div class="col-md-12 form-group">
+								<input type="text" name="contact[delivery_lookup_name]" id= "lookupname" class="form-control" value="<?php if(isset($contact)) { if($contact['delivery_lookup_name'] != NULL)echo $contact['delivery_lookup_name']; }?>" required>
+							</div>
+							<div class="messageContainer text-danger"></div>
+						</div>
+			         	 <div class="row">
+				         	<div class="col-md-12">
+				         		<div class="row"> 
+										<label>Address</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[delivery_address]" value="<?php if(isset($contact)) { if($contact['delivery_address'] != NULL)echo $contact['delivery_address']; }?>" id= "haddress" class="form-control" required>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				         	</div>
+				         </div>
+				         	<div class="row">
+				         	<div class="col-md-12">
+				         		<div class="row"> 
+										<label>Street</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[delivery_street]" value="<?php if(isset($contact)) { if($contact['delivery_street'] != NULL)echo $contact['delivery_street']; }?>" class="form-control" id ="hstreet" required>
+										<input type="hidden" class="form-control" name="contact[delivery_latitude]" value="<?php if(isset($contact)) { if($contact['delivery_latitude'] != NULL)echo $contact['delivery_latitude']; }?>" placeholder="City" id="hlatitude" />
+										<input type="hidden" class="form-control" name="contact[delivery_longitude]" value="<?php if(isset($contact)) { if($contact['delivery_longitude'] != NULL)echo $contact['delivery_longitude']; }?>" placeholder="City" id="hlongitude" />
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				         	</div>
+				         </div>
+				        <div class="row">
+				        	<div class="col-md-12">
+				         		<div class="row"> 
+										<label>City.</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[delivery_city]" value="<?php if(isset($contact)) { if($contact['delivery_city'] != NULL)echo $contact['delivery_city']; }?>" id= "hcity" class="form-control" onkeyup="ajaxSearch()" required>
+									 <div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
+										 <div id="autoSuggestionsList" ></div>
+									</div>
+									</div>
+									<div class="messageContainer text-danger"></div>
+								</div>
+				         	</div>
+				         </div>
+				         <div class="row">
+				         	<div class="col-md-12">
+				         		<div class="row"> 
+										<label>State/Region</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[delivery_state]" value="<?php if(isset($contact)) { if($contact['delivery_state'] != NULL)echo $contact['delivery_state']; }?>" id= "hstate" class="form-control" onkeyup="ajaxSearch1()" required>
+										<div id="suggestions"  style="position:absolute;background-color:#fff;z-index:1000;width:90%;font-size:1.3em;top:40px;box-shadow:0px 3px 3px #f0f0f0" >
+											<div id="autoSuggestionsList1" ></div>
+										 </div>
+									</div>									
+								</div>
+								<div class="messageContainer text-danger"></div>
+							</div>
+						</div>
+					
+				         <div class="row">
+				         	<div class="col-md-12"> 
+				         		<div class="row"> 
+										<label>Zip Code</label>
+									<div class="col-md-12 form-group">
+										<input type="text" name="contact[delivery_zipcode]" value="<?php if(isset($contact)) { if($contact['delivery_zipcode'] != NULL)echo $contact['delivery_zipcode']; }?>" id= "hpincode" class="form-control" required>
 									</div>
 									<div class="messageContainer text-danger"></div>
 								</div>	
 				         	</div>
 				         </div>
 				       </div>
-		         	</div>
-		         	<div class="col-md-1 pull-right"> <button type="submit" class="btn btn-primary m-r" >Update</button> </div>
 	         	</div>
-	         </form>
-		 </div>
+	         </div>
+	        </div>
+	        <!--    Assign -->			
+			<?php if($_SESSION['admin']['user_role']==5 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==3) {?>
+				<div id="assign" class="tab-pane fade">
+					<?php if($_SESSION['admin']['user_role']==5 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==3) {?>
+	         	<div class="row">
+	         	<div class=" col-md-10 col-md-offset-1">
+		   		<div class="col-md-6">
+				         		<div class="row"> 
+										<label>Start Date</label>
+									<div class="col-md-11  input-group">
+										<input  type="text" value="<?php if(isset($job)) {if($job['start_date'] != NULL)echo date("d-m-Y",strtotime($job['start_date']));else echo date("d-m-Y"); } else echo date("d-m-Y");?> " name="data[start_date]" id="start_date2" placeholder="Start Date" class="form-control" />
+										<span class="input-group-addon" ><i class="fa fa-calendar"></i></span>
+									</div>									
+								</div>
+								<div class="messageContainer text-danger"></div>
+							
+					
+				         		<div class="row"> 
+										<label>Estimated Duration</label>
+									<div class="col-md-11 input-group">
+										<input  type="text" value="<?php if(isset($job)) { if($job['estimated_duration'] != NULL)echo $job['estimated_duration']; }?>" name="data[estimated_duration]" id="estimated_duration" placeholder="Duration" class="form-control" />
+										<span class="input-group-addon" >Hr</span>
+									</div>									
+								</div>
+								<div class="messageContainer text-danger"></div>
+							
+	         	
+	         			<div class="row">
+				         	<div class="col-md-12">
+				         		<div class="row"> 
+										<label>Job Priority</label>
+									<div class="col-md-12 form-group">
+										<select name="data[priority]" id="priority" class="form-control">
+											<option value="">Select </option>
+											<option value="0" <?php if(isset($job)) { if($job['priority'] == 0) { echo "selected";}}?>>AM</option>
+											<option value="1" <?php if(isset($job)) { if($job['priority'] == 1) { echo "selected";}}?>>Timed</option>
+											<option value="2" <?php if(isset($job)) { if($job['priority'] == 2) { echo "selected";}}?>>Stat</option>
+											<option value="3" <?php if(isset($job)) { if($job['priority'] == 2) { echo "selected";}}?>>Today</option>
+										</select>
+									</div>									
+								</div>
+								<div class="messageContainer text-danger"></div>
+							</div>
+						</div>
+						
+				         		<div class="row"> 
+										<label>Time Of Job Notification To Send On Mobile Device</label>
+									<div class="col-md-12 form-group">
+										<select name="data[notification_time]" id="notification_time" class="form-control">
+											<option value=""> Select </option>
+											<option value="0" <?php if(isset($job)) { if($job['notification_time'] == 0) { echo "selected";}}?>>Now</option>
+											<option value="1" <?php if(isset($job)) { if($job['notification_time'] == 1) { echo "selected";}}?>>1 Day before the schedule day start</option>
+											<option value="2" <?php if(isset($job)) { if($job['notification_time'] == 2) { echo "selected";}}?>>On</option>
+											
+										</select>
+									</div>	
+									<div class="messageContainer text-danger"></div>								
+								</div>
+								
+							
+				</div>
+				<div class=" col-md-6">
+				         		<div class="row"> 
+										<label>	Start Time</label>
+									<div class="col-md-11 input-group">
+										<input  type="text" value="<?php if(isset($job)) {if($job['start_time'] != NULL)echo date("g:i A",strtotime($job['start_time'])); }?>" name="data[start_time]" id="timepicker2" placeholder="Start Date" class="form-control" />
+										<span class="input-group-addon" ><i class="fa fa-clock-o"></i></span>
+									</div>	
+									<div class="messageContainer text-danger"></div>								
+								</div>
+						
+				         		<div class="row"> 
+										<label>Driver</label>
+									<div class="col-md-12 form-group">
+										<select name="data[assign_to]" id="assign_to" class="form-control">
+											<option value="">Select </option>
+											<?php foreach ($field_worker as $row) {?>
+											<option value="<?php echo $row['id'];?>" <?php if($job['assign_to']==$row['id']){?> selected <?php }?>><?php echo $row['first_name']. " ".  $row['last_name'];?></option>
+											<?php }?>
+										</select>
+									</div>
+									<div class="messageContainer text-danger"></div>									
+								</div>
+				         		<div class="row"> 
+										<label>Job Type</label>
+									<div class="col-md-12 form-group">
+										<select name="data[job_type_id]" id="job_type_id" class="form-control">
+											<option value="">Select </option>
+											<option value="0" <?php if(isset($job)) { if($job['job_type_id'] == 0) { echo "selected";}}?>>One Time Job</option>
+											<option value="1" <?php if(isset($job)) { if($job['job_type_id'] == 1) { echo "selected";}}?>>Regular Job</option>
+										</select>
+									</div>		
+									<div class="messageContainer text-danger"></div>							
+								</div>
+		</div>
 	</div>
+	</div>
+	<?php }?>
+					</div>
+	<?php }?>
+<div class="col-md-12 " style="margin-top:10px ;margin-right:110px"> <button type="submit" class="btn btn-primary m-r pull-right">Submit</button> </div>   	
+         	
+         </form>
+         </div>
+</div>
+</div>
+</div>
+</div>     
+
 	<script src="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.js"></script>
 	<script src="<?php echo asset_url();?>vendor/bootstrap/jquery.form.js"></script>
 	<script src="<?php echo asset_url(); ?>js/bootstrap-datepicker.min.js"></script>
@@ -335,10 +598,10 @@
     <script type="text/javascript">
    // $('.form-validation').validate();
 
-    $("#user_form").submit(function(e) {
+    $("#job_form").submit(function(e) {
         e.preventDefault();
     });
-      $('#user_form').bootstrapValidator({
+      $('#job_form').bootstrapValidator({
     		container: function($field, validator) {
     	    	return $field.parent().next('.messageContainer');
     	    },
@@ -490,11 +753,11 @@
       }).on('success.form.bv', function(e) {
       	// Prevent form submission
       		e.preventDefault();
-      		save_user ();
+      		update_job ();
       	}); 
 
-      function save_user () {
-  		dataString = $("#user_form").serialize();
+      function update_job () {
+  		dataString = $("#job_form").serialize();
   	    $(".text-danger").hide();
   	   	$.ajax({
   	    	type: "POST",
@@ -509,7 +772,7 @@
   					
   						
   	           	} else {
-  	           // 	$("#user_form").reset();
+  	           // 	$("#job_form").reset();
   	            	$('#reset').click();
   	            	$("#response").show();
   	            	$("#response").addClass('alert-success');
@@ -553,20 +816,20 @@
         });
         
     
-         input = document.getElementById('locality1');
-       var  autocomplete1 = new google.maps.places.Autocomplete(input, options);
-        autocomplete1.addListener('place_changed', function () {
-            var place = autocomplete1.getPlace();
-            if (!place.geometry) {
-                window.alert("Autocomplete's returned place contains no geometry");
-                return;
-            }
-           
-            $('#latitude1').val(place.geometry.location.lat());
-            $('#longitude1').val(place.geometry.location.lng());
-          i=0;
-        });
-    }
+        input = document.getElementById('hstreet');
+        var  autocomplete1 = new google.maps.places.Autocomplete(input, options);
+         autocomplete1.addListener('place_changed', function () {
+             var place = autocomplete1.getPlace();
+             if (!place.geometry) {
+                 window.alert("Autocomplete's returned place contains no geometry");
+                 return;
+             }
+            
+             $('#hlatitude').val(place.geometry.location.lat());
+             $('#hlongitude').val(place.geometry.location.lng());
+           i=0;
+         });
+     }
 
     function ajaxSearch()
     {
@@ -650,28 +913,163 @@
      	 $('#autoSuggestionsList1').hide();
      	 
       }
+      function getPickupHospitalDiv () {
+          var hospitalDiv = '	<div class="row">'+
+								       		'<div class="col-md-12">'+
+										       	'<div class="row"> '+
+															'<label>Select Hospital</label>'+
+														'<div class="col-md-12 form-group">'+
+															'<select class="form-control" name="contact[pickup_hospital_id]" id="pickup_hospital_id" onchange="getPickupHospital()">'+
+																'<option value="">Select Hospital</option>'+
+																<?php foreach($hospitallist as $item){?>
+																'<option value="<?php echo $item['id']?>"><?php echo $item['hospital_name']?></option>'+
+																<?php }?>
+															'</select>'+
+														'</div>'+
+														'<div class="messageContainer text-danger"></div>'+
+													'</div>'+
+												'</div>'+
+											'</div>';
+		document.getElementById('pickup_address_div').innerHTML = hospitalDiv;
+      }
+      
+      function getPickupBranchDiv () {
+          var hospitalDiv = '	<div class="row">'+
+								       		'<div class="col-md-12">'+
+										       	'<div class="row"> '+
+															'<label>Select Branch</label>'+
+														'<div class="col-md-12 form-group">'+
+															'<select class="form-control" name="contact[pickup_branch_id]" id="pickup_branch_id" onchange="getPickupBranch()">'+
+																'<option value="">Select Branch</option>'+
+																<?php foreach($branchlist as $item){?>
+																'<option value="<?php echo $item['id']?>"><?php echo $item['branch_name']?></option>'+
+																<?php }?>
+															'</select>'+
+														'</div>'+
+														'<div class="messageContainer text-danger"></div>'+
+													'</div>'+
+												'</div>'+
+											'</div>';
+		document.getElementById('pickup_address_div').innerHTML = hospitalDiv;
+      }
+      
+      function getHospitalDiv () {
+          var hospitalDiv = '	<div class="row">'+
+								       		'<div class="col-md-12">'+
+										       	'<div class="row"> '+
+															'<label>Select Hospital</label>'+
+														'<div class="col-md-12 form-group">'+
+															'<select class="form-control" name="contact[delivery_hospital_id]" id="hospital_id" onchange="getHospital()">'+
+																'<option value="">Select Hospital</option>'+
+																<?php foreach($hospitallist as $item){?>
+																'<option value="<?php echo $item['id']?>"><?php echo $item['hospital_name']?></option>'+
+																<?php }?>
+															'</select>'+
+														'</div>'+
+														'<div class="messageContainer text-danger"></div>'+
+													'</div>'+
+												'</div>'+
+											'</div>';
+		document.getElementById('address_div').innerHTML = hospitalDiv;
+      }
+      
+      function getBranchDiv () {
+          var hospitalDiv = '	<div class="row">'+
+								       		'<div class="col-md-12">'+
+										       	'<div class="row"> '+
+															'<label>Select Branch</label>'+
+														'<div class="col-md-12 form-group">'+
+															'<select class="form-control" name="contact[delivery_branch_id]" id="branch_id" onchange="getBranch()">'+
+																'<option value="">Select Branch</option>'+
+																<?php foreach($branchlist as $item){?>
+																'<option value="<?php echo $item['id']?>"><?php echo $item['branch_name']?></option>'+
+																<?php }?>
+															'</select>'+
+														'</div>'+
+														'<div class="messageContainer text-danger"></div>'+
+													'</div>'+
+												'</div>'+
+											'</div>';
+		document.getElementById('address_div').innerHTML = hospitalDiv;
+      }
+      
+      function getBranch()
+      {
+    		$.post(base_url+"client/get_branch_by_id/"+$('#branch_id').val(),{}, function(data)
+    				{
+    					
+    					$(data).each(function(index){
+    						
+    						$('#haddress').val(data[index].address);
+    						$('#hstreet').val(data[index].street);
+    						$('#hcity').val(data[index].city);
+    						$('#hstate').val(data[index].state);
+    						$('#hpincode').val(data[index].zipcode);
+    						
+    					});
+    			},'json'); 
+      }
+      
       function getHospital()
       {
-          var html ="";
-    	  var value = $('#hospital_id').val();
-    	 
-    		$.post(base_url+"client/gethospitaladdress/"+value,{}, function(data)
+    		$.post(base_url+"client/gethospitaladdress/"+$('#hospital_id').val(),{}, function(data)
     				{
     					
     					$(data).each(function(index){
     						
     						$('#haddress').val(data[index].address);
     						$('#hstreet').val(data[index].locality);
+    						$('#hlatitude').val(data[index].latitude);
+    						$('#hlongitude').val(data[index].longitude);
     						$('#hcity').val(data[index].city);
     						$('#hstate').val(data[index].state);
     						$('#hpincode').val(data[index].pincode);
     						
     					});
-    					//alert(data.value);
     			},'json'); 
       }
+      function getPickupBranch()
+      {
+    		$.post(base_url+"client/get_branch_by_id/"+$('#pickup_branch_id').val(),{}, function(data)
+    				{
+    					
+    					$(data).each(function(index){
+    						
+    						$('#lookupname').val(data[index].address);
+    						$('#building').val(data[index].street);
+    						$('#locality').val(data[index].street);
+    						$('#latitude').val(data[index].latitude);
+    						$('#longitude').val(data[index].longitude);
+    						$('#city').val(data[index].city);
+    						$('#state').val(data[index].state);
+    						$('#postalcode').val(data[index].zipcode);
+    						
+    					});
+    			},'json'); 
+      }
+      
+      function getPickupHospital()
+      {
+    		$.post(base_url+"client/gethospitaladdress/"+$('#pickup_hospital_id').val(),{}, function(data)
+    				{
+    					
+    					$(data).each(function(index){
+    						
+    						$('#lookupname').val(data[index].address);
+    						$('#building').val(data[index].locality);
+    						$('#locality').val(data[index].locality);
+    						$('#latitude').val(data[index].latitude);
+    						$('#longitude').val(data[index].longitude);
+    						$('#city').val(data[index].city);
+    						$('#state').val(data[index].state);
+    						$('#postalcode').val(data[index].pincode);
+    						
+    					});
+    			},'json'); 
+      }
+      <?php if($_SESSION['admin']['hospital_id'] != "" OR $_SESSION['admin']['hospital_id']!= NULL) { ?>
       $(document).ready(function(){
-  		
+		
     	  var html ="";
     	 var value = <?php echo $_SESSION['admin']['hospital_id']?>;
     	
@@ -680,16 +1078,20 @@
     					
     					$(data).each(function(index){
     						
-    						$('#haddress').val(data[index].address);
-    						$('#hstreet').val(data[index].locality);
-    						$('#hcity').val(data[index].city);
-    						$('#hstate').val(data[index].state);
-    						$('#hpincode').val(data[index].pincode);
+    						$('#lookupname').val(data[index].address);
+    						$('#building').val(data[index].locality);
+    						$('#locality').val(data[index].locality);
+    						$('#latitude').val(data[index].latitude);
+    						$('#longitude').val(data[index].longitude);
+    						$('#city').val(data[index].city);
+    						$('#state').val(data[index].state);
+    						$('#postalcode').val(data[index].pincode);
     						
     					});
     					//alert(data.value);
     			},'json');
           });
+      <?php }?>
     </script>
 	
 	

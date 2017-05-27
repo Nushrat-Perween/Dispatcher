@@ -182,7 +182,9 @@ class Login extends MX_Controller {
 		$response = array();
 		$this->load->library('dispatcher/AdminLib');
 		$emailid = $this->input->post('email');
+		
 		$emailchk = $this->adminlib->getAdminByUserName ($emailid);
+		
 		if($emailchk[0]['email'] == $emailid)
 		{
 			if($emailchk[0]['verified'] == 1)

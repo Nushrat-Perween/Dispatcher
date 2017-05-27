@@ -1,5 +1,5 @@
 <!-- build:css({.tmp,app}) styles/app.min.css -->
-<link rel="stylesheet" href="<?php echo asset_url();?>vendor/bootstrap/dist/css/bootstrap.css"/>
+
 <link rel="stylesheet" href="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.css"/>
 
 <style>
@@ -8,137 +8,91 @@
 	margin-left:3%;
 }
 </style>
-<!-- endbuild -->
-<div class="content-view" >
-<div class="row">
-<div class="card card-block">
-<h2><?php if(isset($branch)) { echo "Update ";} else { echo "Add ";}?> Branch</h2>
-<br>
-<div class="form-control" id="response" style="display: none"> </div>
-<form class="form-validation form-horizontal" method="POST" action="" name="branch_form" id="branch_form" enctype="multipart/form-data">
-<?php  if(isset($branch)) { ?>
-<input type="hidden"  value="<?php echo $branch['id'];?>" name="data[id]" id="id">
-<?php }?>
-<div class="row">
-	<div class="col-md-5 ">
-		<div class="form-group m-b">
-			<label>
-			Hospital Name :
-			</label>
-			<div class="row">
-				<div class="col-md-10 input-group">
-					<select class="form-control" name="data[hospital_id]"  id="hospital_id" >
-						<option value="">Select</option>
-						<?php foreach ($hospitallist as $row) {?>
-						<option value="<?php echo $row['id'];?>" <?php if(isset($branch)) { if($branch['hospital_id'] == $row['id']) { echo "selected";}}?>><?php echo ucwords($row['hospital_name']);?></option>
-						<?php }?>
-					</select>
-				</div>
-				<div class="messageContainer"></div>
-			</div>
-		</div>
-		
-		<div class="form-group m-b">
-			<label>
-			Address :
-			</label>
-			<div class="row">
-				<div class="col-md-10 input-group">
-					<input type="text"  class="form-control" name="data[address]" id="address" value="<?php if(isset($branch)) {echo $branch['address'];}?>" placeholder="Address" />
-				</div>
-				<div class="messageContainer"></div>
-			</div>
-		</div>
-		<div class="form-group m-b">
-			<label>
-			City :
-			</label>
-			<div class="row">
-				<div class="col-md-10 input-group">
-					<input type="text"  class="form-control" name="data[city]" value="<?php if(isset($branch)) {echo $branch['city'];}?>" placeholder="City" />
-				</div>
-				<div class="messageContainer"></div>
-			</div>
-		</div>
-		<div class="form-group m-b">
-			<label>
-			Zip Code :
-			</label>
-			<div class="row">
-				<div class="col-md-10 input-group">
-					<input type="text"  class="form-control" name="data[zipcode]" placeholder="Zipcode" value="<?php if(isset($branch)) {echo $branch['zipcode'];}?>" />
-				</div>
-				<div class="messageContainer"></div>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-5 ">
-		<div class="form-group m-b">
-			<label>
-			Branch Name :
-			</label>
-			<div class="row">
-				<div class="col-md-10 input-group">
-					<input type="text"  class="form-control" name="data[branch_name]" id="branch_name" value="<?php if(isset($branch)) {echo $branch['branch_name'];}?>" placeholder="Branch" />
-				</div>
-				<div class="messageContainer"></div>
-			</div>
-		</div>
-		<div class="form-group m-b">
-			<label>
-			Street :
-			</label>
-			<div class="row">
-				<div class="col-md-10 input-group">
-					<input type="text" class="form-control" name="data[street]" placeholder="Street" id="street" value="<?php if(isset($branch)) {echo $branch['street'];}?>" />
+
+
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+      <div class="content-header">
+        <h2 class="content-header-title"><?php if(isset($branch)) { echo "Update ";} else { echo "Add ";}?> Branch </h2>
+       
+      </div> <!-- /.content-header -->
+      <div class="row">
+
+        <div class="col-md-6 col-md-offset-3">
+          <form class=" form-validation form account-form" method="POST" action="" name="branch_form" id="branch_form" enctype="multipart/form-data">
+		 
+			 <div class="form-group">
+	          <label >Branch Name</label>
+	         <input type="text"  class="form-control" name="data[branch_name]" id="branch_name" value="<?php if(isset($branch)) {echo $branch['branch_name'];}?>" placeholder="Branch" tabindex="1" />
+	        <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
+	        
+	        	<div class="form-group">
+	          <label >Address</label>
+	         	<input type="hidden"  value="<?php if(isset($branch)) {echo $branch['id'];}?>" name="data[id]" id="id">
+	          <input type="text"  class="form-control" name="data[address]" id="address" value="<?php if(isset($branch)) {echo $branch['address'];}?>" placeholder="Address" tabindex="2"/>
+	       <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
+	          <div class="form-group">
+	          <label >Zip Code</label>
+	          <input type="text"  class="form-control" name="data[zipcode]" placeholder="Zipcode" value="<?php if(isset($branch)) {echo $branch['zipcode'];}?>" tabindex="3"/>
+	        <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
+	         <div class="form-group">
+	          <label >Street</label>
+	         <input type="text" class="form-control" name="data[street]" placeholder="Street" id="street" value="<?php if(isset($branch)) {echo $branch['street'];}?>" tabindex="4"/>
 					<input type="hidden" class="form-control" name="data[latitude]" placeholder="City" id="latitude" value="<?php if(isset($branch)) {echo $branch['latitude'];}?>" />
 					<input type="hidden" class="form-control" name="data[longitude]" placeholder="City" id="longitude" value="<?php if(isset($branch)) {echo $branch['longitude'];}?>" />
-				</div>
-				<div class="messageContainer"></div>
-			</div>
-		</div>
-		
-		<div class="form-group m-b">
-			<label>
-			State :
-			</label>
-			<div class="row">
-				<div class="col-md-10 input-group">
-					<input type="text"  class="form-control" name="data[state]" value="<?php if(isset($branch)) {echo $branch['state'];}?>" placeholder="State" required/>
-				</div>
-				<div class="messageContainer"></div>
-			</div>
-		</div>
-		
-	</div>
-</div>
-<div class="form-group">
-<?php if(isset($branch)) {?>
-<button type="submit" class="btn btn-primary m-r">
-Update
-</button>
-<a href="<?php echo base_url();?>admin/branch_list"><button type="button" class="btn btn-default" >
-Cancel
-</button>
-</a>
-<?php } else {?>
-<button type="submit" class="btn btn-primary m-r">
-Submit
-</button>
-<button type="reset" id="reset" class="btn btn-default" >
-Reset
-</button>
-<a href="<?php echo base_url();?>admin/branch_list"><button type="button" class="btn btn-default" >
-Cancel
-</button>
-</a>
-<?php }?>
+	        <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
+	        <div class="form-group">
+	          <label >City</label>
+	          <input type="text"  class="form-control" name="data[city]" value="<?php if(isset($branch)) {echo $branch['city'];}?>" placeholder="City" tabindex="5" />
+	        <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
+	       
+	        <div class="form-group">
+	          <label >State</label>
+	       <input type="text"  class="form-control" name="data[state]" value="<?php if(isset($branch)) {echo $branch['state'];}?>" placeholder="State" required tabindex="6"/>
+	        <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
+	        
+	
+	        <div class="form-group text-right" >
+				<?php if(isset($branch)) {?>
+				<button type="submit" class="btn btn-primary m-r">
+				Update
+				</button>
+				<a href="<?php echo base_url();?>admin/branch_list"><button type="button" class="btn btn-default" >
+				Cancel
+				</button>
+				</a>
+				<?php } else {?>
+				<button type="submit" class="btn btn-primary m-r">
+				Submit
+				</button>
+				<button type="reset" id="reset" class="btn btn-default" >
+				Reset
+				</button>
+				<a href="<?php echo base_url();?>admin/branch_list"><button type="button" class="btn btn-default" >
+				Cancel
+				</button>
+				</a>
+				<?php }?>
 
-</div>
-</form>
-</div>
-</div>
-</div>
+		</div>
+
+      </form>
+        </div>
+      </div>
+    </div>
+   </div>
+ </div>
+        	
+
 
 
 <script src="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.js"></script>
@@ -254,7 +208,7 @@ $("#branch_form").submit(function(e) {
 						$("#response").addClass('alert-success');
 						$("#response").html(resp.msg);
 						alert("Branch added successfully.");
-						//window.location.href = "<?php echo base_url(); ?>admin/add_city";
+						window.location.href = "<?php echo base_url(); ?>admin/branch_list";
 					}
 				}
 
@@ -284,7 +238,7 @@ $("#branch_form").submit(function(e) {
 						$("#response").addClass('alert-success');
 						$("#response").html(resp.msg);
 						alert("Branch updated successfully.");
-						//window.location.href = "<?php echo base_url(); ?>admin/add_city";
+						window.location.href = "<?php echo base_url(); ?>admin/branch_list";
 					}
 				}
 

@@ -9,18 +9,23 @@
 }
 </style>
 <!-- endbuild -->
-<div class="content-view" >
-	<div class="row"> 
-		<div class="col-md-12"> 
-			<div class="card card-block" style="padding:40px">
-				<h2>Add Client</h2>
-				<div class="form-control" id="response" style="display: none"> </div>
-				<form class="form-validation form-horizontal" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+      <div class="content-header">
+        <h2 class="content-header-title">Add Client</h2>
+       
+      </div> <!-- /.content-header -->
+      <div class="row">
+      		 <div class="col-md-8 col-md-offset-2">
+         <form class="form-validation form-horizontal" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
 				<div class="row">
-					<div class="form-group col-md-4">
+					<div class="col-md-6">
 						<div class="row"> 
 						<label>Company Name</label>
-							<div class="col-md-12 input-group"> 
+							<div class="col-md-12 form-group"> 
 								<input type="text" class="form-control" name="data[company_name]" placeholder="Company Name" required/>
 							</div>
 							<div class="messageContainer"></div>
@@ -29,7 +34,7 @@
 						
 						<div class="row"> 
 						<label> First Name</label>
-							<div class="col-md-12 input-group"> 
+							<div class="col-md-12 form-group"> 
 								<input type="text" class="form-control" name="data[first_name]" placeholder="First Name" required/>
 							</div>
 							<div class="messageContainer"></div>
@@ -38,7 +43,7 @@
 						
 						<div class="row"> 
 						<label>Last Name</label>
-							<div class="col-md-12 input-group"> 
+							<div class="col-md-12 form-group"> 
 								<input type="text" class="form-control" name="data[last_name]" placeholder="Last Name" required/>
 							</div>
 							<div class="messageContainer"></div>
@@ -46,30 +51,65 @@
 						</div>
 						<div class="row"> 
 							<label>Mobile Number</label>
-							<div class="col-md-12 input-group"> 
+							<div class="col-md-12 form-group"> 
 								<input type="text" class="form-control" name="data[mobile]" placeholder="Number" required/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
-					</div>
-					<div class="form-group col-md-4">
+					
 						<div class="row"> 
 						<label>Email</label>
-							<div class="col-md-12 input-group"> 
+							<div class="col-md-12 form-group"> 
 								<input type="email" class="form-control" name="data[email]" placeholder="email" required/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
 						<div class="row"> 
 						<label>Password</label>
-							<div class="col-md-12 input-group"> 
+							<div class="col-md-12 form-group"> 
 								<input type="text"  class="form-control" name="data[password]" value ="<?php echo $password['text_password'] ?>" placeholder="Pincode" required/>
 							</div>
 							<div class="messageContainer"></div>
 						</div>
+						</div>
+					<div class=" col-md-6">
+							<div class="row"> 
+							<label>Address</label>
+								<div class="col-md-12 form-group"> 
+									<input type="text" class="form-control" name="data[address]" placeholder="address" required/>
+								</div>
+								<div class="messageContainer"></div>
+							</div>
+								<div class="row"> 
+						<label>Zip code</label>
+							<div class="col-md-12 form-group"> 
+								<input type="text"  class="form-control" name="data[pincode]" placeholder="Zip code" required/>
+								<input type="hidden"  class="form-control" name="password" value ="<?php echo $password['text_password'] ?>" placeholder="Pincode" required/>
+							</div>
+							<div class="messageContainer"></div>
+						</div>
+							<div class="row"> 
+						<label>City Name</label>
+							<div class="col-md-12 form-group"> 
+								<input type="text" class="form-control" name="data[locality]" placeholder="City" id="locality" required/>
+								<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" />
+								<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude" />
+							</div>
+							<div class="messageContainer"></div>
+						</div>
+						<div class="row"> 
+						<label>State</label>
+							<div class="col-md-12 form-group"> 
+								<input type="text" class="form-control" name="data[state]" placeholder="state" id="" required/>
+								
+							</div>
+							<div class="messageContainer"></div>
+						</div>
+					
+					
 						<div class="row"> 
 							<label>Package</label>
-								<div class="col-md-12"> 
+								<div class="col-md-12 form-group"> 
 									<select class="form-control" name="data[package_id]"  id="verified" required>
 										<option value="">Select</option>
 										<?php foreach($package as $item) {  ?>
@@ -79,53 +119,18 @@
 								</div>
 								<div class="messageContainer"></div>
 							</div>
-						<div class="row"> 
-						<label>Is Verified</label>
-							<div class="col-md-12 input-group"> 
-								<select class="form-control" name="data[verified]"  id="verified" required>
-									<option value="">Select</option>
-									<option value="1">Yes</option>
-									<option value="0">No</option>
-									
-								</select>
+							<div class="row"> 
+							<label>Is Verified</label>
+								<div class="col-md-12 form-group"> 
+									<select class="form-control" name="data[verified]"  id="verified" required>
+										<option value="">Select</option>
+										<option value="1">Yes</option>
+										<option value="0">No</option>
+										
+									</select>
+								</div>
+								<div class="messageContainer"></div>
 							</div>
-							<div class="messageContainer"></div>
-						</div>
-					</div>
-						
-					<div class="form-group col-md-4">
-						<div class="row"> 
-						<label>Address</label>
-							<div class="col-md-12 input-group"> 
-								<input type="text" class="form-control" name="data[address]" placeholder="address" required/>
-							</div>
-							<div class="messageContainer"></div>
-						</div>
-						<div class="row"> 
-						<label>State</label>
-							<div class="col-md-12 input-group"> 
-								<input type="text" class="form-control" name="data[state]" placeholder="state" id="" required/>
-								
-							</div>
-							<div class="messageContainer"></div>
-						</div>
-						<div class="row"> 
-						<label>City Name</label>
-							<div class="col-md-12 input-group"> 
-								<input type="text" class="form-control" name="data[locality]" placeholder="City" id="locality" required/>
-								<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" />
-								<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude" />
-							</div>
-							<div class="messageContainer"></div>
-						</div>
-						<div class="row"> 
-						<label>Zip code</label>
-							<div class="col-md-12 input-group"> 
-								<input type="text"  class="form-control" name="data[pincode]" placeholder="Zip code" required/>
-								<input type="hidden"  class="form-control" name="password" value ="<?php echo $password['text_password'] ?>" placeholder="Pincode" required/>
-							</div>
-							<div class="messageContainer"></div>
-						</div>
 						
 					</div>	
 				</div>					
@@ -138,11 +143,13 @@
 							</button>
 						</div>
 				</form>
-			</div>
-		</div>
-	</div>
-</div>
-  
+				</div>
+      		 
+      </div>
+    </div>
+   </div>
+ </div>
+
 
     <script src="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.js"></script>
 <script src="<?php echo asset_url();?>vendor/bootstrap/jquery.form.js"></script>

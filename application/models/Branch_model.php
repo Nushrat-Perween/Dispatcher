@@ -27,17 +27,14 @@ class Branch_model extends CI_Model {
 	 */
 	public function getAllBranch ($param)
 	{
-		$this->db->select ( 'b.*,h.name as hospital_name' );
+		$this->db->select ( 'b.*' );
 		$this->db->from ( TABLES::$BRANCH. ' AS b' );
-		$this->db->join ( TABLES::$HOSPITAL . ' AS h', 'h.id=b.hospital_id', 'inner' );
+		
 		$this->db->where ( 'b.is_deleted', 0 );
 		if(isset($param['client_id'])) {
 			$this->db->where ( 'b.client_id', $param['client_id'] );
 		}
-		if(isset($param['hospital_id'])) {
-			$this->db->where ( 'b.hospital_id', $param['hospital_id'] );
-		}
-		$this->db->where ( 'DATE(b.created_date)', date('Y-m-d') );
+		//$this->db->where ( 'DATE(b.created_date)', date('Y-m-d') );
 		$this->db->order_by ( 'b.created_date', 'DESC' );
 		$query = $this->db->get ();
 		//echo $query = $this->db->last_query ();

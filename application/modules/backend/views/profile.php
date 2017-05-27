@@ -1,5 +1,5 @@
 <!-- build:css({.tmp,app}) styles/app.min.css -->
-<link rel="stylesheet" href="<?php echo asset_url();?>vendor/bootstrap/dist/css/bootstrap.css"/>
+
 <link rel="stylesheet" href="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.css"/>
 
 <style>
@@ -55,14 +55,13 @@
 }
 
 </style>
-<div class="content-view">
-<div class="card">
-<div class="card-header no-bg b-a-0">
-<div class="dropdown pull-left " style="padding:3px 5px 4px 5px">
-<H2>Profile</H2>
-</div>
-<br><br>
-<div class="card-block">
+<div class="container">
+  <div class="content">
+    <div class="content-container">
+      <div class="content-header">
+        <h2 class="content-header-title">Profile</h2>
+      </div> <!-- /.content-header -->
+      	<div class="row">
 
 <div class="panel-body pan">
 	<ul class="nav nav-tabs">
@@ -170,8 +169,9 @@
 								 </div><br><br>
 		                        <div class="row">
 		                        	<div class="col-md-12">
-											<input type="submit" name="submit" id="btnchangeprofile" class="btn btn-primary" value="Update"/>
+											<center><input type="submit" name="submit" id="btnchangeprofile" class="btn btn-primary" value="Update"/>
 											<input type="button" class="btn btn-primary" value="Cancel" onclick="history.go(-1);" />
+									</center>
 									</div>
 								</div>
 		                    </div>
@@ -182,43 +182,48 @@
 						<div id="form1"><!-- Begening of form 1 -->
 							<div id="response" class="alert"></div>
 							<div class="form-body pal" style="min-height:650px;">
-		                    	<div class="row">
-									<div class="col-md-6">
-		                             	<div class="form-group">
-			                             	<label for="selCountry"class="control-label">Enter Your Current Password </label>
-			                             	<div>
-			                             		<input id="oldpassword" type="password"  name="data[oldpassword]" class="form-control" autocomplete="new-password"/>
+								<div class="row">
+								<div class="col-md-8 col-md-offset-2">
+			                    	<div class="row">
+										<div class="col-md-6">
+			                             	<div class="form-group">
+				                             	<label for="selCountry"class="control-label">Enter Your Current Password </label>
+				                             	<div>
+				                             		<input id="oldpassword" type="password"  name="data[oldpassword]" class="form-control" autocomplete="new-password"/>
+				                             	</div>
+				                             	<div class="messageContainer"></div>
 			                             	</div>
-			                             	<div class="messageContainer"></div>
-		                             	</div>
+										 </div>
 									 </div>
-								 </div>
-		                         <div class="row">
-								 	<div class="col-md-6">
-		                            	<div class="form-group">
-		                            		<label for="selCountry" class="control-label">Enter New Password </label>
-		                            		<div>
-		                            			<input id="password" type="password"  name="data[text_password]"class="form-control" autocomplete="new-password"/>
-		                            		</div>
-		                            		<div class="messageContainer"></div>
-		                            	</div>
-		                            </div>
-								</div>
-		                        <div class="row">
-		                        	<div class="col-md-6">
-		                            	<div class="form-group">
-		                            		<label for="selCountry" class="control-label">Enter New Password for confirmation </label>
-		                            		<div>
-		                            			<input type="password" name="confirm_password" equalTo="#password1" class="form-control" autocomplete="off"/>
-		                            		</div>
-		                            		<div class="messageContainer"></div>
-		                            	</div>
-		                             </div>
-		                        </div>
-		                        <div class="row">
-		                        	<div class="col-md-12">
-										<input type="submit" name="submit" id="btnchangepassword" class="btn btn-primary" value="Save"/>
-										<input type="button" class="btn btn-primary" value="Cancel" onclick="history.go(-1);" />
+			                         <div class="row">
+									 	<div class="col-md-6">
+			                            	<div class="form-group">
+			                            		<label for="selCountry" class="control-label">Enter New Password </label>
+			                            		<div>
+			                            			<input id="password" type="password"  name="data[text_password]"class="form-control" autocomplete="new-password"/>
+			                            		</div>
+			                            		<div class="messageContainer"></div>
+			                            	</div>
+			                            </div>
+									</div>
+			                        <div class="row">
+			                        	<div class="col-md-6">
+			                            	<div class="form-group">
+			                            		<label for="selCountry" class="control-label">Enter New Password for confirmation </label>
+			                            		<div>
+			                            			<input type="password" name="confirm_password" equalTo="#password1" class="form-control" autocomplete="off"/>
+			                            		</div>
+			                            		<div class="messageContainer"></div>
+			                            	</div>
+			                             </div>
+			                        </div>
+			                        <div class="row">
+			                        	<div class="col-md-6 text-right">
+											<center><input type="submit" name="submit" id="btnchangepassword" class="btn btn-primary" value="Save"/>
+												   <input type="button" class="btn btn-primary" value="Cancel" onclick="history.go(-1);" />
+											</center>
+										</div>
+									</div>
 									</div>
 								</div>
 		                    </div>
@@ -231,6 +236,7 @@
 </div>
 </div>
 </div>
+
 <script type="text/javascript">
 
 </script>

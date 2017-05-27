@@ -1,5 +1,100 @@
- <link rel="stylesheet" href="<?php echo asset_url();?>vendor/datatables/media/css/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="<?php echo asset_url();?>vendor/bootstrap/dist/css/bootstrap.css"/>
+
+
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+
+      
+
+      <div class="content-header">
+        <h2 class="content-header-title"> Contact List </h2>
+           	
+        <div class="row" style="padding-bottom:20px;">
+        	<div class="col-md-1"></div>
+        	<div class="col-md-3">From: <input type="text" name="number" id= "start_date" class="form-control"></div>
+         	<div class="col-md-3">To: <input type="text" name="number" id= "end_date" class="form-control"></div>
+         	<div class="col-md-1" style ="padding-top:20px;"> <button type="button" class="btn btn-primary m-r-xs m-b-xs" onclick = "searchByDateMob()" > Search </button> </div>
+         </div>
+      </div> <!-- /.content-header -->
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <div class="portlet">
+            <div class="portlet-content">           
+
+              <div class="table-responsive">
+
+              <table 
+                class="table table-striped table-bordered table-hover table-highlight table-checkable" 
+                data-provide="datatable" 
+                data-display-rows="10"
+                data-info="true"
+                data-search="true"
+                data-length-change="true"
+                data-paginate="true"
+              >
+                  <thead>
+                    <tr>
+                       <th data-filterable="true" data-sortable="true" data-direction="desc"> Name </th>
+	                    <th data-filterable="true" data-sortable="true" data-direction="desc"> Room Number </th>
+	                    <th> Test </th>
+	                    <th data-filterable="true" data-sortable="true" data-direction="desc"> Caller</th>
+	                    <th> Special Instruction </th>
+	                    <th data-filterable="true" data-sortable="true" data-direction="desc"> Created_date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+    			<?php //print_r($joblist);
+					foreach($patientlist as $row) { ?>
+					   <tr>
+	                      <td> <?php echo $row['name'];?></td>
+	                      <td>  <?php echo $row['room_no'];?></td>
+	                      <td>  <?php echo $row['test'];?> </td>
+	                      <td> <?php echo $row['caller'];?> </td>
+	                      <td>  <?php echo $row['special_instruction'];?> </td>
+	                      <td> <?php echo (isset($row['created_date']) && !empty($row['created_date']))?date("d-m-Y", strtotime($row['created_date'])):'';?></td>
+	                    </tr>
+	                 <?php }?>  
+                  </tbody>
+                </table>
+              </div> <!-- /.table-responsive -->
+              
+
+            </div> <!-- /.portlet-content -->
+
+          </div> <!-- /.portlet -->
+
+        
+
+        </div> <!-- /.col -->
+
+      </div> <!-- /.row -->
+    </div>
+  </div>
+ </div>
+      
+ <script src="<?php echo asset_url();?>js/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="<?php echo asset_url();?>js/plugins/datatables/DT_bootstrap.js"></script>
+  <script src="<?php echo asset_url();?>js/plugins/tableCheckable/jquery.tableCheckable.js"></script>
+  <script src="<?php echo asset_url();?>js/plugins/icheck/jquery.icheck.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
  <style>
 	td{font-size:0.9em;padding:5px 5px 5px 5px !important;text-align:center}
 	th{text-align:center}
@@ -13,47 +108,7 @@
     padding-right: 20%;
 	}
 	</style>
-  <div class="content-view">
-  	<h5> Patient Report </h5>
-	<div class="card">
-        <div class="card-block">
-        	
-        <div class="row" style="padding-bottom:20px;">
-        	<div class="col-md-1"></div>
-        	<div class="col-md-3">From: <input type="text" name="number" id= "start_date" class="form-control"></div>
-         	<div class="col-md-3">To: <input type="text" name="number" id= "end_date" class="form-control"></div>
-         	<div class="col-md-1" style ="padding-top:20px;"> <button type="button" class="btn btn-primary m-r-xs m-b-xs" onclick = "searchByDateMob()" > Search </button> </div>
-         </div>
-            <table class="table table-bordered datatable" id ="patient">
-                 <thead>
-                    <tr>
-	                    <th> Name </th>
-	                    <th> Room Number </th>
-	                    <th> Test </th>
-	                    <th> Caller</th>
-	                    <th> Special Instruction </th>
-	                    <th> Created_date</th>
-                    </tr>
-                  </thead>
-				  <tbody>
-				  <?php //print_r($joblist);
-					foreach($patientlist as $row) { ?>
-					   <tr>
-	                      <td> <?php echo $row['name'];?></td>
-	                      <td>  <?php echo $row['room_no'];?></td>
-	                      <td>  <?php echo $row['test'];?> </td>
-	                      <td> <?php echo $row['caller'];?> </td>
-	                      <td>  <?php echo $row['special_instruction'];?> </td>
-	                      <td> <?php echo (isset($row['created_date']) && !empty($row['created_date']))?date("d-m-Y", strtotime($row['created_date'])):'';?></td>
-	                    </tr>
-	                 <?php }?>  
-				  </tbody>
-                </table>
-              </div>
-            </div>
-            </div>
-    <script src="<?php echo asset_url();?>vendor/datatables/media/js/jquery.dataTables.js"></script>
-    <script src="<?php echo asset_url();?>vendor/datatables/media/js/dataTables.bootstrap4.js"></script>
+
     <script src="<?php echo asset_url(); ?>js/bootstrap-datepicker.min.js"></script>
     <script>
     $('.datatable').DataTable();

@@ -206,4 +206,10 @@ class HospitalLib {
 		return $job;
 	}
 	
+	public function getAllHospital ($param) {
+		$this->CI->load->model ('hospital/hospital_model', 'hospital' );
+		$res = $this->CI->hospital->getAllHospital ( $param );
+		return $res;
+	}
+	
 }

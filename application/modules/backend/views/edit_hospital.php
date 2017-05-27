@@ -7,128 +7,118 @@
 	margin-left:3%;
 }
 </style>
-<!-- endbuild -->
-<div class="content-view" >
-	<div class="row"> 
-		<div class="col-md-12"> 
-				<div class="card card-block" style = "padding-left:40px">
-				<h2>Edit Hospital</h2>
-				<div class="form-control" id="response" style="display: none"> </div>
-				<form class="form-validation form-horizontal" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
-				<div class="row">
-					<div class="form-group col-md-4">
-					<div class="row"> 
-							<label>Business Name</label>
-							<div class="col-md-12 input-group"> 
-								<input type="text" class="form-control" name="data[business_name]" placeholder="Business Name" value="<?php echo $hospital['business_name']; ?>" required/>
-							</div>
-							<div class="messageContainer"></div>
-						</div>
-						<div class="row"> 
-						<label> First Name</label>
-							<div class="col-md-12 input-group"> 
-								<input type="text" class="form-control" name="data[first_name]" placeholder=" First Name" value ="<?php echo $hospital['first_name']; ?>" required/>
-							</div>
-							<div class="messageContainer"></div>
-						</div>
-						<div class="row"> 
-							<label>Last Name</label>
-							<div class="col-md-12 input-group"> 
-								<input type="text" class="form-control" name="data[last_name]" placeholder="Last Name" value ="<?php echo $hospital['last_name']; ?>" required/>
-							</div>
-							<div class="messageContainer"></div>
-						</div>
-							<div class="row"> 
-						<label>Mobile Number</label>
-							<div class="col-md-12 input-group"> 
-								<input type="text" class="form-control" name="data[mobile]" placeholder="Mobile number" value ="<?php echo $hospital['mobile']; ?>" required/>
-							</div>
-							<div class="messageContainer"></div>
-						</div>
-						
-					</div>
-					<div class="form-group col-md-4">
-						<div class="row"> 
-							<label>Email</label>
-							<div class="col-md-12 input-group"> 
-								<input type="email" class="form-control" name="data[email]" placeholder="Email" value ="<?php echo $hospital['email']; ?>" required/>
-							</div>
-							<div class="messageContainer"></div>
-						</div>
-						<div class="row"> 
-							<label>Password</label>
-								<div class="col-md-12 input-group"> 
-									<input type="text" class="form-control" name="data[text_password]" placeholder="Password" value ="<?php echo $hospital['text_password']; ?>" required/>
-								</div>
-								<div class="messageContainer"></div>
-							</div>
-							<div class="row"> 
-							<label>Is Verified</label>
-							<div class="col-md-12 input-group"> 
-								<select class="form-control" name="data[verified]"  id="verified" required>
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+
+      <div class="content-header">
+        <h2 class="content-header-title">Add Client </h2>
+       
+      </div> <!-- /.content-header -->
+      <div class="row">
+       <div class="col-md-10 col-md-offset-1">
+ 		<form class=" form-validation form account-form" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
+        <div class="col-md-6">
+        
+			 <div class="form-group">
+	          <label >Business Name</label>
+	       <input type="text" class="form-control" name="data[business_name]" placeholder="Business Name" value="<?php echo $hospital['business_name']; ?>" required/>
+	        <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
+	        <div class="form-group">
+	          <label >First Name</label>
+	        <input type="text" class="form-control" name="data[first_name]" placeholder=" First Name" value ="<?php echo $hospital['first_name']; ?>" required/>
+	        <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
+	        <div class="form-group">
+	          <label >Last Name</label>
+	       	<input type="text" class="form-control" name="data[last_name]" placeholder="Last Name" value ="<?php echo $hospital['last_name']; ?>" required/>
+	        <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
+	        <div class="form-group">
+	          <label >Mobile No.</label>
+	       <input type="text" class="form-control" name="data[mobile]" placeholder="Mobile number" value ="<?php echo $hospital['mobile']; ?>" required/>
+	        <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
+	       <div class="form-group">
+	          <label >Email Id</label>
+	          <input type="email" class="form-control" name="data[email]" placeholder="Email" value ="<?php echo $hospital['email']; ?>" required/>
+	       <div class="messageContainer"></div>
+	       </div> <!-- /.form-group -->
+	      
+	       <div class="form-group">
+	          <label >Password</label>
+	         	 <input type="text" class="form-control" name="data[text_password]" placeholder="Password" value ="<?php echo $hospital['text_password']; ?>" required/>
+	       <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
+	       
+			</div>
+			
+			<div class="col-md-6">
+	       <div class="form-group">
+	          <label >Address</label>
+	         	<input type="text" class="form-control" name="data[address]" placeholder="Address" value ="<?php echo $hospital['address']; ?>" required/>
+	       <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
+	        
+	          <div class="form-group">
+	          <label >Zip Code</label>
+	            <input type="text" class="form-control" name="data[pincode]" placeholder="Pincode" value ="<?php echo $hospital['pincode']; ?>" required/>
+	        <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
+	        
+	         <div class="form-group">
+	          <label >Street</label>
+	         	<input type="text" class="form-control" name="data[locality]" placeholder="Street" id="locality" value ="<?php echo $hospital['locality']; ?>" required/>
+								<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" value = "<?php echo $hospital['latitude']?>"/>
+								<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude"  value = "<?php echo $hospital['latitude']?>"/>
+								<input type="hidden" class="form-control" name="id" placeholder="City"  value ="<?php echo $hospital['id']; ?>"/>
+								<input type="hidden" class="form-control" name="hospital_id" placeholder="City" value ="<?php echo $hospital['hospital_id']; ?>"/>
+	        <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
+	        <div class="form-group">
+	          <label >City</label>
+	         <input type="text"  class="form-control" name="data[city]" value ="<?php echo $hospital['city']; ?>" placeholder="City" required/>
+	        <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
+	       
+	        <div class="form-group">
+	          <label >State</label>
+	      <input type="text"  class="form-control" name="data[state]" value ="<?php echo $hospital['state']; ?>" placeholder="State" required/>
+	        <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
+	         <div class="form-group">
+	          <label >Is Verified</label>
+		        <div class="col-md-12 input-group"> 
+					<select class="form-control" name="data[verified]"  id="verified" required>
 									<option value="">Select</option>
 									<option value="1" <?php if($hospital['verified']==1) echo "selected";?>>Yes</option>
 									<option value="0" <?php if($hospital['verified']==0) echo "selected";?>>No</option>
 									
 								</select> 
-							</div>
-							<div class="messageContainer"></div>
-						</div>
-						<div class="row"> 
-							<label>Address</label>
-							<div class="col-md-12 input-group"> 
-								<input type="text" class="form-control" name="data[address]" placeholder="Address" value ="<?php echo $hospital['address']; ?>" required/>
-							</div>
-							<div class="messageContainer"></div>
-						</div>
-					</div>
-					<div class="form-group col-md-4">
-						<div class="row"> 
-						<label>State</label>
-							<div class="col-md-12 input-group"> 
-								<input type="text"  class="form-control" name="data[state]" value ="<?php echo $hospital['state']; ?>" placeholder="State" required/>
-							</div>
-							<div class="messageContainer"></div>
-						</div>
-					<div class="row"> 
-						<label>City</label>
-							<div class="col-md-12 input-group"> 
-								<input type="text"  class="form-control" name="data[city]" value ="<?php echo $hospital['city']; ?>" placeholder="City" required/>
-							</div>
-							<div class="messageContainer"></div>
-					</div>
-					<div class="row"> 
-						<label>Street</label>
-							<div class="col-md-12 input-group"> 
-								<input type="text" class="form-control" name="data[locality]" placeholder="Street" id="locality" value ="<?php echo $hospital['locality']; ?>" required/>
-								<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" value = "<?php echo $hospital['latitude']?>"/>
-								<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude"  value = "<?php echo $hospital['latitude']?>"/>
-								<input type="hidden" class="form-control" name="id" placeholder="City"  value ="<?php echo $hospital['id']; ?>"/>
-								<input type="hidden" class="form-control" name="hospital_id" placeholder="City" value ="<?php echo $hospital['hospital_id']; ?>"/>
-							</div>
-							<div class="messageContainer"></div>
-						</div>
-						<div class="row"> 
-						<label>Zip Code</label>
-							<div class="col-md-12 input-group"> 
-								<input type="text" class="form-control" name="data[pincode]" placeholder="Pincode" value ="<?php echo $hospital['pincode']; ?>" required/>
-							</div>
-							<div class="messageContainer"></div>
-							
-						</div>
-						
-					</div>
-				</div>						
-						<div class="form-group pull-right">
-							<button type="submit" class="btn btn-primary m-r">
-							Update
-							</button>
-						</div>
-						</form>
-					</div>
 				</div>
 			</div>
+	        
+				<div class="form-group pull-right">
+							<button type="submit" class="btn btn-primary m-r">
+							Submit
+							</button>
+							<button type="reset" id="reset" class="btn btn-default" >
+							Reset
+							</button>
+						</div>
 </div>
+      </form>
+        </div>
+          </div>
+      </div>
+    </div>
+   </div>
+ </div>
+
+
   
 
     <script src="<?php echo asset_url();?>vendor/bootstrap/bootstrapValidator.min.js"></script>
@@ -219,7 +209,7 @@
     	            	$("#response").show();
     	            	$("#response").addClass('alert-success');
     	            	$("#response").html(resp.msg);
-    	            alert("Hospital updated successfully.");
+    	            alert("Client updated successfully.");
     	            	window.location.href = "<?php echo base_url(); ?>admin/hospital_list";
     	          	}
     	    	}

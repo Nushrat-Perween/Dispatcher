@@ -16,12 +16,13 @@ class Branch extends MX_Controller {
 
 	public function branch_list () {
 		$param = array();
+		$param['client_id'] = $_SESSION['admin']['client_id'];
 		$this->load->library('dispatcher/BranchLib');
 		$branch_list = $this->branchlib->getAllBranch ($param);
 		$this->template->set ( 'branch_list', $branch_list );
 		$this->template->set ( 'page', 'Branch' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 			->title ( 'Dispatcher | Branch' )
 			->set_partial ( 'header', 'partials/header' )
 			->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -36,7 +37,7 @@ class Branch extends MX_Controller {
 		$this->template->set ('hospitallist', $hospital_list );
 		$this->template->set ( 'page', 'Branch' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Branch' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -66,9 +67,7 @@ class Branch extends MX_Controller {
 	}
 	
 	public function edit_branch ($id) {
-		$this->load->library('dispatcher/UserLibNew');
-		$hospital_list = $this->userlibnew->gettAllHospital ();
-		$this->template->set ('hospitallist', $hospital_list );
+		
 		$this->load->library('dispatcher/BranchLib');
 		$branch = $this->branchlib->getBranchByID($id);
 		if(count($branch)) {
@@ -76,7 +75,7 @@ class Branch extends MX_Controller {
 		}
 		$this->template->set ( 'page', 'Branch' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('backend')
+		$this->template->set_layout ('default')
 		->title ( 'Dispatcher | Branch' )
 		->set_partial ( 'header', 'partials/header' )
 		->set_partial ( 'side_menu', 'partials/side_menu' )
@@ -103,4 +102,9 @@ class Branch extends MX_Controller {
 		echo json_encode($response);
 	}
 
+	public function get_branch_by_id ($id) {
+		$this->load->library('dispatcher/BranchLib');
+		$branch = $this->branchlib->getBranchByID ($id);
+		echo json_encode($branch);
+	}
 }

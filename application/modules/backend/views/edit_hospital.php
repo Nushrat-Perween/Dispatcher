@@ -63,12 +63,6 @@
 	       <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
 	        
-	          <div class="form-group">
-	          <label >Zip Code</label>
-	            <input type="text" class="form-control" name="data[pincode]" placeholder="Pincode" value ="<?php echo $hospital['pincode']; ?>" required/>
-	        <div class="messageContainer"></div>
-	        </div> <!-- /.form-group -->
-	        
 	         <div class="form-group">
 	          <label >Street</label>
 	         	<input type="text" class="form-control" name="data[locality]" placeholder="Street" id="locality" value ="<?php echo $hospital['locality']; ?>" required/>
@@ -80,15 +74,22 @@
 	        </div> <!-- /.form-group -->
 	        <div class="form-group">
 	          <label >City</label>
-	         <input type="text"  class="form-control" name="data[city]" value ="<?php echo $hospital['city']; ?>" placeholder="City" required/>
+	         <input type="text"  class="form-control" name="data[city]" id="city" value ="<?php echo $hospital['city']; ?>" placeholder="City" required/>
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
 	       
 	        <div class="form-group">
 	          <label >State</label>
-	      <input type="text"  class="form-control" name="data[state]" value ="<?php echo $hospital['state']; ?>" placeholder="State" required/>
+	      <input type="text"  class="form-control" name="data[state]" id="state" value ="<?php echo $hospital['state']; ?>" placeholder="State" required/>
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
+	        
+	          <div class="form-group">
+	          <label >Zip Code</label>
+	            <input type="text" class="form-control" name="data[pincode]" placeholder="Pincode" value ="<?php echo $hospital['pincode']; ?>" required/>
+	        <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
+	        
 	         <div class="form-group">
 	          <label >Is Verified</label>
 		        <div class="col-md-12 input-group"> 
@@ -232,6 +233,8 @@
         var autocomplete = new google.maps.places.Autocomplete(input, options);
         autocomplete.addListener('place_changed', function () {
             var place = autocomplete.getPlace();
+            $('#city').val(place.address_components[1].long_name);
+            $('#state').val(place.address_components[2].long_name);
             if (!place.geometry) {
                 window.alert("Autocomplete's returned place contains no geometry");
                 return;
@@ -243,18 +246,5 @@
         });
         
     
-         input = document.getElementById('locality1');
-       var  autocomplete1 = new google.maps.places.Autocomplete(input, options);
-        autocomplete1.addListener('place_changed', function () {
-            var place = autocomplete1.getPlace();
-            if (!place.geometry) {
-                window.alert("Autocomplete's returned place contains no geometry");
-                return;
-            }
-           
-            $('#latitude1').val(place.geometry.location.lat());
-            $('#longitude1').val(place.geometry.location.lng());
-          i=0;
-        });
     }
     </script>

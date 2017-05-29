@@ -36,11 +36,7 @@
 	          <input type="text"  class="form-control" name="data[address]" id="address" value="<?php if(isset($branch)) {echo $branch['address'];}?>" placeholder="Address" tabindex="2"/>
 	       <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
-	          <div class="form-group">
-	          <label >Zip Code</label>
-	          <input type="text"  class="form-control" name="data[zipcode]" placeholder="Zipcode" value="<?php if(isset($branch)) {echo $branch['zipcode'];}?>" tabindex="3"/>
-	        <div class="messageContainer"></div>
-	        </div> <!-- /.form-group -->
+	         
 	         <div class="form-group">
 	          <label >Street</label>
 	         <input type="text" class="form-control" name="data[street]" placeholder="Street" id="street" value="<?php if(isset($branch)) {echo $branch['street'];}?>" tabindex="4"/>
@@ -50,16 +46,21 @@
 	        </div> <!-- /.form-group -->
 	        <div class="form-group">
 	          <label >City</label>
-	          <input type="text"  class="form-control" name="data[city]" value="<?php if(isset($branch)) {echo $branch['city'];}?>" placeholder="City" tabindex="5" />
+	          <input type="text"  class="form-control" name="data[city]" id="city" value="<?php if(isset($branch)) {echo $branch['city'];}?>" placeholder="City" tabindex="5" />
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
 	       
 	        <div class="form-group">
 	          <label >State</label>
-	       <input type="text"  class="form-control" name="data[state]" value="<?php if(isset($branch)) {echo $branch['state'];}?>" placeholder="State" required tabindex="6"/>
+	       <input type="text"  class="form-control" name="data[state]" id="state" value="<?php if(isset($branch)) {echo $branch['state'];}?>" placeholder="State" required tabindex="6"/>
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
 	        
+	         <div class="form-group">
+	          <label >Zip Code</label>
+	          <input type="text"  class="form-control" name="data[zipcode]" placeholder="Zipcode" value="<?php if(isset($branch)) {echo $branch['zipcode'];}?>" tabindex="3"/>
+	        <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
 	
 	        <div class="form-group text-right" >
 				<?php if(isset($branch)) {?>
@@ -258,6 +259,8 @@ $("#branch_form").submit(function(e) {
         var autocomplete = new google.maps.places.Autocomplete(input, options);
         autocomplete.addListener('place_changed', function () {
             var place = autocomplete.getPlace();
+            $('#city').val(place.address_components[1].long_name);
+            $('#state').val(place.address_components[2].long_name);
             if (!place.geometry) {
                 window.alert("Autocomplete's returned place contains no geometry");
                 return;

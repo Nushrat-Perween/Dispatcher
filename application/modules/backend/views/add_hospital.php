@@ -25,18 +25,8 @@
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
 	        <div class="form-group">
-	          <label >First Name</label>
-	        <input type="text" class="form-control" name="data[first_name]" placeholder=" First Name" required/>
-	        <div class="messageContainer"></div>
-	        </div> <!-- /.form-group -->
-	        <div class="form-group">
-	          <label >Last Name</label>
-	       <input type="text" class="form-control" name="data[last_name]" placeholder="Last Name" required/>
-	        <div class="messageContainer"></div>
-	        </div> <!-- /.form-group -->
-	        <div class="form-group">
-	          <label >Mobile No.</label>
-	        <input type="text" class="form-control" name="data[mobile]" placeholder="Mobile number" required/>
+	          <label >Phone No.</label>
+	        <input type="text" class="form-control" name="data[mobile]" placeholder="Phone no" required/>
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
 	       <div class="form-group">
@@ -50,19 +40,17 @@
 	         	  <input type="text"  class="form-control" name="data[password]" value ="" placeholder="Password" required/>
 	       <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
-	       
+	       <div class="form-group">
+	          <label >Fax No</label>
+	         	  <input type="text"  class="form-control" name="data[fax_no]" value ="" placeholder="Fax No" required/>
+	       <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
 			</div>
 			
 			<div class="col-md-6">
-	       <div class="form-group">
-	          <label >Address</label>
-	         	 <input type="text" class="form-control" name="data[address]" placeholder="Address" required/>
-	       <div class="messageContainer"></div>
-	        </div> <!-- /.form-group -->
-	        
 	         <div class="form-group">
-	          <label >Street</label>
-	         	<input type="text" class="form-control" name="data[locality]" placeholder="Street" id="locality" required/>
+	          <label >Address</label>
+	         	<input type="text" class="form-control" name="data[address]" placeholder="Address" id="locality" required/>
 				<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" required/>
 				<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude" required/>
 	        <div class="messageContainer"></div>
@@ -87,12 +75,12 @@
 	        </div> <!-- /.form-group -->
 	        
 	         <div class="form-group">
-	          <label >Is Verified</label>
+	          <label >Is Active</label>
 		        <div class="col-md-12 input-group"> 
 					<select class="form-control" name="data[verified]"  id="verified" required>
 						<option value="">Select</option>
-						<option value="1">Yes</option>
-						<option value="0">No</option>
+						<option value="1">Active</option>
+						<option value="0">Dactive</option>
 					</select>
 				</div>
 			</div>

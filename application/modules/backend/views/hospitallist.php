@@ -34,7 +34,7 @@
 					<th  data-filterable="true" data-sortable="true">Business Name </th>
 					<th  data-filterable="true" data-sortable="true">Name </th>
 					<th>Email</th>
-					<th  data-filterable="true" data-sortable="true">Mobile</th>
+					<th  data-filterable="true" data-sortable="true">Phone No.</th>
 					<th  data-filterable="true" data-sortable="true">City</th>
 					<th>Street</th>
 					<th  data-filterable="true" data-sortable="true">Address</th>

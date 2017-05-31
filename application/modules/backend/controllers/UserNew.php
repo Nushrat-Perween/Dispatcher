@@ -248,7 +248,7 @@ class UserNew extends MX_Controller {
 		$data['longitude'] = $this->input->post('longitude');
 		$this->load->library('dispatcher/UserLibNew');
 		//print_r($data);
-		$data ['name'] = $data ['first_name']." ".$data ['last_name'];
+		//$data ['name'] = $data ['first_name']." ".$data ['last_name'];
 		$id = $this->userlibnew->saveHospital ($data);
 		$userdata = array();
 		if($id) {
@@ -308,7 +308,7 @@ class UserNew extends MX_Controller {
 		
 		$this->load->library('dispatcher/UserLibNew');
 		//print_r($data);
-		$data ['name'] = $data ['first_name']." ".$data ['last_name'];
+		//$data ['name'] = $data ['first_name']." ".$data ['last_name'];
 		$id = $this->userlibnew->updateHospital ($data);
 		$userdata = array();
 		if($id) {

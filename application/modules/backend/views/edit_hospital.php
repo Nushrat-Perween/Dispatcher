@@ -27,19 +27,10 @@
 	       <input type="text" class="form-control" name="data[business_name]" placeholder="Business Name" value="<?php echo $hospital['business_name']; ?>" required/>
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
+	      
 	        <div class="form-group">
-	          <label >First Name</label>
-	        <input type="text" class="form-control" name="data[first_name]" placeholder=" First Name" value ="<?php echo $hospital['first_name']; ?>" required/>
-	        <div class="messageContainer"></div>
-	        </div> <!-- /.form-group -->
-	        <div class="form-group">
-	          <label >Last Name</label>
-	       	<input type="text" class="form-control" name="data[last_name]" placeholder="Last Name" value ="<?php echo $hospital['last_name']; ?>" required/>
-	        <div class="messageContainer"></div>
-	        </div> <!-- /.form-group -->
-	        <div class="form-group">
-	          <label >Mobile No.</label>
-	       <input type="text" class="form-control" name="data[mobile]" placeholder="Mobile number" value ="<?php echo $hospital['mobile']; ?>" required/>
+	          <label >Phone No.</label>
+	       <input type="text" class="form-control" name="data[mobile]" placeholder="Phone no." value ="<?php echo $hospital['mobile']; ?>" required/>
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
 	       <div class="form-group">
@@ -53,19 +44,17 @@
 	         	 <input type="text" class="form-control" name="data[text_password]" placeholder="Password" value ="<?php echo $hospital['text_password']; ?>" required/>
 	       <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
-	       
+	          <div class="form-group">
+	          <label >Fax No</label>
+	         	  <input type="text"  class="form-control" name="data[fax_no]" value ="<?php echo $hospital['fax_no']; ?>" placeholder="Fax No" required/>
+	       <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
 			</div>
 			
 			<div class="col-md-6">
-	       <div class="form-group">
-	          <label >Address</label>
-	         	<input type="text" class="form-control" name="data[address]" placeholder="Address" value ="<?php echo $hospital['address']; ?>" required/>
-	       <div class="messageContainer"></div>
-	        </div> <!-- /.form-group -->
-	        
 	         <div class="form-group">
-	          <label >Street</label>
-	         	<input type="text" class="form-control" name="data[locality]" placeholder="Street" id="locality" value ="<?php echo $hospital['locality']; ?>" required/>
+	          <label >Address</label>
+	         	<input type="text" class="form-control" name="data[address]" placeholder="address" id="locality" value ="<?php echo $hospital['address']; ?>" required/>
 								<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" value = "<?php echo $hospital['latitude']?>"/>
 								<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude"  value = "<?php echo $hospital['latitude']?>"/>
 								<input type="hidden" class="form-control" name="id" placeholder="City"  value ="<?php echo $hospital['id']; ?>"/>
@@ -94,9 +83,9 @@
 	          <label >Is Verified</label>
 		        <div class="col-md-12 input-group"> 
 					<select class="form-control" name="data[verified]"  id="verified" required>
-									<option value="">Select</option>
-									<option value="1" <?php if($hospital['verified']==1) echo "selected";?>>Yes</option>
-									<option value="0" <?php if($hospital['verified']==0) echo "selected";?>>No</option>
+									<option value="">Is Active</option>
+									<option value="1" <?php if($hospital['verified']==1) echo "selected";?>>Active</option>
+									<option value="0" <?php if($hospital['verified']==0) echo "selected";?>>Dactive</option>
 									
 								</select> 
 				</div>

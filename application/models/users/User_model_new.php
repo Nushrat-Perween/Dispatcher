@@ -104,7 +104,7 @@ class User_model_new extends CI_Model {
 	
 	public function getHospitalById($id)
 	{
-		$this->db->select ('(h.name) as hospital_name,h.address,h.locality,h.created_date,a.text_password,a.first_name,a.last_name, a.email,a.mobile,h.id,a.hospital_id,a.verified,h.latitude,h.longitude,h.pincode,h.business_name,h.state,h.city' );
+		$this->db->select ('(h.name) as hospital_name,h.address,h.locality,h.created_date,h.fax_no,a.text_password,a.first_name,a.last_name, a.email,a.mobile,h.id,a.hospital_id,a.verified,h.latitude,h.longitude,h.pincode,h.business_name,h.state,h.city' );
 		$this->db->from ( TABLES::$HOSPITAL.' AS h' );
 		$this->db->join ( TABLES::$ADMIN.' AS a',"h.id=a.hospital_id","left" );
 		$this->db->where('h.id',$id);

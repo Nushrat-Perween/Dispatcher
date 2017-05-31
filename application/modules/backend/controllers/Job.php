@@ -61,8 +61,8 @@
 	        		$job['hospital_id'] = $this->session->userdata('admin')['hospital_id'];
 	        }
 	        $job['client_id'] = $this->session->userdata('admin')['client_id'];
-	        $job['delivery_date'] = date('Y-m-d',strtotime($job['delivery_date']));
-	        $job['delivery_time'] = date('H:i:s',strtotime($job['delivery_time']));
+	        $job['delivery_date'] = date('Y-m-d');
+	        $job['delivery_time'] = date('H:i:s');
 	        $job['created_date'] = date('Y-m-d H:i:s');
 	        $job['created_by'] =  $this->session->userdata('admin')['id'];
 	        
@@ -159,8 +159,8 @@
 	        	} else {
 	        		$job['hospital_id'] = $this->session->userdata('admin')['hospital_id'];
 	        	}
-	        	$job['delivery_date'] = date('Y-m-d',strtotime($job['delivery_date']));
-	        	$job['delivery_time'] = date('H:i:s',strtotime($job['delivery_time']));
+	        	$job['delivery_date'] = date('Y-m-d');
+	        	$job['delivery_time'] = date('H:i:s');
 	        	$job['updated_date'] = date('Y-m-d H:i:s');
 	        	$job['updated_by'] =  $this->session->userdata('admin')['id'];
 	        	$patient = $this->input->post('patient');

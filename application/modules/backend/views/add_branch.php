@@ -29,17 +29,10 @@
 	         <input type="text"  class="form-control" name="data[branch_name]" id="branch_name" value="<?php if(isset($branch)) {echo $branch['branch_name'];}?>" placeholder="Branch" tabindex="1" />
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
-	        
-	        	<div class="form-group">
-	          <label >Address</label>
-	         	<input type="hidden"  value="<?php if(isset($branch)) {echo $branch['id'];}?>" name="data[id]" id="id">
-	          <input type="text"  class="form-control" name="data[address]" id="address" value="<?php if(isset($branch)) {echo $branch['address'];}?>" placeholder="Address" tabindex="2"/>
-	       <div class="messageContainer"></div>
-	        </div> <!-- /.form-group -->
-	         
 	         <div class="form-group">
-	          <label >Street</label>
-	         <input type="text" class="form-control" name="data[street]" placeholder="Street" id="street" value="<?php if(isset($branch)) {echo $branch['street'];}?>" tabindex="4"/>
+	          <label >Address</label>
+	          <input type="hidden"  value="<?php if(isset($branch)) {echo $branch['id'];}?>" name="data[id]" id="id">
+	         <input type="text" class="form-control" name="data[address]" placeholder="Address" id="street" value="<?php if(isset($branch)) {echo $branch['address'];}?>" tabindex="4"/>
 					<input type="hidden" class="form-control" name="data[latitude]" placeholder="City" id="latitude" value="<?php if(isset($branch)) {echo $branch['latitude'];}?>" />
 					<input type="hidden" class="form-control" name="data[longitude]" placeholder="City" id="longitude" value="<?php if(isset($branch)) {echo $branch['longitude'];}?>" />
 	        <div class="messageContainer"></div>

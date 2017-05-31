@@ -134,7 +134,7 @@
 					var status = "";
 					if(data[index].status==0)
 					{
-						status = "Pending";
+						status = "Pending"; 
 					}
 					else
 					{

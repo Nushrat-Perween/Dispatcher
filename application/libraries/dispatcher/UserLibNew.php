@@ -66,14 +66,14 @@ class UserLibNew {
 		$user['created_date'] = $data['created_date'];
 		$user['created_by'] = $data['created_by'];
 		$user['email'] = $data['email'];
-		$user['first_name'] = $data['first_name'];
-		$user['last_name'] = $data['last_name'];
+		//$user['first_name'] = $data['first_name'];
+		//$user['last_name'] = $data['last_name'];
 		$user['mobile'] = $data['mobile'];
 		$user['verified'] = $data['verified'];
 		$user['client_id'] = $data['client_id'];
 	
-		$hospital['name'] = $data['name'];
-		$hospital['locality'] = $data['locality'];
+		//$hospital['name'] = $data['name'];
+		//$hospital['locality'] = $data['locality'];
 		$hospital['address'] = $data['address'];
 		$hospital['created_date'] = $data['created_date'];
 		$hospital['created_by'] = $data['created_by'];
@@ -83,7 +83,7 @@ class UserLibNew {
 		$hospital['business_name'] = $data['business_name'];
 		$hospital['state'] = $data['state'];
 		$hospital['city'] = $data['city'];
-	
+		$hospital['fax_no'] = $data['fax_no'];
 		$this->CI->load->model ( 'users/user_model_new', 'user' );
 		$hospital_id = $this->CI->user->saveHospital ($hospital);
 		$user['hospital_id'] = $hospital_id;
@@ -111,14 +111,14 @@ class UserLibNew {
 		$user = array();
 		$hospital = array();
 		$user['email'] = $data['email'];
-		$user['first_name'] = $data['first_name'];
-		$user['last_name'] = $data['last_name'];
+		//$user['first_name'] = $data['first_name'];
+		//$user['last_name'] = $data['last_name'];
 		$user['mobile'] = $data['mobile'];
 		$user['verified'] = $data['verified'];
 		$user['hospital_id'] = $data['hospital_id'];
 	
-		$hospital['name'] = $data['name'];
-		$hospital['locality'] = $data['locality'];
+		//$hospital['name'] = $data['name'];
+		//$hospital['locality'] = $data['locality'];
 		$hospital['address'] = $data['address'];
 		$hospital['pincode'] = $data['pincode'];
 		$hospital['latitude'] = $data['latitude'];
@@ -127,7 +127,7 @@ class UserLibNew {
 		$hospital['business_name'] = $data['business_name'];
 		$hospital['city'] = $data['city'];
 		$hospital['state'] = $data['state'];
-	
+		$hospital['fax_no'] = $data['fax_no'];
 		$this->CI->load->model ( 'users/user_model_new', 'user' );
 		$hospital_id = $this->CI->user->updateHospital ($hospital);
 		$user = $this->CI->user->updateUserByHospitalId ($user);

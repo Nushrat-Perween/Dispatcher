@@ -18,7 +18,6 @@
 		   <div class="row">
 		   <ul class="nav nav-tabs">
 			  <li class="active"><a data-toggle="tab" href="#basic">Basic</a></li>
-			  <li><a data-toggle="tab" href="#contact">Contact</a></li>
 			  <li><a data-toggle="tab" href="#address">Address</a></li>
 				<?php if($_SESSION['admin']['user_role']==5 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==3) {?> <li><a data-toggle="tab" href="#assign">Assign</a></li><?php }?>
 				</ul>
@@ -130,7 +129,7 @@
 	         		</div>
 				 </div>
 			</div>
- <!--    Contact -->
+ <!--    Contact 
 			<div id="contact" class="tab-pane fade">
 				<div class=" col-md-10 col-md-offset-1">
 					<div class=" col-md-6">
@@ -205,7 +204,7 @@
 				         </div>
 					</div>
 				</div>
-			</div> 
+			</div> -->
 <!--     Address -->
 				
 			<div id="address" class="tab-pane fade">
@@ -213,7 +212,7 @@
 					<div class="row">
 				       <div class="col-md-offset-1 col-md-5">
 				         <div class="row">
-				   			<h3 class="content-header-title"> <b>Pickup Address</b></h3>
+				   			<h3 class="content-header-title"> <b>Pick-up Location</b></h3>
 				   		</div>
 				         <?php if($_SESSION['admin']['user_role']==5 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==3) {?>
 			         		<div class="row">
@@ -221,8 +220,8 @@
 						         	<div class="row"> 
 											<label>Select Branch/Hospital</label>
 										<div class="col-md-12 form-group">
-											<input type="radio" value="1" name="contact[pickup_address_type]" <?php if(isset($contact)) { if($contact['pickup_address_type'] == 1)echo "checked"; }?> onchange="getPickupBranchDiv();">Branch
-											<input type="radio" value="2" name="contact[pickup_address_type]" <?php if(isset($contact)) { if($contact['pickup_address_type'] == 2)echo "checked"; }?> onchange="getPickupHospitalDiv();">Hospital
+											<input type="radio" value="1" name="contact[pickup_address_type]" <?php if(isset($contact)) { if($contact['pickup_address_type'] == 1)echo "checked"; }?> onchange="getPickupBranchDiv();">&nbsp;&nbsp;Branch&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="radio" value="2" name="contact[pickup_address_type]" <?php if(isset($contact)) { if($contact['pickup_address_type'] == 2)echo "checked"; }?> onchange="getPickupHospitalDiv();">&nbsp;&nbsp;Hospital&nbsp;&nbsp;&nbsp;&nbsp;
 										</div>
 										<div class="messageContainer text-danger"></div>
 									</div>
@@ -280,23 +279,13 @@
 								</div>
 				        	</div>
 				        </div>
-				        <div class="row">
-				         	<div class="col-md-12">
-				         		<div class="row"> 
-										<label>Apartment / Suit / Building</label>
-									<div class="col-md-12 form-group">
-										<input type="text" name="contact[pickup_building]" value="<?php if(isset($contact)) { if($contact['pickup_building'] != NULL)echo $contact['pickup_building']; }?>" id= "building" class="form-control" required>
-									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
-				         	</div>
-				         </div>
+				       
 				         	<div class="row">
 				         	<div class="col-md-12">
 				         		<div class="row"> 
-										<label>Street</label>
+										<label>Address</label>
 									<div class="col-md-12 form-group">
-										<input type="text" name="contact[pickup_street]" value="<?php if(isset($contact)) { if($contact['pickup_street'] != NULL)echo $contact['pickup_street']; }?>" class="form-control" id ="locality" required>
+										<input type="text" name="contact[pickup_street]" value="<?php if(isset($contact)) { if($contact['pickup_address'] != NULL)echo $contact['pickup_address']; }?>" class="form-control" id ="locality" required>
 										<input type="hidden" class="form-control" name="contact[pickup_latitude]" value="<?php if(isset($contact)) { if($contact['pickup_latitude'] != NULL)echo $contact['pickup_latitude']; }?>" placeholder="City" id="latitude" />
 										<input type="hidden" class="form-control" name="contact[pickup_longitude]" value="<?php if(isset($contact)) { if($contact['pickup_longitude'] != NULL)echo $contact['pickup_longitude']; }?>" placeholder="City" id="longitude" />
 									</div>
@@ -348,7 +337,7 @@
 	         		</div>
 				       <div class="col-md-offset-1 col-md-5">
 				   			<div class="row">
-					   		<h6 class="content-header-title"> <b> Delivery Address</b></h6>
+					   		<h6 class="content-header-title"> <b> Drop-off location</b></h6>
 					   	</div>
 					   		<?php if($_SESSION['admin']['user_role']==5 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==3) {?>
 			         		<div class="row">
@@ -356,8 +345,8 @@
 						         	<div class="row"> 
 											<label>Select Branch/Hospital</label>
 										<div class="col-md-12 form-group">
-											<input type="radio" value="1" name="contact[delivery_address_type]" <?php if(isset($contact)) { if($contact['delivery_address_type'] == 1)echo "checked"; }?> onchange="getBranchDiv();">Branch
-											<input type="radio" value="2" name="contact[delivery_address_type]"  <?php if(isset($contact)) { if($contact['delivery_address_type'] == 2)echo "checked"; }?> onchange="getHospitalDiv();">Hospital
+											<input type="radio" value="1" name="contact[delivery_address_type]" <?php if(isset($contact)) { if($contact['delivery_address_type'] == 1)echo "checked"; }?> onchange="getBranchDiv();">&nbsp;&nbsp;Branch&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="radio" value="2" name="contact[delivery_address_type]"  <?php if(isset($contact)) { if($contact['delivery_address_type'] == 2)echo "checked"; }?> onchange="getHospitalDiv();">&nbsp;&nbsp;Hospital&nbsp;&nbsp;&nbsp;&nbsp;
 										</div>
 										<div class="messageContainer text-danger"></div>
 									</div>
@@ -410,23 +399,13 @@
 							</div>
 							<div class="messageContainer text-danger"></div>
 						</div>
-			         	 <div class="row">
+			         	
+				        <div class="row">
 				         	<div class="col-md-12">
 				         		<div class="row"> 
 										<label>Address</label>
 									<div class="col-md-12 form-group">
-										<input type="text" name="contact[delivery_address]" value="<?php if(isset($contact)) { if($contact['delivery_address'] != NULL)echo $contact['delivery_address']; }?>" id= "haddress" class="form-control" required>
-									</div>
-									<div class="messageContainer text-danger"></div>
-								</div>
-				         	</div>
-				         </div>
-				         	<div class="row">
-				         	<div class="col-md-12">
-				         		<div class="row"> 
-										<label>Street</label>
-									<div class="col-md-12 form-group">
-										<input type="text" name="contact[delivery_street]" value="<?php if(isset($contact)) { if($contact['delivery_street'] != NULL)echo $contact['delivery_street']; }?>" class="form-control" id ="hstreet" required>
+										<input type="text" name="contact[delivery_street]" value="<?php if(isset($contact)) { if($contact['delivery_address'] != NULL)echo $contact['delivery_address']; }?>" class="form-control" id ="hstreet" required>
 										<input type="hidden" class="form-control" name="contact[delivery_latitude]" value="<?php if(isset($contact)) { if($contact['delivery_latitude'] != NULL)echo $contact['delivery_latitude']; }?>" placeholder="City" id="hlatitude" />
 										<input type="hidden" class="form-control" name="contact[delivery_longitude]" value="<?php if(isset($contact)) { if($contact['delivery_longitude'] != NULL)echo $contact['delivery_longitude']; }?>" placeholder="City" id="hlongitude" />
 									</div>
@@ -926,7 +905,7 @@
 															'<select class="form-control" name="contact[pickup_hospital_id]" id="pickup_hospital_id" onchange="getPickupHospital()">'+
 																'<option value="">Select Hospital</option>'+
 																<?php foreach($hospitallist as $item){?>
-																'<option value="<?php echo $item['id']?>"><?php echo $item['hospital_name']?></option>'+
+																'<option value="<?php echo $item['id']?>"><?php echo $item['business_name']?></option>'+
 																<?php }?>
 															'</select>'+
 														'</div>'+
@@ -966,7 +945,7 @@
 															'<select class="form-control" name="contact[delivery_hospital_id]" id="hospital_id" onchange="getHospital()">'+
 																'<option value="">Select Hospital</option>'+
 																<?php foreach($hospitallist as $item){?>
-																'<option value="<?php echo $item['id']?>"><?php echo $item['hospital_name']?></option>'+
+																'<option value="<?php echo $item['id']?>"><?php echo $item['business_name']?></option>'+
 																<?php }?>
 															'</select>'+
 														'</div>'+
@@ -1004,8 +983,8 @@
     					
     					$(data).each(function(index){
     						
-    						$('#haddress').val(data[index].address);
-    						$('#hstreet').val(data[index].street);
+    						//$('#haddress').val(data[index].address);
+    						$('#hstreet').val(data[index].address);
     						$('#hcity').val(data[index].city);
     						$('#hstate').val(data[index].state);
     						$('#hpincode').val(data[index].zipcode);
@@ -1021,8 +1000,8 @@
     					
     					$(data).each(function(index){
     						
-    						$('#haddress').val(data[index].address);
-    						$('#hstreet').val(data[index].locality);
+    						//$('#haddress').val(data[index].address);
+    						$('#hstreet').val(data[index].address);
     						$('#hlatitude').val(data[index].latitude);
     						$('#hlongitude').val(data[index].longitude);
     						$('#hcity').val(data[index].city);
@@ -1039,9 +1018,9 @@
     					
     					$(data).each(function(index){
     						
-    						$('#lookupname').val(data[index].address);
-    						$('#building').val(data[index].street);
-    						$('#locality').val(data[index].street);
+    						//$('#lookupname').val(data[index].address);
+    						//$('#building').val(data[index].street);
+    						$('#locality').val(data[index].address);
     						$('#latitude').val(data[index].latitude);
     						$('#longitude').val(data[index].longitude);
     						$('#city').val(data[index].city);
@@ -1059,9 +1038,9 @@
     					
     					$(data).each(function(index){
     						
-    						$('#lookupname').val(data[index].address);
-    						$('#building').val(data[index].locality);
-    						$('#locality').val(data[index].locality);
+    						//$('#lookupname').val(data[index].address);
+    						//$('#building').val(data[index].locality);
+    						$('#locality').val(data[index].address);
     						$('#latitude').val(data[index].latitude);
     						$('#longitude').val(data[index].longitude);
     						$('#city').val(data[index].city);
@@ -1082,9 +1061,9 @@
     					
     					$(data).each(function(index){
     						
-    						$('#lookupname').val(data[index].address);
-    						$('#building').val(data[index].locality);
-    						$('#locality').val(data[index].locality);
+    						//$('#lookupname').val(data[index].address);
+    						//$('#building').val(data[index].locality);
+    						$('#locality').val(data[index].address);
     						$('#latitude').val(data[index].latitude);
     						$('#longitude').val(data[index].longitude);
     						$('#city').val(data[index].city);

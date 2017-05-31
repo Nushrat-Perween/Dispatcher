@@ -58,7 +58,7 @@ foreach($client_userlist as $row) {
 <td> <?php echo $row['last_name'];?> </td>
 <td> <?php echo $row['email'];?> </td>
 <td> <?php echo $row['mobile'];?> </td>
-<td> <?php if($row['user_role']==4) { echo "Subadmin"; } else if ($row['user_role']==5) { echo "Dispatcher"; } else { echo "FieldWorker"; } ?> </td>
+<td> <?php if($row['user_role']==4) { echo "Subadmin"; } else if ($row['user_role']==5) { echo "Dispatcher"; } else { echo "Driver"; } ?> </td>
 <td> <?php echo (isset($row['created_date']) && !empty($row['created_date']))?date("d-m-Y", strtotime($row['created_date'])):'';?> </td>
 <td style="padding-left:5px !important">
 <a href="<?php echo base_url();?>admin/edit_clientuser/<?php echo $row['id'];?>" class="bg-green" style="margin:2px">&nbsp;&nbsp;<i class="fa fa-pencil text-white"></i>&nbsp;Edit&nbsp;&nbsp;</a>

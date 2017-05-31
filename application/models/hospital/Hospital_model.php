@@ -52,8 +52,11 @@ class Hospital_model extends CI_Model {
 	
 	public function getAllJob($data)
 	{
-		$this->db->select('concat(jc.first_name," ",jc.last_name) as contact_name,jc.mobile,(jc.id) as job_contact_id,j.job_name,j.status,(j.id) as job_id,j.delivery_date,delivery_time,(p.name) as patient_name,p.caller,p.created_date,(p.id) as patient_id');
+		$this->db->select('concat(jc.first_name," ",jc.last_name) as contact_name,jc.mobile,(jc.id) as job_contact_id,j.job_name,
+				j.status,(j.id) as job_id,j.delivery_date,delivery_time,(p.name) as patient_name,p.caller,p.created_date,
+				(p.id) as patient_id,h.business_name');
 		$this->db->from ( TABLES::$JOB.' AS j' );
+		$this->db->join ( TABLES::$HOSPITAL.' AS h',"h.id=j.hospital_id","left" );
 		$this->db->join ( TABLES::$JOB_CONTACT.' AS jc',"jc.id=j.job_contact_id","left" );
 		$this->db->join ( TABLES::$PATIENT.' AS p',"p.id=j.patient_id","left" );
 		if(!empty($data['hospital_id']))
@@ -93,8 +96,11 @@ class Hospital_model extends CI_Model {
 	public function clientjobByMob($data)
 	{
 		//$data['created_date'] = date("Y-m-d");
-		$this->db->select('concat(jc.first_name," ",jc.last_name) as contact_name,jc.mobile,(jc.id) as job_contact_id,j.job_name,j.status,(j.id) as job_id,j.delivery_date,j.delivery_time,(p.name) as patient_name,p.caller,p.created_date,(p.id) as patient_id');
+		$this->db->select('concat(jc.first_name," ",jc.last_name) as contact_name,jc.mobile,(jc.id) as job_contact_id,j.job_name,
+				j.status,(j.id) as job_id,j.delivery_date,j.delivery_time,(p.name) as patient_name,p.caller,p.created_date,
+				(p.id) as patient_id,h.business_name');
 		$this->db->from ( TABLES::$JOB.' AS j' );
+		$this->db->join ( TABLES::$HOSPITAL.' AS h',"h.id=j.hospital_id","left" );
 		$this->db->join ( TABLES::$JOB_CONTACT.' AS jc',"jc.id=j.job_contact_id","left" );
 		$this->db->join ( TABLES::$PATIENT.' AS p',"p.id=j.patient_id","left" );
 		if(!empty($data['hospital_id']))

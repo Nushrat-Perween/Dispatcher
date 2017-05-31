@@ -38,8 +38,9 @@
 	            //$data['created_date'] = date("Y-m-d");
 	            $this->db->select('j.*,concat(jc.first_name," ",jc.last_name) as contact_name,jc.mobile,(jc.id) as job_contact_id,
 	                              (p.name) as patient_name,p.caller,p.created_date,(p.id) as patient_id,ja.action,
-	                              js.status,concat(a.first_name," ",a.last_name) as fieldworker_name');
+	                              js.status,concat(a.first_name," ",a.last_name) as fieldworker_name,h.business_name');
 	            $this->db->from ( TABLES::$JOB.' AS j' );
+	            $this->db->join ( TABLES::$HOSPITAL.' AS h',"h.id=j.hospital_id","left" );
 	            $this->db->join ( TABLES::$JOB_CONTACT.' AS jc',"jc.id=j.job_contact_id","left" );
 	            $this->db->join ( TABLES::$PATIENT.' AS p',"p.id=j.patient_id","left" );
 	            $this->db->join ( TABLES::$ADMIN . ' AS a', 'a.id=j.assign_to', 'left' );
@@ -86,8 +87,9 @@
 				//$data['created_date'] = date("Y-m-d");
 		 		$this->db->select('j.*,concat(jc.first_name," ",jc.last_name) as contact_name,jc.mobile,(jc.id) as job_contact_id,
 											(p.name) as patient_name,p.caller,p.created_date,(p.id) as patient_id,ja.action,
-											js.status,concat(a.first_name," ",a.last_name) as fieldworker_name');
+											js.status,concat(a.first_name," ",a.last_name) as fieldworker_name,h.business_name');
 				$this->db->from ( TABLES::$JOB.' AS j' );
+				$this->db->join ( TABLES::$HOSPITAL.' AS h',"h.id=j.hospital_id","left" );
 				$this->db->join ( TABLES::$JOB_CONTACT.' AS jc',"jc.id=j.job_contact_id","left" );
 				$this->db->join ( TABLES::$PATIENT.' AS p',"p.id=j.patient_id","left" );
 				$this->db->join ( TABLES::$ADMIN . ' AS a', 'a.id=j.assign_to', 'left' );
@@ -175,8 +177,9 @@
 			{
 				$this->db->select('j.*,concat(jc.first_name," ",jc.last_name) as contact_name,jc.mobile,(jc.id) as job_contact_id,
 											(p.name) as patient_name,p.caller,p.created_date,(p.id) as patient_id,ja.action,
-											js.status,concat(a.first_name," ",a.last_name) as fieldworker_name');
+											js.status,concat(a.first_name," ",a.last_name) as fieldworker_name,h.business_name');
 				$this->db->from ( TABLES::$JOB.' AS j' );
+				$this->db->join ( TABLES::$HOSPITAL.' AS h',"h.id=j.hospital_id","left" );
 				$this->db->join ( TABLES::$JOB_CONTACT.' AS jc',"jc.id=j.job_contact_id","left" );
 				$this->db->join ( TABLES::$PATIENT.' AS p',"p.id=j.patient_id","left" );
 				$this->db->join ( TABLES::$ADMIN . ' AS a', 'a.id=j.assign_to', 'left' );

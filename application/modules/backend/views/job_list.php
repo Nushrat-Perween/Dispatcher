@@ -132,6 +132,7 @@ channel.bind('my_event', function(data) {
 					<thead class="thead-inverse">
 						<tr>
 						<th>Action</th>
+							<th  data-filterable="true" data-sortable="true"> Business Name </th>
 							<th  data-filterable="true" data-sortable="true"> Job Name </th>
 							<th data-filterable="true" data-sortable="true"> Delivery Date </th>
 							<th > Delivery Time </th>
@@ -147,9 +148,10 @@ channel.bind('my_event', function(data) {
 						    $sr=0;
 						    foreach($job as $row) {
 						        $sr++;
-						    ?>
+						    ?> 
 						<tr>
 							<td><a href="<?php echo base_url();?>client/edit_client_job/<?php echo $row['id']?>"><i class="fa fa-external-link-square text-red" aria-hidden="true"></i></a></td>
+							<td> <?php echo $row['business_name'];?></td>
 							<td> <u><a href="job_detail/<?php echo $row['id']?>"><?php echo $row['job_name'];?></a></u></td>
 							<td> <?php if($row['delivery_date'] == NULL) echo 'NA';else echo date("d-m-Y",strtotime($row['delivery_date']));?> </td>
 							<td> <?php if($row['delivery_time'] == NULL) echo 'NA';else echo date("g:i A",strtotime($row['delivery_time']));?>   </td>
@@ -317,6 +319,7 @@ function update_dataTable(data,tableid) {
                  var assign = '<a href="<?php echo base_url();?>admin/job/assignment/'+data[index].id+'" class="bg-green" style="margin:2px">&nbsp;&nbsp;<i class="fa fa-pencil text-white"></i>&nbsp;Assign&nbsp;&nbsp;</a>'
                  var row = [];
                  row.push(edit);
+                 row.push(data[index].business_name);
                  row.push(order_details);
                  row.push(data[index].delivery_date);
                  row.push(data[index].delivery_time);

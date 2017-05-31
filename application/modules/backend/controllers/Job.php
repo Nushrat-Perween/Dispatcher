@@ -362,6 +362,9 @@
             	else
             		$data[$i]['end_time']=date('g:i A',strtotime($row['end_time']));
             	
+            	$data[$i]['patient_name']=$row['patient_name'];
+            	$data[$i]['pick_address']=$row['pick_address'];
+            	$data[$i]['drop_address']=$row['drop_address'];
             	$data[$i]['business_name']=$row['business_name'];
             	$data[$i]['job_name']=$row['job_name'];
             	if($row['fieldworker_name'] == "" OR $row['fieldworker_name'] == NULL) {
@@ -447,6 +450,9 @@
                 else
                     $data[$i]['end_time']=date('g:i A',strtotime($row['end_time']));
                 
+                $data[$i]['patient_name']=$row['patient_name'];
+                $data[$i]['pick_address']=$row['pick_address'];
+                $data[$i]['drop_address']=$row['drop_address'];
                 $data[$i]['business_name']=$row['business_name'];
                 $data[$i]['job_name']=$row['job_name'];
                 if($row['fieldworker_name'] == "" OR $row['fieldworker_name'] == NULL) {

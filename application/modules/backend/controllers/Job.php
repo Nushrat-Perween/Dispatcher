@@ -362,6 +362,7 @@
             	else
             		$data[$i]['end_time']=date('g:i A',strtotime($row['end_time']));
             	
+            	$data[$i]['business_name']=$row['business_name'];
             	$data[$i]['job_name']=$row['job_name'];
             	if($row['fieldworker_name'] == "" OR $row['fieldworker_name'] == NULL) {
 				$data[$i]['fieldworker_name'] = "Not Assigned";
@@ -446,6 +447,7 @@
                 else
                     $data[$i]['end_time']=date('g:i A',strtotime($row['end_time']));
                 
+                $data[$i]['business_name']=$row['business_name'];
                 $data[$i]['job_name']=$row['job_name'];
                 if($row['fieldworker_name'] == "" OR $row['fieldworker_name'] == NULL) {
                     $data[$i]['fieldworker_name'] = "Not Assigned";

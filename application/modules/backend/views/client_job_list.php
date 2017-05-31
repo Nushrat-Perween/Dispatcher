@@ -43,7 +43,6 @@
                     <tr>
                     
                         <th> Action </th>
-	                    <th data-filterable="true" data-sortable="true" data-direction="desc"> Business  Name </th>
 	                    <th data-filterable="true" data-sortable="true" data-direction="desc"> Job  Name </th>
 	                    <th> Contact name </th>
 	                    <th data-filterable="true" data-sortable="true" data-direction="desc"> Cotact number </th>
@@ -62,7 +61,6 @@
 					   	 <td style="padding-left:5px !important">
 								<a href="<?php echo base_url();?>client/edit_client_job/<?php echo $row['job_id']; ?>" class="bg-green" style="margin:2px">&nbsp;&nbsp;<i class="fa fa-pencil text-white"></i>&nbsp;&nbsp;&nbsp;</a>
 						</td>
-	                      <td><?php echo $row['business_name'];?></td>
 	                      <td><?php echo $row['job_name'];?></td>
 	                      <td>  <?php echo $row['contact_name'];?></td>
 	                      <td>  <?php echo $row['mobile'];?> </td>
@@ -144,7 +142,6 @@
 					}
 						
 						row.push(edit);
-						row.push(data[index].business_name);
 						row.push(data[index].job_name);
 						row.push(data[index].contact_name);
 						row.push(data[index].mobile);

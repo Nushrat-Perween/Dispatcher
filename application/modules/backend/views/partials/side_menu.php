@@ -99,8 +99,8 @@
           <ul class="dropdown-menu">
            
             
-            <li><a href="<?php echo base_url();?>admin/driver_list"><i class="fa fa-users nav-icon"></i> Drivers</a></li>
-            <li><a href="<?php echo base_url();?>admin/schedule"><i class="fa fa-clock-o nav-icon"></i> Schedule</a></li>
+           <!--  <li><a href="<?php echo base_url();?>admin/schedule"><i class="fa fa-users nav-icon"></i> Schedule</a></li> -->
+            <li><a href="<?php echo base_url();?>admin/driver_list"><i class="fa fa-clock-o nav-icon"></i> Schedule</a></li>
             <li><a href="<?php echo base_url();?>admin/fieldworker_attendance"><i class="fa fa-calendar nav-icon"></i> Attandance</a></li>
           
           </ul>

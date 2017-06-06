@@ -39,14 +39,7 @@ channel.bind('my_event', function(data) {
 						<option value="3">Today</option>
 					</select>
 				</div>
-				<div class="dropdown pull-right bg-success" style="padding:3px 5px 4px 5px;background-color:#4cae4c">
-					<select class="bg-success" style="border:0;background-color:#4cae4c" id="status" onchange="status_filter ();">
-						<option value="">Status</option>
-						<?php foreach($job_status_list as $row) {?>
-						<option value="<?php echo $row['id']; ?>"><?php echo $row['status']; ?></option>
-						<?php }?>
-					</select>
-				</div>
+				
 				<div class="dropdown pull-right bg-primary" style="padding:3px 5px 4px 5px;background-color:#4c7ff0">
 					<select class="bg-primary" style="border:0;background-color:#4c7ff0" id="action" onchange="action_filter ();">
 						<option value="">State</option>

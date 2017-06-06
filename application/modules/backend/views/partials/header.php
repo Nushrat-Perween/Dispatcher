@@ -92,7 +92,7 @@
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav noticebar navbar-left">
  <?php if( $_SESSION['admin']['user_role']==3 || $_SESSION['admin']['user_role']==4 || $_SESSION['admin']['user_role']==5){?>
-        <li class="dropdown">
+     <!--   <li class="dropdown">
           <a href="./page-notifications.html" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-bell"></i>
             <span class="navbar-visible-collapsed">&nbsp;Notifications&nbsp;</span>
@@ -124,12 +124,10 @@
                   <strong class="noticebar-item-title"><?php echo $row['title'];?></strong>
                   <span class="noticebar-item-text"><?php echo $row['notification'];?></span>
                 </span>
-              
-            </li>
             <?php } ?>
            
           </ul>
-        </li>
+        </li> </li> --> 
       <?php }?>
 
 

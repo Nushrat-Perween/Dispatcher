@@ -18,7 +18,7 @@
 						<?php }?>
 					</select>
 				</div>
-        <h2 class="content-header-title"> Driver List 	</h2>
+        <h2 class="content-header-title"> Schedule	</h2>
        
       </div> <!-- /.content-header -->
       
@@ -46,11 +46,12 @@
                     <th data-filterable="true" data-sortable="true">Branch </th>
 					<th data-filterable="true" data-sortable="true"> Name </th>
 					<!-- <th width="5%"> Email </th> -->
-					<th data-filterable="true" data-sortable="true"> Mobile No. </th>
-					<th data-filterable="true" data-sortable="true"> Email </th>
-					<th> User Role </th>
-					<th >Status</th>
+					<th >Present</th>
 					<th > Last Job Assigned </th>
+					<th data-filterable="true" data-sortable="true"> Start Time</th>
+					<th data-filterable="true" data-sortable="true"> End Time</th>
+					
+					
 					
                     </tr>
                   </thead>
@@ -64,13 +65,12 @@
 						<td><?php echo $sr ; ?> </td>
 						<td> <?php if($row['branch_name'] != "") echo $row['branch_name']; else echo "Not Assigned";?></td>
 						<td> <?php if($row['first_name']!="" || $row['last_name']!="") echo $row['first_name']." ".$row['last_name']; else echo "NA";?> </td>
-						<!-- <td> <?php //if($row['email'] != "") echo $row['email']; else echo "NA";?> </td> -->
-						<td> <?php if($row['mobile'] != "") echo $row['mobile']; else echo "NA";?> </td>
-						<td> <?php if($row['email'] != "") echo $row['email']; else echo "NA";?> </td>
-						
-						<td> <?php if($row['role_name'] != "") echo $row['role_name']; else echo "NA";?></td>
-						<td> <?php if($row['verified'] == 1)echo "Verified";else echo "Not Verified";?></td>
+						<!-- <td> <?php //if($row['email'] != "") echo $row['email']; else echo "NA";?> </td> 
+						<td> <?php // if($row['present'] != "") echo $row['present']; else echo "NA";?> </td>-->
+						<td> <?php  echo "NA";?> </td>
 						<td> <?php if($row['job_id'] != "") echo getJobID($row['job_id']); else echo "Not Assigned";?></td>
+						<td> <?php if($row['start_date'] != "") echo date("d-m-Y",strtotime($row['start_date']))." ".date("g:i A",strtotime($row['start_time'])); else echo "NA";?></td>
+						<td> <?php if($row['end_date'] == 1)echo date("d-m-Y",strtotime($row['end_date']))." ".date("g:i A",strtotime($row['end_time']));else echo "NA";?></td>
 						
 						</td>
 					</tr>
@@ -119,11 +119,10 @@ function update_dataTable(data,tableid) {
                  row.push(data[index].sr);
                  row.push(data[index].branch_name);
                  row.push(data[index].name);
-                 row.push(data[index].mobile);
-                 row.push(data[index].email);
-                 row.push(data[index].role_name);
-                 row.push(data[index].verified);
+                 row.push('NA');
                  row.push(data[index].job_id);
+                 row.push(data[index].start_date);
+                 row.push(data[index].end_date);
 
               
                  oTable.fnAddData(row);

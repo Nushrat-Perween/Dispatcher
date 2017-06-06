@@ -384,6 +384,16 @@ class Hospital extends MX_Controller {
 				$data[$i]['branch_name'] = $row['branch_name']; 
 			else 
 				$data[$i]['branch_name'] = "Not Assigned";
+			
+			if($row['start_date'] != "") 
+				$data[$i]['start_date'] = date("d-m-Y",strtotime($row['start_date']))." ".date("g:i A",strtotime($row['start_time'])); 
+			else 
+				$data[$i]['start_date'] = "NA";
+			
+			if($row['end_date'] == 1)
+				$data[$i]['end_date'] = date("d-m-Y",strtotime($row['end_date']))." ".date("g:i A",strtotime($row['end_time']));
+			else 
+				$data[$i]['end_date'] = "NA";
 			$i++;
 			$sr++;
 		}

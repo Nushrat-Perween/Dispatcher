@@ -150,12 +150,14 @@ class Hospital_model extends CI_Model {
 	}
 	
 	public function getDriverList ($param) {
-		$this->db->select ( 'a.*,ar.name as role_name,b.branch_name,(select id from tbl_job as j where j.assign_to=a.id order by j.created_date desc limit 1) as job_id' );
+		$this->db->select ( 'a.*,ar.name as role_name,b.branch_name,j.id as job_id,j.start_date,j.start_time,j.end_date,j.end_time ' );
 		$this->db->from ( TABLES::$ADMIN.' AS a' );
 		$this->db->join ( TABLES::$ADMIN_USER_ROLE.' AS ar',"ar.id=a.user_role","left" );
 		$this->db->join ( TABLES::$BRANCH.' AS b',"b.id=a.branch_id","left" );
+		$this->db->join ( TABLES::$JOB.' AS j',"j.assign_to=a.id","left" );
 		$this->db->where ( 'a.is_deleted', 0 );
 		$this->db->where ( 'a.user_role', 7 );
+		$this->db->where ( '( j.action_id != 6 and j.action_id != 7 and j.action_id != 8) and   DATE(j.created_date) = DATE(NOW()) ','',false );
 		
 		if(isset($param['branch_id'])) {
 			$this->db->where ( 'a.branch_id', $param['branch_id'] );

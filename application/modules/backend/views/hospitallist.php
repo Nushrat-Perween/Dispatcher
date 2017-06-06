@@ -10,6 +10,7 @@
 </button></a></h2>
        
       </div> <!-- /.content-header -->
+     
       <div class="row">
 
         <div class="col-md-12">
@@ -38,8 +39,8 @@
 					<th  data-filterable="true" data-sortable="true">City</th>
 					<th>Street</th>
 					<th  data-filterable="true" data-sortable="true">Address</th>
-					<th  data-filterable="true" data-sortable="true">Created Date</th>
-					<th>Action </th>
+					<th  data-filterable="true" data-sortable="true">Created&nbsp;Date</th>
+					<th>&nbsp;&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -63,7 +64,7 @@
 				<td> <?php echo $row['address'];?> </td>
 				<td> <?php echo (isset($row['created_date']) && !empty($row['created_date']))?date("d-m-Y", strtotime($row['created_date'])):'';?> </td>
 				<td style="padding-left:5px !important">
-				<a href="<?php echo base_url();?>admin/edit_hospital/<?php echo $row['id'];?>" class="bg-green" style="margin:2px">&nbsp;&nbsp;<i class="fa fa-pencil text-white"></i>&nbsp;Edit&nbsp;&nbsp;</a>
+					<a href="<?php echo base_url();?>admin/edit_hospital/<?php echo $row['id'];?>" class="bg-green" style="margin:2px">&nbsp;&nbsp;<i class="fa fa-pencil text-white"></i>&nbsp;Edit&nbsp;&nbsp;</a>
 				</td>
 				</tr>
 				<?php }?>

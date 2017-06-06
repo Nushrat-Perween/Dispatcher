@@ -109,7 +109,7 @@
 				         		<div class="row"> 
 										<label>Description</label>
 									<div class="col-md-12 form-group">
-										<textarea  name="job[description]" value="" class="form-control" rows="3"> <?php if(isset($job)) { if($job['description'] != NULL)echo $job['description']; }?></textarea>
+										<textarea  name="job[description]" value="" class="form-control" rows="4"> <?php if(isset($job)) { if($job['description'] != NULL)echo $job['description']; }?></textarea>
 									</div>
 									<div class="messageContainer text-danger"></div>
 								</div>
@@ -120,7 +120,7 @@
 		         				<div class="row"> 
 										<label>Special instrunction</label>
 									<div class="col-md-12 form-group">
-										<textarea  name="patient[special_instruction]" class="form-control" rows="3"><?php if(isset($patient)) { if($patient['special_instruction'] != NULL)echo $patient['special_instruction']; }?> </textarea>
+										<textarea  name="patient[special_instruction]" class="form-control" rows="4"><?php if(isset($patient)) { if($patient['special_instruction'] != NULL)echo $patient['special_instruction']; }?> </textarea>
 									</div>
 									<div class="messageContainer text-danger"></div>
 								</div>

@@ -313,6 +313,81 @@ class Hospital extends MX_Controller {
 		}
 	}
 	
+	public function driver_list (){
+		
+		$param = array();
+		$param['user_role'] = 7;
+		$param['client_id'] = $this->session->userdata('admin')['client_id'];
+		$this->load->library('dispatcher/HospitalLib');
+		$fieldworker_list = $this->hospitallib->getDriverList ($param);
+		$this->template->set ( 'fieldworker_list', $fieldworker_list );
+		$this->load->library('dispatcher/BranchLib');
+		$branch_list = $this->branchlib->getAllBranch ($param);
+		$this->template->set ('branchlist', $branch_list );
+		$this->template->set ( 'page', 'Fieldworker List' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout ('default')
+		->title ( 'Dispatcher | User List' )
+		->set_partial ( 'header', 'partials/header' )
+		->set_partial ( 'side_menu', 'partials/side_menu' )
+		->set_partial ( 'chat_model', 'partials/chat_model' )
+		->set_partial ( 'footer', 'partials/footer' );
+		$this->template->build ('fieldworker_list');
+	}
 	
+	public function filter_driver_list (){
+		$param = array();
+		$param['user_role'] = 7;
+		$param['branch_id'] = $this->input->post('branch_id');
+		$param['client_id'] = $this->session->userdata('admin')['client_id'];
+		$this->load->library('dispatcher/HospitalLib');
+		$result = $this->hospitallib->getDriverList ($param);
+		
+		$i=0;
+		$sr=1;
+		$data = array();
+		foreach($result as $row) {
+			$data[$i]['id']=$row['id'];
+			$data[$i]['sr']=$sr;
+			
+			if($row['first_name']!="" || $row['last_name']!="") 
+				$data[$i]['name'] = $row['first_name']." ".$row['last_name']; 
+			else 
+				$data[$i]['name'] = "NA";
+			
+			if($row['mobile'] != "") 
+				$data[$i]['mobile'] = $row['mobile']; 
+			else 
+				$data[$i]['mobile'] = "NA";
+			
+			if($row['email'] != "") 
+				$data[$i]['email'] = $row['email']; 
+			else 
+				$data[$i]['email'] = "NA";
+			
+			if($row['role_name'] != "") 
+				$data[$i]['role_name'] = $row['role_name']; 
+			else 
+				$data[$i]['role_name'] = "NA";
+			
+			if($row['verified'] == 1)
+				$data[$i]['verified'] = "Verified";
+			else 
+				$data[$i]['verified'] = "Not Verified";
+			
+			if($row['job_id'] != "") 
+				$data[$i]['job_id'] = getJobID($row['job_id']); 
+			else 
+				$data[$i]['job_id'] = "Not Assigned";
+			
+			if($row['branch_name'] != "") 
+				$data[$i]['branch_name'] = $row['branch_name']; 
+			else 
+				$data[$i]['branch_name'] = "Not Assigned";
+			$i++;
+			$sr++;
+		}
+		echo json_encode($data);
+	}
 	
 }

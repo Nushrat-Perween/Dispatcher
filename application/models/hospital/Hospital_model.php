@@ -148,4 +148,27 @@ class Hospital_model extends CI_Model {
 		return $result;
 	
 	}
+	
+	public function getDriverList ($param) {
+		$this->db->select ( 'a.*,ar.name as role_name,b.branch_name,(select id from tbl_job as j where j.assign_to=a.id order by j.created_date desc limit 1) as job_id' );
+		$this->db->from ( TABLES::$ADMIN.' AS a' );
+		$this->db->join ( TABLES::$ADMIN_USER_ROLE.' AS ar',"ar.id=a.user_role","left" );
+		$this->db->join ( TABLES::$BRANCH.' AS b',"b.id=a.branch_id","left" );
+		$this->db->where ( 'a.is_deleted', 0 );
+		$this->db->where ( 'a.user_role', 7 );
+		
+		if(isset($param['branch_id'])) {
+			$this->db->where ( 'a.branch_id', $param['branch_id'] );
+		}
+		if(isset($param['client_id'])) {
+			$this->db->where ( 'a.client_id', $param['client_id'] );
+		}
+		if(isset($param['hospital_id'])) {
+			$this->db->where ( 'a.hospital_id', $param['hospital_id'] );
+		}
+		$query = $this->db->get ();
+		//echo $this->db->last_query();
+		$result = $query->result_array ();
+		return $result;
+	}
 }

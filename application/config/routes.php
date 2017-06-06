@@ -252,4 +252,6 @@ $route['admin/edit_hospital/([0-9]+)'] = 'backend/UserNew/editHospital/$1';
 $route['admin/update_hospital'] = 'backend/UserNew/updateHospital';
 $route['admin/searchcity'] = 'backend/Hospital/searchCity';
 $route['admin/searchstate'] = 'backend/Hospital/searchState';
+$route['admin/driver_list'] = 'backend/Hospital/driver_list';
+$route['admin/filter_driver_list'] = 'backend/Hospital/filter_driver_list';
 

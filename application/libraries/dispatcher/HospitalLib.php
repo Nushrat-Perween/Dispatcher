@@ -132,6 +132,7 @@ class HospitalLib {
 		$patient_id= $this->CI->patient->update_patient ( $patient );
 		return $patient_id;
 	}
+	
 	public function update_contact($contact)
 	{
 		$this->CI->load->model ( 'contact/contact_model', 'contact' );
@@ -209,6 +210,13 @@ class HospitalLib {
 	public function getAllHospital ($param) {
 		$this->CI->load->model ('hospital/hospital_model', 'hospital' );
 		$res = $this->CI->hospital->getAllHospital ( $param );
+		return $res;
+	}
+	
+	public function getDriverList( $param )
+	{
+		$this->CI->load->model ('hospital/hospital_model', 'hospital' );
+		$res= $this->CI->hospital->getDriverList ( $param );
 		return $res;
 	}
 	

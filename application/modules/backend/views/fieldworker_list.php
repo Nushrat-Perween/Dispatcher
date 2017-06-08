@@ -67,7 +67,7 @@
 						<td> <?php if($row['first_name']!="" || $row['last_name']!="") echo $row['first_name']." ".$row['last_name']; else echo "NA";?> </td>
 						<!-- <td> <?php //if($row['email'] != "") echo $row['email']; else echo "NA";?> </td> 
 						<td> <?php // if($row['present'] != "") echo $row['present']; else echo "NA";?> </td>-->
-						<td> <?php  echo "NA";?> </td>
+						<td> <?php  echo $row['attendance'];?> </td>
 						<td> <?php if($row['job_id'] != "") echo getJobID($row['job_id']); else echo "Not Assigned";?></td>
 						<td> <?php if($row['start_date'] != "") echo date("d-m-Y",strtotime($row['start_date']))." ".date("g:i A",strtotime($row['start_time'])); else echo "NA";?></td>
 						<td> <?php if($row['end_date'] == 1)echo date("d-m-Y",strtotime($row['end_date']))." ".date("g:i A",strtotime($row['end_time']));else echo "NA";?></td>
@@ -119,7 +119,7 @@ function update_dataTable(data,tableid) {
                  row.push(data[index].sr);
                  row.push(data[index].branch_name);
                  row.push(data[index].name);
-                 row.push('NA');
+                 row.push(data[index].attendance);
                  row.push(data[index].job_id);
                  row.push(data[index].start_date);
                  row.push(data[index].end_date);

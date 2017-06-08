@@ -394,6 +394,7 @@ class Hospital extends MX_Controller {
 				$data[$i]['end_date'] = date("d-m-Y",strtotime($row['end_date']))." ".date("g:i A",strtotime($row['end_time']));
 			else 
 				$data[$i]['end_date'] = "NA";
+			$data[$i]['attendance']=$row['attendance'];
 			$i++;
 			$sr++;
 		}

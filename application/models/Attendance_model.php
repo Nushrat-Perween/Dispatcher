@@ -80,7 +80,7 @@ class Attendance_model extends CI_Model {
 
 	public function getFieldworkerAttendance ($param) {
 		
-		$sql = "select *,(CASE WHEN present IS NULL THEN 'No' ELSE 'Yes' END) AS attendance from (SELECT a.id as admin_id,present,a.client_id,a.hospital_id,concat(a.first_name,' ',a.last_name) as worker_name,aa.action_time FROM (select * from tbl_admin_user where user_role=7) AS `a` LEFT JOIN (SELECT admin_id,count(admin_id) as present,action_time from tbl_admin_attendance where DATE(action_time) = '".$param['date']."') as `aa` ON `a`.`id`=`aa`.`admin_id` ) as b where ";
+		$sql = "select *,(CASE WHEN present IS NULL THEN 'No' ELSE 'Yes' END) AS attendance from (SELECT a.id as admin_id,present,a.client_id,a.hospital_id,concat(a.first_name,' ',a.last_name) as worker_name,aa.action_time FROM (select * from tbl_admin_user where user_role=7) AS `a` LEFT JOIN (SELECT admin_id,count(admin_id) as present,action_time from tbl_admin_attendance where DATE(action_time) = '".$param['date']."' group by admin_id) as `aa` ON `a`.`id`=`aa`.`admin_id` ) as b where ";
 		
 		if(isset($param['client_id'])) {
 			$sql .= 'b.client_id='.$param['client_id'];

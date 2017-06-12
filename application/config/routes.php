@@ -254,4 +254,6 @@ $route['admin/searchcity'] = 'backend/Hospital/searchCity';
 $route['admin/searchstate'] = 'backend/Hospital/searchState';
 $route['admin/driver_list'] = 'backend/Hospital/driver_list';
 $route['admin/filter_driver_list'] = 'backend/Hospital/filter_driver_list';
+$route['admin/edit_assign_hospital'] = 'backend/Hospital/edit_assign_hospital';
+$route['admin/assign_hospital_to_driver'] = 'backend/Hospital/assign_hospital_to_driver';
 

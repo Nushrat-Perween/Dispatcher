@@ -1,4 +1,4 @@
-
+<link type="text/css" rel="stylesheet" href="<?php echo asset_url();?>css/selectize.bootstrap3.css">
 <div class="container">
 
   <div class="content">
@@ -43,13 +43,10 @@
                   <thead>
                     <tr>
                     <th  data-filterable="true" data-sortable="true">Sr.No</th>
+                    <th data-filterable="true" data-sortable="true"> Name </th>
                     <th data-filterable="true" data-sortable="true">Branch </th>
-					<th data-filterable="true" data-sortable="true"> Name </th>
-					<!-- <th width="5%"> Email </th> -->
 					<th >Present</th>
-					<th > Last Job Assigned </th>
-					<th data-filterable="true" data-sortable="true"> Start Time</th>
-					<th data-filterable="true" data-sortable="true"> End Time</th>
+					<th > Action </th>
 					
 					
 					
@@ -63,14 +60,10 @@
 					        ?>
 					<tr>
 						<td><?php echo $sr ; ?> </td>
-						<td> <?php if($row['branch_name'] != "") echo $row['branch_name']; else echo "Not Assigned";?></td>
 						<td> <?php if($row['first_name']!="" || $row['last_name']!="") echo $row['first_name']." ".$row['last_name']; else echo "NA";?> </td>
-						<!-- <td> <?php //if($row['email'] != "") echo $row['email']; else echo "NA";?> </td> 
-						<td> <?php // if($row['present'] != "") echo $row['present']; else echo "NA";?> </td>-->
+						<td> <?php if($row['branch_name'] != "") echo $row['branch_name']; else echo "Not Assigned";?></td>
 						<td> <?php  echo $row['attendance'];?> </td>
-						<td> <?php if($row['job_id'] != "") echo getJobID($row['job_id']); else echo "Not Assigned";?></td>
-						<td> <?php if($row['start_date'] != "") echo date("d-m-Y",strtotime($row['start_date']))." ".date("g:i A",strtotime($row['start_time'])); else echo "NA";?></td>
-						<td> <?php if($row['end_date'] == 1)echo date("d-m-Y",strtotime($row['end_date']))." ".date("g:i A",strtotime($row['end_time']));else echo "NA";?></td>
+						<td> <a href="" onclick="edit_assign_hospital ('<?php echo $row['id'];?>');" data-toggle="modal" data-backdrop="static"  data-target="#modal-login1">Assign Client</a></td>
 						
 						</td>
 					</tr>
@@ -93,13 +86,67 @@
     </div>
   </div>
  </div>
-      
+ 
+ <div class="modal fade "  id="modal-login1" tabindex="-1" role="dialog"  aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header" >
+<h3 id="modal-login-label" class="web_dialog_title">
+<button type="button" data-dismiss="modal" aria-hidden="true" id="close_button"
+class="close">&times;</button>
+<label id="pop_up_title">Assign Hospital </label>
+
+</h3>
+</div>
+
+<div class="modal-body " id="modal_body">
+<br> <br> <br> <br> <br> <br> <br><br> <br> <br> <br> <br> <br> <br>
+
+</div>
+</div>
+</div>
+</div>     
  <script src="<?php echo asset_url();?>js/plugins/datatables/jquery.dataTables.min.js"></script>
   <script src="<?php echo asset_url();?>js/plugins/datatables/DT_bootstrap.js"></script>
   <script src="<?php echo asset_url();?>js/plugins/tableCheckable/jquery.tableCheckable.js"></script>
   <script src="<?php echo asset_url();?>js/plugins/icheck/jquery.icheck.min.js"></script>
+  <script src="<?php echo asset_url();?>js/selectize.min.js"></script>
   <script type="text/javascript">
   
+  function edit_assign_hospital (field_worker_id) {
+	    document.getElementById('pop_up_title').innerHTML = "Assign Hospital";
+	    $.post("<?php echo base_url();?>admin/edit_assign_hospital",{"field_worker_id":field_worker_id},function(data){
+	           document.getElementById('modal_body').innerHTML=data;
+
+				$("#hospital_id").selectize({
+				    plugins: ['remove_button'],
+				    delimiter: ',',
+				    persist: false,
+				    create: function(input) {
+				        return {
+				            value: input,
+				            text: input
+				        }
+				    }
+				});
+			
+	           });
+	}
+
+  function assign_hospital (driver_id) {
+	var hospital_id=   $("#hospital_id").val();
+	 $.post("<?php echo base_url();?>admin/assign_hospital_to_driver",{"driver_id":driver_id,"hospital_id": hospital_id},function(data){
+
+			if(data.status == 1) {
+				alert(data.msg);
+			 	window.location.reload();
+			}
+			else {
+				alert(data.msg);
+			}
+			
+	 },'json');
+  }
  function branch_filter () {
     $.post("<?php echo base_url();?>admin/filter_driver_list",{"branch_id": $('#branch_id').val()},function(data){
            tableid="table_id1";
@@ -115,16 +162,14 @@ function update_dataTable(data,tableid) {
     oTable.fnClearTable();
     
     $(data).each(function(index) {
+        var action = '<a href="" onclick="edit_assign_hospital (`'+data[index].id+'`);" data-toggle="modal" data-backdrop="static"  data-target="#modal-login1">Assign Client</a>';
                  var row = [];
                  row.push(data[index].sr);
-                 row.push(data[index].branch_name);
                  row.push(data[index].name);
+                 row.push(data[index].branch_name);
                  row.push(data[index].attendance);
-                 row.push(data[index].job_id);
-                 row.push(data[index].start_date);
-                 row.push(data[index].end_date);
+                 row.push(action);
 
-              
                  oTable.fnAddData(row);
                  });
 }

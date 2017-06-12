@@ -351,7 +351,7 @@
   		 public function  getJobDetailById ($id)
 		  {
 			  $this->db->select ( 'j.id as job_id,j.job_name,j.description,jc.mobile,concat(jc.first_name," ",jc.last_name) as contact_name,
-			  jc.pickup_latitude as pickup_latitide,jc.pickup_longitude as pickup_longitude,jc.pickup_street as pickup_street,jc.pickup_lookup_name as pickup_lookup_name,jc.pickup_city ,jc.pickup_building,jc.pickup_state,jc.pickup_postalcode,jc.delivery_address,jc.delivery_city,jc.delivery_state,jc.delivery_zipcode,jc.delivery_street,jc.delivery_lookup_name,
+			  jc.pickup_latitude as pickup_latitide,jc.pickup_longitude as pickup_longitude,jc.pickup_street as pickup_street,jc.pickup_lookup_name as pickup_lookup_name,jc.pickup_city ,jc.pickup_address,jc.pickup_state,jc.pickup_postalcode,jc.delivery_address,jc.delivery_city,jc.delivery_state,jc.delivery_zipcode,jc.delivery_lookup_name,
 			  h.locality as del_street,h.latitude as del_latitude,h.longitude as del_longitude,h.address as del_address,j.priority,
 			  p.name as patient_name,room_no,test,caller,special_instruction,j.created_date,js.status,j.start_date,j.start_time,j.end_date,
 			  j.end_time,j.time_on_job,j.estimated_duration,j.delivery_date,date_add(j.start_time, INTERVAL j.estimated_duration hour) as schedule_end_time,

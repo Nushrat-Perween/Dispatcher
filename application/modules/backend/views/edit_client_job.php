@@ -9,7 +9,7 @@
     <div class="content-container">
 		<div class="content-header">
 		<h2 class="content-header-title">
-				Edit Job 
+				Edit Job <a href="<?php echo base_url();?>admin/job_detail/<?php echo $job['id'];?>" class="pull-right btn btn-success"> Job detail</a>
 			</h2>
 		</div>
 		<div class="row">

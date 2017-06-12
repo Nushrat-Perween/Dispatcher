@@ -117,21 +117,18 @@
 					<h6 class="content-header-title"> <b> 	Pickup Address </b></h6>
 					<hr/>
 					<div class="card-block">
-					<p class="card-text">
-					<span class="col-md-6 "> <b>Pickup Street :</b>  </span>
-					<span class="col-md-6 " style=""><?php echo $job_details[0]['pickup_street'];?></span>
-					</p>
+					
 					<p class="card-text">
 					<span class="col-md-6 "> <b>Address :</b>  </span>
-					<span class="col-md-6 " style=""><?php echo $job_details[0]['pickup_building'];?></span>
+					<span class="col-md-6 " style=""><?php echo $job_details[0]['pickup_address'];?></span>
 					</p>
+					<p class="card-text">
+							<span class="col-md-6 "> <b>City :</b>  </span>
+							<span class="col-md-6 " style=""><?php echo $job_details[0]['delivery_city'];?></span>
+						</p>
 					<p class="card-text">
 					<span class="col-md-6 "> <b>Zip code :</b>  </span>
 					<span class="col-md-6 " style=""><?php echo $job_details[0]['pickup_postalcode'];?></span>
-					</p>
-					<p class="card-text">
-					<span class="col-md-6 "> <b>City :</b>  </span>
-					<span class="col-md-6 " style=""><?php echo $job_details[0]['pickup_city'];?></span>
 					</p>
 					<p class="card-text">
 					<span class="col-md-6 "> <b>Lookup Name :</b>  </span>
@@ -149,10 +146,7 @@
 					<h6 class="content-header-title"> <b> 	Delivery Address</b></h6>
 					<hr/>
 					<div class="card-block">
-						<p class="card-text">
-							<span class="col-md-6 "> <b>Pickup Street :</b>  </span>
-							<span class="col-md-6 " style=""><?php echo $job_details[0]['delivery_street'];?></span>
-						</p>
+						
 						<p class="card-text">
 							<span class="col-md-6 "> <b>Address :</b>  </span>
 							<span class="col-md-6 " style=""><?php echo $job_details[0]['delivery_address'];?></span>

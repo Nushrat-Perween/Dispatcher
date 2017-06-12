@@ -401,4 +401,53 @@ class Hospital extends MX_Controller {
 		echo json_encode($data);
 	}
 	
+	public function edit_assign_hospital () {
+		$param = array();
+		$param['client_id'] = $this->session->userdata('admin')['client_id'];
+		$field_worker_id = $this->input->post("field_worker_id");
+		$this->template->set ( 'field_worker_id', $field_worker_id );
+		$this->load->library('dispatcher/HospitalLib');
+		$hospital = $this->hospitallib->getAllHospitalByClient ($param);
+		$assigned_hospital = $this->hospitallib->getAssignedHospitalByDriverId ($field_worker_id);
+		//print_r($assigned_hospital);
+		$this->template->set ( 'assigned_hospital', $assigned_hospital );
+		$this->template->set ( 'hospital', $hospital );
+		$this->template->set ( 'hospital_assignment', 1 );
+		
+		
+		$this->template->set_theme( 'default_theme' );
+		$this->template->set_layout ( false)
+		->title ( 'Dispatcher | hospital' );
+		$this->template->build ( 'hospital_model',true );
+	}
+	
+	public function assign_hospital_to_driver () {
+		$this->load->library('dispatcher/HospitalLib');
+		$hospital_array = $this->input->post('hospital_id');
+		$driver_id = $this->input->post('driver_id');
+		$this->hospitallib->resetDriverIDToZeroInHospital ($driver_id);
+// 		print_r($hospital_array);
+		// Code for assigning f=hospital to driver
+		$hospital_count = count($hospital_array);
+		if($hospital_count > 0)
+		{
+			for($i = 0; $i < $hospital_count; $i++){
+				$hospital = array();
+				$hospital['id'] = $hospital_array[$i];
+				$hospital['driver_id'] = $driver_id;
+				$res = $this->hospitallib->assignDriverToHospital ($hospital);
+			}
+		}
+		
+		$resdata = array();
+		if($res) {
+			$resdata['status'] = 1;
+			$resdata['msg'] = "Assigned successfully.";
+		} else {
+			$resdata['status'] = 0;
+			$resdata['msg'] = "Error! Please check your data.";
+		}
+		echo json_encode($resdata);
+	}
+	
 }

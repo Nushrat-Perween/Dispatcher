@@ -213,6 +213,30 @@ class HospitalLib {
 		return $res;
 	}
 	
+	public function getAllHospitalByClient ($param) {
+		$this->CI->load->model ('hospital/hospital_model', 'hospital' );
+		$res = $this->CI->hospital->getAllHospitalByClient ($param);
+		return $res;
+	}
+	
+	public function assignDriverToHospital ($param) {
+		$this->CI->load->model ('hospital/hospital_model', 'hospital' );
+		$res = $this->CI->hospital->assignDriverToHospital ($param);
+		return $res;
+	}
+	
+	public function getAssignedHospitalByDriverId ($driver_id) {
+		$this->CI->load->model ('hospital/hospital_model', 'hospital' );
+		$res = $this->CI->hospital->getAssignedHospitalByDriverId ($driver_id);
+		return $res;
+	}
+	
+	public function resetDriverIDToZeroInHospital ($driver_id) {
+		$this->CI->load->model ('hospital/hospital_model', 'hospital' );
+		$res = $this->CI->hospital->resetDriverIDToZeroInHospital ($driver_id);
+		return $res;
+	}
+	
 	public function getDriverList( $param )
 	{
 		$this->CI->load->model ('hospital/hospital_model', 'hospital' );

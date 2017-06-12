@@ -43,6 +43,31 @@ class Hospital_model extends CI_Model {
 		$result = $query->result_array ();
 		return $result;
 	}
+	
+	public function getAllHospitalByClient ($param)
+	{
+		$this->db->select ('(h.name) as hospital_name,h.address,h.locality,h.created_date,CONCAT(a.first_name," ",a.last_name) AS name,a.verified, a.email,a.mobile,h.id,h.city,h.business_name,h.state' );
+		$this->db->from ( TABLES::$HOSPITAL.' AS h' );
+		$this->db->join ( TABLES::$ADMIN.' AS a',"h.id=a.hospital_id","left" );
+		$this->db->where('a.user_role',6);
+		$this->db->where('a.client_id',$param['client_id']);
+		$query = $this->db->get ();
+		//echo $this->db->last_query ();
+		$result = $query->result_array ();
+		return $result;
+	}
+	
+	public function getAssignedHospitalByDriverId ($driver_id)
+	{
+		$this->db->select ('*' );
+		$this->db->from ( TABLES::$HOSPITAL.' AS h' );
+		$this->db->where('driver_id',$driver_id);
+		$query = $this->db->get ();
+// 		echo $this->db->last_query ();
+		$result = $query->result_array ();
+		return $result;
+	}
+	
 	public function save_job ($job)
 	{
 		//print_r($job);
@@ -173,5 +198,20 @@ class Hospital_model extends CI_Model {
 // 		echo $this->db->last_query();
 		$result = $query->result_array ();
 		return $result;
+	}
+	
+	public function resetDriverIDToZeroInHospital ($driver_id) {
+		$param['driver_id'] = 0;
+		$this->db->where ( 'driver_id', $driver_id );
+		$res = $this->db->update(TABLES::$HOSPITAL,$param);
+		//echo $this->db->last_query();
+		return  $res;
+	}
+	
+	public function assignDriverToHospital ($param) {
+		$this->db->where ( 'id', $param['id'] );
+		$res = $this->db->update(TABLES::$HOSPITAL,$param);
+		//echo $this->db->last_query();
+		return  $res;
 	}
 }

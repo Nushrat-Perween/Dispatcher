@@ -66,7 +66,7 @@ class UserLibNew {
 		$user['created_date'] = $data['created_date'];
 		$user['created_by'] = $data['created_by'];
 		$user['email'] = $data['email'];
-		//$user['first_name'] = $data['first_name'];
+		$user['first_name'] = $data['name'];
 		//$user['last_name'] = $data['last_name'];
 		$user['mobile'] = $data['mobile'];
 		$user['verified'] = $data['verified'];
@@ -112,7 +112,7 @@ class UserLibNew {
 		$user = array();
 		$hospital = array();
 		$user['email'] = $data['email'];
-		//$user['first_name'] = $data['first_name'];
+		$user['first_name'] = $data['name'];
 		//$user['last_name'] = $data['last_name'];
 		$user['mobile'] = $data['mobile'];
 		$user['verified'] = $data['verified'];
@@ -120,6 +120,7 @@ class UserLibNew {
 	
 		//$hospital['name'] = $data['name'];
 		//$hospital['locality'] = $data['locality'];
+		$hospital['name'] = $data['name'];
 		$hospital['address'] = $data['address'];
 		$hospital['pincode'] = $data['pincode'];
 		$hospital['latitude'] = $data['latitude'];

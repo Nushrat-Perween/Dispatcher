@@ -51,7 +51,7 @@
 	        
 	         <div class="form-group">
 	          <label >Zip Code</label>
-	          <input type="text"  class="form-control" name="data[zipcode]" placeholder="Zipcode" value="<?php if(isset($branch)) {echo $branch['zipcode'];}?>" tabindex="3"/>
+	          <input type="text"  class="form-control" name="data[zipcode]" id ="zipcode" placeholder="Zipcode" value="<?php if(isset($branch)) {echo $branch['zipcode'];}?>" tabindex="3"/>
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
 	
@@ -258,7 +258,28 @@ $("#branch_form").submit(function(e) {
                 window.alert("Autocomplete's returned place contains no geometry");
                 return;
             }
-           
+            $.post("https://maps.googleapis.com/maps/api/geocode/json?latlng="+place.geometry.location.lat()+","+place.geometry.location.lng()+"&key=AIzaSyAUX1D8t19z6ud9ljBoP-G_lyVc495ohN8",{}, function(data)
+    				{
+    					
+    					$(data.results[0].address_components).each(function(index){
+    						//alert(data.results[0].address_components[index]['types'][0]);
+    						//alert(data.results[0].address_components[index]['types']);
+    						if(data.results[0].address_components[index]['types'][0]=='administrative_area_level_1')
+    						{
+    							$('#state').val(data.results[0].address_components[index]['short_name']);
+    						}
+    						if(data.results[0].address_components[index]['types'][0]=='locality')
+    						{
+    							$('#city').val(data.results[0].address_components[index]['long_name']);
+    						}
+    						if(data.results[0].address_components[index]['types'][0]=='postal_code')
+    						{
+    							$('#zipcode').val(data.results[0].address_components[index]['long_name']);
+    						}
+    						
+    					});
+    					//alert(data.value);
+    			},'json');
             $('#latitude').val(place.geometry.location.lat());
             $('#longitude').val(place.geometry.location.lng());
           i=1;

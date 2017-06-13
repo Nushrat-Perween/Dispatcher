@@ -704,30 +704,72 @@
         var autocomplete = new google.maps.places.Autocomplete(input, options);
         autocomplete.addListener('place_changed', function () {
             var place = autocomplete.getPlace();
-            $('#city').val(place.address_components[1].long_name);
-            $('#state').val(place.address_components[2].long_name);
+            //$('#city').val(place.address_components[1].long_name);
+            //$('#state').val(place.address_components[2].long_name);
             if (!place.geometry) {
                 window.alert("Autocomplete's returned place contains no geometry");
                 return;
             }
-           
+            $.post("https://maps.googleapis.com/maps/api/geocode/json?latlng="+place.geometry.location.lat()+","+place.geometry.location.lng()+"&key=AIzaSyAUX1D8t19z6ud9ljBoP-G_lyVc495ohN8",{}, function(data)
+    				{
+    					
+    					$(data.results[0].address_components).each(function(index){
+    						//alert(data.results[0].address_components[index]['types'][0]);
+    						//alert(data.results[0].address_components[index]['types']);
+    						if(data.results[0].address_components[index]['types'][0]=='administrative_area_level_1')
+    						{
+    							$('#state').val(data.results[0].address_components[index]['short_name']);
+    						}
+    						if(data.results[0].address_components[index]['types'][0]=='locality')
+    						{
+    							$('#city').val(data.results[0].address_components[index]['long_name']);
+    						}
+    						if(data.results[0].address_components[index]['types'][0]=='postal_code')
+    						{
+    							$('#postalcode').val(data.results[0].address_components[index]['long_name']);
+    						}
+    						
+    					});
+    					//alert(data.value);
+    			},'json');
             $('#latitude').val(place.geometry.location.lat());
             $('#longitude').val(place.geometry.location.lng());
           i=1;
         });
-        
+  
     
          input = document.getElementById('hstreet');
        var  autocomplete1 = new google.maps.places.Autocomplete(input, options);
         autocomplete1.addListener('place_changed', function () {
             var place = autocomplete1.getPlace();
-            $('#hcity').val(place.address_components[1].long_name);
-            $('#hstate').val(place.address_components[2].long_name);
+            //$('#hcity').val(place.address_components[1].long_name);
+           // $('#hstate').val(place.address_components[2].long_name);
             if (!place.geometry) {
                 window.alert("Autocomplete's returned place contains no geometry");
                 return;
             }
-           
+            $.post("https://maps.googleapis.com/maps/api/geocode/json?latlng="+place.geometry.location.lat()+","+place.geometry.location.lng()+"&key=AIzaSyAUX1D8t19z6ud9ljBoP-G_lyVc495ohN8",{}, function(data)
+    				{
+    					
+    					$(data.results[0].address_components).each(function(index){
+    						//alert(data.results[0].address_components[index]['types'][0]);
+    						//alert(data.results[0].address_components[index]['types']);
+    						if(data.results[0].address_components[index]['types'][0]=='administrative_area_level_1')
+    						{
+    							$('#hstate').val(data.results[0].address_components[index]['short_name']);
+    						}
+    						if(data.results[0].address_components[index]['types'][0]=='locality')
+    						{
+    							$('#hcity').val(data.results[0].address_components[index]['long_name']);
+    						}
+    						if(data.results[0].address_components[index]['types'][0]=='postal_code')
+    						{
+    							$('#hpincode').val(data.results[0].address_components[index]['long_name']);
+    						}
+    						
+    					});
+    					//alert(data.value);
+    			},'json');
             $('#hlatitude').val(place.geometry.location.lat());
             $('#hlongitude').val(place.geometry.location.lng());
           i=0;

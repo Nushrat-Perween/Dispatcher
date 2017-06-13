@@ -395,6 +395,11 @@ class Hospital extends MX_Controller {
 			else 
 				$data[$i]['end_date'] = "NA";
 			$data[$i]['attendance']=$row['attendance'];
+			
+			if($row['hospital_assigned'] != "")
+				$data[$i]['hospital_assigned'] = $row['hospital_assigned']; 
+			else 
+				echo "NA";
 			$i++;
 			$sr++;
 		}
@@ -431,12 +436,17 @@ class Hospital extends MX_Controller {
 		$hospital_count = count($hospital_array);
 		if($hospital_count > 0)
 		{
+			
+			$hospitals = array();
 			for($i = 0; $i < $hospital_count; $i++){
 				$hospital = array();
-				$hospital['id'] = $hospital_array[$i];
+				$hospital['hospital_id'] = $hospital_array[$i];
 				$hospital['driver_id'] = $driver_id;
-				$res = $this->hospitallib->assignDriverToHospital ($hospital);
+				$hospitals[] = $hospital;
+				
 			}
+			if(count($hospitals) > 0)
+				$res = $this->hospitallib->assignDriverToHospital ($hospitals);
 		}
 		
 		$resdata = array();

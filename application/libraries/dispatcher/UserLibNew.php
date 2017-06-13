@@ -74,6 +74,7 @@ class UserLibNew {
 	
 		//$hospital['name'] = $data['name'];
 		//$hospital['locality'] = $data['locality'];
+		$hospital['name'] = $data['name'];
 		$hospital['address'] = $data['address'];
 		$hospital['created_date'] = $data['created_date'];
 		$hospital['created_by'] = $data['created_by'];

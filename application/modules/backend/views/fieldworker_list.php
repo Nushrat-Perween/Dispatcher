@@ -45,6 +45,7 @@
                     <th  data-filterable="true" data-sortable="true">Sr.No</th>
                     <th data-filterable="true" data-sortable="true"> Name </th>
                     <th data-filterable="true" data-sortable="true">Branch </th>
+                    <th data-filterable="true" data-sortable="true" >Client</th>
 					<th >Present</th>
 					<th > Action </th>
 					
@@ -56,13 +57,15 @@
 					<?php
 					    $sr=0;
 					    foreach($fieldworker_list as $row) {
-					        $sr++;
+					        $sr++;$str="";
 					        ?>
 					<tr>
 						<td><?php echo $sr ; ?> </td>
 						<td> <?php if($row['first_name']!="" || $row['last_name']!="") echo $row['first_name']." ".$row['last_name']; else echo "NA";?> </td>
 						<td> <?php if($row['branch_name'] != "") echo $row['branch_name']; else echo "Not Assigned";?></td>
+						<td>  <?php  foreach($data as $row1) { if($row['id']==$row1['driver_id']) { $str=$str. $row1['name']."&nbsp;,";}} echo substr_replace($str,'',-2);?> </td>
 						<td> <?php  echo $row['attendance'];?> </td>
+						
 						<td> <a href="" onclick="edit_assign_hospital ('<?php echo $row['id'];?>');" data-toggle="modal" data-backdrop="static"  data-target="#modal-login1">Assign Client</a></td>
 						
 						</td>
@@ -94,7 +97,7 @@
 <h3 id="modal-login-label" class="web_dialog_title">
 <button type="button" data-dismiss="modal" aria-hidden="true" id="close_button"
 class="close">&times;</button>
-<label id="pop_up_title">Assign Hospital </label>
+<label id="pop_up_title">Assign Client </label>
 
 </h3>
 </div>

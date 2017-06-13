@@ -182,6 +182,7 @@ class Hospital_model extends CI_Model {
 		$this->db->join ( TABLES::$ASSIGN_HOSPITAL_TO_DRIVER.' AS ah',"ah.driver_id=a.id","left" );
 		$this->db->join ( TABLES::$HOSPITAL.' AS h',"ah.hospital_id=h.id","left" );
 		$this->db->join ( TABLES::$BRANCH.' AS b',"b.id=a.branch_id","left" );
+		
 		$this->db->join ( '(SELECT admin_id,count(admin_id) as present,action_time from tbl_admin_attendance where DATE(action_time) = DATE(NOW()) group by admin_id) as `aa` ',"a.id=aa.admin_id","left" );
 		$this->db->join ( '(select `j`.`id` as `job_id`, j.assign_to ,`j`.`start_date`, `j`.`start_time`, `j`.`end_date`, `j`.`end_time` From `tbl_job` AS `j` where ( j.action_id != 6 and j.action_id != 7 and j.action_id != 8 and DATE(j.created_date) = DATE(NOW()) )) as j1',"j1.assign_to=a.id","left" );
 		$this->db->where ( 'a.is_deleted', 0 );
@@ -217,5 +218,15 @@ class Hospital_model extends CI_Model {
 		$this->db->where('driver_id',$driver_id);
 		$this->db->delete(TABLES::$ASSIGN_HOSPITAL_TO_DRIVER);
 		return  $res = $this->db->insert_batch(TABLES::$ASSIGN_HOSPITAL_TO_DRIVER,$param);
+	}
+	public function getclientbyrider()
+	{
+		$this->db->select('j.driver_id,j.name');
+		$this->db->from ( TABLES::$HOSPITAL.' AS j' );
+		$this->db->where("j.driver_id !=0");
+		$this->db->order_by('driver_id','asc');
+		$query = $this->db->get ();
+		$result = $query->result_array ();
+		return $result;
 	}
 }

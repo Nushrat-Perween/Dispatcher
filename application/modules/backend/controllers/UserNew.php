@@ -247,7 +247,7 @@ class UserNew extends MX_Controller {
 		$data['latitude'] = $this->input->post('latitude');
 		$data['longitude'] = $this->input->post('longitude');
 		$this->load->library('dispatcher/UserLibNew');
-		print_r($data);
+		//print_r($data);
 		//$data ['name'] = $data ['first_name']." ".$data ['last_name'];
 		$id = $this->userlibnew->saveHospital ($data);
 		$userdata = array();

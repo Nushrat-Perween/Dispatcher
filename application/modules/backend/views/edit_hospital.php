@@ -19,41 +19,55 @@
       </div> <!-- /.content-header -->
       <div class="row">
        <div class="col-md-10 col-md-offset-1">
- 		<form class=" form-validation form account-form" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
+ 		<form class="form-validation form-horizontal" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
         <div class="col-md-6">
-        
-			 <div class="form-group">
-	          <label >Business Name</label>
-	       <input type="text" class="form-control" name="data[business_name]" placeholder="Business Name" value="<?php echo $hospital['business_name']; ?>" required/>
+        <div class="row">
+        <label >Business Name</label>
+			 <div class="col-md-12 form-group">
+	          
+	       	<input type="text" class="form-control" name="data[business_name]" placeholder="Business Name" value="<?php echo $hospital['business_name']; ?>" required/>
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
-	      
-	        <div class="form-group">
-	          <label >Phone No.</label>
+	    </div>
+	     <div class="row">
+	     	<label > Name</label>
+	        <div class="col-md-12 form-group">
+	          
+	       <input type="text" class="form-control" name="data[name]" placeholder="Business Name" value="<?php echo $hospital['first_name']; ?>" required/>
+	        <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
+	      </div>
+	      <div class="row">
+	       <label >Phone No.</label>
+	        <div class="col-md-12 form-group">
+	         
 	       <input type="text" class="form-control" name="data[mobile]" placeholder="Phone no." value ="<?php echo $hospital['mobile']; ?>" required/>
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
-	       <div class="form-group">
-	          <label >Email Id</label>
+	        </div>
+	        <div class="row">
+	         <label >Email Id</label>
+	       <div class=" col-md-12 form-group">
+	         
 	          <input type="email" class="form-control" name="data[email]" placeholder="Email" value ="<?php echo $hospital['email']; ?>" required/>
 	       <div class="messageContainer"></div>
 	       </div> <!-- /.form-group -->
-	      
-	       <div class="form-group">
-	          <label >Password</label>
+	      </div>
+	      <div class="row">
+	      <label >Password</label>
+	       <div class=" col-md-12 form-group">
+	          
 	         	 <input type="text" class="form-control" name="data[text_password]" placeholder="Password" value ="<?php echo $hospital['text_password']; ?>" required/>
 	       <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
-	          <div class="form-group">
-	          <label >Fax No</label>
-	         	  <input type="text"  class="form-control" name="data[fax_no]" value ="<?php echo $hospital['fax_no']; ?>" placeholder="Fax No" required/>
-	       <div class="messageContainer"></div>
-	        </div> <!-- /.form-group -->
+	        </div>  
 			</div>
 			
 			<div class="col-md-6">
-	         <div class="form-group">
-	          <label >Address</label>
+			<div class="row">
+			<label >Address</label>
+	         <div class=" col-md-12 form-group">
+	          
 	         	<input type="text" class="form-control" name="data[address]" placeholder="address" id="locality" value ="<?php echo $hospital['address']; ?>" required/>
 								<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" value = "<?php echo $hospital['latitude']?>"/>
 								<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude"  value = "<?php echo $hospital['latitude']?>"/>
@@ -61,34 +75,52 @@
 								<input type="hidden" class="form-control" name="hospital_id" placeholder="City" value ="<?php echo $hospital['hospital_id']; ?>"/>
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
-	        <div class="form-group">
-	          <label >City</label>
+	        </div>
+	        <div class="row">
+	         <label >City.</label>
+	        <div class="col-md-12 form-group">
+	         
 	         <input type="text"  class="form-control" name="data[city]" id="city" value ="<?php echo $hospital['city']; ?>" placeholder="City" required/>
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
-	       
-	        <div class="form-group">
-	          <label >State</label>
+	       </div>
+	       <div class="row">
+	       <label >State</label>
+	        <div class=" col-md-12 form-group" >
 	      <input type="text"  class="form-control" name="data[state]" id="state" value ="<?php echo $hospital['state']; ?>" placeholder="State" required/>
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
-	        
-	          <div class="form-group">
+	        </div>
+	        <div class="row">
+	        <div class="col-md-6">
 	          <label >Zip Code</label>
-	            <input type="text" class="form-control" name="data[pincode]" placeholder="Pincode" value ="<?php echo $hospital['pincode']; ?>" required/>
+	         <div class="col-md-12 form-group " >
+	        
+	            <input type="text" class="form-control" id ="zipcode" name="data[pincode]" placeholder="Pincode" value ="<?php echo $hospital['pincode']; ?>" required/>
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
-	        
-	         <div class="form-group">
+	        </div>
+	       <div class="col-md-6">
+	        <label >Fax No</label>
+	        <div class=" col-md-12 form-group">
+	          
+	         	  <input type="text"  class="form-control" name="data[fax_no]" value ="<?php echo $hospital['fax_no']; ?>" placeholder="Fax No" required/>
+	       <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
+	       </div>
+	        </div>
+	        <div class="row">
+	         <div class="col-md-12 form-group ">
 	          <label >Is Verified</label>
-		        <div class="col-md-12 input-group"> 
+		        
 					<select class="form-control" name="data[verified]"  id="verified" required>
 									<option value="">Is Active</option>
 									<option value="1" <?php if($hospital['verified']==1) echo "selected";?>>Active</option>
 									<option value="0" <?php if($hospital['verified']==0) echo "selected";?>>Dactive</option>
 									
 								</select> 
-				</div>
+				
+			</div>
 			</div>
 	        
 				<div class="form-group pull-right">
@@ -228,7 +260,28 @@
                 window.alert("Autocomplete's returned place contains no geometry");
                 return;
             }
-           
+            $.post("https://maps.googleapis.com/maps/api/geocode/json?latlng="+place.geometry.location.lat()+","+place.geometry.location.lng()+"&key=AIzaSyAUX1D8t19z6ud9ljBoP-G_lyVc495ohN8",{}, function(data)
+    				{
+    					
+    					$(data.results[0].address_components).each(function(index){
+    						//alert(data.results[0].address_components[index]['types'][0]);
+    						//alert(data.results[0].address_components[index]['types']);
+    						if(data.results[0].address_components[index]['types'][0]=='administrative_area_level_1')
+    						{
+    							$('#state').val(data.results[0].address_components[index]['short_name']);
+    						}
+    						if(data.results[0].address_components[index]['types'][0]=='locality')
+    						{
+    							$('#city').val(data.results[0].address_components[index]['long_name']);
+    						}
+    						if(data.results[0].address_components[index]['types'][0]=='postal_code')
+    						{
+    							$('#zipcode').val(data.results[0].address_components[index]['long_name']);
+    						}
+    						
+    					});
+    					//alert(data.value);
+    			},'json');
             $('#latitude').val(place.geometry.location.lat());
             $('#longitude').val(place.geometry.location.lng());
           i=1;

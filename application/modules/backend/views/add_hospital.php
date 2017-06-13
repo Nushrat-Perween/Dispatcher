@@ -17,78 +17,100 @@
       </div> <!-- /.content-header -->
       <div class="row">
        <div class="col-md-10 col-md-offset-1">
- 		<form class=" form-validation form account-form" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
+ 		<form class=" form-validation form-horizontal" method="POST" action="" name="user_form" id="user_form" enctype="multipart/form-data">
         <div class="col-md-6">
-			 <div class="form-group">
-	          <label for="login-password" class="">Business Name</label>
+        <div class="row">
+        <label for="login-password" class="">Business Name</label>
+			 <div class="col-md-12 form-group">
 	        <input type="text" class="form-control" name="data[business_name]" placeholder="Business Name" required tabindex="1"/>
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
-	         <div class="form-group">
-	          <label for="login-password" class="">Name</label>
+	     </div>
+	     <div class="row">
+	     <label for="login-password" class="">Name</label>
+	         <div class="col-md-12 form-group">
 	        <input type="text" class="form-control" name="data[name]" placeholder="Business Name" required tabindex="1"/>
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
-	        <div class="form-group">
-	          <label >Phone No.</label>
+	     </div>
+	     <div class="row">
+	     <label >Phone No.</label>
+	        <div class="col-md-12 form-group">
 	        <input type="text" class="form-control" name="data[mobile]" placeholder="Phone no" required/>
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
-	       <div class="form-group">
-	          <label >Email Id</label>
+	     </div>
+	     <div class="row">
+	      <label >Email Id</label>
+	       <div class="col-md-12 form-group">
 	          <input type="text"  class="form-control" name="data[email]" id="email" value="<?php if(isset($branch)) {echo $branch['address'];}?>" placeholder="Email -id" tabindex="2"/>
 	       <div class="messageContainer"></div>
 	       </div> <!-- /.form-group -->
-	      
-	       <div class="form-group">
-	          <label >Password</label>
+	     </div>
+	     <div class="row">
+	       <label >Password</label>
+	       <div class="col-md-12 form-group">
 	         	  <input type="text"  class="form-control" name="data[password]" value ="" placeholder="Password" required/>
 	       <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
-	       <div class="form-group">
-	          <label >Fax No</label>
-	         	  <input type="text"  class="form-control" name="data[fax_no]" value ="" placeholder="Fax No" required/>
-	       <div class="messageContainer"></div>
-	        </div> <!-- /.form-group -->
+	     </div>
+	    
 			</div>
 			
-			<div class="col-md-6">
-	         <div class="form-group">
-	          <label >Address</label>
+		<div class="col-md-6">
+		<div class="row">
+		<label >Address</label>
+	         <div class="col-md-12 form-group">
 	         	<input type="text" class="form-control" name="data[address]" placeholder="Address" id="locality" required/>
 				<input type="hidden" class="form-control" name="latitude" placeholder="City" id="latitude" required/>
 				<input type="hidden" class="form-control" name="longitude" placeholder="City" id="longitude" required/>
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
-	        <div class="form-group">
-	          <label >City</label>
+	     </div>
+	     <div class="row">
+	     <label >City.</label>
+	        <div class=" col-md-12 form-group">
 	          <input type="text"  class="form-control" name="data[city]" id="city" value ="" placeholder="City" required/>
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
-	       
-	        <div class="form-group">
-	          <label >State</label>
+	     </div>
+	     <div class="row">  
+	     <label >State</label>
+	        <div class=" col-md-12 form-group">
 	      <input type="text"  class="form-control" name="data[state]" id="state" value ="" placeholder="State" required/>
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
-	        
-	          <div class="form-group">
-	          <label >Zip Code</label>
-	            <input type="text"  class="form-control" name="data[pincode]" placeholder="Pincode" required/>
+	     </div>
+	     <div class="row">
+	     <div class="col-md-6">  
+	     <label >Zip Code</label> 
+	          <div class=" col-md-12 form-group">
+	            <input type="text"  class="form-control" name="data[pincode]" placeholder="Pincode" id="zipcode" required/>
 				<input type="hidden"  class="form-control" name="password" value ="<?php echo $password['text_password'] ?>" placeholder="Pincode" required/>
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
-	        
-	         <div class="form-group">
-	          <label >Is Active</label>
-		        <div class="col-md-12 input-group"> 
+	     </div>
+	     <div class="col-md-6"> 
+	      <label >Fax No</label>
+	       <div class="col-md-12 form-group">
+	         	  <input type="text"  class="form-control" name="data[fax_no]" value ="" placeholder="Fax No" required/>
+	       <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
+	     </div>
+	     </div>
+	     
+	     <div class="row"> 
+	      <label >Is Active</label>  
+	         
+		        <div class="col-md-12 form-group"> 
 					<select class="form-control" name="data[verified]"  id="verified" required>
 						<option value="">Select</option>
 						<option value="1">Active</option>
 						<option value="0">Dactive</option>
 					</select>
 				</div>
-			</div>
+			
+		</div>
 				<div class="form-group pull-right">
 							<button type="submit" class="btn btn-primary m-r">
 							Submit
@@ -227,19 +249,31 @@
         autocomplete.addListener('place_changed', function () {
             var place = autocomplete.getPlace();
             
-            $('#city').val(place.address_components[2].long_name);
-            $('#state').val(place.address_components[4].long_name);
-           alert(place);
+           // $('#city').val(place.address_components[2].long_name);
+           // $('#state').val(place.address_components[4].long_name);
+           //alert(place);
             if (!place.geometry) {
                 window.alert("Autocomplete's returned place contains no geometry");
                 return;
             }
     		$.post("https://maps.googleapis.com/maps/api/geocode/json?latlng="+place.geometry.location.lat()+","+place.geometry.location.lng()+"&key=AIzaSyAUX1D8t19z6ud9ljBoP-G_lyVc495ohN8",{}, function(data)
     				{
-    					alert(data['long_name']);
-    					$(data).each(function(index){
-    						
-    						alert(data[index]['address_components']);
+    					
+    					$(data.results[0].address_components).each(function(index){
+    						//alert(data.results[0].address_components[index]['types'][0]);
+    						//alert(data.results[0].address_components[index]['types']);
+    						if(data.results[0].address_components[index]['types'][0]=='administrative_area_level_1')
+    						{
+    							$('#state').val(data.results[0].address_components[index]['short_name']);
+    						}
+    						if(data.results[0].address_components[index]['types'][0]=='locality')
+    						{
+    							$('#city').val(data.results[0].address_components[index]['long_name']);
+    						}
+    						if(data.results[0].address_components[index]['types'][0]=='postal_code')
+    						{
+    							$('#zipcode').val(data.results[0].address_components[index]['long_name']);
+    						}
     						
     					});
     					//alert(data.value);

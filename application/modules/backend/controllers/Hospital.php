@@ -401,7 +401,7 @@ class Hospital extends MX_Controller {
 			if($row['hospital_assigned'] != "")
 				$data[$i]['hospital_assigned'] = $row['hospital_assigned']; 
 			else 
-				echo "NA";
+				$data[$i]['hospital_assigned'] = "NA";
 			$i++;
 			$sr++;
 		}

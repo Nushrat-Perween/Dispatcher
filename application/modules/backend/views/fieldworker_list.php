@@ -46,6 +46,7 @@
                     <th data-filterable="true" data-sortable="true"> Name </th>
                     <th data-filterable="true" data-sortable="true">Branch </th>
 					<th >Present</th>
+					<th >Assigned Client</th>
 					<th > Action </th>
 					
 					
@@ -63,6 +64,7 @@
 						<td> <?php if($row['first_name']!="" || $row['last_name']!="") echo $row['first_name']." ".$row['last_name']; else echo "NA";?> </td>
 						<td> <?php if($row['branch_name'] != "") echo $row['branch_name']; else echo "Not Assigned";?></td>
 						<td> <?php  echo $row['attendance'];?> </td>
+						<td> <?php  if($row['hospital_assigned'] != "")echo $row['hospital_assigned']; else echo "NA";?> </td>
 						<td> <a href="" onclick="edit_assign_hospital ('<?php echo $row['id'];?>');" data-toggle="modal" data-backdrop="static"  data-target="#modal-login1">Assign Client</a></td>
 						
 						</td>
@@ -94,7 +96,7 @@
 <h3 id="modal-login-label" class="web_dialog_title">
 <button type="button" data-dismiss="modal" aria-hidden="true" id="close_button"
 class="close">&times;</button>
-<label id="pop_up_title">Assign Hospital </label>
+<label id="pop_up_title">Assign Client </label>
 
 </h3>
 </div>
@@ -114,7 +116,7 @@ class="close">&times;</button>
   <script type="text/javascript">
   
   function edit_assign_hospital (field_worker_id) {
-	    document.getElementById('pop_up_title').innerHTML = "Assign Hospital";
+	    document.getElementById('pop_up_title').innerHTML = "Assign Client";
 	    $.post("<?php echo base_url();?>admin/edit_assign_hospital",{"field_worker_id":field_worker_id},function(data){
 	           document.getElementById('modal_body').innerHTML=data;
 
@@ -168,6 +170,7 @@ function update_dataTable(data,tableid) {
                  row.push(data[index].name);
                  row.push(data[index].branch_name);
                  row.push(data[index].attendance);
+                 row.push(data[index].hospital_assigned);
                  row.push(action);
 
                  oTable.fnAddData(row);

@@ -45,7 +45,6 @@
                     <th  data-filterable="true" data-sortable="true">Sr.No</th>
                     <th data-filterable="true" data-sortable="true"> Name </th>
                     <th data-filterable="true" data-sortable="true">Branch </th>
-                    <th data-filterable="true" data-sortable="true" >Client</th>
 					<th >Present</th>
 					<th >Assigned Client</th>
 					<th > Action </th>

@@ -154,7 +154,8 @@ class="close">&times;</button>
   }
  function branch_filter () {
     $.post("<?php echo base_url();?>admin/filter_driver_list",{"branch_id": $('#branch_id').val()},function(data){
-           tableid="table_id1";
+//     	alert(JSON.stringify(data));
+         tableid="table_id1";
            update_dataTable(data,tableid);
     							
            },'json');
@@ -162,12 +163,12 @@ class="close">&times;</button>
 }
  
 function update_dataTable(data,tableid) {
-    
+	
     var oTable = $("#"+tableid).dataTable();
     oTable.fnClearTable();
     
     $(data).each(function(index) {
-        var action = '<a href="" onclick="edit_assign_hospital (`'+data[index].id+'`);" data-toggle="modal" data-backdrop="static"  data-target="#modal-login1">Assign Client</a>';
+       		 var action = '<a href="" onclick="edit_assign_hospital (`'+data[index].id+'`);" data-toggle="modal" data-backdrop="static"  data-target="#modal-login1">Assign Client</a>';
                  var row = [];
                  row.push(data[index].sr);
                  row.push(data[index].name);

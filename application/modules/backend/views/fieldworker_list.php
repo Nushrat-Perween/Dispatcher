@@ -63,7 +63,6 @@
 						<td><?php echo $sr ; ?> </td>
 						<td> <?php if($row['first_name']!="" || $row['last_name']!="") echo $row['first_name']." ".$row['last_name']; else echo "NA";?> </td>
 						<td> <?php if($row['branch_name'] != "") echo $row['branch_name']; else echo "Not Assigned";?></td>
-						<td>  <?php  foreach($data as $row1) { if($row['id']==$row1['driver_id']) { $str=$str. $row1['name']."&nbsp;,";}} echo substr_replace($str,'',-2);?> </td>
 						<td> <?php  echo $row['attendance'];?> </td>
 						<td> <?php  if($row['hospital_assigned'] != "")echo $row['hospital_assigned']; else echo "NA";?> </td>
 						

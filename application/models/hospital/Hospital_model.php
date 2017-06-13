@@ -59,9 +59,10 @@ class Hospital_model extends CI_Model {
 	
 	public function getAssignedHospitalByDriverId ($driver_id)
 	{
-		$this->db->select ('*' );
-		$this->db->from ( TABLES::$HOSPITAL.' AS h' );
-		$this->db->where('driver_id',$driver_id);
+		$this->db->select ('h.*' );
+		$this->db->from ( TABLES::$ASSIGN_HOSPITAL_TO_DRIVER.' AS a' );
+		$this->db->join ( TABLES::$HOSPITAL.' AS h',"h.id=a.hospital_id","left" );
+		$this->db->where('a.driver_id',$driver_id);
 		$query = $this->db->get ();
 // 		echo $this->db->last_query ();
 		$result = $query->result_array ();
@@ -175,9 +176,11 @@ class Hospital_model extends CI_Model {
 	}
 	
 	public function getDriverList ($param) {
-		$this->db->select ( "(CASE WHEN aa.present IS NULL THEN 'No' ELSE 'Yes' END) AS attendance,aa.*,j1.*,a.*,ar.name as role_name,b.branch_name" );
+		$this->db->select ( "group_concat(DISTINCT h.name) as hospital_assigned,(CASE WHEN aa.present IS NULL THEN 'No' ELSE 'Yes' END) AS attendance,aa.*,j1.*,a.*,ar.name as role_name,b.branch_name" );
 		$this->db->from ( TABLES::$ADMIN.' AS a' );
 		$this->db->join ( TABLES::$ADMIN_USER_ROLE.' AS ar',"ar.id=a.user_role","left" );
+		$this->db->join ( TABLES::$ASSIGN_HOSPITAL_TO_DRIVER.' AS ah',"ah.driver_id=a.id","left" );
+		$this->db->join ( TABLES::$HOSPITAL.' AS h',"ah.hospital_id=h.id","left" );
 		$this->db->join ( TABLES::$BRANCH.' AS b',"b.id=a.branch_id","left" );
 		
 		$this->db->join ( '(SELECT admin_id,count(admin_id) as present,action_time from tbl_admin_attendance where DATE(action_time) = DATE(NOW()) group by admin_id) as `aa` ',"a.id=aa.admin_id","left" );
@@ -195,6 +198,7 @@ class Hospital_model extends CI_Model {
 		if(isset($param['hospital_id'])) {
 			$this->db->where ( 'a.hospital_id', $param['hospital_id'] );
 		}
+		$this->db->group_by('ah.driver_id');
 		$query = $this->db->get ();
 // 		echo $this->db->last_query();
 		$result = $query->result_array ();
@@ -210,10 +214,10 @@ class Hospital_model extends CI_Model {
 	}
 	
 	public function assignDriverToHospital ($param) {
-		$this->db->where ( 'id', $param['id'] );
-		$res = $this->db->update(TABLES::$HOSPITAL,$param);
-		//echo $this->db->last_query();
-		return  $res;
+		$driver_id = $param[0]['driver_id'];
+		$this->db->where('driver_id',$driver_id);
+		$this->db->delete(TABLES::$ASSIGN_HOSPITAL_TO_DRIVER);
+		return  $res = $this->db->insert_batch(TABLES::$ASSIGN_HOSPITAL_TO_DRIVER,$param);
 	}
 	public function getclientbyrider()
 	{

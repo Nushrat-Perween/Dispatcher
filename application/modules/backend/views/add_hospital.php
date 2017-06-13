@@ -24,6 +24,11 @@
 	        <input type="text" class="form-control" name="data[business_name]" placeholder="Business Name" required tabindex="1"/>
 	        <div class="messageContainer"></div>
 	        </div> <!-- /.form-group -->
+	         <div class="form-group">
+	          <label for="login-password" class="">Name</label>
+	        <input type="text" class="form-control" name="data[name]" placeholder="Business Name" required tabindex="1"/>
+	        <div class="messageContainer"></div>
+	        </div> <!-- /.form-group -->
 	        <div class="form-group">
 	          <label >Phone No.</label>
 	        <input type="text" class="form-control" name="data[mobile]" placeholder="Phone no" required/>
@@ -221,14 +226,29 @@
         var autocomplete = new google.maps.places.Autocomplete(input, options);
         autocomplete.addListener('place_changed', function () {
             var place = autocomplete.getPlace();
-            $('#city').val(place.address_components[1].long_name);
-            $('#state').val(place.address_components[2].long_name);
+            
+            $('#city').val(place.address_components[2].long_name);
+            $('#state').val(place.address_components[4].long_name);
+           alert(place);
             if (!place.geometry) {
                 window.alert("Autocomplete's returned place contains no geometry");
                 return;
             }
-           
-            $('#latitude').val(place.geometry.location.lat());
+    		$.post("https://maps.googleapis.com/maps/api/geocode/json?latlng="+place.geometry.location.lat()+","+place.geometry.location.lng()+"&key=AIzaSyAUX1D8t19z6ud9ljBoP-G_lyVc495ohN8",{}, function(data)
+    				{
+    					alert(data['long_name']);
+    					$(data).each(function(index){
+    						
+    						alert(data[index]['address_components']);
+    						
+    					});
+    					//alert(data.value);
+    			},'json');
+          // var  address_info = file_get_contents("https://maps.googleapis.com/maps/api/geocode/json?latlng="+place.geometry.location.lat()+","+place.geometry.location.lng()+"&key=AIzaSyAUX1D8t19z6ud9ljBoP-G_lyVc495ohN8");
+          	
+          		//alert(address_info);
+          
+             $('#latitude').val(place.geometry.location.lat());
             $('#longitude').val(place.geometry.location.lng());
           i=1;
         });

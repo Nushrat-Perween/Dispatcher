@@ -320,10 +320,12 @@ class Hospital extends MX_Controller {
 		$param['client_id'] = $this->session->userdata('admin')['client_id'];
 		$this->load->library('dispatcher/HospitalLib');
 		$fieldworker_list = $this->hospitallib->getDriverList ($param);
+		$data = $this->hospitallib->getclientbyrider ();
 		$this->template->set ( 'fieldworker_list', $fieldworker_list );
 		$this->load->library('dispatcher/BranchLib');
 		$branch_list = $this->branchlib->getAllBranch ($param);
 		$this->template->set ('branchlist', $branch_list );
+		$this->template->set ('data', $data );
 		$this->template->set ( 'page', 'Fieldworker List' );
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout ('default')

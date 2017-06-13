@@ -243,5 +243,12 @@ class HospitalLib {
 		$res= $this->CI->hospital->getDriverList ( $param );
 		return $res;
 	}
+	public function getclientbyrider()
+	{
+		$this->CI->load->model ('hospital/hospital_model', 'hospital' );
+		$res= $this->CI->hospital->getclientbyrider (  );
+		return $res;
+	}
+	
 	
 }

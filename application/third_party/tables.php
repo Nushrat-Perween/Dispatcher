@@ -31,5 +31,6 @@ class TABLES {
 	public static $JOB_HISTORY = 'tbl_job_history';
 	public static $CLIENT = 'tbl_client';
 	public static $CHAT = 'tbl_chat';
+	public static $ASSIGN_HOSPITAL_TO_DRIVER = 'tbl_assign_hospital_to_driver';
 
 }

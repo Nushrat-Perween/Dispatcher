@@ -44,6 +44,7 @@
                     <tr>
                     <th  data-filterable="true" data-sortable="true">Sr.No</th>
                     <th data-filterable="true" data-sortable="true"> Name </th>
+                    <th data-filterable="true" data-sortable="true"> Mobile No. </th>
                     <th data-filterable="true" data-sortable="true">Branch </th>
 					<th >Present</th>
 					<th >Assigned Client</th>
@@ -62,8 +63,8 @@
 					<tr>
 						<td><?php echo $sr ; ?> </td>
 						<td> <?php if($row['first_name']!="" || $row['last_name']!="") echo $row['first_name']." ".$row['last_name']; else echo "NA";?> </td>
+						<td> <?php  echo $row['mobile'];?> </td>
 						<td> <?php if($row['branch_name'] != "") echo $row['branch_name']; else echo "Not Assigned";?></td>
-						<td>  <?php  foreach($data as $row1) { if($row['id']==$row1['driver_id']) { $str=$str. $row1['name']."&nbsp;,";}} echo substr_replace($str,'',-2);?> </td>
 						<td> <?php  echo $row['attendance'];?> </td>
 						<td> <?php  if($row['hospital_assigned'] != "")echo $row['hospital_assigned']; else echo "NA";?> </td>
 						
@@ -153,7 +154,8 @@ class="close">&times;</button>
   }
  function branch_filter () {
     $.post("<?php echo base_url();?>admin/filter_driver_list",{"branch_id": $('#branch_id').val()},function(data){
-           tableid="table_id1";
+//     	alert(JSON.stringify(data));
+         tableid="table_id1";
            update_dataTable(data,tableid);
     							
            },'json');
@@ -161,15 +163,16 @@ class="close">&times;</button>
 }
  
 function update_dataTable(data,tableid) {
-    
+	
     var oTable = $("#"+tableid).dataTable();
     oTable.fnClearTable();
     
     $(data).each(function(index) {
-        var action = '<a href="" onclick="edit_assign_hospital (`'+data[index].id+'`);" data-toggle="modal" data-backdrop="static"  data-target="#modal-login1">Assign Client</a>';
+       		 var action = '<a href="" onclick="edit_assign_hospital (`'+data[index].id+'`);" data-toggle="modal" data-backdrop="static"  data-target="#modal-login1">Assign Client</a>';
                  var row = [];
                  row.push(data[index].sr);
                  row.push(data[index].name);
+                 row.push(data[index].mobile);
                  row.push(data[index].branch_name);
                  row.push(data[index].attendance);
                  row.push(data[index].hospital_assigned);
